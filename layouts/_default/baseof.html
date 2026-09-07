@@ -14,7 +14,7 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
     </button>
     <a class="nav-logo" href="https://rforrupesh.github.io/fontaesthetic/">
-      <img src="./static/logo_fontaesthetic.png' alt="FancyText logo">
+      <img src="https://rforrupesh.github.io/fontaesthetic/logo_fontaesthetic.png" alt="FancyText logo"/>
 
     </a>
     <div class="nav-controls">
@@ -65,7 +65,7 @@
 {{ if not .IsHome }}
 <nav class="breadcrumb" aria-label="Breadcrumb">
   <a href="{{ "/" | relLangURL }}">{{ i18n "breadcrumb_home" }}</a>
-  {{ if .Parent }} › <a href="{{ .Parent.Permalink }}">{{ .Parent.Title }}</a>{{ end }}
+   {{ if and .Parent (not .Parent.IsHome) }} › <a href="{{ .Parent.Permalink }}">{{ .Parent.Title }}</a>{{ end }}
   › <span>{{ .Title }}</span>
 </nav>
 {{ end }}

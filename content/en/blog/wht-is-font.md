@@ -7,7 +7,7 @@ lastmod: 2026-09-01
 description: "Learn what a font is, how Unicode text styles differ from real fonts, and why fancy text generators work everywhere."
 keywords: ["what is a font", "unicode fonts explained"]
 author: "FancyText"
-image: "/img/blog/wht-is-font.svg"
+image: "https://rforrupesh.github.io/fontaesthetic/img/blog/blue-aesthetic-5120x2880-17495.png"
 faq:
   - q: "Are these real fonts?"
     a: "No — they're standard Unicode characters styled to look like different fonts."

@@ -10,7 +10,6 @@
     <div class="blog-list-body">
       <h2>{{ $post.Title }}</h2>
       {{ with $post.Description }}<p>{{ . }}</p>{{ end }}
-      <span class="blog-list-date">{{ $post.Date.Format "January 2, 2006" }}</span>
     </div>
   </a>
   {{ end }}
