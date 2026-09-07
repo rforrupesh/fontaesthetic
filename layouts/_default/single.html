@@ -5,6 +5,13 @@
   {{ with .Params.image }}
   <img class="blog-post-thumb" src="{{ . | relURL }}" alt="{{ $.Title }}" width="1200" height="680">
   {{ end }}
+  {{ $toc := .TableOfContents }}
+  {{ if and (eq .Section "blog") (strings.Contains $toc "<a") }}
+  <nav class="post-toc" aria-label="{{ i18n "table_of_contents" }}">
+    <p class="post-toc-title">{{ i18n "table_of_contents" }}</p>
+    {{ $toc }}
+  </nav>
+  {{ end }}
   {{ .Content }}
 </article>
 

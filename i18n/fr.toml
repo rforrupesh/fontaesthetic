@@ -14,3 +14,5 @@ other = "Générateur de texte stylé"
 other = "Accueil"
 [related_posts]
 other = "Articles similaires"
+[table_of_contents]
+other = "Table des matières"

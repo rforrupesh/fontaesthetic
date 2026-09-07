@@ -14,3 +14,5 @@ other = "Fancy Text Generator"
 other = "Home"
 [related_posts]
 other = "Related posts"
+[table_of_contents]
+other = "Table of contents"
