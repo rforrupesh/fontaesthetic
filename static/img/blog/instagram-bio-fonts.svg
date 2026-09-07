@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f58529"/>
+      <stop offset="45%" stop-color="#dd2a7b"/>
+      <stop offset="100%" stop-color="#8134af"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="340" fill="url(#g1)"/>
+  <rect x="210" y="90" width="180" height="160" rx="36" fill="none" stroke="#ffffff" stroke-width="10"/>
+  <circle cx="300" cy="170" r="42" fill="none" stroke="#ffffff" stroke-width="10"/>
+  <circle cx="358" cy="118" r="8" fill="#ffffff"/>
+  <text x="300" y="300" font-family="Georgia, serif" font-size="30" fill="#ffffff" text-anchor="middle" font-style="italic">Bio Fonts</text>
+</svg>

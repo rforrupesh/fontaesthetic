@@ -2,8 +2,35 @@
 <article class="blog-post">
   <h1>{{ .Title }}</h1>
   <p class="post-meta">{{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} · {{ . }}{{ end }}</p>
+  {{ with .Params.image }}
+  <img class="blog-post-thumb" src="{{ . | relURL }}" alt="{{ $.Title }}" width="1200" height="680">
+  {{ end }}
   {{ .Content }}
 </article>
+
+{{ $related := where .Site.RegularPages "Section" .Section }}
+{{ $related = $related.ByDate.Reverse }}
+{{ $others := slice }}
+{{ range $related }}
+  {{ if ne .Permalink $.Permalink }}{{ $others = $others | append . }}{{ end }}
+{{ end }}
+{{ with first 3 $others }}
+<section class="related-posts">
+  <h2>{{ i18n "related_posts" | default "Related posts" }}</h2>
+  <div class="related-posts-grid">
+    {{ range . }}
+    {{ $post := . }}
+    <a class="related-post-card" href="{{ $post.Permalink }}">
+      <div class="related-post-thumb">
+        {{ with $post.Params.image }}<img src="{{ . | relURL }}" alt="{{ $post.Title }}" loading="lazy" width="600" height="340">{{ end }}
+      </div>
+      <h3>{{ $post.Title }}</h3>
+      {{ with $post.Description }}<p>{{ . }}</p>{{ end }}
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
 
 <script type="application/ld+json">
 {

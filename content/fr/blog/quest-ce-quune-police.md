@@ -7,6 +7,7 @@ lastmod: 2026-09-01
 description: "Découvrez ce qu'est une police, en quoi le texte unicode stylé diffère des vraies polices, et pourquoi il fonctionne partout."
 keywords: ["qu'est-ce qu'une police", "polices unicode expliquées"]
 author: "FancyText"
+image: "/img/blog/wht-is-font.svg"
 faq:
   - q: "Sont-ce de vraies polices ?"
     a: "Non — ce sont des caractères unicode standards qui imitent différents styles de police."

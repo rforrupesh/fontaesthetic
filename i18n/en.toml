@@ -12,3 +12,5 @@ other = "Copied"
 other = "Fancy Text Generator"
 [breadcrumb_home]
 other = "Home"
+[related_posts]
+other = "Related posts"

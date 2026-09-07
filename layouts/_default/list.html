@@ -1,10 +1,17 @@
 {{ define "main" }}
-<header><h1>{{ .Title }}</h1></header>
+<header class="blog-list-header"><h1>{{ .Title }}</h1>{{ with .Description }}<p>{{ . }}</p>{{ end }}</header>
 <div class="blog-list">
-  {{ range .Pages }}
-  <a class="blog-list-item" href="{{ .Permalink }}">
-    <h2>{{ .Title }}</h2>
-    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  {{ range .Pages.ByDate.Reverse }}
+  {{ $post := . }}
+  <a class="blog-list-item" href="{{ $post.Permalink }}">
+    <div class="blog-list-thumb">
+      {{ with $post.Params.image }}<img src="{{ . | relURL }}" alt="{{ $post.Title }}" loading="lazy" width="600" height="340">{{ end }}
+    </div>
+    <div class="blog-list-body">
+      <h2>{{ $post.Title }}</h2>
+      {{ with $post.Description }}<p>{{ . }}</p>{{ end }}
+      <span class="blog-list-date">{{ $post.Date.Format "January 2, 2006" }}</span>
+    </div>
   </a>
   {{ end }}
 </div>
