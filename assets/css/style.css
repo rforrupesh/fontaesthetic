@@ -30,6 +30,23 @@
     --muted:#9aa0a6;
   }
   *{box-sizing:border-box;}
+video,select,input,textarea,button,table,iframe,pre,object,embed{
+  max-width:100% !important;
+}
+input[type="range"]{width:100%;}
+select{width:auto;max-width:100%;}
+.blog-post-content details,
+.blog-post-content summary,
+.blog-post-content dl,
+.blog-post-content dt,
+.blog-post-content dd,
+.blog-post-content address,
+.blog-post-content figure,
+.blog-post-content figcaption{
+  max-width:100%;
+  overflow-wrap:break-word;
+  word-break:break-word;
+}
   html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden;height:100%;}
   img,svg{max-width:100%;}
   body{
