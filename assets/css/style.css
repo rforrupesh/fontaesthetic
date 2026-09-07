@@ -786,11 +786,8 @@
   overflow:hidden;
   text-decoration:none;
   background:var(--paper);
-  transition:box-shadow 0.2s ease, transform 0.2s ease;
 }
 .blog-list-item:hover{
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  transform:translateY(-2px);
 }
 .blog-list-thumb{
   width:100%;
@@ -847,11 +844,8 @@
   overflow:hidden;
   text-decoration:none;
   background:var(--paper);
-  transition:box-shadow 0.2s ease, transform 0.2s ease;
 }
 .related-post-card:hover{
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  transform:translateY(-2px);
 }
 .related-post-thumb{
   width:100%;
