@@ -781,8 +781,8 @@
 .blog-list-item{
   display:flex;
   flex-direction:column;
-  border:1px solid var(--line);
-  border-radius:12px;
+  border:none;
+  border-radius:20px;
   overflow:hidden;
   text-decoration:none;
   background:var(--paper);
@@ -842,8 +842,8 @@
 .related-post-card{
   display:flex;
   flex-direction:column;
-  border:1px solid var(--line);
-  border-radius:12px;
+  border:none;
+  border-radius:20px;
   overflow:hidden;
   text-decoration:none;
   background:var(--paper);
