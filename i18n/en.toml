@@ -1,0 +1,14 @@
+[nav_blog]
+other = "Blog"
+[nav_emoji]
+other = "Emoji"
+[nav_symbols]
+other = "Cool Symbols"
+[copy_btn]
+other = "Copy"
+[copied_btn]
+other = "Copied"
+[home_title]
+other = "Fancy Text Generator"
+[breadcrumb_home]
+other = "Home"

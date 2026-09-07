@@ -1,0 +1,11 @@
+{{ define "main" }}
+<header><h1>{{ .Title }}</h1></header>
+{{ .Content }}
+<div class="use-grid">
+  {{ range (slice "★" "☆" "♥" "♦" "♣" "♠" "☯" "☠" "☮" "✓" "✗" "→") }}
+  <button type="button" class="use-item symbol-copy" data-symbol="{{ . }}">
+    <span class="use-icon">{{ . }}</span>
+  </button>
+  {{ end }}
+</div>
+{{ end }}

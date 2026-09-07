@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="{{ .Language.Lang }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ i18n "home_title" }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+{{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
+{{ partial "head.html" . }}
+</head>
+<body>
+<nav class="site-navbar">
+  <div class="navbar-inner">
+    <a class="nav-logo" href="{{ "/" | relLangURL }}">
+      <span class="logo-badge">{{ .Site.Params.logoLetter }}</span>
+      <span class="nav-logo-text">Fancy<span>Text</span></span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="{{ "blog" | relLangURL }}">{{ i18n "nav_blog" }}</a></li>
+      <li><a href="{{ "emoji" | relLangURL }}">{{ i18n "nav_emoji" }}</a></li>
+      <li><a href="{{ "cool-symbols" | relLangURL }}">{{ i18n "nav_symbols" }}</a></li>
+    </ul>
+    <div class="lang-switch">
+      {{ $current := .Language.Lang }}
+      {{ $translations := .Translations }}
+      {{ range .Site.Languages }}
+        {{ $lang := .Lang }}
+        {{ if eq $lang $current }}
+          <span class="lang-current">{{ .LanguageName }}</span>
+        {{ else }}
+          {{ $found := false }}
+          {{ range $translations }}
+            {{ if eq .Language.Lang $lang }}
+              <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+              {{ $found = true }}
+            {{ end }}
+          {{ end }}
+          {{ if not $found }}
+            <a href="{{ $lang | relLangURL }}">{{ .LanguageName }}</a>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</nav>
+
+{{ if not .IsHome }}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="{{ "/" | relLangURL }}">{{ i18n "breadcrumb_home" }}</a>
+  {{ if .Parent }} › <a href="{{ .Parent.Permalink }}">{{ .Parent.Title }}</a>{{ end }}
+  › <span>{{ .Title }}</span>
+</nav>
+{{ end }}
+
+<div class="wrap">
+{{ block "main" . }}{{ end }}
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; {{ now.Format "2006" }} FancyText. All styles are real Unicode characters.</p>
+  </div>
+</footer>
+
+{{ $js := resources.Get "js/generator.js" | minify | fingerprint }}
+<script defer src="{{ $js.RelPermalink }}"></script>
+</body>
+</html>
