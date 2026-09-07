@@ -697,7 +697,7 @@
 
 /* ===== Blog single post ===== */
 .blog-post{
-  max-width:760px;
+  max-width:960px;
   margin:0 auto;
   padding:32px 20px 60px;
   background:#ffffff;
@@ -825,7 +825,7 @@
 
 /* ===== Related posts ===== */
 .related-posts{
-  max-width:760px;
+  max-width:960px;
   margin:0 auto;
   padding:0 20px 60px;
 }
@@ -881,7 +881,7 @@
 
 /* ===== Homepage SEO / tool description content ===== */
 .seo-content{
-  max-width:760px;
+  max-width:960px;
   margin:40px auto 0;
   padding:24px 20px 60px;
   background:#ffffff;
@@ -909,7 +909,7 @@
 .seo-content a:hover{color:var(--accent-hover);}
 
 .page-intro{
-  max-width:760px;
+  max-width:960px;
   margin:0 auto 20px;
   padding:0 20px;
   color:var(--mono);
