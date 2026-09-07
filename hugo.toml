@@ -3,6 +3,8 @@ title = "FancyText"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
+uglyURLs = false
+canonifyURLs = false
 
 [params]
   logoLetter = "F"

@@ -1,6 +1,6 @@
 {{ define "main" }}
 <header><h1>{{ .Title }}</h1></header>
-{{ .Content }}
+<div class="page-intro">{{ .Content }}</div>
 <div class="use-grid">
   {{ range (slice "★" "☆" "♥" "♦" "♣" "♠" "☯" "☠" "☮" "✓" "✗" "→") }}
   <button type="button" class="use-item symbol-copy" data-symbol="{{ . }}">

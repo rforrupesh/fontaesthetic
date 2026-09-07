@@ -36,7 +36,7 @@
               {{ range $translations }}
                 {{ if eq .Language.Lang $lang }}{{ $href = .Permalink }}{{ end }}
               {{ end }}
-              {{ if not $href }}{{ $href = ($lang | relLangURL) }}{{ end }}
+              {{ if not $href }}{{ $href = (printf "%s/" $lang | relLangURL) }}{{ end }}
             {{ end }}
             <li><a href="{{ $href }}" data-value="{{ $lang }}" {{ if eq $lang $current }}class="selected"{{ end }}>{{ .LanguageName }}</a></li>
           {{ end }}
@@ -55,9 +55,9 @@
       </div>
     </div>
     <ul class="nav-menu" id="navMenu">
-      <li><a href="{{ "blog" | relLangURL }}">{{ i18n "nav_blog" }}</a></li>
-      <li><a href="{{ "emoji" | relLangURL }}">{{ i18n "nav_emoji" }}</a></li>
-      <li><a href="{{ "cool-symbols" | relLangURL }}">{{ i18n "nav_symbols" }}</a></li>
+      <li><a href="{{ "blog/" | relLangURL }}">{{ i18n "nav_blog" }}</a></li>
+      <li><a href="{{ "emoji/" | relLangURL }}">{{ i18n "nav_emoji" }}</a></li>
+      <li><a href="{{ "cool-symbols/" | relLangURL }}">{{ i18n "nav_symbols" }}</a></li>
     </ul>
   </div>
 </nav>
@@ -88,15 +88,15 @@
       <div class="site-footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="{{ "blog" | relLangURL }}">{{ i18n "nav_blog" }}</a></li>
+          <li><a href="{{ "blog/" | relLangURL }}">{{ i18n "nav_blog" }}</a></li>
         </ul>
       </div>
 
       <div class="site-footer-col">
         <h4>More Tools</h4>
         <ul>
-          <li><a href="{{ "emoji" | relLangURL }}">{{ i18n "nav_emoji" }}</a></li>
-          <li><a href="{{ "cool-symbols" | relLangURL }}">{{ i18n "nav_symbols" }}</a></li>
+          <li><a href="{{ "emoji/" | relLangURL }}">{{ i18n "nav_emoji" }}</a></li>
+          <li><a href="{{ "cool-symbols/" | relLangURL }}">{{ i18n "nav_symbols" }}</a></li>
         </ul>
       </div>
     </div>
