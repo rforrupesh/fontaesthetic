@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((p) => p.id.startsWith('fr/'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout
+  title="Blog — FontAesthetic"
+  description="Guides et notes sur le texte Unicode, les polices et les emoji."
+  lang="fr"
+  path="/blog/"
+>
+  <header>
+    <h1>Blog</h1>
+  </header>
+  <ul>
+    {posts.map((post) => {
+      const slug = post.id.replace('fr/', '').replace(/\.md$/, '');
+      return (
+        <li>
+          <a href={`/fr/blog/${slug}/`}>{post.data.title}</a>
+          <p>{post.data.description}</p>
+        </li>
+      );
+    })}
+  </ul>
+</BaseLayout>
