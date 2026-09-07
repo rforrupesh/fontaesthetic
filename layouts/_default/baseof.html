@@ -10,36 +10,55 @@
 <body>
 <nav class="site-navbar">
   <div class="navbar-inner">
+    <button class="nav-toggle" type="button" id="navToggle" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
+    </button>
     <a class="nav-logo" href="{{ "/" | relLangURL }}">
-      <span class="logo-badge">{{ .Site.Params.logoLetter }}</span>
+      <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a73e8'/%3E%3Ctext x='16' y='23' font-family='Google Sans,sans-serif' font-size='19' font-weight='700' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E" alt="FancyText logo">
       <span class="nav-logo-text">Fancy<span>Text</span></span>
     </a>
-    <ul class="nav-menu">
+    <div class="nav-controls">
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-toggle" id="langToggle" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <svg class="lang-globe-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"></path></svg>
+          <span id="langCurrent">{{ .Language.LanguageName }}</span>
+          <svg class="lang-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <ul class="lang-menu" id="langMenu" role="listbox" aria-label="Choose language">
+          {{ $current := .Language.Lang }}
+          {{ $translations := .Translations }}
+          {{ range .Site.Languages }}
+            {{ $lang := .Lang }}
+            {{ $href := "" }}
+            {{ if eq $lang $current }}
+              {{ $href = $.Permalink }}
+            {{ else }}
+              {{ range $translations }}
+                {{ if eq .Language.Lang $lang }}{{ $href = .Permalink }}{{ end }}
+              {{ end }}
+              {{ if not $href }}{{ $href = ($lang | relLangURL) }}{{ end }}
+            {{ end }}
+            <li><a href="{{ $href }}" data-value="{{ $lang }}" {{ if eq $lang $current }}class="selected"{{ end }}>{{ .LanguageName }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="theme-dropdown" id="themeDropdown">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2"></path><path d="M12 21v2"></path><path d="M4.22 4.22l1.42 1.42"></path><path d="M18.36 18.36l1.42 1.42"></path><path d="M1 12h2"></path><path d="M21 12h2"></path><path d="M4.22 19.78l1.42-1.42"></path><path d="M18.36 5.64l1.42-1.42"></path></svg>
+          <span id="themeCurrent">Day</span>
+        </button>
+        <ul class="theme-menu" id="themeMenu" role="listbox" aria-label="Choose theme">
+          <li><button type="button" data-value="light" class="selected">☀️ Day</button></li>
+          <li><button type="button" data-value="dark">🌙 Dark</button></li>
+          <li><button type="button" data-value="system">💻 System</button></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="nav-menu" id="navMenu">
       <li><a href="{{ "blog" | relLangURL }}">{{ i18n "nav_blog" }}</a></li>
       <li><a href="{{ "emoji" | relLangURL }}">{{ i18n "nav_emoji" }}</a></li>
       <li><a href="{{ "cool-symbols" | relLangURL }}">{{ i18n "nav_symbols" }}</a></li>
     </ul>
-    <div class="lang-switch">
-      {{ $current := .Language.Lang }}
-      {{ $translations := .Translations }}
-      {{ range .Site.Languages }}
-        {{ $lang := .Lang }}
-        {{ if eq $lang $current }}
-          <span class="lang-current">{{ .LanguageName }}</span>
-        {{ else }}
-          {{ $found := false }}
-          {{ range $translations }}
-            {{ if eq .Language.Lang $lang }}
-              <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
-              {{ $found = true }}
-            {{ end }}
-          {{ end }}
-          {{ if not $found }}
-            <a href="{{ $lang | relLangURL }}">{{ .LanguageName }}</a>
-          {{ end }}
-        {{ end }}
-      {{ end }}
-    </div>
   </div>
 </nav>
 
@@ -57,7 +76,35 @@
 
 <footer class="site-footer">
   <div class="site-footer-inner">
-    <p>&copy; {{ now.Format "2006" }} FancyText. All styles are real Unicode characters.</p>
+    <div class="site-footer-grid">
+      <div class="site-footer-col">
+        <a href="{{ "/" | relLangURL }}" class="site-footer-brand">
+          <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a73e8'/%3E%3Ctext x='16' y='23' font-family='Google Sans,sans-serif' font-size='19' font-weight='700' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E" alt="FancyText logo">
+          Fancy<span>Text</span>
+        </a>
+        <p class="site-footer-tagline">Free fancy text generator — bold, script, gothic, bubble &amp; 60+ more styles. No sign-up, no limits.</p>
+      </div>
+
+      <div class="site-footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="{{ "blog" | relLangURL }}">{{ i18n "nav_blog" }}</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer-col">
+        <h4>More Tools</h4>
+        <ul>
+          <li><a href="{{ "emoji" | relLangURL }}">{{ i18n "nav_emoji" }}</a></li>
+          <li><a href="{{ "cool-symbols" | relLangURL }}">{{ i18n "nav_symbols" }}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer-bottom">
+      <span>All styles are real Unicode characters — copy and paste anywhere.</span>
+      <span>&copy; {{ now.Format "2006" }} FancyText.</span>
+    </div>
   </div>
 </footer>
 
