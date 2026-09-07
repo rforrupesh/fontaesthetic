@@ -6,13 +6,23 @@
   <img class="blog-post-thumb" src="{{ . | relURL }}" alt="{{ $.Title }}" width="1200" height="680">
   {{ end }}
   {{ $toc := .TableOfContents }}
-  {{ if and (eq .Section "blog") (strings.Contains $toc "<a") }}
-  <nav class="post-toc" aria-label="{{ i18n "table_of_contents" }}">
-    <p class="post-toc-title">{{ i18n "table_of_contents" }}</p>
-    {{ $toc }}
-  </nav>
-  {{ end }}
-  {{ .Content }}
+  {{ $hasToc := and (eq .Section "blog") (strings.Contains $toc "<a") }}
+  <div class="blog-post-layout{{ if $hasToc }} has-toc{{ end }}">
+    {{ if $hasToc }}
+    <nav class="post-toc" id="postToc" aria-label="{{ i18n "table_of_contents" }}">
+      <button type="button" class="post-toc-toggle" id="postTocToggle" aria-expanded="false" aria-controls="postTocBody">
+        <span class="post-toc-title">{{ i18n "table_of_contents" }}</span>
+        <svg class="post-toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div class="post-toc-body" id="postTocBody">
+        {{ $toc }}
+      </div>
+    </nav>
+    {{ end }}
+    <div class="blog-post-content">
+      {{ .Content }}
+    </div>
+  </div>
 </article>
 
 {{ $related := where .Site.RegularPages "Section" .Section }}

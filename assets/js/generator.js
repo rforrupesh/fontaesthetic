@@ -429,3 +429,74 @@ var LOWER = "abcdefghijklmnopqrstuvwxyz";
     });
   }
 })();
+
+/* ===== Blog post TOC: mobile expand/collapse + scroll-spy highlight ===== */
+(function(){
+  var toc = document.getElementById('postToc');
+  if(!toc) return;
+
+  var toggle = document.getElementById('postTocToggle');
+  var body = document.getElementById('postTocBody');
+  var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+
+  function isDesktop(){
+    return window.matchMedia('(min-width:900px)').matches;
+  }
+
+  if(toggle){
+    toggle.addEventListener('click', function(){
+      if(isDesktop()) return;
+      var open = toc.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
+  if(!links.length) return;
+
+  var headings = links.map(function(link){
+    var id = decodeURIComponent(link.getAttribute('href').slice(1));
+    return document.getElementById(id);
+  }).filter(Boolean);
+
+  if(!headings.length || !('IntersectionObserver' in window)) return;
+
+  var activeId = null;
+
+  function setActive(id){
+    if(id === activeId) return;
+    activeId = id;
+    links.forEach(function(link){
+      var linkId = decodeURIComponent(link.getAttribute('href').slice(1));
+      link.classList.toggle('is-active', linkId === id);
+    });
+  }
+
+  var visible = new Map();
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      visible.set(entry.target.id, entry.intersectionRatio);
+    });
+    var bestId = null, bestRatio = 0;
+    visible.forEach(function(ratio, id){
+      if(ratio > bestRatio){ bestRatio = ratio; bestId = id; }
+    });
+    if(bestId){
+      setActive(bestId);
+    } else {
+      var scrollPos = window.scrollY || window.pageYOffset;
+      var current = headings[0].id;
+      headings.forEach(function(h){
+        if(h.getBoundingClientRect().top + scrollPos - 100 <= scrollPos){
+          current = h.id;
+        }
+      });
+      setActive(current);
+    }
+  }, {
+    rootMargin: '-90px 0px -70% 0px',
+    threshold: [0, 1]
+  });
+
+  headings.forEach(function(h){ observer.observe(h); });
+  setActive(headings[0].id);
+})();
