@@ -1,0 +1,46 @@
+---
+const { lang = 'en', tr } = Astro.props;
+const base = lang === 'en' ? '' : `/${lang}`;
+---
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href={base + '/'}>{tr.siteName}</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href={base + '/'}>{tr.nav.home}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={base + '/blog/'}>{tr.nav.blog}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={base + '/#tool'}>{tr.nav.tools}</a>
+        </li>
+      </ul>
+
+      <!-- language switcher -->
+      <ul class="navbar-nav ms-3">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            {lang.toUpperCase()}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="/">EN</a></li>
+            <li><a class="dropdown-item" href="/fr/">FR</a></li>
+            <li><a class="dropdown-item" href="/id/">ID</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,63 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { t, languages } from '../data/translations.js';
+
+const {
+  lang = 'en',
+  title = 'FontGen',
+  description = 'Free online font generator tool.',
+  // path = same page's URL WITHOUT the language prefix, e.g. '/' or '/blog/what-is-font/'
+  path = '/',
+} = Astro.props;
+const tr = t(lang);
+
+const siteUrl = Astro.site?.origin ?? 'https://yourusername.github.io';
+
+// English lives at root, fr/id get a prefix — same rule as Navbar/Footer use
+function urlFor(l) {
+  const prefix = l === 'en' ? '' : `/${l}`;
+  return `${siteUrl}${prefix}${path}`;
+}
+
+const canonicalUrl = urlFor(lang);
+---
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | {tr.siteName}</title>
+  <meta name="description" content={description} />
+
+  <!-- canonical: points to this exact page -->
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- hreflang alternates: tells Google every language version of this page -->
+  {languages.map((l) => (
+    <link rel="alternate" hreflang={l} href={urlFor(l)} />
+  ))}
+  <link rel="alternate" hreflang="x-default" href={urlFor('en')} />
+
+  <!-- Bootstrap 5 CDN -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="/favicon.svg" />
+</head>
+<body>
+  <Navbar lang={lang} tr={tr} />
+
+  <main class="container my-4">
+    <slot />
+  </main>
+
+  <Footer lang={lang} tr={tr} />
+
+  <!-- Bootstrap JS bundle (includes Popper) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  ></script>
+</body>
+</html>

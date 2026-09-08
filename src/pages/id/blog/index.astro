@@ -1,0 +1,28 @@
+---
+import Default from '../../../layouts/Default.astro';
+import { getCollection } from 'astro:content';
+import { t } from '../../../data/translations.js';
+
+const lang = 'id';
+const tr = t(lang);
+const posts = (await getCollection('blog'))
+  .filter((p) => p.data.lang === lang)
+  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+---
+<Default lang={lang} title={tr.nav.blog} description={tr.footer.tagline} path="/blog/">
+  <h1 class="mb-4">{tr.nav.blog}</h1>
+  <div class="row">
+    {posts.map((post) => (
+      <div class="col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href={`/${lang}/blog/${post.slug}/`} class="text-decoration-none">{post.data.title}</a>
+            </h5>
+            <p class="card-text text-muted small">{post.data.excerpt}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</Default>

@@ -1,0 +1,26 @@
+---
+const { tr, recentPosts = [], categories = [] } = Astro.props;
+---
+<aside class="col-lg-4">
+  <div class="card mb-4">
+    <div class="card-header fw-bold">{tr.sidebar.recentPosts}</div>
+    <ul class="list-group list-group-flush">
+      {recentPosts.map((post) => (
+        <li class="list-group-item">
+          <a href={post.url} class="text-decoration-none">{post.title}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {categories.length > 0 && (
+    <div class="card mb-4">
+      <div class="card-header fw-bold">{tr.sidebar.categories}</div>
+      <div class="card-body d-flex flex-wrap gap-2">
+        {categories.map((cat) => (
+          <span class="badge bg-secondary">{cat}</span>
+        ))}
+      </div>
+    </div>
+  )}
+</aside>

@@ -1,0 +1,30 @@
+---
+const { lang = 'en', tr } = Astro.props;
+const base = lang === 'en' ? '' : `/${lang}`;
+const year = new Date().getFullYear();
+---
+<footer class="bg-dark text-light pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5 class="fw-bold">{tr.siteName}</h5>
+        <p class="text-secondary">{tr.footer.tagline}</p>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <h6>{tr.footer.quickLinks}</h6>
+        <ul class="list-unstyled">
+          <li><a class="link-light text-decoration-none" href={base + '/'}>{tr.footer.home}</a></li>
+          <li><a class="link-light text-decoration-none" href={base + '/blog/'}>{tr.footer.blog}</a></li>
+          <li><a class="link-light text-decoration-none" href={base + '/privacy/'}>{tr.footer.privacy}</a></li>
+          <li><a class="link-light text-decoration-none" href={base + '/contact/'}>{tr.footer.contact}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="border-secondary" />
+    <p class="text-secondary text-center mb-0">
+      &copy; {year} {tr.siteName}. {tr.footer.rights}
+    </p>
+  </div>
+</footer>

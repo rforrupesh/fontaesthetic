@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import BlogPost from '../../../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).filter((p) => p.data.lang === 'fr');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post, allPosts: posts },
+  }));
+}
+
+const { post, allPosts } = Astro.props;
+const { Content } = await post.render();
+const lang = 'fr';
+
+// recent posts (excluding current), newest first
+const recentPosts = allPosts
+  .filter((p) => p.slug !== post.slug)
+  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
+  .slice(0, 5)
+  .map((p) => ({ title: p.data.title, url: `/${lang}/blog/${p.slug}/` }));
+
+// related posts: share at least one category with the current post
+const relatedPosts = allPosts
+  .filter(
+    (p) =>
+      p.slug !== post.slug &&
+      p.data.categories.some((c) => post.data.categories.includes(c))
+  )
+  .slice(0, 4)
+  .map((p) => ({
+    title: p.data.title,
+    url: `/${lang}/blog/${p.slug}/`,
+    excerpt: p.data.excerpt,
+  }));
+
+const categories = post.data.categories;
+---
+<BlogPost
+  lang={lang}
+  title={post.data.title}
+  description={post.data.description}
+  date={post.data.date}
+  slug={post.slug}
+  recentPosts={recentPosts}
+  categories={categories}
+  relatedPosts={relatedPosts}
+>
+  <Content />
+</BlogPost>
