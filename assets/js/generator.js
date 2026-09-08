@@ -156,50 +156,25 @@ var LOWER = "abcdefghijklmnopqrstuvwxyz";
   var input = document.getElementById('srcInput');
   if(!grid || !input) return;
 
-  var copyIconSVG = '<svg class="copy-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
-
   var placeholder = input.getAttribute('data-placeholder-text') || 'Type your text here';
   var copyLabel = input.getAttribute('data-copy-label') || 'Copy';
   var copiedLabel = input.getAttribute('data-copied-label') || 'Copied';
 
   var lastResults = styles.map(function(s){ return s.fn(placeholder); });
 
-  // Build grid once
-  var frag = document.createDocumentFragment();
-  styles.forEach(function(s, idx){
-    var card = document.createElement('div');
-    card.className = 'style-card';
-    card.id = 'style-' + idx;
-
-    var textWrap = document.createElement('div');
-    textWrap.className = 'style-text';
-
-    var rendered = document.createElement('span');
-    rendered.className = 'rendered';
-    rendered.textContent = lastResults[idx];
-
-    var name = document.createElement('span');
-    name.className = 'style-name';
-    name.textContent = s.name;
-
-    textWrap.appendChild(rendered);
-    textWrap.appendChild(name);
-
-    var btn = document.createElement('button');
-    btn.className = 'copy-btn';
-    btn.type = 'button';
-    btn.setAttribute('data-index', idx);
-    btn.innerHTML = copyIconSVG + '<span class="copy-label">' + copyLabel + '</span>';
-
-    card.appendChild(textWrap);
-    card.appendChild(btn);
-    frag.appendChild(card);
-  });
-  grid.appendChild(frag);
-
+  // Cards are already server-rendered in the HTML (SEO) — just grab the existing spans.
   var renderedSpans = styles.map(function(s, idx){
     var card = document.getElementById('style-' + idx);
     return card ? card.querySelector('.rendered') : null;
+  });
+
+  // Re-run the transforms once on load using the page's actual (localized) placeholder,
+  // since the static HTML is pre-rendered with the English placeholder text.
+  styles.forEach(function(s, idx){
+    var result;
+    try{ result = s.fn(placeholder); } catch(e){ result = placeholder; }
+    lastResults[idx] = result;
+    if(renderedSpans[idx]){ renderedSpans[idx].textContent = result; }
   });
 
   // --- cookie helpers ---
