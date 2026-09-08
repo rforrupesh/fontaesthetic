@@ -8,5 +8,6 @@ description: "The best aesthetic fonts to make your Instagram bio stand out, wit
 keywords: ["instagram bio fonts", "aesthetic instagram fonts"]
 author: "FancyText"
 image: "https://rforrupesh.github.io/fontaesthetic/img/blog/bn.png"
+layout: "single"
 ---
 Your Instagram bio is one of the first things people see. Using a stylized font — bold, script, or a bubble style — can help your profile stand out in a crowded feed. Pick a style that matches your brand or vibe, keep it readable, and paste it directly into your bio field.

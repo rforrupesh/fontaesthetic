@@ -5,6 +5,7 @@ defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 uglyURLs = false
 canonifyURLs = false
+layoutDir = "_layouts"
 
 [params]
   logoLetter = "F"

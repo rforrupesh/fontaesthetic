@@ -8,6 +8,7 @@ description: "Discord-friendly fancy text styles for usernames and server nickna
 keywords: ["discord fonts", "discord name generator"]
 author: "FancyText"
 image: "https://rforrupesh.github.io/fontaesthetic/img/blog/compressed_image.png"
+layout: "single"
 ---
 Not every fancy text style renders well inside Discord's client. Simpler styles like bold, italic, small caps, and bubble tend to be the most reliable across desktop, web, and mobile. Heavily decorated "ornate" styles can sometimes get clipped in narrow UI elements like the member list.
 

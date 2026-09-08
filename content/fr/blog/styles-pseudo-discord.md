@@ -8,5 +8,6 @@ description: "Des styles de texte stylé adaptés à Discord pour pseudos et sur
 keywords: ["polices discord", "générateur de pseudo discord"]
 author: "FancyText"
 image: "/img/blog/discord-name-styles.svg"
+layout: "single"
 ---
 Tous les styles de texte stylé ne s'affichent pas bien dans le client Discord. Les styles plus simples comme gras, italique, petites majuscules et bulle sont généralement les plus fiables sur bureau, web et mobile. Les styles très décorés « ornés » peuvent parfois être tronqués dans des éléments d'interface étroits comme la liste des membres.

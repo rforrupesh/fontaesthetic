@@ -4,6 +4,7 @@ slug: "about"
 translationKey: "page-about"
 description: "Découvrez FancyText — un outil gratuit pour générer des styles de texte unicode esthétiques pour bios, pseudos et messages."
 keywords: ["à propos fancytext"]
+layout: "single"
 ---
 [TRANSLATE] FancyText helps you turn plain text into 60+ stylized Unicode fonts — bold, italic, script, gothic, bubble, and more — for use anywhere plain text works: Instagram, TikTok, Discord, WhatsApp, and beyond.
 
