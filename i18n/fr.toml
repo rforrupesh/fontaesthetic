@@ -4,6 +4,8 @@ other = "Blogue"
 other = "Emoji"
 [nav_symbols]
 other = "Symboles cool"
+[nav_about]
+other = "À propos"
 [copy_btn]
 other = "Copier"
 [copied_btn]
