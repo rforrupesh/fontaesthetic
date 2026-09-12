@@ -1,71 +1,27 @@
 ---
-import { t, getPath } from '../i18n';
+import en from '../i18n/en.json';
+import fr from '../i18n/fr.json';
+import hi from '../i18n/hi.json';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
-interface Props { lang: string; alternates?: Record<string, string>; }
-const { lang, alternates } = Astro.props;
-const strings = t(lang);
+interface Props {
+  lang: 'en' | 'fr' | 'hi';
+  translations?: Partial<Record<'en' | 'fr' | 'hi', string>>;
+}
+const { lang, translations } = Astro.props;
+const dict = { en, fr, hi }[lang];
 const base = import.meta.env.BASE_URL;
+const prefix = lang === 'en' ? '' : `${lang}/`;
 ---
-
-<header class="navbar">
-  <div class="container navbar-inner">
-    <a href={getPath(lang, '/')} class="logo">
-      <img src={`${base}logo.svg`} alt={strings.site.name} width="28" height="28" />
-      <span>{strings.site.name}</span>
-    </a>
-
-    <nav class="nav-links">
-      <a href={getPath(lang, '/')}>{strings.nav.home}</a>
-      <a href={getPath(lang, '/blog/')}>{strings.nav.blog}</a>
-      <a href={getPath(lang, '/about/')}>{strings.nav.about}</a>
-      <a href={getPath(lang, '/contact/')}>{strings.nav.contact}</a>
-    </nav>
-
-    <LanguageSwitcher lang={lang} alternates={alternates} />
+<nav class="navbar">
+  <a href={`${base}${prefix}`} class="brand">
+    Font<em>Aesthetic</em>
+  </a>
+  <div class="nav-links">
+    <a href={`${base}${prefix}`}>{dict.nav.home}</a>
+    <a href={`${base}${prefix}blog/`}>{dict.nav.blog}</a>
+    <a href={`${base}${prefix}about/`}>{dict.nav.about}</a>
+    <a href={`${base}${prefix}contact/`}>{dict.nav.contact}</a>
+    <LanguageSwitcher currentLang={lang} translations={translations} />
   </div>
-</header>
-
-<style>
-  .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    height: var(--header-h);
-    display: flex;
-    align-items: center;
-    background: rgba(15, 17, 21, 0.85);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--color-border);
-  }
-  .navbar-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    font-weight: 700;
-    font-size: 1.05rem;
-    white-space: nowrap;
-  }
-  .nav-links {
-    display: flex;
-    gap: 1.25rem;
-    flex: 1;
-    justify-content: center;
-  }
-  .nav-links a {
-    font-size: .9rem;
-    color: var(--color-text-muted);
-    transition: color .15s ease;
-  }
-  .nav-links a:hover { color: var(--color-text); }
-
-  @media (max-width: 720px) {
-    .nav-links { display: none; }
-  }
-</style>
+</nav>

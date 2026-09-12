@@ -1,63 +1,39 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import hi from '../../../i18n/hi.json';
 import { getCollection } from 'astro:content';
-import { t, getPath } from '../../../i18n';
 
-const lang = 'hi';
-const strings = t(lang);
-
-const posts = (await getCollection('blog', (e) => e.id.startsWith(`${lang}/`)))
+const base = import.meta.env.BASE_URL;
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter((p) => p.id.startsWith('hi/'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
----
 
+const sidebarPosts = posts.map((p) => ({
+  title: p.data.title,
+  href: `${base}hi/blog/${p.data.slug ?? p.id.replace('hi/', '').replace(/\.md$/, '')}/`
+}));
+---
 <BaseLayout
-  lang={lang}
-  title={`${strings.blog.listingTitle} — ${strings.site.name}`}
-  description={strings.blog.listingDescription}
+  lang="hi"
+  title={hi.meta.blog_title}
+  description={hi.meta.blog_description}
   path="/blog/"
 >
-  <section class="container blog-header">
-    <h1>{strings.blog.listingTitle}</h1>
-    <p>{strings.blog.listingDescription}</p>
-  </section>
-
-  <section class="container blog-grid">
-    {posts.map((post) => {
-      const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
-      return (
-        <a class="blog-card card" href={getPath(lang, `/blog/${slug}/`)}>
-          {post.data.image && <img src={post.data.image} alt={post.data.title} loading="lazy" />}
-          <div class="blog-card-body">
+  <div class="blog-layout">
+    <div class="blog-main">
+      <h1>{hi.nav.blog}</h1>
+      {posts.map((post) => {
+        const slug = post.data.slug ?? post.id.replace('hi/', '').replace(/\.md$/, '');
+        return (
+          <a href={`${base}hi/blog/${slug}/`} class="card blog-card">
             <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>
-            <span class="blog-date">
-              {strings.blog.publishedOn} {post.data.date.toLocaleDateString(lang)}
-            </span>
-          </div>
-        </a>
-      );
-    })}
-  </section>
+          </a>
+        );
+      })}
+    </div>
+    <Sidebar lang="hi" posts={sidebarPosts} />
+  </div>
 </BaseLayout>
-
-<style>
-  .blog-header { padding: 3rem 0 1.5rem; text-align: center; }
-  .blog-header h1 { font-size: clamp(1.7rem, 4vw, 2.2rem); }
-  .blog-header p { color: var(--color-text-muted); }
-
-  .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-    padding-bottom: 3rem;
-  }
-  .blog-card { overflow: hidden; display: flex; flex-direction: column; }
-  .blog-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
-  .blog-card-body { padding: 1.1rem 1.2rem 1.3rem; }
-  .blog-card h2 { font-size: 1.05rem; margin: 0 0 .5rem; }
-  .blog-card p { font-size: .88rem; color: var(--color-text-muted); margin: 0 0 .8rem; }
-  .blog-date { font-size: .78rem; color: var(--color-text-muted); }
-
-  @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .blog-grid { grid-template-columns: 1fr; } }
-</style>

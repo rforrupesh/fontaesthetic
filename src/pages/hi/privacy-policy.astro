@@ -1,12 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { t } from '../../i18n';
-const strings = t('hi');
+import hi from '../../i18n/hi.json';
 ---
-<BaseLayout lang="hi" title={`गोपनीयता नीति — ${strings.site.name}`} description="FontAesthetic की गोपनीयता नीति।" path="/privacy-policy/">
-  <section class="container prose page-content">
-    <h1>गोपनीयता नीति</h1>
-    <p>FontAesthetic आपके द्वारा फॉन्ट जनरेटर में टाइप किए गए टेक्स्ट को स्टोर नहीं करता है। सारा रूपांतरण सीधे आपके ब्राउज़र में होता है।</p>
-    <p>हम साइट के उपयोग को समझने के लिए बुनियादी, गोपनीयता-अनुकूल एनालिटिक्स का उपयोग कर सकते हैं। हम किसी तीसरे पक्ष को व्यक्तिगत डेटा नहीं बेचते हैं।</p>
-  </section>
+<BaseLayout lang="hi" title={hi.pages.privacy_title} description={hi.meta.home_description} path="/privacy-policy/">
+  <div class="card page-card">
+    <h1>{hi.pages.privacy_title}</h1>
+    <p>फॉन्ट जनरेटर टूल में आप जो टेक्स्ट टाइप करते हैं, हम उसे स्टोर नहीं करते। सारा कन्वर्ज़न आपके ब्राउज़र में ही लोकली होता है।</p>
+    <p>हम साइट के इस्तेमाल को समझने के लिए बेसिक एनालिटिक्स इस्तेमाल कर सकते हैं। हम किसी थर्ड पार्टी को पर्सनल डेटा नहीं बेचते।</p>
+  </div>
 </BaseLayout>
