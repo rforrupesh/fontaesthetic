@@ -1,12 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { t } from '../../i18n';
-const strings = t('hi');
+import hi from '../../i18n/hi.json';
 ---
-<BaseLayout lang="hi" title={`संपर्क करें — ${strings.site.name}`} description="FontAesthetic टीम से संपर्क करें।" path="/contact/">
-  <section class="container prose page-content">
-    <h1>संपर्क करें</h1>
-    <p>कोई सवाल, सुझाव, या कोई बग मिला? हमें आपसे सुनना अच्छा लगेगा।</p>
-    <p>हमें ईमेल करें: <a href="mailto:hello@fontaesthetic.example">hello@fontaesthetic.example</a></p>
-  </section>
+<BaseLayout lang="hi" title={hi.pages.contact_title} description={hi.meta.home_description} path="/contact/" translations={{ en: '/contact/', fr: '/contact/', hi: '/contact/' }}>
+  <div class="card">
+    <h1>{hi.pages.contact_title}</h1>
+    <p>कोई सवाल, सुझाव या बग मिला? हमसे <a href="mailto:hello@fontaesthetic.com" style="color:#8b5cf6;">hello@fontaesthetic.com</a> पर संपर्क करें।</p>
+  </div>
 </BaseLayout>

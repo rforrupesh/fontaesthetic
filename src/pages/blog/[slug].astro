@@ -1,92 +1,54 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Sidebar from '../../components/Sidebar.astro';
+import en from '../../i18n/en.json';
 import { getCollection, render } from 'astro:content';
-import { t, getPath } from '../../i18n';
-
-const lang = 'en';
-const strings = t(lang);
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', (e) => e.id.startsWith('en/'));
-  return posts.map((post) => {
-    const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
-    return { params: { slug }, props: { post } };
+  const allPosts = await getCollection('blog');
+  const enPosts = allPosts.filter((p) => p.id.startsWith('en/'));
+
+  return enPosts.map((post) => {
+    const slug = post.data.slug ?? post.id.replace('en/', '').replace(/\.md$/, '');
+    return { params: { slug }, props: { post, allPosts } };
   });
 }
 
-const { post } = Astro.props;
-const { Content, headings } = await render(post);
+const { post, allPosts } = Astro.props;
+const { Content } = await render(post);
+const base = import.meta.env.BASE_URL;
 
-const allPosts = await getCollection('blog', (e) => e.id.startsWith('en/'));
-const related = allPosts
-  .filter((p) => p.id !== post.id)
-  .filter((p) => p.data.tags.some((tag) => post.data.tags.includes(tag)))
-  .slice(0, 3)
-  .map((p) => ({
-    title: p.data.title,
-    slug: p.data.slug ?? p.id.split('/').slice(1).join('/'),
-  }));
+const otherPosts = allPosts.filter((p) => p.id.startsWith('en/'));
+const sidebarPosts = otherPosts.map((p) => ({
+  title: p.data.title,
+  href: `${base}blog/${p.data.slug ?? p.id.replace('en/', '').replace(/\.md$/, '')}/`
+}));
 
-// Find the equivalent article in every other language via translationId,
-// so canonical/hreflang tags and the language switcher point to the
-// correct (possibly differently-slugged) translated URL.
-const allLangs = ['en', 'fr', 'hi'];
-const alternates: Record<string, string> = {};
-for (const l of allLangs) {
-  const postsInLang = l === lang ? allPosts : await getCollection('blog', (e) => e.id.startsWith(`${l}/`));
-  const match = postsInLang.find((p) => p.data.translationId === post.data.translationId);
-  if (match) {
-    const slugL = match.data.slug ?? match.id.split('/').slice(1).join('/');
-    alternates[l] = `/blog/${slugL}/`;
-  }
+// build hreflang translations map using translationId
+function slugFor(p) {
+  const lang = p.id.split('/')[0];
+  const filename = p.id.split('/')[1].replace(/\.md$/, '');
+  const slug = p.data.slug ?? filename;
+  const prefix = lang === 'en' ? '' : `${lang}/`;
+  return [lang, `/${prefix}blog/${slug}/`];
 }
+
+const relatedTranslations = allPosts.filter((p) => p.data.translationId === post.data.translationId);
+const translations = Object.fromEntries(relatedTranslations.map(slugFor));
 ---
-
 <BaseLayout
-  lang={lang}
-  title={`${post.data.title} — ${strings.site.name}`}
+  lang="en"
+  title={`${post.data.title} - FontAesthetic`}
   description={post.data.description}
-  path={`/blog/${post.data.slug ?? post.id.split('/').slice(1).join('/')}/`}
-  alternates={alternates}
-  image={post.data.image}
+  path={`/blog/${post.data.slug ?? post.id.replace('en/', '').replace(/\.md$/, '')}/`}
+  translations={translations}
 >
-  <article class="container post-layout">
-    <div class="post-main">
-      <header class="post-header">
-        <h1>{post.data.title}</h1>
-        <p class="post-meta">
-          {strings.blog.publishedOn} {post.data.date.toLocaleDateString(lang)}
-        </p>
-        {post.data.image && <img class="post-cover" src={post.data.image} alt={post.data.title} />}
-      </header>
-      <div class="prose">
-        <Content />
-      </div>
-    </div>
-
-    <Sidebar lang={lang} headings={headings} related={related} />
-  </article>
+  <div style="display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap;">
+    <article class="card" style="flex:1; min-width:280px;">
+      <h1 style="margin-top:0;">{post.data.title}</h1>
+      <p style="color:#888; font-size:14px;">{post.data.date.toDateString()}</p>
+      <Content />
+    </article>
+    <Sidebar lang="en" posts={sidebarPosts} />
+  </div>
 </BaseLayout>
-
-<style>
-  .post-layout {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 3rem;
-    padding: 2.5rem 1.25rem 4rem;
-    align-items: start;
-  }
-  .post-main { min-width: 0; }
-  .post-header { margin-bottom: 1.5rem; }
-  .post-header h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); margin-bottom: .5rem; }
-  .post-meta { color: var(--color-text-muted); font-size: .88rem; }
-  .post-cover { border-radius: var(--radius); margin-top: 1rem; width: 100%; aspect-ratio: 16/9; object-fit: cover; }
-
-  aside.sidebar { position: sticky; top: calc(var(--header-h) + 20px); }
-
-  @media (max-width: 900px) {
-    .post-layout { grid-template-columns: 1fr; }
-    aside.sidebar { position: static; }
-  }
-</style>

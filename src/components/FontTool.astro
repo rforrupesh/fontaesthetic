@@ -1,132 +1,81 @@
 ---
-import { t } from '../i18n';
-interface Props { lang: string; }
+import en from '../i18n/en.json';
+import fr from '../i18n/fr.json';
+import hi from '../i18n/hi.json';
+
+interface Props {
+  lang: 'en' | 'fr' | 'hi';
+}
 const { lang } = Astro.props;
-const strings = t(lang);
+const dict = { en, fr, hi }[lang];
 ---
-
-<section class="tool-section">
-  <div class="container">
-    <h1>{strings.tool.heading}</h1>
-    <p class="subheading">{strings.tool.subheading}</p>
-
-    <div class="tool-card card">
-      <textarea
-        id="font-input"
-        rows="2"
-        placeholder={strings.tool.placeholder}
-      ></textarea>
-    </div>
-
-    <div id="font-results" class="font-results"></div>
-  </div>
+<section class="card">
+  <h1 style="margin-top:0;">{dict.tool.heading}</h1>
+  <p style="color:#aaa;">{dict.tool.subheading}</p>
+  <input
+    id="fontInput"
+    type="text"
+    placeholder={dict.tool.placeholder}
+    style="width:100%; padding:12px 14px; font-size:16px; border-radius:8px; border:1px solid #2a2a35; background:#0f0f14; color:#fff; margin-bottom:20px;"
+  />
+  <div id="fontResults" style="display:flex; flex-direction:column; gap:10px;"></div>
 </section>
 
-<script define:vars={{ copyLabel: strings.tool.copy, copiedLabel: strings.tool.copied }}>
-  const MAPS = [
-    { name: 'Bold', map: makeMap('𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙', '𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳', '𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗') },
-    { name: 'Italic', map: makeMap('𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍', '𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧') },
-    { name: 'Bold Italic', map: makeMap('𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁', '𝒂𝒃𝒄𝒅𝒆𝒇𝒈𝒉𝒊𝒋𝒌𝒍𝒎𝒏𝒐𝒑𝒒𝒓𝒔𝒕𝒖𝒗𝒘𝒙𝒚𝒛') },
-    { name: 'Script', map: makeMap('𝒜ℬ𝒞𝒟𝐸𝐹𝒢ℋℐ𝒥𝒦�ℒ𝑀𝒩𝒪𝒫𝒬ℛ𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵', '𝒶𝒷𝒸𝒹ℯ𝒻ℊ𝒽𝒾𝒿𝓀𝓁𝓂𝓃ℴ𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏') },
-    { name: 'Double Struck', map: makeMap('𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ', '𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫', '𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡') },
-    { name: 'Fraktur', map: makeMap('𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ', '𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷') },
-    { name: 'Monospace', map: makeMap('𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉', '𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣', '𝟶𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿') },
-    { name: 'Circled', map: makeMap('ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ', 'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ') },
-    { name: 'Squared', map: makeMap('🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉') },
-    { name: 'Small Caps', map: makeMap('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘQʀꜱᴛᴜᴠᴡxʏᴢ') },
-    { name: 'Upside Down', map: makeMap('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ɐqɔpǝɟɓɥıɾʞlɯuodbɹsʇnʌʍxʎz', '0123456789', true) },
-    { name: 'Strikethrough', transform: (s) => s.split('').map((c) => c + '\u0336').join('') },
-    { name: 'Underline', transform: (s) => s.split('').map((c) => c + '\u0332').join('') },
-    { name: 'Bubble', map: makeMap('ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ', 'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ') },
-    { name: 'Vaporwave', transform: (s) => s.split('').map((c) => {
-        const code = c.charCodeAt(0);
-        if (code >= 33 && code <= 126) return String.fromCharCode(0xFF00 + (code - 0x20));
-        return c;
-      }).join('') },
+<script define:vars={{ copyLabel: dict.tool.copy, copiedLabel: dict.tool.copied }}>
+  const input = document.getElementById('fontInput');
+  const results = document.getElementById('fontResults');
+
+  const fontMaps = [
+    { name: 'Bold', map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', to: '𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗' },
+    { name: 'Italic', map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', to: '𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧' },
+    { name: 'Bold Italic', map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', to: '𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁𝒂𝒃𝒄𝒅𝒆𝒇𝒈𝒉𝒊𝒋𝒌𝒍𝒎𝒏𝒐𝒑𝒒𝒓𝒔𝒕𝒖𝒗𝒘𝒙𝒚𝒛' },
+    { name: 'Script', map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', to: '𝒜ℬ𝒞𝒟ℰℱ𝒢ℋℐ𝒥𝒦ℒℳ𝒩𝒪𝒫𝒬ℛ𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵𝒶𝒷𝒸𝒹ℯ𝒻ℊ𝒽𝒾𝒿𝓀𝓁𝓂𝓃ℴ𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏' },
+    { name: 'Double Struck', map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', to: '𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡' },
+    { name: 'Fraktur', map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', to: '𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷' },
+    { name: 'Monospace', map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', to: '𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣𝟶𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿' },
+    { name: 'Circled', map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', to: 'ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ⓪①②③④⑤⑥⑦⑧⑨' },
+    { name: 'Small Caps', map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', to: 'ABCDEFGHIJKLMNOPQRSTUVWXYZᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘQʀꜱᴛᴜᴠᴡxʏᴢ' },
+    { name: 'Upside Down', map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', to: '∀ꓭƆᗡƎℲƃHIſꓘ⅂WNOԀΌᴚS⊥∩ΛMXʎZɐqɔpǝɟƃɥıɾʞlɯuodbɹsʇnʌʍxʎz' }
   ];
 
-  function makeMap(upper, lower, digits, reverse) {
-    const U = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    const L = 'abcdefghijklmnopqrstuvwxyz'.split('');
-    const D = '0123456789'.split('');
-    const map = {};
-    U.forEach((ch, i) => { if (upper && upper[i]) map[ch] = upper[i]; });
-    L.forEach((ch, i) => { if (lower && lower[i]) map[ch] = lower[i]; });
-    if (digits) D.forEach((ch, i) => { if (digits[i]) map[ch] = digits[i]; });
-    return { table: map, reverse: !!reverse };
+  function convert(text, map, to) {
+    return text
+      .split('')
+      .map((ch) => {
+        const idx = map.indexOf(ch);
+        return idx === -1 ? ch : to[idx];
+      })
+      .join('');
   }
-
-  function convert(text, style) {
-    if (style.transform) return style.transform(text);
-    const { table, reverse } = style.map;
-    let out = text.split('').map((ch) => table[ch] || ch);
-    if (reverse) out = out.reverse();
-    return out.join('');
-  }
-
-  const input = document.getElementById('font-input');
-  const results = document.getElementById('font-results');
 
   function render() {
-    const text = input.value.trim() || 'Type something';
+    const text = input.value.trim();
     results.innerHTML = '';
-    MAPS.forEach((style) => {
-      const converted = convert(text, style);
+    if (!text) return;
+
+    fontMaps.forEach((f) => {
+      const converted = convert(text, f.map, f.to);
       const row = document.createElement('div');
-      row.className = 'font-row card';
-      row.innerHTML = `
-        <div class="font-row-text">${converted}</div>
-        <button class="btn copy-btn" type="button">${copyLabel}</button>
-      `;
-      const btn = row.querySelector('button');
-      btn.addEventListener('click', () => {
-        navigator.clipboard.writeText(converted).then(() => {
-          btn.textContent = copiedLabel;
-          setTimeout(() => (btn.textContent = copyLabel), 1500);
-        });
-      });
+      row.style.cssText = 'display:flex; align-items:center; justify-content:space-between; background:#0f0f14; border:1px solid #2a2a35; border-radius:8px; padding:12px 14px;';
+
+      const span = document.createElement('span');
+      span.textContent = converted;
+      span.style.cssText = 'font-size:16px; word-break:break-all; margin-right:12px;';
+
+      const btn = document.createElement('button');
+      btn.textContent = copyLabel;
+      btn.style.cssText = 'flex-shrink:0; background:#8b5cf6; color:#fff; border:none; border-radius:6px; padding:6px 12px; cursor:pointer; font-size:13px;';
+      btn.onclick = () => {
+        navigator.clipboard.writeText(converted);
+        btn.textContent = copiedLabel;
+        setTimeout(() => (btn.textContent = copyLabel), 1200);
+      };
+
+      row.appendChild(span);
+      row.appendChild(btn);
       results.appendChild(row);
     });
   }
 
   input.addEventListener('input', render);
-  render();
 </script>
-
-<style>
-  .tool-section { padding: 3rem 0 2rem; text-align: center; }
-  .tool-section h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: .5rem; }
-  .subheading { color: var(--color-text-muted); margin-bottom: 2rem; }
-  .tool-card { padding: 1rem; max-width: 700px; margin: 0 auto; }
-  textarea {
-    width: 100%;
-    background: var(--color-surface-2);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    color: var(--color-text);
-    font-size: 1.1rem;
-    padding: .8rem;
-    resize: vertical;
-    font-family: var(--font-main);
-  }
-  .font-results {
-    max-width: 700px;
-    margin: 2rem auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: .75rem;
-    text-align: left;
-  }
-  .font-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: .9rem 1rem;
-  }
-  .font-row-text {
-    word-break: break-word;
-    font-size: 1.05rem;
-  }
-  .copy-btn { flex-shrink: 0; }
-</style>

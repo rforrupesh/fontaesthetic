@@ -1,8 +1,4 @@
 {
-  "site": {
-    "name": "FontAesthetic",
-    "tagline": "Free Online Font Generator"
-  },
   "nav": {
     "home": "Home",
     "blog": "Blog",
@@ -10,30 +6,31 @@
     "contact": "Contact"
   },
   "footer": {
-    "rights": "All rights reserved.",
     "about": "About",
-    "contact": "Contact Us",
     "privacy": "Privacy Policy",
-    "blog": "Blog",
-    "madeWith": "Made with care for creators everywhere."
-  },
-  "sidebar": {
-    "toc": "Table of Contents",
-    "related": "Related Posts",
-    "recent": "Recent Posts"
+    "contact": "Contact",
+    "copyright": "All rights reserved."
   },
   "tool": {
-    "placeholder": "Type your text here...",
+    "heading": "Font Generator",
+    "subheading": "Type your text and get stylish fonts instantly",
+    "placeholder": "Type something...",
     "copy": "Copy",
-    "copied": "Copied!",
-    "download": "Download",
-    "heading": "Cool Font Generator",
-    "subheading": "Type below and get stylish fonts to copy-paste anywhere."
+    "copied": "Copied!"
   },
-  "blog": {
-    "listingTitle": "Blog",
-    "listingDescription": "Tips, guides and updates about fonts and typography.",
-    "readMore": "Read more",
-    "publishedOn": "Published on"
+  "sidebar": {
+    "recent": "Recent Posts",
+    "categories": "Categories"
+  },
+  "meta": {
+    "home_title": "Font Generator - Stylish Text Fonts Online",
+    "home_description": "Generate stylish, cursive, bold and unicode fonts instantly for free.",
+    "blog_title": "Blog - Font Aesthetic",
+    "blog_description": "Tips, guides and updates about fonts and typography."
+  },
+  "pages": {
+    "about_title": "About Us",
+    "contact_title": "Contact Us",
+    "privacy_title": "Privacy Policy"
   }
 }

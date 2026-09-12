@@ -1,12 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { t } from '../../i18n';
-const strings = t('fr');
+import fr from '../../i18n/fr.json';
 ---
-<BaseLayout lang="fr" title={`Politique de Confidentialité — ${strings.site.name}`} description="Politique de confidentialité de FontAesthetic." path="/privacy-policy/">
-  <section class="container prose page-content">
-    <h1>Politique de Confidentialité</h1>
-    <p>FontAesthetic ne stocke pas le texte que vous saisissez dans le générateur de polices. Toute la conversion se fait directement dans votre navigateur.</p>
-    <p>Nous pouvons utiliser des statistiques respectueuses de la vie privée pour comprendre l'utilisation du site. Nous ne vendons pas de données personnelles à des tiers.</p>
-  </section>
+<BaseLayout lang="fr" title={fr.pages.privacy_title} description={fr.meta.home_description} path="/privacy-policy/" translations={{ en: '/privacy-policy/', fr: '/privacy-policy/', hi: '/privacy-policy/' }}>
+  <div class="card">
+    <h1>{fr.pages.privacy_title}</h1>
+    <p>Nous ne stockons pas le texte que vous saisissez dans l'outil de génération de polices. Toute la conversion se fait localement dans votre navigateur.</p>
+    <p>Nous pouvons utiliser des analyses de base pour comprendre l'utilisation du site. Nous ne vendons pas de données personnelles à des tiers.</p>
+  </div>
 </BaseLayout>
