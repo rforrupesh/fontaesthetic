@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { t } from '../../i18n';
+const strings = t('hi');
+---
+<BaseLayout lang="hi" title={`हमारे बारे में — ${strings.site.name}`} description="FontAesthetic के बारे में और जानें, मुफ्त ऑनलाइन फॉन्ट जनरेटर।" path="/about/">
+  <section class="container prose page-content">
+    <h1>हमारे बारे में</h1>
+    <p>FontAesthetic एक मुफ्त ऑनलाइन फॉन्ट जनरेटर है जो आपके सादे टेक्स्ट को स्टाइलिश यूनिकोड फॉन्ट में बदल देता है, जिसे आप कहीं भी कॉपी-पेस्ट कर सकते हैं — Instagram, WhatsApp, Discord, Twitter/X और भी बहुत कुछ।</p>
+    <p>कोई साइन-अप नहीं, कोई डाउनलोड नहीं। बस टाइप करें, स्टाइल चुनें, और कॉपी करें।</p>
+  </section>
+</BaseLayout>

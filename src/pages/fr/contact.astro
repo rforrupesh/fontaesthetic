@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { t } from '../../i18n';
+const strings = t('fr');
+---
+<BaseLayout lang="fr" title={`Contact — ${strings.site.name}`} description="Contactez l'équipe FontAesthetic." path="/contact/">
+  <section class="container prose page-content">
+    <h1>Contactez-nous</h1>
+    <p>Une question, une suggestion, ou un bug trouvé ? Nous serions ravis de vous entendre.</p>
+    <p>Écrivez-nous à : <a href="mailto:hello@fontaesthetic.example">hello@fontaesthetic.example</a></p>
+  </section>
+</BaseLayout>

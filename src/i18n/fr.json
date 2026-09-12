@@ -1,0 +1,39 @@
+{
+  "site": {
+    "name": "FontAesthetic",
+    "tagline": "Générateur de Polices Gratuit en Ligne"
+  },
+  "nav": {
+    "home": "Accueil",
+    "blog": "Blog",
+    "about": "À Propos",
+    "contact": "Contact"
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "about": "À Propos",
+    "contact": "Contactez-nous",
+    "privacy": "Politique de Confidentialité",
+    "blog": "Blog",
+    "madeWith": "Fait avec soin pour les créateurs du monde entier."
+  },
+  "sidebar": {
+    "toc": "Table des Matières",
+    "related": "Articles Similaires",
+    "recent": "Articles Récents"
+  },
+  "tool": {
+    "placeholder": "Tapez votre texte ici...",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "download": "Télécharger",
+    "heading": "Générateur de Polices Stylées",
+    "subheading": "Tapez ci-dessous et obtenez des polices stylées à copier-coller partout."
+  },
+  "blog": {
+    "listingTitle": "Blog",
+    "listingDescription": "Astuces, guides et actualités sur les polices et la typographie.",
+    "readMore": "Lire la suite",
+    "publishedOn": "Publié le"
+  }
+}

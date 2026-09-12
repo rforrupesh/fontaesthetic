@@ -1,60 +1,15 @@
 ---
-import Default from '../layouts/Default.astro';
-import { t } from '../data/translations.js';
-
-const lang = 'en';
-const tr = t(lang);
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FontTool from '../components/FontTool.astro';
+import { t } from '../i18n';
+const strings = t('en');
 ---
-<Default lang={lang} title="Font Generator" description={tr.footer.tagline} path="/">
-  <div id="font-tool" class="p-4 bg-light rounded shadow-sm">
-    <h1 class="mb-3">FontGen</h1>
-    <p class="text-muted">{tr.footer.tagline}</p>
 
-    <textarea id="ft-input" class="form-control mb-3" rows="2" placeholder="..."></textarea>
-    <div id="ft-output" class="d-flex flex-column gap-2"></div>
-  </div>
-</Default>
-
-<style>
-  .ft-style { padding: 0.6rem 0.9rem; background: #fff; border: 1px solid #dee2e6; border-radius: 0.4rem; cursor: pointer; word-break: break-word; }
-  .ft-style:hover { background: #f1f3f5; }
-</style>
-
-<script>
-  const styleMaps = {
-    bold: "𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇0123456789",
-    italic: "𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻0123456789",
-    monospace: "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣0123456789",
-  };
-  const source = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-  function convert(text, styleName) {
-    const target = styleMaps[styleName];
-    return text.split("").map((ch) => {
-      const idx = source.indexOf(ch);
-      return idx === -1 ? ch : target[idx];
-    }).join("");
-  }
-
-  const input = document.getElementById("ft-input");
-  const output = document.getElementById("ft-output");
-
-  function render() {
-    const text = input.value;
-    output.innerHTML = "";
-    if (!text) return;
-    Object.keys(styleMaps).forEach((styleName) => {
-      const div = document.createElement("div");
-      div.className = "ft-style";
-      div.textContent = convert(text, styleName);
-      div.title = "Click to copy";
-      div.addEventListener("click", () => {
-        navigator.clipboard.writeText(div.textContent);
-        div.style.background = "#d1e7dd";
-        setTimeout(() => (div.style.background = ""), 400);
-      });
-      output.appendChild(div);
-    });
-  }
-  input.addEventListener("input", render);
-</script>
+<BaseLayout
+  lang="en"
+  title={`${strings.site.name} — ${strings.site.tagline}`}
+  description={strings.tool.subheading}
+  path="/"
+>
+  <FontTool lang="en" />
+</BaseLayout>

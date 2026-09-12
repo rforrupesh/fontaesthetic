@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { languages, defaultLang, getPath } from '../i18n';
+
+interface Props {
+  lang: string;
+  title: string;
+  description?: string;
+  path?: string; // path WITHOUT lang prefix, e.g. '/blog/my-post/' or '/'
+  alternates?: Record<string, string>; // lang -> path (without lang prefix) for this exact page in other langs
+  image?: string;
+}
+
+const {
+  lang,
+  title,
+  description = '',
+  path = '/',
+  alternates,
+  image,
+} = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+
+function absoluteUrl(l: string, p: string) {
+  return siteUrl + getPath(l, p);
+}
+
+const canonicalUrl = absoluteUrl(lang, path);
+
+// Build hreflang list: same path for every language unless a specific
+// alternates map (different slugs per language) is provided.
+const langCodes = Object.keys(languages);
+const hreflangEntries = alternates
+  ? Object.entries(alternates)
+  : langCodes.map((l) => [l, path] as [string, string]);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonicalUrl} />
+    {hreflangEntries.map(([l, p]) => (
+      <link rel="alternate" hreflang={l} href={absoluteUrl(l, p)} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={absoluteUrl(defaultLang, alternates ? (alternates[defaultLang] ?? path) : path)} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    {image && <meta property="og:image" content={siteUrl + base + image.replace(/^\/+/, '')} />}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+  </head>
+  <body>
+    <Navbar lang={lang} alternates={alternates} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

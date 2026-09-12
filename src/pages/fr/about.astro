@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { t } from '../../i18n';
+const strings = t('fr');
+---
+<BaseLayout lang="fr" title={`À Propos — ${strings.site.name}`} description="En savoir plus sur FontAesthetic, le générateur de polices gratuit." path="/about/">
+  <section class="container prose page-content">
+    <h1>À Propos de Nous</h1>
+    <p>FontAesthetic est un générateur de polices en ligne gratuit qui transforme votre texte en polices Unicode stylées à copier-coller n'importe où — Instagram, WhatsApp, Discord, Twitter/X et plus encore.</p>
+    <p>Pas d'inscription, pas de téléchargement. Tapez, choisissez un style, et copiez.</p>
+  </section>
+</BaseLayout>

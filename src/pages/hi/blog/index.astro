@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { t, getPath } from '../../i18n';
+import { t, getPath } from '../../../i18n';
 
-const lang = 'en';
+const lang = 'hi';
 const strings = t(lang);
 
 const posts = (await getCollection('blog', (e) => e.id.startsWith(`${lang}/`)))

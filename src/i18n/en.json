@@ -1,0 +1,39 @@
+{
+  "site": {
+    "name": "FontAesthetic",
+    "tagline": "Free Online Font Generator"
+  },
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "about": "About",
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy",
+    "blog": "Blog",
+    "madeWith": "Made with care for creators everywhere."
+  },
+  "sidebar": {
+    "toc": "Table of Contents",
+    "related": "Related Posts",
+    "recent": "Recent Posts"
+  },
+  "tool": {
+    "placeholder": "Type your text here...",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "download": "Download",
+    "heading": "Cool Font Generator",
+    "subheading": "Type below and get stylish fonts to copy-paste anywhere."
+  },
+  "blog": {
+    "listingTitle": "Blog",
+    "listingDescription": "Tips, guides and updates about fonts and typography.",
+    "readMore": "Read more",
+    "publishedOn": "Published on"
+  }
+}

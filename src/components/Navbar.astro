@@ -1,46 +1,71 @@
 ---
-const { lang = 'en', tr } = Astro.props;
-const base = lang === 'en' ? '' : `/${lang}`;
+import { t, getPath } from '../i18n';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props { lang: string; alternates?: Record<string, string>; }
+const { lang, alternates } = Astro.props;
+const strings = t(lang);
+const base = import.meta.env.BASE_URL;
 ---
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href={base + '/'}>{tr.siteName}</a>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#mainNav"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href={getPath(lang, '/')} class="logo">
+      <img src={`${base}logo.svg`} alt={strings.site.name} width="28" height="28" />
+      <span>{strings.site.name}</span>
+    </a>
 
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href={base + '/'}>{tr.nav.home}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href={base + '/blog/'}>{tr.nav.blog}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href={base + '/#tool'}>{tr.nav.tools}</a>
-        </li>
-      </ul>
+    <nav class="nav-links">
+      <a href={getPath(lang, '/')}>{strings.nav.home}</a>
+      <a href={getPath(lang, '/blog/')}>{strings.nav.blog}</a>
+      <a href={getPath(lang, '/about/')}>{strings.nav.about}</a>
+      <a href={getPath(lang, '/contact/')}>{strings.nav.contact}</a>
+    </nav>
 
-      <!-- language switcher -->
-      <ul class="navbar-nav ms-3">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-            {lang.toUpperCase()}
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="/">EN</a></li>
-            <li><a class="dropdown-item" href="/fr/">FR</a></li>
-            <li><a class="dropdown-item" href="/id/">ID</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+    <LanguageSwitcher lang={lang} alternates={alternates} />
   </div>
-</nav>
+</header>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    background: rgba(15, 17, 21, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    white-space: nowrap;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.25rem;
+    flex: 1;
+    justify-content: center;
+  }
+  .nav-links a {
+    font-size: .9rem;
+    color: var(--color-text-muted);
+    transition: color .15s ease;
+  }
+  .nav-links a:hover { color: var(--color-text); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+</style>

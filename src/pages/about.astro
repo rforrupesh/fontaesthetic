@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { t } from '../i18n';
+const strings = t('en');
+---
+<BaseLayout lang="en" title={`About — ${strings.site.name}`} description="Learn more about FontAesthetic, the free online font generator." path="/about/">
+  <section class="container prose page-content">
+    <h1>About Us</h1>
+    <p>FontAesthetic is a free online font generator that helps you turn plain text into stylish Unicode fonts you can copy and paste anywhere — Instagram, WhatsApp, Discord, Twitter/X and more.</p>
+    <p>No sign-up, no downloads. Just type, pick a style, and copy.</p>
+  </section>
+</BaseLayout>

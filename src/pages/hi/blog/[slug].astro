@@ -4,11 +4,11 @@ import Sidebar from '../../../components/Sidebar.astro';
 import { getCollection, render } from 'astro:content';
 import { t, getPath } from '../../../i18n';
 
-const lang = 'fr';
+const lang = 'hi';
 const strings = t(lang);
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', (e) => e.id.startsWith('fr/'));
+  const posts = await getCollection('blog', (e) => e.id.startsWith('hi/'));
   return posts.map((post) => {
     const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
     return { params: { slug }, props: { post } };
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
 
-const allPosts = await getCollection('blog', (e) => e.id.startsWith('fr/'));
+const allPosts = await getCollection('blog', (e) => e.id.startsWith('hi/'));
 const related = allPosts
   .filter((p) => p.id !== post.id)
   .filter((p) => p.data.tags.some((tag) => post.data.tags.includes(tag)))
