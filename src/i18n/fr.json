@@ -1,36 +1,39 @@
 {
+  "site": {
+    "name": "FontAesthetic",
+    "tagline": "Générateur de Polices Gratuit en Ligne"
+  },
   "nav": {
     "home": "Accueil",
     "blog": "Blog",
-    "about": "À propos",
+    "about": "À Propos",
     "contact": "Contact"
   },
   "footer": {
-    "about": "À propos",
-    "privacy": "Politique de confidentialité",
-    "contact": "Contact",
-    "copyright": "Tous droits réservés."
-  },
-  "tool": {
-    "heading": "Générateur de polices",
-    "subheading": "Tapez votre texte et obtenez des polices stylées instantanément",
-    "placeholder": "Tapez quelque chose...",
-    "copy": "Copier",
-    "copied": "Copié !"
+    "rights": "Tous droits réservés.",
+    "about": "À Propos",
+    "contact": "Contactez-nous",
+    "privacy": "Politique de Confidentialité",
+    "blog": "Blog",
+    "madeWith": "Fait avec soin pour les créateurs du monde entier."
   },
   "sidebar": {
-    "recent": "Articles récents",
-    "categories": "Catégories"
+    "toc": "Table des Matières",
+    "related": "Articles Similaires",
+    "recent": "Articles Récents"
   },
-  "meta": {
-    "home_title": "Générateur de polices - Texte stylé en ligne",
-    "home_description": "Générez instantanément des polices stylées, cursives, gras et unicode gratuitement.",
-    "blog_title": "Blog - Font Aesthetic",
-    "blog_description": "Astuces, guides et actualités sur les polices et la typographie."
+  "tool": {
+    "placeholder": "Tapez votre texte ici...",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "download": "Télécharger",
+    "heading": "Générateur de Polices Stylées",
+    "subheading": "Tapez ci-dessous et obtenez des polices stylées à copier-coller partout."
   },
-  "pages": {
-    "about_title": "À propos de nous",
-    "contact_title": "Contactez-nous",
-    "privacy_title": "Politique de confidentialité"
+  "blog": {
+    "listingTitle": "Blog",
+    "listingDescription": "Astuces, guides et actualités sur les polices et la typographie.",
+    "readMore": "Lire la suite",
+    "publishedOn": "Publié le"
   }
 }

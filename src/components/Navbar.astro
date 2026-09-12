@@ -1,26 +1,71 @@
 ---
-import en from '../i18n/en.json';
-import fr from '../i18n/fr.json';
-import hi from '../i18n/hi.json';
+import { t, getPath } from '../i18n';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
-interface Props {
-  lang: 'en' | 'fr' | 'hi';
-}
-const { lang } = Astro.props;
-const dict = { en, fr, hi }[lang];
+interface Props { lang: string; alternates?: Record<string, string>; }
+const { lang, alternates } = Astro.props;
+const strings = t(lang);
 const base = import.meta.env.BASE_URL;
-const prefix = lang === 'en' ? '' : `${lang}/`;
 ---
-<nav style="display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid #2a2a35;">
-  <a href={`${base}${prefix}`} style="font-weight:700; font-size:20px; text-decoration:none;">
-    Font<span style="color:#8b5cf6;">Aesthetic</span>
-  </a>
-  <div style="display:flex; align-items:center; gap:20px;">
-    <a href={`${base}${prefix}`} style="text-decoration:none;">{dict.nav.home}</a>
-    <a href={`${base}${prefix}blog/`} style="text-decoration:none;">{dict.nav.blog}</a>
-    <a href={`${base}${prefix}about/`} style="text-decoration:none;">{dict.nav.about}</a>
-    <a href={`${base}${prefix}contact/`} style="text-decoration:none;">{dict.nav.contact}</a>
-    <LanguageSwitcher currentLang={lang} />
+
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href={getPath(lang, '/')} class="logo">
+      <img src={`${base}logo.svg`} alt={strings.site.name} width="28" height="28" />
+      <span>{strings.site.name}</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href={getPath(lang, '/')}>{strings.nav.home}</a>
+      <a href={getPath(lang, '/blog/')}>{strings.nav.blog}</a>
+      <a href={getPath(lang, '/about/')}>{strings.nav.about}</a>
+      <a href={getPath(lang, '/contact/')}>{strings.nav.contact}</a>
+    </nav>
+
+    <LanguageSwitcher lang={lang} alternates={alternates} />
   </div>
-</nav>
+</header>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    background: rgba(15, 17, 21, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    white-space: nowrap;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.25rem;
+    flex: 1;
+    justify-content: center;
+  }
+  .nav-links a {
+    font-size: .9rem;
+    color: var(--color-text-muted);
+    transition: color .15s ease;
+  }
+  .nav-links a:hover { color: var(--color-text); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+</style>

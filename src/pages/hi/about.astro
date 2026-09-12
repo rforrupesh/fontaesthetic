@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import hi from '../../i18n/hi.json';
+import { t } from '../../i18n';
+const strings = t('hi');
 ---
-<BaseLayout lang="hi" title={hi.pages.about_title} description={hi.meta.home_description} path="/about/" translations={{ en: '/about/', fr: '/about/', hi: '/about/' }}>
-  <div class="card">
-    <h1>{hi.pages.about_title}</h1>
-    <p>FontAesthetic एक मुफ्त ऑनलाइन टूल है जिससे आप तुरंत स्टाइलिश, बोल्ड, इटैलिक, कर्सिव और यूनिकोड फॉन्ट जनरेट कर सकते हैं — बिना साइनअप, बिना वॉटरमार्क, बिना किसी झंझट के।</p>
-    <p>हमने यह टूल क्रिएटर्स, सोशल मीडिया यूज़र्स और उन सभी के लिए बनाया है जो चाहते हैं कि उनका टेक्स्ट Instagram, Discord, WhatsApp जैसी जगहों पर अलग दिखे।</p>
-  </div>
+<BaseLayout lang="hi" title={`हमारे बारे में — ${strings.site.name}`} description="FontAesthetic के बारे में और जानें, मुफ्त ऑनलाइन फॉन्ट जनरेटर।" path="/about/">
+  <section class="container prose page-content">
+    <h1>हमारे बारे में</h1>
+    <p>FontAesthetic एक मुफ्त ऑनलाइन फॉन्ट जनरेटर है जो आपके सादे टेक्स्ट को स्टाइलिश यूनिकोड फॉन्ट में बदल देता है, जिसे आप कहीं भी कॉपी-पेस्ट कर सकते हैं — Instagram, WhatsApp, Discord, Twitter/X और भी बहुत कुछ।</p>
+    <p>कोई साइन-अप नहीं, कोई डाउनलोड नहीं। बस टाइप करें, स्टाइल चुनें, और कॉपी करें।</p>
+  </section>
 </BaseLayout>
