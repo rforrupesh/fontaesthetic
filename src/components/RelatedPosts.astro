@@ -1,0 +1,56 @@
+---
+import { t, getPath } from '../i18n';
+
+interface RelatedPost { title: string; description: string; slug: string; image?: string; }
+
+interface Props {
+  lang: string;
+  posts: RelatedPost[];
+}
+
+const { lang, posts } = Astro.props;
+const strings = t(lang);
+---
+
+{posts.length > 0 && (
+  <section class="related-posts">
+    <h2 class="related-title">{strings.sidebar.related}</h2>
+    <div class="related-grid">
+      {posts.map((post) => (
+        <a class="related-card card" href={getPath(lang, `/blog/${post.slug}/`)}>
+          {post.image && <img src={post.image} alt={post.title} loading="lazy" />}
+          <div class="related-card-body">
+            <h3>{post.title}</h3>
+            <p>{post.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .related-posts {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .related-title {
+    font-size: 1.2rem;
+    margin: 0 0 1.2rem;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .related-card { overflow: hidden; display: flex; flex-direction: column; }
+  .related-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+  .related-card-body { padding: .9rem 1rem 1.1rem; }
+  .related-card h3 { font-size: .95rem; margin: 0 0 .4rem; }
+  .related-card p { font-size: .82rem; color: var(--color-text-muted); margin: 0; }
+
+  @media (max-width: 720px) {
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>

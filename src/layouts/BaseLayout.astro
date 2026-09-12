@@ -1,55 +1,75 @@
 ---
+import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import { languages, defaultLang, getPath } from '../i18n';
 
 interface Props {
-  lang: 'en' | 'fr' | 'hi';
+  lang: string;
   title: string;
-  description: string;
-  path: string; // path without lang prefix, e.g. "/", "/about/", "/blog/my-post/"
-  translations?: Partial<Record<'en' | 'fr' | 'hi', string>>; // full paths per lang for hreflang
+  description?: string;
+  path?: string; // path WITHOUT lang prefix, e.g. '/blog/my-post/' or '/'
+  alternates?: Record<string, string>; // lang -> path (without lang prefix) for this exact page in other langs
+  image?: string;
 }
 
-const { lang, title, description, path, translations } = Astro.props;
+const {
+  lang,
+  title,
+  description = '',
+  path = '/',
+  alternates,
+  image,
+} = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const base = import.meta.env.BASE_URL;
 
-function prefixFor(l: string) {
-  return l === 'en' ? '' : `${l}/`;
+function absoluteUrl(l: string, p: string) {
+  return siteUrl + getPath(l, p);
 }
 
-function buildUrl(l: string, p: string) {
-  const clean = p.replace(/^\/+/, '');
-  return `${Astro.site}${base}${prefixFor(l)}${clean}`;
-}
+const canonicalUrl = absoluteUrl(lang, path);
 
-const altLinks = translations
-  ? Object.entries(translations)
-  : (['en', 'fr', 'hi'] as const).map((l) => [l, path]);
-
-const htmlLang = lang === 'hi' ? 'hi' : lang;
+// Build the lang -> path map used for hreflang tags AND the language
+// switcher. If the page didn't pass an explicit `alternates` prop (i.e. the
+// same path exists under every language, like /about/, /blog/, /contact/),
+// default every language to the current `path` so switching languages keeps
+// you on the equivalent page instead of jumping to that language's homepage.
+const langCodes = Object.keys(languages);
+const resolvedAlternates: Record<string, string> =
+  alternates ?? Object.fromEntries(langCodes.map((l) => [l, path]));
+const hreflangEntries = Object.entries(resolvedAlternates);
 ---
-<!DOCTYPE html>
-<html lang={htmlLang}>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <link rel="canonical" href={buildUrl(lang, path)} />
-  {altLinks.map(([l, p]) => (
-    <link rel="alternate" hreflang={l} href={buildUrl(l as string, p as string)} />
-  ))}
-  <link rel="alternate" hreflang="x-default" href={buildUrl('en', (translations?.en ?? path))} />
-  <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-</head>
-<body>
-  <header class="site-header">
-    <Navbar lang={lang} translations={translations} />
-  </header>
-  <main class="wrap">
-    <slot />
-  </main>
-  <Footer lang={lang} />
-</body>
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonicalUrl} />
+    {hreflangEntries.map(([l, p]) => (
+      <link rel="alternate" hreflang={l} href={absoluteUrl(l, p)} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={absoluteUrl(defaultLang, resolvedAlternates[defaultLang] ?? path)} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    {image && <meta property="og:image" content={siteUrl + base + image.replace(/^\/+/, '')} />}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+  </head>
+  <body>
+    <Navbar lang={lang} alternates={resolvedAlternates} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
 </html>

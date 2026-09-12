@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import en from '../i18n/en.json';
+import { t } from '../i18n';
+const strings = t('en');
 ---
-<BaseLayout lang="en" title={en.pages.contact_title} description={en.meta.home_description} path="/contact/">
-  <div class="card page-card">
-    <h1>{en.pages.contact_title}</h1>
-    <p>Have a question, suggestion or found a bug? Reach out to us at <a href="mailto:hello@fontaesthetic.com" class="inline-link">hello@fontaesthetic.com</a>.</p>
-  </div>
+<BaseLayout lang="en" title={`Contact — ${strings.site.name}`} description="Get in touch with the FontAesthetic team." path="/contact/">
+  <section class="container prose page-content">
+    <h1>Contact Us</h1>
+    <p>Have a question, suggestion, or found a bug? We'd love to hear from you.</p>
+    <p>Email us at: <a href="mailto:hello@fontaesthetic.example">hello@fontaesthetic.example</a></p>
+  </section>
 </BaseLayout>

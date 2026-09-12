@@ -1,8 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FontTool from '../components/FontTool.astro';
-import en from '../i18n/en.json';
+import { t } from '../i18n';
+const strings = t('en');
 ---
-<BaseLayout lang="en" title={en.meta.home_title} description={en.meta.home_description} path="/">
+
+<BaseLayout
+  lang="en"
+  title={`${strings.site.name} — ${strings.site.tagline}`}
+  description={strings.tool.subheading}
+  path="/"
+>
   <FontTool lang="en" />
 </BaseLayout>

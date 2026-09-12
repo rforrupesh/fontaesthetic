@@ -1,44 +1,52 @@
 ---
+import { languages } from '../i18n';
+
 interface Props {
-  currentLang: 'en' | 'fr' | 'hi';
-  translations?: Partial<Record<'en' | 'fr' | 'hi', string>>;
+  lang: string;
+  // optional: map of lang -> full path (without base) to link directly to
+  // the translated equivalent of the CURRENT page (e.g. a blog post whose
+  // slug differs per language). If not provided, falls back to homepage.
+  alternates?: Record<string, string>;
 }
-const { currentLang, translations } = Astro.props;
+const { lang, alternates } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const langs = [
-  { code: 'en', label: 'EN' },
-  { code: 'fr', label: 'FR' },
-  { code: 'hi', label: 'HI' }
-];
 
-// current URL path (includes base, e.g. /fontaesthetic/hi/blog/)
-let pathname = Astro.url.pathname;
-if (pathname.startsWith(base)) {
-  pathname = pathname.slice(base.length);
-}
-
-// strip current lang prefix (fr/ or hi/) to get the "rest" of the path
-let rest = pathname;
-if (currentLang !== 'en' && rest.startsWith(`${currentLang}/`)) {
-  rest = rest.slice(currentLang.length + 1);
-}
-
-function hrefFor(code: 'en' | 'fr' | 'hi') {
-  // if an exact translated path is provided (e.g. for blog articles with
-  // per-language slugs), use that. Otherwise fall back to same section,
-  // just swapping the language prefix.
-  if (translations && translations[code]) {
-    const p = translations[code]!.replace(/^\//, '');
-    return `${base}${p}`;
+// `alternates[code]` (if provided) is a bare path WITHOUT the language
+// prefix, e.g. "/blog/how-to-use-custom-fonts/" — same convention as
+// BaseLayout's `alternates` prop and the `getPath()` helper.
+function hrefFor(code: string) {
+  const bare = alternates?.[code];
+  if (bare) {
+    const clean = bare.replace(/^\/+/, '');
+    return code === 'en' ? `${base}${clean}` : `${base}${code}/${clean}`;
   }
-  const prefix = code === 'en' ? '' : `${code}/`;
-  return `${base}${prefix}${rest}`;
+  return code === 'en' ? base : `${base}${code}/`;
 }
 ---
+
 <div class="lang-switch">
-  {langs.map((l) => (
-    <a href={hrefFor(l.code)} class={l.code === currentLang ? 'active' : ''}>
-      {l.label}
-    </a>
-  ))}
+  <select id="lang-select" aria-label="Language switcher">
+    {Object.entries(languages).map(([code, info]) => (
+      <option value={hrefFor(code)} selected={code === lang}>{info.native}</option>
+    ))}
+  </select>
 </div>
+
+<script>
+  const select = document.getElementById('lang-select') as HTMLSelectElement | null;
+  select?.addEventListener('change', () => {
+    if (select.value) window.location.href = select.value;
+  });
+</script>
+
+<style>
+  .lang-switch select {
+    background: var(--color-surface-2);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: .4rem .6rem;
+    font-size: .85rem;
+    cursor: pointer;
+  }
+</style>
