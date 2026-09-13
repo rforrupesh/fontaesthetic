@@ -38,7 +38,10 @@ const rows = FONT_STYLES.map((style) => ({
     >
       {rows.map((row) => (
         <div class="card flex items-center justify-between gap-4 px-3.5 py-3" data-style-slug={row.slug}>
-          <div class="break-words text-[1.05rem]" data-role="output">{row.sample}</div>
+          <div class="min-w-0">
+            <div class="text-[.72rem] uppercase tracking-wide text-text-muted mb-1" data-role="name">{row.name}</div>
+            <div class="break-words text-[1.05rem]" data-role="output">{row.sample}</div>
+          </div>
           <button class="btn shrink-0" type="button" data-role="copy">{strings.tool.copy}</button>
         </div>
       ))}
