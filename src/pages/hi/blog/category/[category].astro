@@ -13,13 +13,13 @@ const strings = t(lang);
 export async function getStaticPaths() {
   const posts = await getCollection('blog', (e) => e.id.startsWith('hi/'));
   // Group original category text by its lowercase URL slug, so "Guides"
-  // and "guides" collapse to one /blog/category/guides/ page.
+  // and "guides" collapse to one /blog/category/guides/ page. A post can
+  // belong to multiple categories, same as tags.
   const slugToCategory = new Map<string, string>();
-  posts.forEach((p) => {
-    if (!p.data.category) return;
-    const slug = slugify(p.data.category);
-    if (!slugToCategory.has(slug)) slugToCategory.set(slug, p.data.category);
-  });
+  posts.forEach((p) => p.data.categories.forEach((category) => {
+    const slug = slugify(category);
+    if (!slugToCategory.has(slug)) slugToCategory.set(slug, category);
+  }));
 
   return Array.from(slugToCategory.entries()).map(([slug, category]) => ({
     params: { category: slug },
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
 const { category } = Astro.props;
 
 const posts = (await getCollection('blog', (e) => e.id.startsWith('hi/')))
-  .filter((p) => p.data.category && slugify(p.data.category) === slugify(category))
+  .filter((p) => p.data.categories.some((c) => slugify(c) === slugify(category)))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 

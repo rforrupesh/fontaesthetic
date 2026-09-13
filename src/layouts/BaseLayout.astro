@@ -47,6 +47,12 @@ const resolvedAlternates: Record<string, string> =
 const hreflangEntries = Object.entries(resolvedAlternates).filter(
   ([l]) => !availableLangs || availableLangs.includes(l)
 );
+// If this page has no English version (e.g. a French-only tag page), point
+// x-default at the current page itself instead of assuming the raw `path`
+// also applies to English -- that would build a broken/unrelated English URL.
+const [xDefaultLang, xDefaultPath] = resolvedAlternates[defaultLang]
+  ? [defaultLang, resolvedAlternates[defaultLang]]
+  : [lang, path];
 ---
 
 <!doctype html>
@@ -63,7 +69,7 @@ const hreflangEntries = Object.entries(resolvedAlternates).filter(
     {hreflangEntries.map(([l, p]) => (
       <link rel="alternate" hreflang={l} href={absoluteUrl(l, p)} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={absoluteUrl(defaultLang, resolvedAlternates[defaultLang] ?? path)} />
+    <link rel="alternate" hreflang="x-default" href={absoluteUrl(xDefaultLang, xDefaultPath)} />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
