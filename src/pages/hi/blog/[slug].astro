@@ -37,6 +37,7 @@ const related = allPosts
     title: p.data.title,
     description: p.data.description,
     image: p.data.image,
+    categories: p.data.categories,
     slug: p.data.slug ?? p.id.split('/').slice(1).join('/'),
   }));
 

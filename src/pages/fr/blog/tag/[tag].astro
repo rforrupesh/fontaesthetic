@@ -60,11 +60,13 @@ const title = `#${tag}`;
         <a class="card overflow-hidden flex flex-col" href={getPath(lang, `/blog/${slug}/`)}>
           {post.data.image && <img src={post.data.image} alt={post.data.title} loading="lazy" class="w-full aspect-video object-cover" />}
           <div class="p-5 pb-6">
+            {post.data.categories.length > 0 && (
+              <span class="inline-block text-[.7rem] font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary mb-2">
+                {post.data.categories[0]}
+              </span>
+            )}
             <h2 class="text-[1.05rem] mb-2">{post.data.title}</h2>
-            <p class="text-[.88rem] text-text-muted mb-3">{post.data.description}</p>
-            <span class="text-xs text-text-muted">
-              {strings.blog.publishedOn} {post.data.date.toLocaleDateString(lang)}
-            </span>
+            <p class="text-[.88rem] text-text-muted mb-0">{post.data.description}</p>
           </div>
         </a>
       );
