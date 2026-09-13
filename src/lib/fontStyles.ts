@@ -19,6 +19,15 @@ function toChars(str?: string): string[] {
   return str ? Array.from(str) : [];
 }
 
+// Adds a combining mark after every character EXCEPT spaces. A space has no
+// visible glyph of its own, so a mark attached to it renders as a lone
+// floating symbol (e.g. repeated ".⃟" between words) instead of sitting on
+// top of a letter. Skipping whitespace keeps the mark attached only to
+// actual letters/digits, where it's meant to go.
+function mark(str: string, code: string): string {
+  return toChars(str).map((c) => (/\s/.test(c) ? c : c + code)).join('');
+}
+
 function makeMap(upper?: string, lower?: string, digits?: string, reverse?: boolean) {
   const U = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   const L = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -49,8 +58,8 @@ const RAW: Omit<FontStyle, 'slug'>[] = [
   { name: 'Squared', map: makeMap('🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉') },
   { name: 'Small Caps', map: makeMap('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘQʀꜱᴛᴜᴠᴡxʏᴢ') },
   { name: 'Upside Down', map: makeMap('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ɐqɔpǝɟɓɥıɾʞlɯuodbɹsʇnʌʍxʎz', '0123456789', true) },
-  { name: 'Strikethrough', transform: (s: string) => toChars(s).map((c) => c + '\u0336').join('') },
-  { name: 'Underline', transform: (s: string) => toChars(s).map((c) => c + '\u0332').join('') },
+  { name: 'Strikethrough', transform: (s: string) => mark(s, '\u0336') },
+  { name: 'Underline', transform: (s: string) => mark(s, '\u0332') },
   { name: 'Bubble', map: makeMap('ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ', 'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ') },
   { name: 'Vaporwave', transform: (s: string) => s.split('').map((c) => {
       const code = c.charCodeAt(0);
@@ -73,30 +82,30 @@ const RAW: Omit<FontStyle, 'slug'>[] = [
 
   // --- New combining-mark styles (letter + invisible mark, same pattern
   // as the existing Strikethrough/Underline entries above) ---
-  { name: 'Short Strike', transform: (s: string) => toChars(s).map((c) => c + '\u0335').join('') },
-  { name: 'Slashed', transform: (s: string) => toChars(s).map((c) => c + '\u0337').join('') },
-  { name: 'Long Slash', transform: (s: string) => toChars(s).map((c) => c + '\u0338').join('') },
-  { name: 'Tilde Strike', transform: (s: string) => toChars(s).map((c) => c + '\u0334').join('') },
-  { name: 'Double Underline', transform: (s: string) => toChars(s).map((c) => c + '\u0333').join('') },
-  { name: 'Wavy Underline', transform: (s: string) => toChars(s).map((c) => c + '\u0330').join('') },
-  { name: 'Dotted Underline', transform: (s: string) => toChars(s).map((c) => c + '\u0323').join('') },
-  { name: 'Overline', transform: (s: string) => toChars(s).map((c) => c + '\u0305').join('') },
-  { name: 'Double Overline', transform: (s: string) => toChars(s).map((c) => c + '\u033F').join('') },
-  { name: 'Ring Below', transform: (s: string) => toChars(s).map((c) => c + '\u0325').join('') },
-  { name: 'Comma Below', transform: (s: string) => toChars(s).map((c) => c + '\u0326').join('') },
-  { name: 'Dotted', transform: (s: string) => toChars(s).map((c) => c + '\u0307').join('') },
-  { name: 'Ringed', transform: (s: string) => toChars(s).map((c) => c + '\u030A').join('') },
-  { name: 'Caron', transform: (s: string) => toChars(s).map((c) => c + '\u030C').join('') },
-  { name: 'Tilde', transform: (s: string) => toChars(s).map((c) => c + '\u0303').join('') },
-  { name: 'Umlaut', transform: (s: string) => toChars(s).map((c) => c + '\u0308').join('') },
-  { name: 'Acute', transform: (s: string) => toChars(s).map((c) => c + '\u0301').join('') },
-  { name: 'Hook', transform: (s: string) => toChars(s).map((c) => c + '\u0309').join('') },
-  { name: 'Arrows', transform: (s: string) => toChars(s).map((c) => c + '\u20D7').join('') },
-  { name: 'Crossed', transform: (s: string) => toChars(s).map((c) => c + '\u033D').join('') },
-  { name: 'Enclosed Circle', transform: (s: string) => toChars(s).map((c) => c + '\u20DD').join('') },
-  { name: 'Enclosed Square', transform: (s: string) => toChars(s).map((c) => c + '\u20DE').join('') },
-  { name: 'Enclosed Diamond', transform: (s: string) => toChars(s).map((c) => c + '\u20DF').join('') },
-  { name: 'Struck Circle', transform: (s: string) => toChars(s).map((c) => c + '\u20E0').join('') },
+  { name: 'Short Strike', transform: (s: string) => mark(s, '\u0335') },
+  { name: 'Slashed', transform: (s: string) => mark(s, '\u0337') },
+  { name: 'Long Slash', transform: (s: string) => mark(s, '\u0338') },
+  { name: 'Tilde Strike', transform: (s: string) => mark(s, '\u0334') },
+  { name: 'Double Underline', transform: (s: string) => mark(s, '\u0333') },
+  { name: 'Wavy Underline', transform: (s: string) => mark(s, '\u0330') },
+  { name: 'Dotted Underline', transform: (s: string) => mark(s, '\u0323') },
+  { name: 'Overline', transform: (s: string) => mark(s, '\u0305') },
+  { name: 'Double Overline', transform: (s: string) => mark(s, '\u033F') },
+  { name: 'Ring Below', transform: (s: string) => mark(s, '\u0325') },
+  { name: 'Comma Below', transform: (s: string) => mark(s, '\u0326') },
+  { name: 'Dotted', transform: (s: string) => mark(s, '\u0307') },
+  { name: 'Ringed', transform: (s: string) => mark(s, '\u030A') },
+  { name: 'Caron', transform: (s: string) => mark(s, '\u030C') },
+  { name: 'Tilde', transform: (s: string) => mark(s, '\u0303') },
+  { name: 'Umlaut', transform: (s: string) => mark(s, '\u0308') },
+  { name: 'Acute', transform: (s: string) => mark(s, '\u0301') },
+  { name: 'Hook', transform: (s: string) => mark(s, '\u0309') },
+  { name: 'Arrows', transform: (s: string) => mark(s, '\u20D7') },
+  { name: 'Crossed', transform: (s: string) => mark(s, '\u033D') },
+  { name: 'Enclosed Circle', transform: (s: string) => mark(s, '\u20DD') },
+  { name: 'Enclosed Square', transform: (s: string) => mark(s, '\u20DE') },
+  { name: 'Enclosed Diamond', transform: (s: string) => mark(s, '\u20DF') },
+  { name: 'Struck Circle', transform: (s: string) => mark(s, '\u20E0') },
 
   // --- New spacing styles ---
   { name: 'Spaced', transform: (s: string) => toChars(s).join(' ') },
