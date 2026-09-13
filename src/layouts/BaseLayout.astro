@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { languages, defaultLang, getPath } from '../i18n';
+import { languages, defaultLang, getPath, t } from '../i18n';
 
 interface Props {
   lang: string;
@@ -30,6 +30,7 @@ function absoluteUrl(l: string, p: string) {
 }
 
 const canonicalUrl = absoluteUrl(lang, path);
+const strings = t(lang);
 
 // Build the lang -> path map used for hreflang tags AND the language
 // switcher. If the page didn't pass an explicit `alternates` prop (i.e. the
@@ -46,6 +47,9 @@ const hreflangEntries = Object.entries(resolvedAlternates);
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
+    <!-- Declaring our own generator tag stops Astro from auto-injecting
+         "Astro vX.X.X" here, so view-source doesn't reveal the framework. -->
+    <meta name="generator" content={strings.site.name} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
