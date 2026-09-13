@@ -12,7 +12,10 @@ const year = new Date().getFullYear();
 <footer class="border-t border-border mt-10 pt-8 pb-6 text-text-muted text-sm">
   <div class="container grid gap-8 sm:grid-cols-[1.3fr_1fr_1fr] mb-6">
     <div>
-      <strong class="text-text text-base">{strings.site.name}</strong>
+      <div class="flex items-center gap-1.5">
+        <img src="https://rforrupesh.github.io/fontaesthetic/images/logo_fontaesthetic.png" alt={strings.site.name} width="24" height="24" />
+        <strong class="text-text text-base">{strings.site.name}</strong>
+      </div>
       <p class="mt-1.5 max-w-xs text-[.85rem]">{strings.footer.madeWith}</p>
     </div>
 
