@@ -1,12 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import { t } from '../i18n';
 const strings = t('en');
+
+const features = [
+  { title: 'No sign-up required', text: 'Just open the page and start typing. No accounts, no downloads.' },
+  { title: 'Works everywhere', text: 'Paste into Instagram, WhatsApp, Discord, Twitter/X and more.' },
+  { title: '100% free', text: 'No hidden fees, no premium tier, ever.' },
+];
 ---
 <BaseLayout lang="en" title={`About — ${strings.site.name}`} description="Learn more about FontAesthetic, the free online font generator." path="/about/">
-  <section class="container prose page-content">
-    <h1>About Us</h1>
-    <p>FontAesthetic is a free online font generator that helps you turn plain text into stylish Unicode fonts you can copy and paste anywhere — Instagram, WhatsApp, Discord, Twitter/X and more.</p>
-    <p>No sign-up, no downloads. Just type, pick a style, and copy.</p>
+  <PageHero
+    title="About Us"
+    subtitle="A free online font generator that turns plain text into stylish Unicode fonts you can copy and paste anywhere."
+  />
+
+  <section class="container py-10 max-w-[820px] mx-auto">
+    <div class="grid sm:grid-cols-3 gap-5 mb-8">
+      {features.map((f) => (
+        <div class="card p-5">
+          <div class="w-8 h-8 rounded-md bg-primary/15 text-primary flex items-center justify-center mb-3">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+          </div>
+          <h3 class="text-[1.02rem] mb-1.5">{f.title}</h3>
+          <p class="text-text-muted text-[.9rem] m-0">{f.text}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-text-muted text-center max-w-[560px] mx-auto">
+      Made for creators, marketers, and anyone who wants their text to stand out.
+    </p>
   </section>
 </BaseLayout>

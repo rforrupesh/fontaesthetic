@@ -1,12 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import { t } from '../i18n';
 const strings = t('en');
+
+const sections = [
+  {
+    title: 'What we collect',
+    text: "FontAesthetic does not store the text you type into the font generator. All conversion happens directly in your browser.",
+  },
+  {
+    title: 'Analytics',
+    text: 'We may use basic, privacy-friendly analytics to understand site usage. We do not sell personal data to third parties.',
+  },
+];
 ---
 <BaseLayout lang="en" title={`Privacy Policy — ${strings.site.name}`} description="Privacy policy for FontAesthetic." path="/privacy-policy/">
-  <section class="container prose page-content">
-    <h1>Privacy Policy</h1>
-    <p>FontAesthetic does not store the text you type into the font generator. All conversion happens directly in your browser.</p>
-    <p>We may use basic, privacy-friendly analytics to understand site usage. We do not sell personal data to third parties.</p>
+  <PageHero title="Privacy Policy" subtitle="Last updated: January 2026" />
+
+  <section class="container py-10 max-w-[680px] mx-auto flex flex-col gap-5">
+    {sections.map((s) => (
+      <div class="card p-5">
+        <h2 class="text-[1.05rem] mb-2">{s.title}</h2>
+        <p class="text-text-muted m-0">{s.text}</p>
+      </div>
+    ))}
   </section>
 </BaseLayout>

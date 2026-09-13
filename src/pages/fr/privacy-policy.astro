@@ -1,12 +1,29 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
 import { t } from '../../i18n';
 const strings = t('fr');
+
+const sections = [
+  {
+    title: 'Ce que nous collectons',
+    text: "FontAesthetic ne stocke pas le texte que vous saisissez dans le générateur de polices. Toute la conversion se fait directement dans votre navigateur.",
+  },
+  {
+    title: 'Analytique',
+    text: "Nous pouvons utiliser des outils d'analyse basiques et respectueux de la vie privée pour comprendre l'utilisation du site. Nous ne vendons pas de données personnelles à des tiers.",
+  },
+];
 ---
 <BaseLayout lang="fr" title={`Politique de Confidentialité — ${strings.site.name}`} description="Politique de confidentialité de FontAesthetic." path="/privacy-policy/">
-  <section class="container prose page-content">
-    <h1>Politique de Confidentialité</h1>
-    <p>FontAesthetic ne stocke pas le texte que vous saisissez dans le générateur de polices. Toute la conversion se fait directement dans votre navigateur.</p>
-    <p>Nous pouvons utiliser des statistiques respectueuses de la vie privée pour comprendre l'utilisation du site. Nous ne vendons pas de données personnelles à des tiers.</p>
+  <PageHero title="Politique de Confidentialité" subtitle="Dernière mise à jour : janvier 2026" />
+
+  <section class="container py-10 max-w-[680px] mx-auto flex flex-col gap-5">
+    {sections.map((s) => (
+      <div class="card p-5">
+        <h2 class="text-[1.05rem] mb-2">{s.title}</h2>
+        <p class="text-text-muted m-0">{s.text}</p>
+      </div>
+    ))}
   </section>
 </BaseLayout>
