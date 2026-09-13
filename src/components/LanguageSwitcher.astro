@@ -22,39 +22,89 @@ function hrefFor(code: string) {
   }
   return code === 'en' ? base : `${base}${code}/`;
 }
+
+const current = languages[lang as keyof typeof languages] ?? languages.en;
 ---
 
-<div class="lang-wrap relative inline-block">
-  <select
-    class="lang-select appearance-none bg-surface-2 text-text border border-border rounded-md pl-2.5 pr-7 py-1.5 text-sm cursor-pointer transition-colors duration-150 hover:border-primary focus:outline-none focus:border-primary"
-    aria-label="Language switcher"
+<div class="lang-dropdown relative inline-block text-left">
+  <button
+    type="button"
+    class="lang-trigger flex items-center gap-1.5 bg-surface-2 text-text border border-border rounded-md pl-2.5 pr-2 py-1.5 text-sm cursor-pointer transition-colors duration-150 hover:border-primary"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+  >
+    <span class="lang-trigger-label">{current.native}</span>
+    <svg class="lang-arrow shrink-0 text-text-muted transition-transform duration-150" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  </button>
+
+  <ul
+    class="lang-menu hidden absolute right-0 z-50 mt-1.5 min-w-full w-max py-1 bg-surface border border-border rounded-md shadow-lg"
+    role="listbox"
   >
     {Object.entries(languages).map(([code, info]) => (
-      <option value={hrefFor(code)} selected={code === lang}>{info.native}</option>
+      <li role="option" aria-selected={code === lang}>
+        <a
+          href={hrefFor(code)}
+          class:list={[
+            'lang-option block px-3 py-2 text-sm whitespace-nowrap transition-colors duration-150 hover:bg-surface-2 hover:text-text',
+            code === lang ? 'text-primary' : 'text-text-muted',
+          ]}
+        >
+          {info.native}
+        </a>
+      </li>
     ))}
-  </select>
-  <svg class="lang-arrow pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-text-muted" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M6 9l6 6 6-6" />
-  </svg>
+  </ul>
 </div>
-
-<style>
-  .lang-select {
-    background-image: none;
-  }
-  .lang-select option {
-    background: var(--color-surface-2);
-    color: var(--color-text);
-  }
-</style>
 
 <script>
   // Navbar renders this component twice (desktop bar + mobile panel), so
   // select by class and wire up every instance rather than relying on a
   // single unique id.
-  document.querySelectorAll<HTMLSelectElement>('.lang-select').forEach((select) => {
-    select.addEventListener('change', () => {
-      if (select.value) window.location.href = select.value;
+  document.querySelectorAll<HTMLElement>('.lang-dropdown').forEach((wrap) => {
+    const trigger = wrap.querySelector<HTMLButtonElement>('.lang-trigger');
+    const menu = wrap.querySelector<HTMLUListElement>('.lang-menu');
+    const arrow = wrap.querySelector<SVGElement>('.lang-arrow');
+    if (!trigger || !menu) return;
+
+    function open() {
+      menu!.classList.remove('hidden');
+      trigger!.setAttribute('aria-expanded', 'true');
+      arrow?.classList.add('rotate-180');
+    }
+    function close() {
+      menu!.classList.add('hidden');
+      trigger!.setAttribute('aria-expanded', 'false');
+      arrow?.classList.remove('rotate-180');
+    }
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      // Close every other open dropdown (desktop + mobile instances) first.
+      document.querySelectorAll<HTMLElement>('.lang-menu').forEach((m) => m.classList.add('hidden'));
+      document.querySelectorAll<HTMLElement>('.lang-trigger').forEach((t) => t.setAttribute('aria-expanded', 'false'));
+      if (isOpen) {
+        close();
+      } else {
+        open();
+      }
     });
+
+    menu.addEventListener('click', (e) => e.stopPropagation());
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll<HTMLElement>('.lang-menu').forEach((m) => m.classList.add('hidden'));
+    document.querySelectorAll<HTMLElement>('.lang-trigger').forEach((t) => t.setAttribute('aria-expanded', 'false'));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll<HTMLElement>('.lang-menu').forEach((m) => m.classList.add('hidden'));
+      document.querySelectorAll<HTMLElement>('.lang-trigger').forEach((t) => t.setAttribute('aria-expanded', 'false'));
+    }
   });
 </script>
