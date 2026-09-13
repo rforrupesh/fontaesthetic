@@ -6,6 +6,7 @@ description: "A roundup of the most popular stylish font trends this year for so
 date: 2024-07-02
 image: "https://rforrupesh.github.io/fontaesthetic/images/logo_fontaesthetic.png"
 tags: ["trends", "fonts"]
+categories: ["Guides"]
 ---
 
 ## Overview
