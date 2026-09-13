@@ -13,9 +13,9 @@ const strings = t(lang);
 ---
 
 {posts.length > 0 && (
-  <section class="mt-12 pt-8 border-t border-border">
+  <section class="mt-10 pt-8 border-t border-border">
     <h2 class="text-xl mb-5">{strings.sidebar.related}</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       {posts.map((post) => (
         <a class="card overflow-hidden flex flex-col" href={getPath(lang, `/blog/${post.slug}/`)}>
           {post.image && <img src={post.image} alt={post.title} loading="lazy" class="w-full aspect-video object-cover" />}
