@@ -57,6 +57,50 @@ const RAW: Omit<FontStyle, 'slug'>[] = [
       if (code >= 33 && code <= 126) return String.fromCharCode(0xFF00 + (code - 0x20));
       return c;
     }).join('') },
+
+  // --- New alphabet-substitution styles (each letter maps 1:1, so these
+  // render reliably everywhere, same as Bold/Italic/Script above) ---
+  { name: 'Bold Script', map: makeMap('𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩', '𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃') },
+  { name: 'Bold Gothic', map: makeMap('𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅', '𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟') },
+  { name: 'Sans Serif', map: makeMap('𝖠𝖡𝖢𝖣𝖤𝖥𝖦𝖧𝖨𝖩𝖪𝖫𝖬𝖭𝖮𝖯𝖰𝖱𝖲𝖳𝖴𝖵𝖶𝖷𝖸𝖹', '𝖺𝖻𝖼𝖽𝖾𝖿𝗀𝗁𝗂𝗃𝗄𝗅𝗆𝗇𝗈𝗉𝗊𝗋𝗌𝗍𝗎𝗏𝗐𝗑𝗒𝗓') },
+  { name: 'Sans Bold', map: makeMap('𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭', '𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇', '𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵') },
+  { name: 'Sans Italic', map: makeMap('𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡', '𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻') },
+  { name: 'Sans Bold Italic', map: makeMap('𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕', '𝙖𝙗𝙘𝙙𝙚𝙛𝙜𝙝𝙞𝙟𝙠𝙡𝙢𝙣𝙤𝙥𝙦𝙧𝙨𝙩𝙪𝙫𝙬𝙭𝙮𝙯') },
+  { name: 'Filled Circles', map: makeMap('🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩') },
+  { name: 'Squared Outline', map: makeMap('🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉') },
+  { name: 'Parenthesised', map: makeMap('🄐🄑🄒🄓🄔🄕🄖🄗🄘🄙🄚🄛🄜🄝🄞🄟🄠🄡🄢🄣🄤🄥🄦🄧🄨🄩', '⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵') },
+  { name: 'Wide', map: makeMap('ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ', 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ', '０１２３４５６７８９') },
+
+  // --- New combining-mark styles (letter + invisible mark, same pattern
+  // as the existing Strikethrough/Underline entries above) ---
+  { name: 'Short Strike', transform: (s: string) => toChars(s).map((c) => c + '\u0335').join('') },
+  { name: 'Slashed', transform: (s: string) => toChars(s).map((c) => c + '\u0337').join('') },
+  { name: 'Long Slash', transform: (s: string) => toChars(s).map((c) => c + '\u0338').join('') },
+  { name: 'Tilde Strike', transform: (s: string) => toChars(s).map((c) => c + '\u0334').join('') },
+  { name: 'Double Underline', transform: (s: string) => toChars(s).map((c) => c + '\u0333').join('') },
+  { name: 'Wavy Underline', transform: (s: string) => toChars(s).map((c) => c + '\u0330').join('') },
+  { name: 'Dotted Underline', transform: (s: string) => toChars(s).map((c) => c + '\u0323').join('') },
+  { name: 'Overline', transform: (s: string) => toChars(s).map((c) => c + '\u0305').join('') },
+  { name: 'Double Overline', transform: (s: string) => toChars(s).map((c) => c + '\u033F').join('') },
+  { name: 'Ring Below', transform: (s: string) => toChars(s).map((c) => c + '\u0325').join('') },
+  { name: 'Comma Below', transform: (s: string) => toChars(s).map((c) => c + '\u0326').join('') },
+  { name: 'Dotted', transform: (s: string) => toChars(s).map((c) => c + '\u0307').join('') },
+  { name: 'Ringed', transform: (s: string) => toChars(s).map((c) => c + '\u030A').join('') },
+  { name: 'Caron', transform: (s: string) => toChars(s).map((c) => c + '\u030C').join('') },
+  { name: 'Tilde', transform: (s: string) => toChars(s).map((c) => c + '\u0303').join('') },
+  { name: 'Umlaut', transform: (s: string) => toChars(s).map((c) => c + '\u0308').join('') },
+  { name: 'Acute', transform: (s: string) => toChars(s).map((c) => c + '\u0301').join('') },
+  { name: 'Hook', transform: (s: string) => toChars(s).map((c) => c + '\u0309').join('') },
+  { name: 'Arrows', transform: (s: string) => toChars(s).map((c) => c + '\u20D7').join('') },
+  { name: 'Crossed', transform: (s: string) => toChars(s).map((c) => c + '\u033D').join('') },
+  { name: 'Enclosed Circle', transform: (s: string) => toChars(s).map((c) => c + '\u20DD').join('') },
+  { name: 'Enclosed Square', transform: (s: string) => toChars(s).map((c) => c + '\u20DE').join('') },
+  { name: 'Enclosed Diamond', transform: (s: string) => toChars(s).map((c) => c + '\u20DF').join('') },
+  { name: 'Struck Circle', transform: (s: string) => toChars(s).map((c) => c + '\u20E0').join('') },
+
+  // --- New spacing styles ---
+  { name: 'Spaced', transform: (s: string) => toChars(s).join(' ') },
+  { name: 'Extra Spaced', transform: (s: string) => toChars(s).join('    ') },
 ];
 
 export const FONT_STYLES: FontStyle[] = RAW.map((style) => ({ ...style, slug: slugify(style.name) }));
