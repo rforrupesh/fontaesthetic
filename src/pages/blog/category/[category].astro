@@ -5,19 +5,24 @@ import CollectionPageSchema from '../../../components/schema/CollectionPageSchem
 import OrganizationSchema from '../../../components/schema/OrganizationSchema.astro';
 import { getCollection } from 'astro:content';
 import { t, getPath } from '../../../i18n';
+import { slugify } from '../../../lib/slugify';
 
 const lang = 'en';
 const strings = t(lang);
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', (e) => e.id.startsWith('en/'));
-  const categorySet = new Set<string>();
+  // Group original category text by its lowercase URL slug, so "Guides"
+  // and "guides" collapse to one /blog/category/guides/ page.
+  const slugToCategory = new Map<string, string>();
   posts.forEach((p) => {
-    if (p.data.category) categorySet.add(p.data.category);
+    if (!p.data.category) return;
+    const slug = slugify(p.data.category);
+    if (!slugToCategory.has(slug)) slugToCategory.set(slug, p.data.category);
   });
 
-  return Array.from(categorySet).map((category) => ({
-    params: { category },
+  return Array.from(slugToCategory.entries()).map(([slug, category]) => ({
+    params: { category: slug },
     props: { category },
   }));
 }
@@ -25,7 +30,7 @@ export async function getStaticPaths() {
 const { category } = Astro.props;
 
 const posts = (await getCollection('blog', (e) => e.id.startsWith('en/')))
-  .filter((p) => p.data.category === category)
+  .filter((p) => p.data.category && slugify(p.data.category) === slugify(category))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 // For each language, link to the same category page only if that language
@@ -35,13 +40,13 @@ const allLangs = ['en', 'fr', 'hi'];
 const alternates: Record<string, string> = {};
 for (const l of allLangs) {
   const postsInLang = l === lang ? posts : await getCollection('blog', (e) => e.id.startsWith(`${l}/`));
-  const hasCategory = l === lang ? posts.length > 0 : postsInLang.some((p) => p.data.category === category);
-  alternates[l] = hasCategory ? `/blog/category/${category}/` : '/blog/';
+  const hasCategory = l === lang ? posts.length > 0 : postsInLang.some((p) => p.data.category && slugify(p.data.category) === slugify(category));
+  alternates[l] = hasCategory ? `/blog/category/${slugify(category)}/` : '/blog/';
 }
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const base = import.meta.env.BASE_URL;
-const pageUrl = siteUrl + getPath(lang, `/blog/category/${category}/`);
+const pageUrl = siteUrl + getPath(lang, `/blog/category/${slugify(category)}/`);
 const logoUrl = `${siteUrl}${base}logo.svg`;
 const title = category;
 ---
@@ -50,7 +55,7 @@ const title = category;
   lang={lang}
   title={`${title} — ${strings.blog.listingTitle} — ${strings.site.name}`}
   description={strings.blog.listingDescription}
-  path={`/blog/category/${category}/`}
+  path={`/blog/category/${slugify(category)}/`}
   alternates={alternates}
 >
   <section class="container py-12 pb-6 text-center">

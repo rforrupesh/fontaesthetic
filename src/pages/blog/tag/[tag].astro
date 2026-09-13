@@ -5,17 +5,24 @@ import CollectionPageSchema from '../../../components/schema/CollectionPageSchem
 import OrganizationSchema from '../../../components/schema/OrganizationSchema.astro';
 import { getCollection } from 'astro:content';
 import { t, getPath } from '../../../i18n';
+import { slugify } from '../../../lib/slugify';
 
 const lang = 'en';
 const strings = t(lang);
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', (e) => e.id.startsWith('en/'));
-  const tagSet = new Set<string>();
-  posts.forEach((p) => p.data.tags.forEach((tag) => tagSet.add(tag)));
+  // Group original tag text by its lowercase URL slug, so "Fonts" and
+  // "fonts" collapse to one /blog/tag/fonts/ page and the URL is always
+  // lowercase regardless of how the tag was capitalized in frontmatter.
+  const slugToTag = new Map<string, string>();
+  posts.forEach((p) => p.data.tags.forEach((tag) => {
+    const slug = slugify(tag);
+    if (!slugToTag.has(slug)) slugToTag.set(slug, tag);
+  }));
 
-  return Array.from(tagSet).map((tag) => ({
-    params: { tag },
+  return Array.from(slugToTag.entries()).map(([slug, tag]) => ({
+    params: { tag: slug },
     props: { tag },
   }));
 }
@@ -23,7 +30,7 @@ export async function getStaticPaths() {
 const { tag } = Astro.props;
 
 const posts = (await getCollection('blog', (e) => e.id.startsWith('en/')))
-  .filter((p) => p.data.tags.includes(tag))
+  .filter((p) => p.data.tags.some((t) => slugify(t) === slugify(tag)))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 // For each language, link to the same tag page only if that language
@@ -33,13 +40,13 @@ const allLangs = ['en', 'fr', 'hi'];
 const alternates: Record<string, string> = {};
 for (const l of allLangs) {
   const postsInLang = l === lang ? posts : await getCollection('blog', (e) => e.id.startsWith(`${l}/`));
-  const hasTag = l === lang ? posts.length > 0 : postsInLang.some((p) => p.data.tags.includes(tag));
-  alternates[l] = hasTag ? `/blog/tag/${tag}/` : '/blog/';
+  const hasTag = l === lang ? posts.length > 0 : postsInLang.some((p) => p.data.tags.some((t) => slugify(t) === slugify(tag)));
+  alternates[l] = hasTag ? `/blog/tag/${slugify(tag)}/` : '/blog/';
 }
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const base = import.meta.env.BASE_URL;
-const pageUrl = siteUrl + getPath(lang, `/blog/tag/${tag}/`);
+const pageUrl = siteUrl + getPath(lang, `/blog/tag/${slugify(tag)}/`);
 const logoUrl = `${siteUrl}${base}logo.svg`;
 const title = `#${tag}`;
 ---
@@ -48,7 +55,7 @@ const title = `#${tag}`;
   lang={lang}
   title={`${title} — ${strings.blog.listingTitle} — ${strings.site.name}`}
   description={strings.blog.listingDescription}
-  path={`/blog/tag/${tag}/`}
+  path={`/blog/tag/${slugify(tag)}/`}
   alternates={alternates}
 >
   <section class="container py-12 pb-6 text-center">

@@ -11,6 +11,7 @@ import ArticleSchema from '../../../components/schema/ArticleSchema.astro';
 import OrganizationSchema from '../../../components/schema/OrganizationSchema.astro';
 import { getCollection, render } from 'astro:content';
 import { t, getPath } from '../../../i18n';
+import { slugify } from '../../../lib/slugify';
 
 const lang = 'fr';
 const strings = t(lang);
@@ -81,7 +82,7 @@ const breadcrumbItems = [
     <header class="mb-1">
       {post.data.category && (
         <a
-          href={getPath(lang, `/blog/category/${post.data.category}/`)}
+          href={getPath(lang, `/blog/category/${slugify(post.data.category)}/`)}
           class="inline-block text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary mb-3 hover:bg-primary/20 transition-colors"
         >
           {post.data.category}
@@ -113,7 +114,7 @@ const breadcrumbItems = [
           <div class="flex flex-wrap gap-2 mt-6 pt-6 border-t border-border">
             {post.data.tags.map((tag) => (
               <a
-                href={getPath(lang, `/blog/tag/${tag}/`)}
+                href={getPath(lang, `/blog/tag/${slugify(tag)}/`)}
                 class="text-xs px-3 py-1 rounded-full bg-surface border border-border text-text-muted hover:text-text hover:border-text-muted transition-colors"
               >
                 #{tag}
