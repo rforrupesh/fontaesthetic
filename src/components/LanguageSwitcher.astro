@@ -40,7 +40,7 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
   </button>
 
   <ul
-    class="lang-menu hidden absolute right-0 z-50 mt-1.5 min-w-full w-max py-1 bg-surface border border-border rounded-md shadow-lg"
+    class="lang-menu hidden fixed z-50 w-max py-1 bg-surface border border-border rounded-md shadow-lg max-h-[60vh] overflow-y-auto"
     role="listbox"
   >
     {Object.entries(languages).map(([code, info]) => (
@@ -63,6 +63,40 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
   // Navbar renders this component twice (desktop bar + mobile panel), so
   // select by class and wire up every instance rather than relying on a
   // single unique id.
+  const GAP = 6; // space kept between the trigger and the menu
+
+  function closeAll() {
+    document.querySelectorAll<HTMLElement>('.lang-menu').forEach((m) => m.classList.add('hidden'));
+    document.querySelectorAll<HTMLElement>('.lang-trigger').forEach((t) => t.setAttribute('aria-expanded', 'false'));
+    document.querySelectorAll<HTMLElement>('.lang-arrow').forEach((a) => a.classList.remove('rotate-180'));
+  }
+
+  // Menu uses position:fixed and its top/left are calculated fresh on every
+  // open, so it never affects the surrounding layout (no reflow, no new
+  // margin/padding on the trigger or its neighbours) and always flips to
+  // whichever side (up/down, left/right) actually has room in the viewport.
+  function positionMenu(trigger: HTMLElement, menu: HTMLElement) {
+    const triggerRect = trigger.getBoundingClientRect();
+    const menuRect = menu.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    const spaceBelow = vh - triggerRect.bottom;
+    const openUp = spaceBelow < menuRect.height + GAP && triggerRect.top > spaceBelow;
+    const top = openUp
+      ? Math.max(GAP, triggerRect.top - menuRect.height - GAP)
+      : triggerRect.bottom + GAP;
+
+    const spaceRight = vw - triggerRect.right;
+    const alignLeft = spaceRight < menuRect.width && triggerRect.left >= menuRect.width;
+    const left = alignLeft
+      ? triggerRect.right - menuRect.width
+      : Math.min(triggerRect.left, vw - menuRect.width - GAP);
+
+    menu.style.top = `${top}px`;
+    menu.style.left = `${Math.max(GAP, left)}px`;
+  }
+
   document.querySelectorAll<HTMLElement>('.lang-dropdown').forEach((wrap) => {
     const trigger = wrap.querySelector<HTMLButtonElement>('.lang-trigger');
     const menu = wrap.querySelector<HTMLUListElement>('.lang-menu');
@@ -71,40 +105,26 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
 
     function open() {
       menu!.classList.remove('hidden');
+      positionMenu(trigger!, menu!);
       trigger!.setAttribute('aria-expanded', 'true');
       arrow?.classList.add('rotate-180');
-    }
-    function close() {
-      menu!.classList.add('hidden');
-      trigger!.setAttribute('aria-expanded', 'false');
-      arrow?.classList.remove('rotate-180');
     }
 
     trigger.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-      // Close every other open dropdown (desktop + mobile instances) first.
-      document.querySelectorAll<HTMLElement>('.lang-menu').forEach((m) => m.classList.add('hidden'));
-      document.querySelectorAll<HTMLElement>('.lang-trigger').forEach((t) => t.setAttribute('aria-expanded', 'false'));
-      if (isOpen) {
-        close();
-      } else {
-        open();
-      }
+      closeAll();
+      if (!isOpen) open();
     });
 
     menu.addEventListener('click', (e) => e.stopPropagation());
   });
 
-  document.addEventListener('click', () => {
-    document.querySelectorAll<HTMLElement>('.lang-menu').forEach((m) => m.classList.add('hidden'));
-    document.querySelectorAll<HTMLElement>('.lang-trigger').forEach((t) => t.setAttribute('aria-expanded', 'false'));
-  });
-
+  document.addEventListener('click', closeAll);
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      document.querySelectorAll<HTMLElement>('.lang-menu').forEach((m) => m.classList.add('hidden'));
-      document.querySelectorAll<HTMLElement>('.lang-trigger').forEach((t) => t.setAttribute('aria-expanded', 'false'));
-    }
+    if (e.key === 'Escape') closeAll();
   });
+  // Reposition (or just close) if the viewport changes shape while open.
+  window.addEventListener('resize', closeAll);
+  window.addEventListener('scroll', closeAll, true);
 </script>
