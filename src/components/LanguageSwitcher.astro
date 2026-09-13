@@ -24,16 +24,29 @@ function hrefFor(code: string) {
 }
 ---
 
-<div>
+<div class="lang-wrap relative inline-block">
   <select
-    class="lang-select bg-surface-2 text-text border border-border rounded-md px-2.5 py-1.5 text-sm cursor-pointer"
+    class="lang-select appearance-none bg-surface-2 text-text border border-border rounded-md pl-2.5 pr-7 py-1.5 text-sm cursor-pointer transition-colors duration-150 hover:border-primary focus:outline-none focus:border-primary"
     aria-label="Language switcher"
   >
     {Object.entries(languages).map(([code, info]) => (
       <option value={hrefFor(code)} selected={code === lang}>{info.native}</option>
     ))}
   </select>
+  <svg class="lang-arrow pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-text-muted" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 9l6 6 6-6" />
+  </svg>
 </div>
+
+<style>
+  .lang-select {
+    background-image: none;
+  }
+  .lang-select option {
+    background: var(--color-surface-2);
+    color: var(--color-text);
+  }
+</style>
 
 <script>
   // Navbar renders this component twice (desktop bar + mobile panel), so
