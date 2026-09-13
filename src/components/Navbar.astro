@@ -18,13 +18,13 @@ const navItems = [
 
 <header class="sticky top-0 z-50 h-[var(--header-h)] flex items-center bg-bg/85 backdrop-blur-sm border-b border-border">
   <div class="container flex items-center justify-between gap-4">
-    <a href={getPath(lang, '/')} class="flex items-center gap-2 font-bold text-[1.05rem] whitespace-nowrap shrink-0">
-      <img src={`${base}logo.svg`} alt={strings.site.name} width="28" height="28" />
+    <a href={getPath(lang, '/')} class="flex items-center gap-1.5 font-bold text-[.95rem] whitespace-nowrap shrink-0">
+      <img src={`${base}logo.svg`} alt={strings.site.name} width="24" height="24" />
       <span>{strings.site.name}</span>
     </a>
 
     <!-- Desktop: single-row menu -->
-    <nav class="hidden md:flex flex-1 justify-center gap-5">
+    <nav class="hidden md:flex flex-1 justify-center gap-4">
       {navItems.map((item) => (
         <a href={item.href} class="text-sm text-text-muted hover:text-text transition-colors duration-150">
           {item.label}
@@ -32,7 +32,7 @@ const navItems = [
       ))}
     </nav>
 
-    <div class="hidden md:flex items-center gap-3 shrink-0">
+    <div class="hidden md:flex items-center gap-2.5 shrink-0">
       <ThemeToggle />
       <LanguageSwitcher lang={lang} alternates={alternates} />
     </div>

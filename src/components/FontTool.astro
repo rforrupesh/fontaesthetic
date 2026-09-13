@@ -17,27 +17,27 @@ const rows = FONT_STYLES.map((style) => ({
 }));
 ---
 
-<section class="py-12 pb-8 text-center">
+<section class="py-8 pb-6 text-center">
   <div class="container">
-    <h1 class="text-[clamp(1.8rem,4vw,2.6rem)] mb-2">{strings.tool.heading}</h1>
-    <p class="text-text-muted mb-8">{strings.tool.subheading}</p>
+    <h1 class="text-[clamp(1.6rem,3.4vw,2.2rem)] mb-2">{strings.tool.heading}</h1>
+    <p class="text-text-muted mb-6 text-sm">{strings.tool.subheading}</p>
 
-    <div class="card p-4 max-w-[700px] mx-auto">
+    <div class="card p-3 max-w-[640px] mx-auto">
       <textarea
         id="font-input"
         rows="2"
         placeholder={strings.tool.placeholder}
-        class="w-full bg-surface-2 border border-border rounded-md text-text text-[1.1rem] p-3 resize-y font-sans"
+        class="w-full bg-surface-2 border border-border rounded-md text-text text-[1rem] p-2.5 resize-y font-sans"
       ></textarea>
     </div>
 
     <div
       id="font-results"
-      class="max-w-[700px] mx-auto mt-8 flex flex-col gap-3 text-left"
+      class="max-w-[640px] mx-auto mt-6 flex flex-col gap-2.5 text-left"
       data-copied-label={strings.tool.copied}
     >
       {rows.map((row) => (
-        <div class="card flex items-center justify-between gap-4 px-4 py-3.5" data-style-slug={row.slug}>
+        <div class="card flex items-center justify-between gap-4 px-3.5 py-3" data-style-slug={row.slug}>
           <div class="break-words text-[1.05rem]" data-role="output">{row.sample}</div>
           <button class="btn shrink-0" type="button" data-role="copy">{strings.tool.copy}</button>
         </div>

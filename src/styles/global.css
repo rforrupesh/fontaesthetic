@@ -16,7 +16,7 @@
   --radius-md: 8px;
   --radius-lg: 12px;
 
-  --header-h: 68px;
+  --header-h: 58px;
 }
 
 html[data-theme="light"] {
@@ -45,13 +45,13 @@ html[data-theme="light"] {
   img { max-width: 100%; display: block; }
 
   @media (max-width: 640px) {
-    :root { --header-h: 60px; }
+    :root { --header-h: 54px; }
   }
 }
 
 @layer components {
   .container {
-    @apply w-full max-w-[1100px] mx-auto px-5;
+    @apply w-full max-w-[980px] mx-auto px-5;
   }
 
   .btn {
