@@ -82,6 +82,6 @@ const hreflangEntries = Object.entries(resolvedAlternates);
     <main>
       <slot />
     </main>
-    <Footer lang={lang} />
+    <Footer lang={lang} alternates={resolvedAlternates} />
   </body>
 </html>
