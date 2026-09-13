@@ -3,8 +3,8 @@ import { t, getPath } from '../i18n';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import SocialLinks from './SocialLinks.astro';
-interface Props { lang: string; alternates?: Record<string, string>; }
-const { lang, alternates } = Astro.props;
+interface Props { lang: string; alternates?: Record<string, string>; availableLangs?: string[]; }
+const { lang, alternates, availableLangs } = Astro.props;
 const strings = t(lang);
 const year = new Date().getFullYear();
 ---
@@ -28,7 +28,7 @@ const year = new Date().getFullYear();
       <SocialLinks size="sm" />
       <div class="mt-0.5 flex items-center gap-2.5">
         <ThemeToggle />
-        <LanguageSwitcher lang={lang} alternates={alternates} />
+        <LanguageSwitcher lang={lang} alternates={alternates} availableLangs={availableLangs} />
       </div>
     </div>
   </div>

@@ -28,6 +28,17 @@ const posts = (await getCollection('blog', (e) => e.id.startsWith('hi/')))
   .filter((p) => p.data.category === category)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
+// For each language, link to the same category page only if that language
+// actually has a post with this exact category -- otherwise fall back to
+// that language's blog listing (always exists) instead of a 404.
+const allLangs = ['en', 'fr', 'hi'];
+const alternates: Record<string, string> = {};
+for (const l of allLangs) {
+  const postsInLang = l === lang ? posts : await getCollection('blog', (e) => e.id.startsWith(`${l}/`));
+  const hasCategory = l === lang ? posts.length > 0 : postsInLang.some((p) => p.data.category === category);
+  alternates[l] = hasCategory ? `/blog/category/${category}/` : '/blog/';
+}
+
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const base = import.meta.env.BASE_URL;
 const pageUrl = siteUrl + getPath(lang, `/blog/category/${category}/`);
@@ -40,6 +51,7 @@ const title = category;
   title={`${title} — ${strings.blog.listingTitle} — ${strings.site.name}`}
   description={strings.blog.listingDescription}
   path={`/blog/category/${category}/`}
+  alternates={alternates}
 >
   <section class="container py-12 pb-6 text-center">
     <h1 class="text-[clamp(1.7rem,4vw,2.2rem)]">{title}</h1>

@@ -11,6 +11,9 @@ interface Props {
   path?: string; // path WITHOUT lang prefix, e.g. '/blog/my-post/' or '/'
   alternates?: Record<string, string>; // lang -> path (without lang prefix) for this exact page in other langs
   image?: string;
+  // optional: restrict which languages appear in the language switcher, for
+  // pages that only exist in one language (e.g. an English-only tool page).
+  availableLangs?: string[];
 }
 
 const {
@@ -20,6 +23,7 @@ const {
   path = '/',
   alternates,
   image,
+  availableLangs,
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
@@ -37,10 +41,12 @@ const strings = t(lang);
 // same path exists under every language, like /about/, /blog/, /contact/),
 // default every language to the current `path` so switching languages keeps
 // you on the equivalent page instead of jumping to that language's homepage.
-const langCodes = Object.keys(languages);
+const langCodes = availableLangs ?? Object.keys(languages);
 const resolvedAlternates: Record<string, string> =
   alternates ?? Object.fromEntries(langCodes.map((l) => [l, path]));
-const hreflangEntries = Object.entries(resolvedAlternates);
+const hreflangEntries = Object.entries(resolvedAlternates).filter(
+  ([l]) => !availableLangs || availableLangs.includes(l)
+);
 ---
 
 <!doctype html>
@@ -77,10 +83,10 @@ const hreflangEntries = Object.entries(resolvedAlternates);
     </script>
   </head>
   <body>
-    <Navbar lang={lang} alternates={resolvedAlternates} />
+    <Navbar lang={lang} alternates={resolvedAlternates} availableLangs={availableLangs} />
     <main>
       <slot />
     </main>
-    <Footer lang={lang} alternates={resolvedAlternates} />
+    <Footer lang={lang} alternates={resolvedAlternates} availableLangs={availableLangs} />
   </body>
 </html>
