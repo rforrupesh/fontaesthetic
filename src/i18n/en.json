@@ -35,5 +35,30 @@
     "listingDescription": "Tips, guides and updates about fonts and typography.",
     "readMore": "Read more",
     "publishedOn": "Published on"
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Is this font generator free to use?",
+        "answer": "Yes, FontAesthetic is completely free. There is no sign-up, no download, and no limit on how many times you can generate fonts."
+      },
+      {
+        "question": "Will these fonts work on Instagram, WhatsApp and Discord?",
+        "answer": "Yes. The generator converts your text into special Unicode characters, so the styled text works anywhere you can paste plain text, including Instagram bios, WhatsApp status, Discord, Twitter/X and Facebook."
+      },
+      {
+        "question": "Do I need to install any font or app?",
+        "answer": "No installation is needed. Everything runs directly in your browser, and the converted text is just copied to your clipboard."
+      },
+      {
+        "question": "Why do some styles look like boxes or missing characters?",
+        "answer": "This happens if the platform or device you paste the text into does not support that particular Unicode character. Try a different style if one doesn't render correctly."
+      },
+      {
+        "question": "Is my text stored or shared anywhere?",
+        "answer": "No. All conversion happens locally in your browser. We do not store or transmit the text you type into the generator."
+      }
+    ]
   }
 }

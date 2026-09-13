@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbSchema from '../../components/schema/BreadcrumbSchema.astro';
+import CollectionPageSchema from '../../components/schema/CollectionPageSchema.astro';
+import OrganizationSchema from '../../components/schema/OrganizationSchema.astro';
 import { getCollection } from 'astro:content';
 import { t, getPath } from '../../i18n';
 
@@ -8,6 +11,11 @@ const strings = t(lang);
 
 const posts = (await getCollection('blog', (e) => e.id.startsWith(`${lang}/`)))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+const pageUrl = siteUrl + getPath(lang, '/blog/');
+const logoUrl = `${siteUrl}${base}logo.svg`;
 ---
 
 <BaseLayout
@@ -38,4 +46,18 @@ const posts = (await getCollection('blog', (e) => e.id.startsWith(`${lang}/`)))
       );
     })}
   </section>
+
+  <BreadcrumbSchema
+    items={[
+      { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
+      { name: strings.blog.listingTitle, url: pageUrl },
+    ]}
+  />
+  <CollectionPageSchema
+    name={strings.blog.listingTitle}
+    description={strings.blog.listingDescription}
+    url={pageUrl}
+    lang={lang}
+  />
+  <OrganizationSchema name={strings.site.name} siteUrl={siteUrl + base} logoUrl={logoUrl} />
 </BaseLayout>

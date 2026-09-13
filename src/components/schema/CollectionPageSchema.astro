@@ -1,0 +1,20 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  url: string; // absolute URL of the collection/listing page
+  lang: string;
+}
+const { name, description, url, lang } = Astro.props;
+
+const collectionPage = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name,
+  description,
+  url,
+  inLanguage: lang,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(collectionPage)} />

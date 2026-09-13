@@ -1,15 +1,26 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FontTool from '../../components/FontTool.astro';
-import { t } from '../../i18n';
-const strings = t('fr');
+import FaqSection from '../../components/FaqSection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { t, getPath } from '../../i18n';
+
+const lang = 'fr';
+const strings = t(lang);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+const pageUrl = siteUrl + getPath(lang, '/');
+const logoUrl = `${siteUrl}${base}logo.svg`;
 ---
 
 <BaseLayout
-  lang="fr"
+  lang={lang}
   title={`${strings.site.name} — ${strings.site.tagline}`}
   description={strings.tool.subheading}
   path="/"
 >
-  <FontTool lang="fr" />
+  <FontTool lang={lang} />
+  <FaqSection lang={lang} />
+  <SchemaOrg lang={lang} pageUrl={pageUrl} siteUrl={siteUrl + base} logoUrl={logoUrl} />
 </BaseLayout>

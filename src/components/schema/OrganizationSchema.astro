@@ -1,0 +1,18 @@
+---
+interface Props {
+  name: string;
+  siteUrl: string; // absolute, e.g. https://rforrupesh.github.io/fontaesthetic/
+  logoUrl: string; // absolute
+}
+const { name, siteUrl, logoUrl } = Astro.props;
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name,
+  url: siteUrl,
+  logo: logoUrl,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(organization)} />

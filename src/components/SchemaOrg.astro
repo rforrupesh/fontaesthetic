@@ -1,0 +1,72 @@
+---
+import { t } from '../i18n';
+
+interface Props {
+  lang: string;
+  pageUrl: string; // absolute URL of the current page
+  siteUrl: string; // absolute URL of the site root (no trailing slash)
+  logoUrl: string; // absolute URL to the logo image
+}
+
+const { lang, pageUrl, siteUrl, logoUrl } = Astro.props;
+const strings = t(lang);
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: strings.site.name,
+  url: siteUrl,
+  logo: logoUrl,
+};
+
+const webApplication = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: strings.site.name,
+  url: pageUrl,
+  description: strings.tool.subheading,
+  applicationCategory: 'DesignApplication',
+  operatingSystem: 'Any',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
+
+const product = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${strings.site.name} — ${strings.tool.heading}`,
+  description: strings.tool.subheading,
+  brand: {
+    '@type': 'Brand',
+    name: strings.site.name,
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: pageUrl,
+  },
+};
+
+const faqPage = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: strings.faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(organization)} />
+<script type="application/ld+json" set:html={JSON.stringify(webApplication)} />
+<script type="application/ld+json" set:html={JSON.stringify(product)} />
+<script type="application/ld+json" set:html={JSON.stringify(faqPage)} />

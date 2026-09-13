@@ -35,5 +35,30 @@
     "listingDescription": "Astuces, guides et actualités sur les polices et la typographie.",
     "readMore": "Lire la suite",
     "publishedOn": "Publié le"
+  },
+  "faq": {
+    "heading": "Questions Fréquemment Posées",
+    "items": [
+      {
+        "question": "Ce générateur de polices est-il gratuit ?",
+        "answer": "Oui, FontAesthetic est entièrement gratuit. Aucune inscription, aucun téléchargement, et aucune limite sur le nombre de générations de polices."
+      },
+      {
+        "question": "Ces polices fonctionnent-elles sur Instagram, WhatsApp et Discord ?",
+        "answer": "Oui. Le générateur convertit votre texte en caractères Unicode spéciaux, ce qui fonctionne partout où vous pouvez coller du texte, y compris les bios Instagram, le statut WhatsApp, Discord, Twitter/X et Facebook."
+      },
+      {
+        "question": "Dois-je installer une police ou une application ?",
+        "answer": "Aucune installation n'est nécessaire. Tout se passe directement dans votre navigateur, et le texte converti est simplement copié dans votre presse-papiers."
+      },
+      {
+        "question": "Pourquoi certains styles s'affichent-ils sous forme de carrés ou de caractères manquants ?",
+        "answer": "Cela se produit si la plateforme ou l'appareil sur lequel vous collez le texte ne prend pas en charge ce caractère Unicode particulier. Essayez un autre style s'il ne s'affiche pas correctement."
+      },
+      {
+        "question": "Mon texte est-il stocké ou partagé quelque part ?",
+        "answer": "Non. Toute la conversion se fait localement dans votre navigateur. Nous ne stockons ni ne transmettons le texte que vous saisissez dans le générateur."
+      }
+    ]
   }
 }

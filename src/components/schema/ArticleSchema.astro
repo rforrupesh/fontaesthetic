@@ -1,0 +1,40 @@
+---
+interface Props {
+  headline: string;
+  description: string;
+  url: string;         // absolute canonical URL of the article
+  image?: string;       // absolute image URL
+  datePublished: Date;
+  dateModified?: Date;
+  siteName: string;
+  logoUrl: string;      // absolute, used for publisher.logo
+  lang: string;
+}
+const { headline, description, url, image, datePublished, dateModified, siteName, logoUrl, lang } = Astro.props;
+
+const article = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline,
+  description,
+  inLanguage: lang,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  ...(image ? { image: [image] } : {}),
+  datePublished: datePublished.toISOString(),
+  dateModified: (dateModified ?? datePublished).toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: siteName,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: siteName,
+    logo: {
+      '@type': 'ImageObject',
+      url: logoUrl,
+    },
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(article)} />

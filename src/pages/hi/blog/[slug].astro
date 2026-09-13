@@ -2,8 +2,11 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Sidebar from '../../../components/Sidebar.astro';
 import RelatedPosts from '../../../components/RelatedPosts.astro';
+import BreadcrumbSchema from '../../../components/schema/BreadcrumbSchema.astro';
+import ArticleSchema from '../../../components/schema/ArticleSchema.astro';
+import OrganizationSchema from '../../../components/schema/OrganizationSchema.astro';
 import { getCollection, render } from 'astro:content';
-import { t } from '../../../i18n';
+import { t, getPath } from '../../../i18n';
 
 const lang = 'hi';
 const strings = t(lang);
@@ -18,6 +21,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
 
 const allPosts = await getCollection('blog', (e) => e.id.startsWith('hi/'));
 const related = allPosts
@@ -44,13 +48,21 @@ for (const l of allLangs) {
     alternates[l] = `/blog/${slugL}/`;
   }
 }
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+const pageUrl = siteUrl + getPath(lang, `/blog/${slug}/`);
+const logoUrl = `${siteUrl}${base}logo.svg`;
+const absImage = post.data.image
+  ? (post.data.image.startsWith('http') ? post.data.image : siteUrl + base + post.data.image.replace(/^\/+/, ''))
+  : undefined;
 ---
 
 <BaseLayout
   lang={lang}
   title={`${post.data.title} — ${strings.site.name}`}
   description={post.data.description}
-  path={`/blog/${post.data.slug ?? post.id.split('/').slice(1).join('/')}/`}
+  path={`/blog/${slug}/`}
   alternates={alternates}
   image={post.data.image}
 >
@@ -74,4 +86,23 @@ for (const l of allLangs) {
       <Sidebar lang={lang} headings={headings} />
     </div>
   </article>
+
+  <BreadcrumbSchema
+    items={[
+      { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
+      { name: strings.blog.listingTitle, url: siteUrl + getPath(lang, '/blog/') },
+      { name: post.data.title, url: pageUrl },
+    ]}
+  />
+  <ArticleSchema
+    headline={post.data.title}
+    description={post.data.description}
+    url={pageUrl}
+    image={absImage}
+    datePublished={post.data.date}
+    siteName={strings.site.name}
+    logoUrl={logoUrl}
+    lang={lang}
+  />
+  <OrganizationSchema name={strings.site.name} siteUrl={siteUrl + base} logoUrl={logoUrl} />
 </BaseLayout>
