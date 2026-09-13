@@ -17,11 +17,11 @@ const navItems = [
 
 <header class="sticky top-0 z-50 h-[var(--header-h)] flex items-center bg-bg/85 backdrop-blur-sm border-b border-border">
   <div class="container flex items-center justify-between gap-4">
-    <a href={getPath(lang, '/')} class="flex items-center shrink-0" aria-label={strings.site.name}>
+    <a href={getPath(lang, '/')} class="flex items-center h-9 md:h-10 shrink-0" aria-label={strings.site.name}>
       <img
         src="https://rforrupesh.github.io/fontaesthetic/images/logo_fontaesthetic.png"
         alt={strings.site.name}
-        class="h-9 md:h-10 w-auto max-w-[160px]"
+        class="h-full w-auto max-w-[160px] object-contain"
       />
     </a>
 
