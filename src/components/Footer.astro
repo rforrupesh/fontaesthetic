@@ -6,43 +6,18 @@ const strings = t(lang);
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <strong>{strings.site.name}</strong>
+<footer class="border-t border-border mt-16 py-10 text-text-muted text-sm">
+  <div class="container flex flex-col gap-4 items-center text-center">
+    <div>
+      <strong class="text-text">{strings.site.name}</strong>
       <p>{strings.footer.madeWith}</p>
     </div>
-    <nav class="footer-links">
-      <a href={getPath(lang, '/about/')}>{strings.footer.about}</a>
-      <a href={getPath(lang, '/blog/')}>{strings.footer.blog}</a>
-      <a href={getPath(lang, '/contact/')}>{strings.footer.contact}</a>
-      <a href={getPath(lang, '/privacy-policy/')}>{strings.footer.privacy}</a>
+    <nav class="flex gap-5 flex-wrap justify-center">
+      <a href={getPath(lang, '/about/')} class="hover:text-text transition-colors duration-150">{strings.footer.about}</a>
+      <a href={getPath(lang, '/blog/')} class="hover:text-text transition-colors duration-150">{strings.footer.blog}</a>
+      <a href={getPath(lang, '/contact/')} class="hover:text-text transition-colors duration-150">{strings.footer.contact}</a>
+      <a href={getPath(lang, '/privacy-policy/')} class="hover:text-text transition-colors duration-150">{strings.footer.privacy}</a>
     </nav>
-    <p class="footer-rights">&copy; {year} {strings.site.name}. {strings.footer.rights}</p>
+    <p class="m-0 text-xs">&copy; {year} {strings.site.name}. {strings.footer.rights}</p>
   </div>
 </footer>
-
-<style>
-  .footer {
-    border-top: 1px solid var(--color-border);
-    margin-top: 4rem;
-    padding: 2.5rem 0;
-    color: var(--color-text-muted);
-    font-size: .9rem;
-  }
-  .footer-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    text-align: center;
-  }
-  .footer-links {
-    display: flex;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .footer-links a:hover { color: var(--color-text); }
-  .footer-rights { margin: 0; font-size: .8rem; }
-</style>

@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
 
 // NOTE: When you connect a custom domain later, change:
 //   site -> 'https://yourdomain.com'
@@ -9,4 +10,7 @@ export default defineConfig({
   site: 'https://rforrupesh.github.io',
   base: '/fontaesthetic/',
   trailingSlash: 'always',
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

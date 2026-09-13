@@ -5,20 +5,21 @@ const { lang } = Astro.props;
 const strings = t(lang);
 ---
 
-<section class="tool-section">
+<section class="py-12 pb-8 text-center">
   <div class="container">
-    <h1>{strings.tool.heading}</h1>
-    <p class="subheading">{strings.tool.subheading}</p>
+    <h1 class="text-[clamp(1.8rem,4vw,2.6rem)] mb-2">{strings.tool.heading}</h1>
+    <p class="text-text-muted mb-8">{strings.tool.subheading}</p>
 
-    <div class="tool-card card">
+    <div class="card p-4 max-w-[700px] mx-auto">
       <textarea
         id="font-input"
         rows="2"
         placeholder={strings.tool.placeholder}
+        class="w-full bg-surface-2 border border-border rounded-md text-text text-[1.1rem] p-3 resize-y font-sans"
       ></textarea>
     </div>
 
-    <div id="font-results" class="font-results"></div>
+    <div id="font-results" class="max-w-[700px] mx-auto mt-8 flex flex-col gap-3 text-left"></div>
   </div>
 </section>
 
@@ -73,10 +74,10 @@ const strings = t(lang);
     MAPS.forEach((style) => {
       const converted = convert(text, style);
       const row = document.createElement('div');
-      row.className = 'font-row card';
+      row.className = 'card flex items-center justify-between gap-4 px-4 py-3.5';
       row.innerHTML = `
-        <div class="font-row-text">${converted}</div>
-        <button class="btn copy-btn" type="button">${copyLabel}</button>
+        <div class="break-words text-[1.05rem]">${converted}</div>
+        <button class="btn shrink-0" type="button">${copyLabel}</button>
       `;
       const btn = row.querySelector('button');
       btn.addEventListener('click', () => {
@@ -93,40 +94,3 @@ const strings = t(lang);
   render();
 </script>
 
-<style>
-  .tool-section { padding: 3rem 0 2rem; text-align: center; }
-  .tool-section h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: .5rem; }
-  .subheading { color: var(--color-text-muted); margin-bottom: 2rem; }
-  .tool-card { padding: 1rem; max-width: 700px; margin: 0 auto; }
-  textarea {
-    width: 100%;
-    background: var(--color-surface-2);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    color: var(--color-text);
-    font-size: 1.1rem;
-    padding: .8rem;
-    resize: vertical;
-    font-family: var(--font-main);
-  }
-  .font-results {
-    max-width: 700px;
-    margin: 2rem auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: .75rem;
-    text-align: left;
-  }
-  .font-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: .9rem 1rem;
-  }
-  .font-row-text {
-    word-break: break-word;
-    font-size: 1.05rem;
-  }
-  .copy-btn { flex-shrink: 0; }
-</style>
