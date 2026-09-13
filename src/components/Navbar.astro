@@ -1,6 +1,7 @@
 ---
 import { t, getPath } from '../i18n';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
 interface Props { lang: string; alternates?: Record<string, string>; }
 const { lang, alternates } = Astro.props;
@@ -31,23 +32,27 @@ const navItems = [
       ))}
     </nav>
 
-    <div class="hidden md:block shrink-0">
+    <div class="hidden md:flex items-center gap-3 shrink-0">
+      <ThemeToggle />
       <LanguageSwitcher lang={lang} alternates={alternates} />
     </div>
 
-    <!-- Mobile: hamburger toggle -->
-    <button
-      id="menu-toggle"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      class="md:hidden inline-flex flex-col justify-center items-center gap-1.5 w-9 h-9 shrink-0"
-    >
-      <span class="menu-bar block w-6 h-0.5 bg-text transition-transform duration-200"></span>
-      <span class="menu-bar block w-6 h-0.5 bg-text transition-opacity duration-200"></span>
-      <span class="menu-bar block w-6 h-0.5 bg-text transition-transform duration-200"></span>
-    </button>
+    <!-- Mobile: theme toggle + hamburger -->
+    <div class="md:hidden flex items-center gap-2 shrink-0">
+      <ThemeToggle />
+      <button
+        id="menu-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="inline-flex flex-col justify-center items-center gap-1.5 w-9 h-9 shrink-0"
+      >
+        <span class="menu-bar block w-6 h-0.5 bg-text transition-transform duration-200"></span>
+        <span class="menu-bar block w-6 h-0.5 bg-text transition-opacity duration-200"></span>
+        <span class="menu-bar block w-6 h-0.5 bg-text transition-transform duration-200"></span>
+      </button>
+    </div>
   </div>
 
   <!-- Mobile menu panel -->

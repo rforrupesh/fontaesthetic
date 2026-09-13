@@ -64,6 +64,14 @@ const hreflangEntries = Object.entries(resolvedAlternates);
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem('theme');
+        const theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body>
     <Navbar lang={lang} alternates={resolvedAlternates} />

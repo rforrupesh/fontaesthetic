@@ -1,6 +1,7 @@
 ---
 import { t, getPath } from '../i18n';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
 interface Props { lang: string; }
 const { lang } = Astro.props;
 const strings = t(lang);
@@ -64,7 +65,8 @@ const socials = [
           </a>
         ))}
       </div>
-      <div class="mt-1">
+      <div class="mt-1 flex items-center gap-3">
+        <ThemeToggle />
         <LanguageSwitcher lang={lang} />
       </div>
     </div>
