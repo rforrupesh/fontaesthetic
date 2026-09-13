@@ -4,7 +4,7 @@ slug: "meilleurs-styles-de-police-2024"
 title: "Meilleurs Styles de Police Tendance en 2024"
 description: "Un tour d'horizon des tendances de polices stylées les plus populaires cette année pour les réseaux sociaux et les bios."
 date: 2024-07-02
-tags: ["tendances", "fonts"]
+tags: ["tendances", "polices"]
 ---
 
 ## Aperçu
