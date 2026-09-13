@@ -60,5 +60,8 @@
         "answer": "No. All conversion happens locally in your browser. We do not store or transmit the text you type into the generator."
       }
     ]
+  },
+  "share": {
+    "label": "Share"
   }
 }

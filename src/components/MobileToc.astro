@@ -1,0 +1,68 @@
+---
+import { t } from '../i18n';
+
+interface Heading { depth: number; slug: string; text: string; }
+
+interface Props {
+  lang: string;
+  headings?: Heading[];
+}
+
+const { lang, headings = [] } = Astro.props;
+const strings = t(lang);
+const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{tocHeadings.length > 0 && (
+  <div class="md:hidden sticky top-[var(--header-h)] z-30 -mx-5 px-5 py-2 bg-bg/95 backdrop-blur-sm border-b border-border">
+    <button
+      id="mobile-toc-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-toc-panel"
+      class="w-full card flex items-center justify-between gap-2 px-4 py-2.5 text-sm font-medium"
+    >
+      {strings.sidebar.toc}
+      <svg id="mobile-toc-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 shrink-0">
+        <path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <div id="mobile-toc-panel" class="hidden card mt-2 p-3 max-h-[60vh] overflow-y-auto">
+      <nav class="flex flex-col gap-1">
+        {tocHeadings.map((h) => (
+          <a
+            href={`#${h.slug}`}
+            class:list={[
+              'py-1.5 text-text-muted hover:text-primary transition-colors duration-150',
+              h.depth === 3 ? 'pl-4 text-[.85rem]' : 'text-[.9rem]',
+            ]}
+          >
+            {h.text}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+)}
+
+<script>
+  const toggle = document.getElementById('mobile-toc-toggle');
+  const panel = document.getElementById('mobile-toc-panel');
+  const chevron = document.getElementById('mobile-toc-chevron');
+
+  toggle?.addEventListener('click', () => {
+    const willOpen = panel?.classList.contains('hidden');
+    panel?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!!willOpen));
+    chevron?.classList.toggle('rotate-180');
+  });
+
+  panel?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      panel.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+      chevron?.classList.remove('rotate-180');
+    });
+  });
+</script>

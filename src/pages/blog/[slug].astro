@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import Sidebar from '../../components/Sidebar.astro';
+import MobileToc from '../../components/MobileToc.astro';
+import AdSlot from '../../components/AdSlot.astro';
 import RelatedPosts from '../../components/RelatedPosts.astro';
 import BreadcrumbSchema from '../../components/schema/BreadcrumbSchema.astro';
 import ArticleSchema from '../../components/schema/ArticleSchema.astro';
@@ -56,6 +60,12 @@ const logoUrl = `${siteUrl}${base}logo.svg`;
 const absImage = post.data.image
   ? (post.data.image.startsWith('http') ? post.data.image : siteUrl + base + post.data.image.replace(/^\/+/, ''))
   : undefined;
+
+const breadcrumbItems = [
+  { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
+  { name: strings.blog.listingTitle, url: siteUrl + getPath(lang, '/blog/') },
+  { name: post.data.title, url: pageUrl },
+];
 ---
 
 <BaseLayout
@@ -66,34 +76,48 @@ const absImage = post.data.image
   alternates={alternates}
   image={post.data.image}
 >
-  <article class="container grid grid-cols-1 md:grid-cols-[1fr_280px] gap-12 px-5 pt-10 pb-16 items-start">
-    <div class="min-w-0">
-      <header class="mb-6">
-        <h1 class="text-[clamp(1.6rem,4vw,2.2rem)] mb-2">{post.data.title}</h1>
-        <p class="text-text-muted text-[.88rem]">
-          {strings.blog.publishedOn} {post.data.date.toLocaleDateString(lang)}
-        </p>
-        {post.data.image && <img class="rounded-lg mt-4 w-full aspect-video object-cover" src={post.data.image} alt={post.data.title} />}
-      </header>
-      <div class="prose">
-        <Content />
+  <article class="w-full max-w-[1300px] mx-auto px-5 pt-8 pb-16">
+    <!-- Title + breadcrumb -->
+    <header class="mb-2">
+      <h1 class="text-[clamp(1.6rem,4vw,2.2rem)] mb-3">{post.data.title}</h1>
+      <Breadcrumb items={breadcrumbItems} />
+    </header>
+
+    <!-- Mobile-only sticky TOC dropdown -->
+    <MobileToc lang={lang} headings={headings} />
+
+    <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr_280px] gap-8 lg:gap-10 items-start mt-4">
+      <!-- Left: share buttons + TOC (desktop sticky column) -->
+      <div class="hidden lg:flex lg:flex-col lg:gap-6 lg:sticky lg:top-[calc(var(--header-h)+20px)]">
+        <ShareButtons lang={lang} url={pageUrl} title={post.data.title} variant="sticky" />
+        <Sidebar lang={lang} headings={headings} />
       </div>
 
-      <RelatedPosts lang={lang} posts={related} />
-    </div>
+      <!-- Center: content -->
+      <div class="min-w-0">
+        <!-- Mobile-only inline share row -->
+        <div class="lg:hidden mb-5">
+          <ShareButtons lang={lang} url={pageUrl} title={post.data.title} variant="inline" />
+        </div>
 
-    <div class="md:sticky md:top-[calc(var(--header-h)+20px)]">
-      <Sidebar lang={lang} headings={headings} />
+        {post.data.image && <img class="rounded-lg mb-6 w-full aspect-video object-cover" src={post.data.image} alt={post.data.title} />}
+
+        <div class="prose">
+          <Content />
+        </div>
+
+        <RelatedPosts lang={lang} posts={related} />
+      </div>
+
+      <!-- Right: ads (desktop sticky column) -->
+      <div class="hidden lg:flex lg:flex-col lg:gap-6 lg:sticky lg:top-[calc(var(--header-h)+20px)]">
+        <AdSlot />
+        <AdSlot />
+      </div>
     </div>
   </article>
 
-  <BreadcrumbSchema
-    items={[
-      { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
-      { name: strings.blog.listingTitle, url: siteUrl + getPath(lang, '/blog/') },
-      { name: post.data.title, url: pageUrl },
-    ]}
-  />
+  <BreadcrumbSchema items={breadcrumbItems} />
   <ArticleSchema
     headline={post.data.title}
     description={post.data.description}

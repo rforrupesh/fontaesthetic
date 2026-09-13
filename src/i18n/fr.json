@@ -60,5 +60,8 @@
         "answer": "Non. Toute la conversion se fait localement dans votre navigateur. Nous ne stockons ni ne transmettons le texte que vous saisissez dans le générateur."
       }
     ]
+  },
+  "share": {
+    "label": "Partager"
   }
 }
