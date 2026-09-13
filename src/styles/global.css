@@ -42,7 +42,7 @@ html[data-theme="light"] {
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
-  img { max-width: 100%; display: block; }
+  img { max-width: 100%; height: auto; display: block; }
 
   @media (max-width: 640px) {
     :root { --header-h: 54px; }
@@ -77,6 +77,12 @@ html[data-theme="light"] {
   .prose p { @apply text-text my-4; }
   .prose ul, .prose ol { @apply pl-6; }
   .prose a { @apply text-primary underline; }
+  .prose img {
+    @apply w-full h-auto rounded-lg my-6 border border-border object-cover;
+  }
+  .prose figure { @apply my-6; }
+  .prose figure img { @apply my-0; }
+  .prose figcaption { @apply text-center text-[.82rem] text-text-muted mt-2; }
 
   .page-content { @apply py-12 max-w-[720px] mx-auto; }
   .page-content h1 { @apply text-3xl md:text-4xl mb-5; }
