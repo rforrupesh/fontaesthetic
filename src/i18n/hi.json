@@ -35,7 +35,8 @@
     "listingTitle": "ब्लॉग",
     "listingDescription": "फॉन्ट और टाइपोग्राफी से जुड़े टिप्स, गाइड और अपडेट।",
     "readMore": "और पढ़ें",
-    "publishedOn": "प्रकाशित तिथि"
+    "publishedOn": "प्रकाशित तिथि",
+    "allCategories": "सभी"
   },
   "faq": {
     "heading": "अक्सर पूछे जाने वाले सवाल",

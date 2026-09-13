@@ -1,5 +1,6 @@
 ---
 translationId: "best-fonts-2024"
+slug: "best-font-styles-2024-hindi"
 title: "2024 में ट्रेंडिंग बेस्ट फॉन्ट स्टाइल"
 description: "सोशल मीडिया और बायो के लिए इस साल के सबसे लोकप्रिय स्टाइलिश फॉन्ट ट्रेंड्स।"
 date: 2024-07-02

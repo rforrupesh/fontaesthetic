@@ -35,7 +35,8 @@
     "listingTitle": "Blog",
     "listingDescription": "Tips, guides and updates about fonts and typography.",
     "readMore": "Read more",
-    "publishedOn": "Published on"
+    "publishedOn": "Published on",
+    "allCategories": "All"
   },
   "faq": {
     "heading": "Frequently Asked Questions",

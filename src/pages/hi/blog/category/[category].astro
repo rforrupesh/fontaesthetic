@@ -29,9 +29,19 @@ export async function getStaticPaths() {
 
 const { category } = Astro.props;
 
-const posts = (await getCollection('blog', (e) => e.id.startsWith('hi/')))
+const allPosts = await getCollection('blog', (e) => e.id.startsWith('hi/'));
+
+const posts = allPosts
   .filter((p) => p.data.categories.some((c) => slugify(c) === slugify(category)))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Unique categories (by slug) across all posts, for the filter bar.
+const slugToCategory = new Map<string, string>();
+allPosts.forEach((p) => p.data.categories.forEach((c) => {
+  const s = slugify(c);
+  if (!slugToCategory.has(s)) slugToCategory.set(s, c);
+}));
+const categories = Array.from(slugToCategory.entries());
 
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
@@ -53,22 +63,50 @@ const title = category;
     <p class="text-text-muted">{strings.blog.listingDescription}</p>
   </section>
 
+  {categories.length > 0 && (
+    <section class="container flex flex-wrap gap-2 justify-center pb-8">
+      <a
+        href={getPath(lang, '/blog/')}
+        class="inline-block text-[.8rem] font-medium px-3.5 py-1.5 rounded-full bg-primary/10 text-primary hover:bg-primary/20"
+      >
+        {strings.blog.allCategories}
+      </a>
+      {categories.map(([slug, c]) => (
+        <a
+          href={getPath(lang, `/blog/category/${slug}/`)}
+          class={`inline-block text-[.8rem] font-medium px-3.5 py-1.5 rounded-full ${slug === slugify(category) ? 'bg-primary text-white' : 'bg-primary/10 text-primary hover:bg-primary/20'}`}
+        >
+          {c}
+        </a>
+      ))}
+    </section>
+  )}
+
   <section class="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 pb-12">
     {posts.map((post) => {
       const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
+      const postHref = getPath(lang, `/blog/${slug}/`);
+      const cat = post.data.categories[0];
       return (
-        <a class="card overflow-hidden flex flex-col" href={getPath(lang, `/blog/${slug}/`)}>
-          {post.data.image && <img src={post.data.image} alt={post.data.title} loading="lazy" class="w-full aspect-video object-cover" />}
+        <div class="card overflow-hidden flex flex-col">
+          <a href={postHref} aria-label={post.data.title}>
+            {post.data.image && <img src={post.data.image} alt={post.data.title} loading="lazy" class="w-full aspect-video object-cover" />}
+          </a>
           <div class="p-5 pb-6">
-            {post.data.categories.length > 0 && (
-              <span class="inline-block text-[.7rem] font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary mb-2">
-                {post.data.categories[0]}
-              </span>
+            {cat && (
+              <a
+                href={getPath(lang, `/blog/category/${slugify(cat)}/`)}
+                class="inline-block text-[.7rem] font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary mb-2 hover:bg-primary/20"
+              >
+                {cat}
+              </a>
             )}
-            <h2 class="text-[1.05rem] mb-2">{post.data.title}</h2>
+            <h2 class="text-[1.05rem] mb-2">
+              <a href={postHref} class="hover:text-primary">{post.data.title}</a>
+            </h2>
             <p class="text-[.88rem] text-text-muted mb-0">{post.data.description}</p>
           </div>
-        </a>
+        </div>
       );
     })}
   </section>

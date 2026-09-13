@@ -35,7 +35,8 @@
     "listingTitle": "Blog",
     "listingDescription": "Astuces, guides et actualités sur les polices et la typographie.",
     "readMore": "Lire la suite",
-    "publishedOn": "Publié le"
+    "publishedOn": "Publié le",
+    "allCategories": "Tout"
   },
   "faq": {
     "heading": "Questions Fréquemment Posées",
