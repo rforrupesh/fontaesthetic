@@ -9,7 +9,7 @@ const strings = t(lang);
 // Pre-render every style with a real sample so the markup (and view-source)
 // already contains all the converted text -- crawlers see full content
 // with zero JS, instead of one empty div filled in by the browser.
-const sampleText = strings.tool.heading;
+const sampleText = strings.tool.placeholder;
 const rows = FONT_STYLES.map((style) => ({
   slug: style.slug,
   name: style.name,
