@@ -10,6 +10,11 @@ export default defineConfig({
   site: 'https://rforrupesh.github.io',
   base: '/fontaesthetic/',
   trailingSlash: 'always',
+  build: {
+    // Astro puts bundled JS/CSS under /_astro/ by default -- renaming it
+    // avoids that string showing up in view-source / network requests.
+    assets: '_assets',
+  },
   vite: {
     plugins: [tailwindcss()],
   },

@@ -80,4 +80,9 @@ html[data-theme="light"] {
 
   .page-content { @apply py-12 max-w-[720px] mx-auto; }
   .page-content h1 { @apply text-3xl md:text-4xl mb-5; }
+
+  /* Theme toggle: swap sun/moon icon based on the active theme */
+  .icon-moon { display: none; }
+  html[data-theme='light'] .icon-sun { display: none; }
+  html[data-theme='light'] .icon-moon { display: block; }
 }

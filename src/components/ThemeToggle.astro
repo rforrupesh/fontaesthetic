@@ -17,12 +17,6 @@
   </svg>
 </button>
 
-<style>
-  .icon-moon { display: none; }
-  html[data-theme='light'] .icon-sun { display: none; }
-  html[data-theme='light'] .icon-moon { display: block; }
-</style>
-
 <script>
   document.querySelectorAll<HTMLButtonElement>('.theme-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
