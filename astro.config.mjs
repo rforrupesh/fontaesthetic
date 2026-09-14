@@ -14,6 +14,10 @@ export default defineConfig({
     // Astro puts bundled JS/CSS under /_astro/ by default -- renaming it
     // avoids that string showing up in view-source / network requests.
     assets: '_assets',
+    // Inline the (small, single) global stylesheet directly into each
+    // page's HTML instead of a separate <link> request -- removes a
+    // render-blocking network round-trip on every page.
+    inlineStylesheets: 'always',
   },
   vite: {
     plugins: [tailwindcss()],
