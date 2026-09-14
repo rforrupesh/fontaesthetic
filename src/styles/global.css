@@ -76,7 +76,12 @@ html[data-theme="light"] {
   }
   .prose p { @apply text-text my-4; }
   .prose ul, .prose ol { @apply pl-6; }
-  .prose a { @apply text-primary underline; }
+  .prose a {
+    @apply text-primary underline underline-offset-2 decoration-primary/40 rounded transition-colors duration-150;
+  }
+  .prose a:hover {
+    @apply no-underline bg-primary/15 text-primary-hover;
+  }
 
   .page-content { @apply py-12 max-w-[720px] mx-auto; }
   .page-content h1 { @apply text-3xl md:text-4xl mb-5; }
