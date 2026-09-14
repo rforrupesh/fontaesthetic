@@ -17,22 +17,24 @@ const navItems = [
 
 <header class="sticky top-0 z-50 h-[var(--header-h)] flex items-center bg-bg/85 backdrop-blur-sm border-b border-border">
   <div class="wrap flex items-center justify-between gap-4">
-    <a href={getPath(lang, '/')} class="flex items-center h-9 md:h-10 shrink-0" aria-label={strings.site.name}>
-      <img
-        src="https://rforrupesh.github.io/fontaesthetic/images/logo_fontaesthetic.png"
-        alt={strings.site.name}
-        class="h-full w-auto max-w-[160px] object-contain"
-      />
-    </a>
+    <div class="flex items-center gap-8">
+      <a href={getPath(lang, '/')} class="flex items-center h-9 md:h-10 shrink-0" aria-label={strings.site.name}>
+        <img
+          src="https://rforrupesh.github.io/fontaesthetic/images/logo_fontaesthetic.png"
+          alt={strings.site.name}
+          class="h-full w-auto max-w-[160px] object-contain"
+        />
+      </a>
 
-    <!-- Desktop: single-row menu -->
-    <nav class="hidden md:flex flex-1 justify-center gap-4">
-      {navItems.map((item) => (
-        <a href={item.href} class="text-sm text-text-muted hover:text-text transition-colors duration-150">
-          {item.label}
-        </a>
-      ))}
-    </nav>
+      <!-- Desktop: single-row menu -->
+      <nav class="hidden md:flex gap-4">
+        {navItems.map((item) => (
+          <a href={item.href} class="text-sm text-text-muted hover:text-text transition-colors duration-150">
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
 
     <div class="hidden md:flex items-center gap-2.5 shrink-0">
       <ThemeToggle />
