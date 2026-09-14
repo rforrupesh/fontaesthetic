@@ -4,7 +4,7 @@ slug: "best-font-styles-2024"
 title: "Best Font Styles Trending in 2024"
 description: "A roundup of the most popular stylish font trends this year for social media and bios."
 date: 2024-07-02
-image: "https://rforrupesh.github.io/fontaesthetic/images/logo_fontaesthetic.png"
+image: "https://rforrupesh.github.io/fontaesthetic/images/logo_fontaesthetic.webp"
 tags: ["trends", "fonts"]
 categories: ["Guides"]
 
