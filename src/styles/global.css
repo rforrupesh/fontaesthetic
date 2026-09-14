@@ -50,7 +50,7 @@ html[data-theme="light"] {
 }
 
 @layer components {
-  .container {
+  .wrap {
     @apply w-full max-w-[1300px] mx-auto px-5;
   }
 

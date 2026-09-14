@@ -16,7 +16,7 @@ const navItems = [
 ---
 
 <header class="sticky top-0 z-50 h-[var(--header-h)] flex items-center bg-bg/85 backdrop-blur-sm border-b border-border">
-  <div class="container flex items-center justify-between gap-4">
+  <div class="wrap flex items-center justify-between gap-4">
     <a href={getPath(lang, '/')} class="flex items-center h-9 md:h-10 shrink-0" aria-label={strings.site.name}>
       <img
         src="https://rforrupesh.github.io/fontaesthetic/images/logo_fontaesthetic.png"
@@ -62,7 +62,7 @@ const navItems = [
     id="mobile-menu"
     class="hidden md:hidden absolute top-[var(--header-h)] left-0 w-full bg-surface border-b border-border shadow-lg"
   >
-    <nav class="container flex flex-col py-4 gap-1">
+    <nav class="wrap flex flex-col py-4 gap-1">
       {navItems.map((item) => (
         <a href={item.href} class="py-2.5 text-sm text-text-muted hover:text-text transition-colors duration-150">
           {item.label}
