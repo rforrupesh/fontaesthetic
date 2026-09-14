@@ -11,10 +11,10 @@ const strings = t(lang);
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-border mt-10 pt-8 pb-6 text-text-muted text-sm">
-  <div class="container grid gap-8 sm:grid-cols-[1.3fr_1fr_1fr] mb-6">
+<footer class="mt-20 border-t border-border bg-surface text-text-muted text-sm">
+  <div class="container grid gap-10 py-12 sm:grid-cols-[1.4fr_1fr_1fr]">
     <div>
-      <div class="flex items-center gap-2">
+      <a href={getPath(lang, '/')} class="flex items-center gap-2 w-fit">
         <Image
           src={logo}
           alt={strings.site.name}
@@ -25,28 +25,33 @@ const year = new Date().getFullYear();
           class="h-7 w-auto max-w-[120px] object-contain"
         />
         <strong class="text-text text-base">{strings.site.name}</strong>
-      </div>
-      <p class="mt-1.5 max-w-xs text-[.85rem]">{strings.footer.madeWith}</p>
+      </a>
+      <p class="mt-3 max-w-[26ch] leading-relaxed">{strings.footer.madeWith}</p>
     </div>
 
-    <nav class="flex flex-col gap-1.5 text-[.85rem]">
-      <a href={getPath(lang, '/about/')} class="hover:text-text transition-colors duration-150">{strings.footer.about}</a>
-      <a href={getPath(lang, '/blog/')} class="hover:text-text transition-colors duration-150">{strings.footer.blog}</a>
-      <a href={getPath(lang, '/contact/')} class="hover:text-text transition-colors duration-150">{strings.footer.contact}</a>
-      <a href={getPath(lang, '/privacy-policy/')} class="hover:text-text transition-colors duration-150">{strings.footer.privacy}</a>
-    </nav>
+    <div>
+      <h2 class="text-text font-semibold mb-3">{strings.footer.explore}</h2>
+      <nav class="flex flex-col gap-2.5">
+        <a href={getPath(lang, '/about/')} class="w-fit hover:text-primary transition-colors duration-150">{strings.footer.about}</a>
+        <a href={getPath(lang, '/blog/')} class="w-fit hover:text-primary transition-colors duration-150">{strings.footer.blog}</a>
+        <a href={getPath(lang, '/contact/')} class="w-fit hover:text-primary transition-colors duration-150">{strings.footer.contact}</a>
+        <a href={getPath(lang, '/privacy-policy/')} class="w-fit hover:text-primary transition-colors duration-150">{strings.footer.privacy}</a>
+      </nav>
+    </div>
 
-    <div class="flex flex-col gap-2.5">
-      <span class="text-text-muted text-[.85rem]">{strings.footer.follow}</span>
+    <div>
+      <h2 class="text-text font-semibold mb-3">{strings.footer.follow}</h2>
       <SocialLinks size="sm" />
-      <div class="mt-0.5 flex items-center gap-2.5">
+      <div class="mt-5 flex items-center gap-2.5">
         <ThemeToggle />
         <LanguageSwitcher lang={lang} alternates={alternates} availableLangs={availableLangs} />
       </div>
     </div>
   </div>
 
-  <div class="container border-t border-border pt-4 text-center text-xs">
-    &copy; {year} {strings.site.name}. {strings.footer.rights}
+  <div class="border-t border-border">
+    <div class="container py-5 text-xs">
+      &copy; {year} {strings.site.name}. {strings.footer.rights}
+    </div>
   </div>
 </footer>
