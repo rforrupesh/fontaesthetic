@@ -76,6 +76,7 @@ const breadcrumbItems = [
   description={post.data.description}
   path={`/blog/${slug}/`}
   alternates={alternates}
+  availableLangs={Object.keys(alternates)}
   image={post.data.image}
 >
   <article class="w-full max-w-[1300px] mx-auto px-5 pt-6 pb-16">
