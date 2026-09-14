@@ -1,8 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import { t, getPath } from '../i18n';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import SocialLinks from './SocialLinks.astro';
+import logo from '../assets/logo_fontaesthetic.png';
 interface Props { lang: string; alternates?: Record<string, string>; availableLangs?: string[]; }
 const { lang, alternates, availableLangs } = Astro.props;
 const strings = t(lang);
@@ -13,9 +15,13 @@ const year = new Date().getFullYear();
   <div class="container grid gap-8 sm:grid-cols-[1.3fr_1fr_1fr] mb-6">
     <div>
       <div class="flex items-center gap-2">
-        <img
-          src="https://rforrupesh.github.io/fontaesthetic/images/logo_fontaesthetic.png"
+        <Image
+          src={logo}
           alt={strings.site.name}
+          width={480}
+          height={89}
+          format="webp"
+          loading="lazy"
           class="h-7 w-auto max-w-[120px] object-contain"
         />
         <strong class="text-text text-base">{strings.site.name}</strong>

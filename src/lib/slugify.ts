@@ -8,7 +8,7 @@ export function slugify(value: string): string {
     .trim()
     .toLowerCase()
     .replace(/[\s_]+/g, '-') // whitespace/underscore -> hyphen
-    .replace(/[^\p{L}\p{N}-]+/gu, '') // strip punctuation, keep letters/numbers/hyphens (any language)
+    .replace(/[^\p{L}\p{N}\p{M}-]+/gu, '') // strip punctuation, keep letters/numbers/marks/hyphens (any language)
     .replace(/-+/g, '-')
     .replace(/^-+|-+$/g, '');
 
