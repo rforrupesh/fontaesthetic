@@ -16,25 +16,25 @@ const navItems = [
 ---
 
 <header class="sticky top-0 z-50 h-[var(--header-h)] flex items-center bg-bg/85 backdrop-blur-sm border-b border-border">
-  <div class="container flex items-center justify-between md:justify-center gap-4 md:gap-12">
-    <a href={getPath(lang, '/')} class="flex items-center h-9 md:h-12 shrink-0" aria-label={strings.site.name}>
+  <div class="container flex items-center justify-between gap-4">
+    <a href={getPath(lang, '/')} class="flex items-center h-9 md:h-10 shrink-0" aria-label={strings.site.name}>
       <img
         src="https://rforrupesh.github.io/fontaesthetic/images/logo_fontaesthetic.png"
         alt={strings.site.name}
-        class="h-full w-auto max-w-[160px] md:max-w-[200px] object-contain"
+        class="h-full w-auto max-w-[160px] object-contain"
       />
     </a>
 
     <!-- Desktop: single-row menu -->
-    <nav class="hidden md:flex items-center gap-8">
+    <nav class="hidden md:flex flex-1 justify-center gap-4">
       {navItems.map((item) => (
-        <a href={item.href} class="text-base text-text-muted hover:text-text transition-colors duration-150">
+        <a href={item.href} class="text-sm text-text-muted hover:text-text transition-colors duration-150">
           {item.label}
         </a>
       ))}
     </nav>
 
-    <div class="hidden md:flex items-center gap-3 shrink-0">
+    <div class="hidden md:flex items-center gap-2.5 shrink-0">
       <ThemeToggle />
       <LanguageSwitcher lang={lang} alternates={alternates} availableLangs={availableLangs} />
     </div>

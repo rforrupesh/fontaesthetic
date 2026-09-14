@@ -51,7 +51,7 @@ html[data-theme="light"] {
 
 @layer components {
   .container {
-    @apply w-full max-w-[1300px] mx-auto px-5 sm:px-8 lg:px-12;
+    @apply w-full max-w-[980px] mx-auto px-5;
   }
 
   .btn {
