@@ -109,7 +109,7 @@ const breadcrumbItems = [
 
       <!-- Center: content -->
       <div class="min-w-0 pt-4 lg:pt-0">
-        {post.data.image && <img class="rounded-lg mb-6 w-full aspect-video object-cover" src={post.data.image} alt={post.data.title} />}
+        {post.data.image && <img class="rounded-lg mb-6 w-full aspect-video object-contain bg-surface-2" src={post.data.image} alt={post.data.title} />}
 
         <div class="prose">
           <Content />

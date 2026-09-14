@@ -90,7 +90,7 @@ const title = category;
       return (
         <div class="card overflow-hidden flex flex-col">
           <a href={postHref} aria-label={post.data.title}>
-            {post.data.image && <img src={post.data.image} alt={post.data.title} loading="lazy" class="w-full aspect-video object-cover" />}
+            {post.data.image && <img src={post.data.image} alt={post.data.title} loading="lazy" class="w-full aspect-video object-contain bg-surface-2" />}
           </a>
           <div class="p-5 pb-6">
             {cat && (

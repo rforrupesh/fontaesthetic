@@ -18,7 +18,7 @@ const strings = t(lang);
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       {posts.map((post) => (
         <a class="card overflow-hidden flex flex-col" href={getPath(lang, `/blog/${post.slug}/`)}>
-          {post.image && <img src={post.image} alt={post.title} loading="lazy" class="w-full aspect-video object-cover" />}
+          {post.image && <img src={post.image} alt={post.title} loading="lazy" class="w-full aspect-video object-contain bg-surface-2" />}
           <div class="p-4">
             {post.categories && post.categories.length > 0 && (
               <span class="inline-block text-[.68rem] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary mb-1.5">
