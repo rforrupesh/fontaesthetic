@@ -13,11 +13,11 @@ import { getCollection, render } from 'astro:content';
 import { t, getPath } from '../../../i18n';
 import { slugify } from '../../../lib/slugify';
 
-const lang = 'hi';
+const lang = 'ar';
 const strings = t(lang);
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', (e) => e.id.startsWith('hi/'));
+  const posts = await getCollection('blog', (e) => e.id.startsWith('ar/'));
   return posts.map((post) => {
     const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
     return { params: { slug }, props: { post } };
@@ -28,7 +28,7 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
 
-const allPosts = await getCollection('blog', (e) => e.id.startsWith('hi/'));
+const allPosts = await getCollection('blog', (e) => e.id.startsWith('ar/'));
 const related = allPosts
   .filter((p) => p.id !== post.id)
   .filter((p) => p.data.tags.some((tag) => post.data.tags.includes(tag)))
@@ -44,7 +44,7 @@ const related = allPosts
 // Find the equivalent article in every other language via translationId,
 // so canonical/hreflang tags and the language switcher point to the
 // correct (possibly differently-slugged) translated URL.
-const allLangs = ['en', 'fr', 'hi'];
+const allLangs = ['en', 'fr', 'ar'];
 const alternates: Record<string, string> = {};
 for (const l of allLangs) {
   const postsInLang = l === lang ? allPosts : await getCollection('blog', (e) => e.id.startsWith(`${l}/`));

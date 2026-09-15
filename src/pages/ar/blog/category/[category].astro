@@ -7,11 +7,11 @@ import { getCollection } from 'astro:content';
 import { t, getPath } from '../../../../i18n';
 import { slugify } from '../../../../lib/slugify';
 
-const lang = 'hi';
+const lang = 'ar';
 const strings = t(lang);
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', (e) => e.id.startsWith('hi/'));
+  const posts = await getCollection('blog', (e) => e.id.startsWith('ar/'));
   // Group original category text by its lowercase URL slug, so "Guides"
   // and "guides" collapse to one /blog/category/guides/ page. A post can
   // belong to multiple categories, same as tags.
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 
 const { category } = Astro.props;
 
-const allPosts = await getCollection('blog', (e) => e.id.startsWith('hi/'));
+const allPosts = await getCollection('blog', (e) => e.id.startsWith('ar/'));
 
 const posts = allPosts
   .filter((p) => p.data.categories.some((c) => slugify(c) === slugify(category)))

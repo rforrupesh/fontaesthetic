@@ -28,7 +28,7 @@
     "copy": "Copy",
     "copied": "Copied!",
     "download": "Download",
-    "heading": "Cool Font Generator",
+    "heading": "Font Generator",
     "subheading": "Type below and get stylish fonts to copy-paste anywhere."
   },
   "blog": {
@@ -38,31 +38,35 @@
     "publishedOn": "Published on",
     "allCategories": "All"
   },
-  "faq": {
-    "heading": "Frequently Asked Questions",
-    "items": [
-      {
-        "question": "Is this font generator free to use?",
-        "answer": "Yes, AestheticFonts is completely free. There is no sign-up, no download, and no limit on how many times you can generate fonts."
-      },
-      {
-        "question": "Will these fonts work on Instagram, WhatsApp and Discord?",
-        "answer": "Yes. The generator converts your text into special Unicode characters, so the styled text works anywhere you can paste plain text, including Instagram bios, WhatsApp status, Discord, Twitter/X and Facebook."
-      },
-      {
-        "question": "Do I need to install any font or app?",
-        "answer": "No installation is needed. Everything runs directly in your browser, and the converted text is just copied to your clipboard."
-      },
-      {
-        "question": "Why do some styles look like boxes or missing characters?",
-        "answer": "This happens if the platform or device you paste the text into does not support that particular Unicode character. Try a different style if one doesn't render correctly."
-      },
-      {
-        "question": "Is my text stored or shared anywhere?",
-        "answer": "No. All conversion happens locally in your browser. We do not store or transmit the text you type into the generator."
-      }
-    ]
-  },
+"faq": {
+  "heading": "Frequently Asked Questions",
+  "items": [
+    {
+      "question": "How does this work?",
+      "answer": "Type an English alphabet, word, name, or sentence into the text field and the page will create several variations immediately. You can compare the results and choose the one that meets your needs."
+    },
+    {
+      "question": "Will the fonts work on Instagram?",
+      "answer": "They are suitable for places where Instagram allows Unicode characters, such as profile descriptions, captions, comments, and messages. Unicode support may differ among different Instagram fields."
+    },
+    {
+      "question": "Why do some characters appear as boxes?",
+      "answer": "A box usually means that the selected character cannot be displayed in the current environment. Try another variation that uses characters with wider device and platform support."
+    },
+    {
+      "question": "Could I use these as a name for Free Fire, BGMI or PUBG?",
+      "answer": "It depends on the restrictions of the game. Some decorative characters may be accepted while others may be rejected, so test the generated name in the game's name field before saving it."
+    },
+    {
+      "question": "Does fancy text affect accessibility or SEO?",
+      "answer": "Some assistive technologies and search systems may have difficulty interpreting decorative characters. For important information, keep the text simple and use fancy characters mainly for visual emphasis."
+    },
+    {
+      "question": "Is the generated text the same as emojis?",
+      "answer": "No. Emojis are a separate group of Unicode characters mainly designed as pictorial symbols. Fancy text can use Unicode letters, marks, symbols, or combinations of them to create different text styles."
+    }
+  ]
+},
   "share": {
     "label": "Share"
   }

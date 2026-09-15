@@ -38,31 +38,35 @@
     "publishedOn": "Publié le",
     "allCategories": "Tout"
   },
-  "faq": {
-    "heading": "Questions Fréquemment Posées",
-    "items": [
-      {
-        "question": "Ce générateur de polices est-il gratuit ?",
-        "answer": "Oui, AestheticFonts est entièrement gratuit. Aucune inscription, aucun téléchargement, et aucune limite sur le nombre de générations de polices."
-      },
-      {
-        "question": "Ces polices fonctionnent-elles sur Instagram, WhatsApp et Discord ?",
-        "answer": "Oui. Le générateur convertit votre texte en caractères Unicode spéciaux, ce qui fonctionne partout où vous pouvez coller du texte, y compris les bios Instagram, le statut WhatsApp, Discord, Twitter/X et Facebook."
-      },
-      {
-        "question": "Dois-je installer une police ou une application ?",
-        "answer": "Aucune installation n'est nécessaire. Tout se passe directement dans votre navigateur, et le texte converti est simplement copié dans votre presse-papiers."
-      },
-      {
-        "question": "Pourquoi certains styles s'affichent-ils sous forme de carrés ou de caractères manquants ?",
-        "answer": "Cela se produit si la plateforme ou l'appareil sur lequel vous collez le texte ne prend pas en charge ce caractère Unicode particulier. Essayez un autre style s'il ne s'affiche pas correctement."
-      },
-      {
-        "question": "Mon texte est-il stocké ou partagé quelque part ?",
-        "answer": "Non. Toute la conversion se fait localement dans votre navigateur. Nous ne stockons ni ne transmettons le texte que vous saisissez dans le générateur."
-      }
-    ]
-  },
+"faq": {
+  "heading": "Questions fréquemment posées",
+  "items": [
+    {
+      "question": "Comment cela fonctionne-t-il ?",
+      "answer": "Saisissez une lettre de l’alphabet anglais, un mot, un nom ou une phrase dans le champ de texte. La page crée alors plusieurs variantes immédiatement. Vous pouvez comparer les résultats et choisir celui qui vous convient."
+    },
+    {
+      "question": "Les polices fonctionneront-elles sur Instagram ?",
+      "answer": "Elles peuvent être utilisées dans les endroits où Instagram accepte les caractères Unicode, comme les descriptions de profil, les légendes, les commentaires et les messages. La prise en charge d’Unicode peut varier selon les champs d’Instagram."
+    },
+    {
+      "question": "Pourquoi certains caractères apparaissent-ils sous forme de carrés ?",
+      "answer": "Un carré signifie généralement que le caractère sélectionné ne peut pas être affiché dans l’environnement utilisé. Essayez une autre variante avec des caractères mieux pris en charge par les appareils et les plateformes."
+    },
+    {
+      "question": "Puis-je utiliser ces caractères comme nom dans Free Fire, BGMI ou PUBG ?",
+      "answer": "Cela dépend des restrictions du jeu. Certains caractères décoratifs peuvent être acceptés tandis que d’autres peuvent être refusés. Testez donc le nom généré dans le champ prévu à cet effet avant de l’enregistrer."
+    },
+    {
+      "question": "Le texte décoratif affecte-t-il l’accessibilité ou le SEO ?",
+      "answer": "Certains outils d’assistance et moteurs de recherche peuvent avoir plus de difficulté à interpréter les caractères décoratifs. Pour les informations importantes, il est préférable de garder un texte simple et d’utiliser les caractères décoratifs principalement pour attirer l’attention."
+    },
+    {
+      "question": "Le texte généré est-il identique aux emojis ?",
+      "answer": "Non. Les emojis constituent un groupe distinct de caractères Unicode principalement conçus comme des symboles graphiques. Le texte décoratif peut utiliser des lettres, des signes, des symboles Unicode ou une combinaison de ceux-ci pour créer différents styles."
+    }
+  ]
+},
   "share": {
     "label": "Partager"
   }
