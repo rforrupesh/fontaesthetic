@@ -86,17 +86,6 @@ html[data-theme="light"] {
   .page-content { @apply py-12 max-w-[720px] mx-auto; }
   .page-content h1 { @apply text-3xl md:text-4xl mb-5; }
 
-  /* Past the first handful of rows nothing is on screen at load, so the
-     browser is told it can skip layout, paint and font matching for them
-     until they scroll into view. That work is what was stretching Speed
-     Index out: every row is full of astral-plane Unicode, and each of those
-     characters costs a font-fallback lookup. Hooked onto the existing data
-     attribute so the markup stays byte-identical. */
-  #font-results > [data-style-slug]:nth-child(n + 8) {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 73px;
-  }
-
   /* Theme toggle: swap sun/moon icon based on the active theme */
   .icon-moon { display: none; }
   html[data-theme='light'] .icon-sun { display: none; }
