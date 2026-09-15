@@ -82,6 +82,10 @@ const [xDefaultLang, xDefaultPath] = resolvedAlternates[defaultLang]
 
     <script is:inline>
       (function () {
+        if (!localStorage.getItem('theme-v2')) {
+          localStorage.removeItem('theme');
+          localStorage.setItem('theme-v2', '1');
+        }
         const stored = localStorage.getItem('theme');
         const theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
