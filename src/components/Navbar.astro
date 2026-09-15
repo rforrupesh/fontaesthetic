@@ -2,10 +2,6 @@
 import { t, getPath } from '../i18n';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import ThemeToggle from './ThemeToggle.astro';
-// Inlined as raw SVG at build time: the header logo is the LCP element,
-// so shipping it inside the HTML removes a network round-trip entirely and
-// makes LCP land on the same frame as FCP.
-import logo from '../assets/logo.svg?raw';
 
 interface Props { lang: string; alternates?: Record<string, string>; availableLangs?: string[]; }
 const { lang, alternates, availableLangs } = Astro.props;
@@ -22,7 +18,16 @@ const navItems = [
 <header class="sticky top-0 z-50 h-[var(--header-h)] flex items-center bg-surface/90 backdrop-blur-sm border-b border-border">
   <div class="wrap flex items-center justify-between gap-4">
     <div class="flex items-center gap-8">
-      <a href={getPath(lang, '/')} class="flex items-center h-9 md:h-10 shrink-0 [&_svg]:h-full [&_svg]:w-auto [&_svg]:max-w-[160px]" aria-label={strings.site.name} set:html={logo} />
+      <a href={getPath(lang, '/')} class="flex items-center h-9 md:h-10 shrink-0" aria-label={strings.site.name}>
+        <img
+          src={`${import.meta.env.BASE_URL}logo.svg`}
+          alt={strings.site.name}
+          width="320"
+          height="60"
+          decoding="async"
+          class="h-full w-auto max-w-[160px] object-contain"
+        />
+      </a>
 
       <!-- Desktop: single-row menu -->
       <nav class="hidden md:flex gap-4">
