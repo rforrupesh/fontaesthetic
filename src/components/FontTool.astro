@@ -50,6 +50,9 @@ const rows = FONT_STYLES.map((style) => ({
 </section>
 
 <script>
+  // Kept as a static import on purpose: a chunk with zero imports (static or
+  // dynamic) is the only kind Astro will inline into the HTML, which is what
+  // removes this file from the page's request chain.
   import { FONT_STYLES, convert } from '../lib/fontStyles';
 
   const input = document.getElementById('font-input');
@@ -57,29 +60,26 @@ const rows = FONT_STYLES.map((style) => ({
   const copiedLabel = results.dataset.copiedLabel;
   const rowsEls = Array.from(results.querySelectorAll('[data-style-slug]'));
 
-  // Wire each pre-rendered row's copy button once. It always copies
-  // whatever the output div currently shows, so it stays correct as the
-  // user types.
-  rowsEls.forEach((row) => {
-    const output = row.querySelector('[data-role="output"]');
-    const btn = row.querySelector('[data-role="copy"]');
+  // Copy needs no conversion code at all -- it just reads whatever the row
+  // currently shows. One delegated listener instead of one per row.
+  results.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-role="copy"]');
+    if (!btn) return;
+    const row = btn.closest('[data-style-slug]');
     const copyLabel = btn.textContent;
-    btn.addEventListener('click', () => {
-      navigator.clipboard.writeText(output.textContent).then(() => {
+    navigator.clipboard
+      .writeText(row.querySelector('[data-role="output"]').textContent)
+      .then(() => {
         btn.textContent = copiedLabel;
         setTimeout(() => (btn.textContent = copyLabel), 1500);
       });
-    });
   });
 
-  function render() {
+  input.addEventListener('input', () => {
     const text = input.value.trim();
     if (!text) return; // keep the SSR sample text showing when the box is empty
     FONT_STYLES.forEach((style, i) => {
-      const output = rowsEls[i].querySelector('[data-role="output"]');
-      output.textContent = convert(text, style);
+      rowsEls[i].querySelector('[data-role="output"]').textContent = convert(text, style);
     });
-  }
-
-  input.addEventListener('input', render);
+  });
 </script>
