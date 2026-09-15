@@ -1,4 +1,4 @@
-# FontAesthetic — Multilingual Font Generator (Astro)
+# AestheticFonts — Multilingual Font Generator (Astro)
 
 Live (GitHub Pages project site): https://rforrupesh.github.io/fontaesthetic/
 
@@ -18,7 +18,7 @@ npm run preview
 
 ## Deploy to GitHub Pages
 
-1. Push this repo to GitHub as `rforrupesh/fontaesthetic`.
+1. Push this repo to GitHub as `rforrupesh/aestheticfonts`.
 2. In the repo: **Settings -> Pages -> Source -> GitHub Actions**.
 3. Push to `main` -- `.github/workflows/deploy.yml` builds and deploys automatically.
 

@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "FontAesthetic",
+    "name": "AestheticFonts",
     "tagline": "Générateur de Polices Gratuit en Ligne"
   },
   "nav": {
@@ -43,7 +43,7 @@
     "items": [
       {
         "question": "Ce générateur de polices est-il gratuit ?",
-        "answer": "Oui, FontAesthetic est entièrement gratuit. Aucune inscription, aucun téléchargement, et aucune limite sur le nombre de générations de polices."
+        "answer": "Oui, AestheticFonts est entièrement gratuit. Aucune inscription, aucun téléchargement, et aucune limite sur le nombre de générations de polices."
       },
       {
         "question": "Ces polices fonctionnent-elles sur Instagram, WhatsApp et Discord ?",

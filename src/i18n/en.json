@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "FontAesthetic",
+    "name": "AestheticFonts",
     "tagline": "Free Online Font Generator"
   },
   "nav": {
@@ -43,7 +43,7 @@
     "items": [
       {
         "question": "Is this font generator free to use?",
-        "answer": "Yes, FontAesthetic is completely free. There is no sign-up, no download, and no limit on how many times you can generate fonts."
+        "answer": "Yes, AestheticFonts is completely free. There is no sign-up, no download, and no limit on how many times you can generate fonts."
       },
       {
         "question": "Will these fonts work on Instagram, WhatsApp and Discord?",
