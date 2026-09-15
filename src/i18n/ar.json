@@ -25,8 +25,8 @@
   },
   "tool": {
     "placeholder": "English Decor",
-    "copy": "نسخ",
-    "copied": "تم النسخ!",
+    "copy": "(Copy) نسخ",
+    "copied": "تم النسخ(copied)!",
     "download": "تنزيل",
     "heading": "مولد خطوط أنيقة",
     "subheading": "اكتب أدناه واحصل على خطوط أنيقة يمكنك نسخها ولصقها في أي مكان."
