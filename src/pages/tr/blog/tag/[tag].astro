@@ -11,7 +11,7 @@ const lang = 'tr';
 const strings = t(lang);
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', (e) => e.id.startsWith('fr/'));
+  const posts = await getCollection('blog', (e) => e.id.startsWith('tr/'));
   // Group original tag text by its lowercase URL slug, so "Fonts" and
   // "fonts" collapse to one /blog/tag/fonts/ page and the URL is always
   // lowercase regardless of how the tag was capitalized in frontmatter.
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.props;
 
-const posts = (await getCollection('blog', (e) => e.id.startsWith('fr/')))
+const posts = (await getCollection('blog', (e) => e.id.startsWith('tr/')))
   .filter((p) => p.data.tags.some((t) => slugify(t) === slugify(tag)))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
