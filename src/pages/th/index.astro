@@ -25,112 +25,244 @@ const logoUrl = `${siteUrl}${base}logo.svg`;
 
 <article class="prose wrap max-w-[820px] mx-auto py-10">
 
-  <h2 class="text-3xl sm:text-4xl font-bold text-text leading-tight mb-6">
-    สร้างฟอนต์สวยๆ และชื่อเท่ๆ พร้อมคัดลอกใช้งานได้ทันที
-  </h2>
+  <h2 class="text-[clamp(1.6rem,4vw,2.2rem)] mb-2">ตัวอักษรพิเศษ คืออะไร ทำไมถึงฮิตในโซเชียลมีเดีย พร้อมวิธีใช้งานง่าย ๆ</h2>
 
   <p>
-    กำลังมองหาวิธี <strong>สร้างฟอนต์สวยๆ</strong> ให้ชื่อหรือข้อความของคุณดูโดดเด่นอยู่ใช่ไหม?
-    ด้วยเครื่องมือสร้างฟอนต์นี้ คุณสามารถเปลี่ยนชื่อหรือคำภาษาอังกฤษธรรมดาให้กลายเป็น
-    <strong>ฟอนต์และชื่อสไตล์สวยงาม</strong> ได้ภายในไม่กี่วินาที
+    หลายคนคงเคยเลื่อนเจอโพสต์หรือชื่อบัญชีที่มีตัวหนังสือหน้าตาแปลกตา ไม่ใช่ฟอนต์ปกติที่เราพิมพ์กันทุกวัน
+    บางทีก็ดูเหมือนตัวเขียนหวัด บางทีก็ดูเหมือนตัวอักษรกอทิกยุคกลาง หรือบางทีก็เป็นตัวเลขวงกลมน่ารัก ๆ
+    นั่นแหละคือสิ่งที่เรียกกันว่า "ตัวอักษรพิเศษ" หรือบางคนอาจเรียกว่า "ฟ้อนพิเศษ" ซึ่งกำลังเป็นที่นิยมอย่างมาก
+    ในหมู่คนที่อยากให้บัญชีโซเชียลของตัวเองดูมีสไตล์ไม่ซ้ำใคร ในบทความนี้ <strong>AestheticFonts</strong>
+    จะพาไปทำความรู้จักตัวอักษรพิเศษแบบละเอียด พร้อมแจกอักษรพิเศษและตารางสัญลักษณ์สวย ๆ ให้คัดลอกไปใช้ได้ทันที
+  </p>
+
+  <h2>ตัวอักษรพิเศษ คืออะไร</h2>
+
+  <p>
+    พูดง่าย ๆ ตัวอักษรพิเศษ (หรือที่บางแหล่งเรียกว่าฟ้อนพิเศษ) ก็คือชุดสัญลักษณ์ยูนิโคด (Unicode) ที่ถูกออกแบบให้มีรูปทรง
+    คล้ายตัวอักษร A-Z หรือตัวเลข 0-9 แต่ไม่ใช่ตัวอักษรมาตรฐานที่เราพิมพ์จากคีย์บอร์ดโดยตรง เพราะยูนิโคดมีสัญลักษณ์อยู่หลายหมื่นตัว
+    นักพัฒนาเว็บไซต์จึงนำสัญลักษณ์เหล่านี้มาจับคู่ให้ตรงกับตัวอักษรภาษาอังกฤษ ทำให้เราสามารถพิมพ์คำหรือประโยคแล้วแปลงเป็นฟอนต์แปลกใหม่
+    ได้ทันที โดยไม่ต้องติดตั้งฟอนต์เพิ่มในเครื่อง
   </p>
 
   <p>
-    เพียงพิมพ์ชื่อหรือข้อความที่ต้องการลงในช่องด้านบน แล้วระบบจะแสดงรูปแบบต่าง ๆ
-    ให้คุณเลือกดูและคัดลอกได้ทันที เหมาะสำหรับใช้ในโปรไฟล์โซเชียลมีเดีย เกม ไบโอ
-    แคปชัน ข้อความ และอื่น ๆ อีกมากมาย
+    จุดที่ทำให้ตัวอักษรพิเศษใช้งานได้จริงคือมันยังเป็น "ข้อความ" อยู่ ไม่ใช่รูปภาพ ดังนั้นจึงคัดลอกวางได้ในแทบทุกแพลตฟอร์ม
+    ที่รองรับข้อความ ไม่ว่าจะเป็น Instagram, Facebook, X (Twitter), LINE, TikTok, Discord หรือแม้แต่ชื่อผู้เล่นในเกมออนไลน์
   </p>
 
-  <h2>ฟอนต์สวยคืออะไร?</h2>
+  <h2>รูปแบบฟอนต์ที่นิยมใช้กัน</h2>
 
   <p>
-    <strong>ฟอนต์สวย</strong> คือการเปลี่ยนตัวอักษรภาษาอังกฤษธรรมดาให้เป็นรูปแบบต่าง ๆ
-    โดยใช้อักขระและสัญลักษณ์ยูนิโค้ด แทนที่จะพิมพ์แบบธรรมดา เช่น:
+    ตัวอักษรพิเศษมีหลายสไตล์ให้เลือก ส่วนใหญ่แล้วจะออกแบบมาจากตัวอักษรภาษาอังกฤษ A-Z เป็นหลัก
+    เพราะยูนิโคดรองรับได้หลากหลายที่สุด แต่ละแบบก็ให้ความรู้สึกไม่เหมือนกัน เช่น
   </p>
 
-  <div class="not-prose my-6 rounded-xl bg-surface-2 p-5 text-center text-xl font-medium text-text">
-    Alex
+  <ul>
+    <li><strong>ตัวพิมพ์เล็กใหญ่ (Small Caps)</strong> ตัวอักษรเล็กที่ถูกออกแบบให้ดูเหมือนตัวพิมพ์ใหญ่ย่อส่วน เหมาะกับการตั้งชื่อที่ดูเรียบหรู</li>
+    <li><strong>ข้อความฟอง (Bubble Text)</strong> ตัวอักษรทรงกลมทึบหรือกลวง ให้ความรู้สึกน่ารักสนุกสนาน</li>
+    <li><strong>ข้อความสี่เหลี่ยม (Square Text)</strong> ตัวหนังสือทรงเหลี่ยม ดูทันสมัยและมีความเป็นดิจิทัล</li>
+    <li><strong>ตัวหนา/ตัวเอียง (Bold/Italic)</strong> สไตล์คลาสสิกสำหรับเน้นข้อความให้เด่นขึ้นโดยไม่ต้องพึ่งการจัดรูปแบบของแอป</li>
+    <li><strong>อิงลิชเก่า (Old English/Fraktur)</strong> ฟอนต์ย้อนยุคสไตล์ยุคกลาง มักใช้กับข้อความที่ต้องการความขึงขังหรือดูเท่</li>
+    <li><strong>ตัวเขียน (Cursive/Script)</strong> ลายเส้นโค้งมนคล้ายลายมือ เหมาะกับข้อความแนวหวานหรืองานดีไซน์</li>
+    <li><strong>ข้อความกลับหัว (Upside Down)</strong> พลิกตัวอักษรกลับด้าน สร้างความสนุกให้กับข้อความ</li>
+    <li><strong>ตัวยก (Superscript)</strong> ตัวอักษรขนาดเล็กลอยด้านบน มักใช้ในนิพจน์ทางคณิตศาสตร์หรือแคปชันสั้น ๆ</li>
+  </ul>
+
+  <p>
+    นอกจากตัวอักษรแล้ว ยังมีสัญลักษณ์พิเศษอีกหลายหมวด เช่น สัญลักษณ์หัวใจ ดอกไม้ ดวงดาว หมากรุก โน้ตดนตรี สภาพอากาศ
+    และอิโมติคอนหน้าตาแบบข้อความล้วน (เช่น ʕ•ᴥ•ʔ หรือ (づ￣³￣)づ) ที่หลายคนคุ้นเคยกันดีตั้งแต่ยุค MSN
+  </p>
+
+  <h2>ทำไมคนถึงชอบใช้ตัวอักษรพิเศษ</h2>
+
+  <p>
+    เหตุผลหลักคือความต้องการให้ตัวเองดูโดดเด่นไม่ซ้ำใคร โดยเฉพาะในกลุ่มวัยรุ่นและคนที่ใช้โซเชียลมีเดียเป็นประจำ
+    เพราะฟอนต์มาตรฐานที่แพลตฟอร์มให้มาอาจดูธรรมดาเกินไป การเปลี่ยนชื่อบัญชี แคปชัน หรือ Bio ให้เป็นฟอนต์แปลกตาจึงเป็นวิธีง่าย ๆ
+    ที่ช่วยสร้างตัวตนบนโลกออนไลน์ได้ ไม่ว่าจะเป็น
+  </p>
+
+  <ul>
+    <li>ตั้งชื่อบัญชีเกมหรือโซเชียลมีเดียให้ดูมีเอกลักษณ์</li>
+    <li>ตกแต่ง Bio หรือแคปชันให้น่าสนใจกว่าเดิม</li>
+    <li>ใช้ในการออกแบบโลโก้แบบง่าย ๆ ที่ไม่ต้องพึ่งโปรแกรมกราฟิก</li>
+    <li>ใช้แสดงอารมณ์ผ่านอิโมติคอนแบบข้อความในแชท</li>
+  </ul>
+
+  <h2>ใช้อักษรพิเศษตั้งชื่อในเกมให้ดูเท่ขึ้น</h2>
+
+  <p>
+    หนึ่งในการใช้งานที่ได้รับความนิยมสูงมากคือการนำอักษรพิเศษไปตั้งชื่อในเกม ไม่ว่าจะเป็นชื่อในเกมเท่ๆ ทั่วไป
+    หรือชื่อฟีฟายเท่ๆ ที่นักเล่น Free Fire นิยมใช้กันเป็นพิเศษ เพราะชื่อผู้เล่นเป็นสิ่งแรกที่คนอื่นเห็นในสนามรบ
+    การมีชื่อที่โดดเด่นด้วยฟอนต์แปลกตาจึงช่วยสร้างความน่าเกรงขามหรือความจดจำได้ง่ายกว่าชื่อธรรมดา
+  </p>
+
+  <p>
+    แนวทางการตั้งชื่อเท่ๆ ในเกมด้วยอักษรพิเศษที่นิยมกัน มักแบ่งออกเป็นสไตล์หลัก ๆ ดังนี้
+  </p>
+
+  <div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+    <div class="bg-surface p-5 rounded-lg shadow-sm">
+      <h3 class="text-base font-semibold text-text mb-1">สายดุดัน/ปีศาจ</h3>
+      <p class="text-sm text-text-muted m-0">เน้นใช้อักษรพิเศษปีศาจหรือสัญลักษณ์ที่ดูมืดหม่น เช่น ตัวอักษรกอทิกผสมสัญลักษณ์กะโหลกหรือเปลวไฟ ให้ความรู้สึกน่าเกรงขามเหมาะกับตัวละครสายบู๊</p>
+    </div>
+    <div class="bg-surface p-5 rounded-lg shadow-sm">
+      <h3 class="text-base font-semibold text-text mb-1">สายเท่/มินิมอล</h3>
+      <p class="text-sm text-text-muted m-0">ใช้ฟอนต์ตัวพิมพ์เล็กใหญ่หรือฟอนต์กอทิกเรียบง่าย ไม่ต้องมีสัญลักษณ์เยอะ แต่ดูมีระดับ</p>
+    </div>
+    <div class="bg-surface p-5 rounded-lg shadow-sm">
+      <h3 class="text-base font-semibold text-text mb-1">สายกวนโอ๊ยขำขัน</h3>
+      <p class="text-sm text-text-muted m-0">ผสมอิโมติคอนหน้าตาแปลก ๆ เข้ากับชื่อ ให้ดูตลกและเป็นกันเอง</p>
+    </div>
+    <div class="bg-surface p-5 rounded-lg shadow-sm">
+      <h3 class="text-base font-semibold text-text mb-1">สายลึกลับ</h3>
+      <p class="text-sm text-text-muted m-0">ใช้ตัวอักษรกลับหัวหรือฟอนต์ที่อ่านยากเล็กน้อย สร้างความรู้สึกน่าค้นหา</p>
+    </div>
   </div>
 
-  <p>คุณสามารถได้รูปแบบต่าง ๆ เช่น:</p>
-
-  <div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-3 my-6">
-    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">𝐀𝐥𝐞𝐱</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">𝑨𝒍𝒆𝒙</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">𝓐𝓵𝓮𝔁</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">𝔄𝔩𝔢𝔵</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">Ａｌｅｘ</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">Ⓐⓛⓔⓧ</div>
-  </div>
-
-  <h2>ตั้งชื่อเท่ๆ ในเกม</h2>
-
   <p>
-    ผู้เล่นเกมจำนวนมากมองหา <strong>ชื่อเท่ๆ</strong> สำหรับ Free Fire, PUBG, BGMI
-    หรือเกมอื่น ๆ เพื่อให้ชื่อในเกมโดดเด่นไม่ซ้ำใคร ลองใช้สัญลักษณ์และกรอบตกแต่ง
-    เพื่อสร้างชื่อที่มีเอกลักษณ์เฉพาะตัว
+    ข้อควรระวังสำหรับการตั้งชื่อในเกมคือบางเกมอาจจำกัดความยาวของชื่อหรือไม่รองรับสัญลักษณ์บางตัว จึงควรทดสอบตั้งชื่อดูก่อนว่า
+    ระบบของเกมนั้น ๆ แสดงผลได้ถูกต้องหรือไม่ ก่อนนำไปใช้จริง
   </p>
 
-  <div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-3 my-6">
-    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">꧁𝑲𝒊𝒏𝒈꧂</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">★彡𝑺𝒉𝒂𝒅𝒐𝒘彡★</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">『𝑾𝒂𝒓𝒓𝒊𝒐𝒓』</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">⚡𝑭𝒊𝒓𝒆⚡</div>
-  </div>
+  <h2>วิธีใช้งานเครื่องมือแปลงฟอนต์</h2>
 
   <p>
-    อย่างไรก็ตาม บางเกมอาจไม่รองรับสัญลักษณ์หรืออักขระตกแต่งทุกแบบ
-    ควรทดลองตั้งชื่อในเกมก่อนบันทึกจริงเสมอ
+    การใช้งานเว็บไซต์แปลงตัวอักษรพิเศษอย่าง <strong>AestheticFonts</strong> ทำได้ง่ายมาก แทบไม่ต้องมีความรู้ด้านเทคนิคเลย
   </p>
-
-  <h2>สไตล์ตัวอักษรยอดนิยม</h2>
-
-  <div class="not-prose grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 my-6">
-    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวหนา</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวเอียง</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm">ลายมือ</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm">Fraktur</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm">ข้อความฟองสบู่</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวอักษรในกรอบ</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm">ข้อความกว้าง</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวพิมพ์เล็กจิ๋ว</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวยก</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวห้อย</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm">ขีดฆ่า</div>
-    <div class="bg-surface p-4 rounded-lg shadow-sm">ขีดเส้นใต้</div>
-  </div>
-
-  <h2>ใช้งานได้อย่างไม่ต้องติดตั้งอะไร</h2>
 
   <div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
     <div class="bg-surface p-5 rounded-lg shadow-sm">
       <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3 rounded-lg text-primary font-bold">1</div>
       <h3 class="text-base font-semibold text-text mb-1">พิมพ์ข้อความ</h3>
-      <p class="text-sm text-text-muted">พิมพ์ชื่อหรือข้อความที่ต้องการลงในช่องกรอกข้อมูล</p>
+      <p class="text-sm text-text-muted m-0">พิมพ์ข้อความ ชื่อ หรือประโยคที่ต้องการลงในช่องข้อความ</p>
     </div>
     <div class="bg-surface p-5 rounded-lg shadow-sm">
       <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3 rounded-lg text-primary font-bold">2</div>
       <h3 class="text-base font-semibold text-text mb-1">ดูผลลัพธ์</h3>
-      <p class="text-sm text-text-muted">เลื่อนดูสไตล์ต่าง ๆ ที่สร้างขึ้นและเลือกแบบที่ชอบ</p>
+      <p class="text-sm text-text-muted m-0">ระบบจะแสดงผลลัพธ์เป็นฟอนต์หลากหลายสไตล์แบบเรียลไทม์ให้เลือกดู</p>
     </div>
     <div class="bg-surface p-5 rounded-lg shadow-sm">
       <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3 rounded-lg text-primary font-bold">3</div>
-      <h3 class="text-base font-semibold text-text mb-1">เลือกสไตล์</h3>
-      <p class="text-sm text-text-muted">เลือกฟอนต์ที่ถูกใจที่สุด</p>
+      <h3 class="text-base font-semibold text-text mb-1">กดคัดลอก</h3>
+      <p class="text-sm text-text-muted m-0">กดปุ่มคัดลอกฟอนต์ที่ถูกใจ</p>
     </div>
     <div class="bg-surface p-5 rounded-lg shadow-sm">
       <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3 rounded-lg text-primary font-bold">4</div>
-      <h3 class="text-base font-semibold text-text mb-1">คัดลอกและวาง</h3>
-      <p class="text-sm text-text-muted">คัดลอกข้อความและนำไปใช้ในที่ที่ต้องการได้เลย</p>
+      <h3 class="text-base font-semibold text-text mb-1">นำไปใช้งาน</h3>
+      <p class="text-sm text-text-muted m-0">นำไปวางในช่องแคปชัน ชื่อบัญชี หรือข้อความแชทที่ต้องการได้ทันที</p>
     </div>
   </div>
 
-  <h2>ใช้ได้ทุกแพลตฟอร์ม</h2>
+  <p>
+    สิ่งที่ควรรู้ไว้คือฟอนต์แต่ละแบบอาจรองรับตัวอักษรได้ไม่เท่ากัน บางสไตล์รองรับเฉพาะตัวอักษร A-Z ภาษาอังกฤษเท่านั้น
+    ไม่รองรับภาษาไทยหรือเครื่องหมายวรรคตอนบางตัว ดังนั้นก่อนนำไปใช้ควรลองพิมพ์ดูก่อนว่าอักษรทุกตัวแสดงผลถูกต้องหรือไม่
+    และบางแพลตฟอร์มอาจแสดงผลตัวอักษรพิเศษบางตัวไม่ครบ ขึ้นอยู่กับฟอนต์ที่อุปกรณ์นั้นรองรับ
+  </p>
+
+  <h2>ข้อควรระวังในการใช้ตัวอักษรพิเศษ</h2>
+
+  <p>แม้ตัวอักษรพิเศษจะช่วยให้ข้อความดูสวยงามโดดเด่น แต่ก็มีข้อควรระวังบางอย่าง เช่น</p>
+
+  <ul>
+    <li><strong>การอ่านยากขึ้น</strong> ฟอนต์บางสไตล์ที่ซับซ้อนเกินไปอาจทำให้ผู้อ่านทั่วไปอ่านไม่ออก โดยเฉพาะข้อความยาว ๆ</li>
+    <li><strong>ปัญหาการเข้าถึง (Accessibility)</strong> โปรแกรมอ่านหน้าจอสำหรับผู้พิการทางสายตาอาจอ่านตัวอักษรพิเศษไม่ถูกต้อง เพราะระบบมองว่าเป็นสัญลักษณ์คนละตัวกับตัวอักษรปกติ</li>
+    <li><strong>การค้นหาบนแพลตฟอร์ม</strong> บางแอปอาจค้นหาชื่อหรือแฮชแท็กที่เป็นตัวอักษรพิเศษไม่เจอ เพราะระบบค้นหาไม่รู้จักสัญลักษณ์เหล่านั้นว่าตรงกับคำปกติ</li>
+  </ul>
 
   <p>
-    ฟอนต์ยูนิโค้ดเหล่านี้ใช้ได้กับ Instagram, WhatsApp, Facebook, TikTok, Discord,
-    Twitter/X และแพลตฟอร์มอื่น ๆ ที่รองรับการวางข้อความธรรมดา
-    แต่การรองรับสัญลักษณ์อาจแตกต่างกันไปในแต่ละแพลตฟอร์มและอุปกรณ์
+    ดังนั้นการใช้ตัวอักษรพิเศษจึงควรเลือกใช้ในจุดที่เหมาะสม เช่น ชื่อบัญชี แคปชันสั้น ๆ หรือหัวข้อ มากกว่าการใช้กับเนื้อหาข้อความยาว ๆ
+    ที่ต้องการให้คนอ่านเข้าใจง่าย
+  </p>
+
+  <h2>แจกอักษรพิเศษและสัญลักษณ์พิเศษ พร้อมใช้ทันที</h2>
+
+  <p>
+    เพื่อไม่ให้ต้องเสียเวลาเข้าเว็บแปลงฟอนต์ทีละครั้ง ด้านล่างนี้คือชุดแจกอักษรพิเศษที่ <strong>AestheticFonts</strong>
+    คัดมาให้แล้วว่าใช้งานได้จริงบนแทบทุกแพลตฟอร์ม ทั้งตัวอักษรภาษาอังกฤษสไตล์ต่าง ๆ และสัญลักษณ์พิเศษที่คนนิยมคัดลอกไปตกแต่งข้อความกันมากที่สุด
+  </p>
+
+  <h2>ตารางสัญลักษณ์พิเศษยอดนิยม จาก AestheticFonts</h2>
+
+  <p>
+    แทนที่จะรวมสัญลักษณ์เป็นพัน ๆ ตัวแบบเว็บทั่วไปจนหาไม่เจอ ทีมงาน AestheticFonts เลือกเฉพาะสัญลักษณ์ที่คนค้นหาและคัดลอกไปใช้จริงบ่อยที่สุด
+    (อ้างอิงจากพฤติกรรมการใช้งานจริงในกระทู้และคอมเมนต์ต่าง ๆ) มาจัดเป็นตารางเดียวให้หยิบไปใช้ได้ทันที
+  </p>
+
+  <div class="not-prose overflow-x-auto my-6">
+    <table class="w-full text-sm text-left">
+      <thead>
+        <tr class="bg-surface-2">
+          <th class="py-3 px-4 font-semibold text-text">หมวดหมู่</th>
+          <th class="py-3 px-4 font-semibold text-text">สัญลักษณ์ตัวอย่าง</th>
+          <th class="py-3 px-4 font-semibold text-text">นิยมใช้กับ</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border">
+        <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+          <td class="py-3 px-4 font-medium text-text">หน้าหมีและสัตว์น่ารัก</td>
+          <td class="py-3 px-4 text-lg">ʕ•ᴥ•ʔ ʕ♡˙ᴥ˙♡ʔ ʕ•̀ᴥ•́ʔ ໒( ●ᴥ ●)ʋ</td>
+          <td class="py-3 px-4 text-text-muted">คอมเมนต์แซว, แชทกับเพื่อน</td>
+        </tr>
+        <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+          <td class="py-3 px-4 font-medium text-text">หน้าแสดงอารมณ์ (Kaomoji)</td>
+          <td class="py-3 px-4 text-lg">(｡•́︿•̀｡) (≧◡≦) ヽ(♡‿♡)ノ ┐(￣ヘ￣;)┌</td>
+          <td class="py-3 px-4 text-text-muted">แชท, แคปชันแสดงความรู้สึก</td>
+        </tr>
+        <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+          <td class="py-3 px-4 font-medium text-text">หัวใจตกแต่งเป็นชุด</td>
+          <td class="py-3 px-4 text-lg">♡ ❤ ❥ ღ დ ❦ ❧ ⓛⓞⓥⓔ</td>
+          <td class="py-3 px-4 text-text-muted">Bio, แคปชันความรัก</td>
+        </tr>
+        <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+          <td class="py-3 px-4 font-medium text-text">เส้นคั่นแบบดอกไม้</td>
+          <td class="py-3 px-4 text-lg">•*´¨`*•.¸¸.•*´¨`*• ✿ ✿ ✿ ✿ ✿</td>
+          <td class="py-3 px-4 text-text-muted">คั่นหัวข้อโพสต์, ท้ายแคปชัน</td>
+        </tr>
+        <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+          <td class="py-3 px-4 font-medium text-text">ลูกศรทิศทาง</td>
+          <td class="py-3 px-4 text-lg">↖ ↗ ↘ ↙ ➳ ➵ ➸ ⇒ ⇄</td>
+          <td class="py-3 px-4 text-text-muted">อธิบายขั้นตอน, ชี้ทิศทาง</td>
+        </tr>
+        <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+          <td class="py-3 px-4 font-medium text-text">อักษรวงกลม</td>
+          <td class="py-3 px-4 text-lg">ⓐⓑⓒⓓⓔ Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ</td>
+          <td class="py-3 px-4 text-text-muted">ชื่อบัญชี, แต่งคำสั้น ๆ</td>
+        </tr>
+        <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+          <td class="py-3 px-4 font-medium text-text">ตัวเลขในกรอบ</td>
+          <td class="py-3 px-4 text-lg">[̲̅1̲̅] [̲̅2̲̅] ① ② ❶ ❷</td>
+          <td class="py-3 px-4 text-text-muted">จัดอันดับ, ลิสต์ขั้นตอน</td>
+        </tr>
+        <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+          <td class="py-3 px-4 font-medium text-text">หมากรุกและไพ่</td>
+          <td class="py-3 px-4 text-lg">♔ ♕ ♚ ♛ ♠ ♣ ♥ ♦</td>
+          <td class="py-3 px-4 text-text-muted">ชื่อบัญชีเกม, ธีมคาสิโน</td>
+        </tr>
+        <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+          <td class="py-3 px-4 font-medium text-text">สภาพอากาศและท้องฟ้า</td>
+          <td class="py-3 px-4 text-lg">☀ ☁ ☂ ☃ ☄ ❄ ☽ ☾</td>
+          <td class="py-3 px-4 text-text-muted">โพสต์ตามฤดูกาล, ธีมกลางคืน</td>
+        </tr>
+        <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+          <td class="py-3 px-4 font-medium text-text">กรอบครอบชื่อ</td>
+          <td class="py-3 px-4 text-lg">『』 【】 〖〗 «»</td>
+          <td class="py-3 px-4 text-text-muted">ครอบชื่อบัญชีให้ดูเป็นทางการ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    <strong>เคล็ดลับจาก AestheticFonts:</strong> ถ้าอยากได้ข้อความที่ดูมีเอกลักษณ์จริง ๆ ลองผสม 2 หมวดเข้าด้วยกัน
+    เช่น เอาเส้นคั่นดอกไม้มาวางคู่กับหัวใจตกแต่ง หรือใส่หน้าหมีต่อท้ายชื่อบัญชี แทนที่จะก็อปสัญลักษณ์เดี่ยว ๆ ทีละตัว
+    จะได้ข้อความที่ดูตั้งใจออกแบบมากกว่า
+  </p>
+
+  <h2>สรุป</h2>
+
+  <p>
+    ตัวอักษรพิเศษเป็นเครื่องมือง่าย ๆ ที่ช่วยเพิ่มลูกเล่นให้กับข้อความบนโซเชียลมีเดีย ไม่ว่าจะเป็นการตั้งชื่อบัญชี
+    แต่ง Bio หรือแคปชันให้ดูมีสไตล์มากขึ้น ด้วยความหลากหลายของฟอนต์และสัญลักษณ์ที่มีให้เลือกใช้ฟรีผ่าน <strong>AestheticFonts</strong>
+    ทำให้ใครก็สามารถสร้างข้อความที่เป็นเอกลักษณ์ของตัวเองได้ง่าย ๆ เพียงแค่พิมพ์ เลือกฟอนต์ที่ชอบ แล้วคัดลอกไปใช้งานได้ทันที
   </p>
 
 </article>
