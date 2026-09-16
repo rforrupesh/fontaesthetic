@@ -44,7 +44,7 @@ const related = allPosts
 // Find the equivalent article in every other language via translationId,
 // so canonical/hreflang tags and the language switcher point to the
 // correct (possibly differently-slugged) translated URL.
-const allLangs = ['en', 'fr', 'ar', 'th'];
+const allLangs = ['en', 'fr', 'ar', 'th', 'tr'];
 const alternates: Record<string, string> = {};
 for (const l of allLangs) {
   const postsInLang = l === lang ? allPosts : await getCollection('blog', (e) => e.id.startsWith(`${l}/`));

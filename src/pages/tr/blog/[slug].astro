@@ -1,23 +1,23 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumb from '../../components/Breadcrumb.astro';
-import ShareButtons from '../../components/ShareButtons.astro';
-import Sidebar from '../../components/Sidebar.astro';
-import MobileToc from '../../components/MobileToc.astro';
-import AdSlot from '../../components/AdSlot.astro';
-import RelatedPosts from '../../components/RelatedPosts.astro';
-import BreadcrumbSchema from '../../components/schema/BreadcrumbSchema.astro';
-import ArticleSchema from '../../components/schema/ArticleSchema.astro';
-import OrganizationSchema from '../../components/schema/OrganizationSchema.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import ShareButtons from '../../../components/ShareButtons.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import MobileToc from '../../../components/MobileToc.astro';
+import AdSlot from '../../../components/AdSlot.astro';
+import RelatedPosts from '../../../components/RelatedPosts.astro';
+import BreadcrumbSchema from '../../../components/schema/BreadcrumbSchema.astro';
+import ArticleSchema from '../../../components/schema/ArticleSchema.astro';
+import OrganizationSchema from '../../../components/schema/OrganizationSchema.astro';
 import { getCollection, render } from 'astro:content';
-import { t, getPath } from '../../i18n';
-import { slugify } from '../../lib/slugify';
+import { t, getPath } from '../../../i18n';
+import { slugify } from '../../../lib/slugify';
 
-const lang = 'en';
+const lang = 'tr';
 const strings = t(lang);
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', (e) => e.id.startsWith('en/'));
+  const posts = await getCollection('blog', (e) => e.id.startsWith('fr/'));
   return posts.map((post) => {
     const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
     return { params: { slug }, props: { post } };
@@ -28,7 +28,7 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
 
-const allPosts = await getCollection('blog', (e) => e.id.startsWith('en/'));
+const allPosts = await getCollection('blog', (e) => e.id.startsWith('fr/'));
 const related = allPosts
   .filter((p) => p.id !== post.id)
   .filter((p) => p.data.tags.some((tag) => post.data.tags.includes(tag)))

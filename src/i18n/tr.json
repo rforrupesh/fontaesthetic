@@ -1,0 +1,73 @@
+{
+  "site": {
+    "name": "AestheticFonts",
+    "tagline": "Ücretsiz Çevrimiçi Font Oluşturucu"
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "blog": "Blog",
+    "about": "Hakkımızda",
+    "contact": "İletişim"
+  },
+  "footer": {
+    "rights": "Tüm hakları saklıdır.",
+    "about": "Hakkımızda",
+    "contact": "Bize Ulaşın",
+    "privacy": "Gizlilik Politikası",
+    "blog": "Blog",
+    "madeWith": "100'den fazla benzersiz stille göz alıcı metinler oluşturmak için #1 Font Oluşturucu. Kelimelerinizi Ⓒⓞⓞⓛ, ₛₘₐₗₗ, 𝓬𝓾𝓻𝓼𝓲𝓿𝓮 ve daha fazlası haline getirin, ardından her yere kopyalayıp yapıştırın.",
+    "follow": "Bizi takip edin"
+  },
+  "sidebar": {
+    "toc": "İçindekiler",
+    "related": "İlgili Yazılar",
+    "recent": "Son Yazılar"
+  },
+  "tool": {
+    "placeholder": "Metninizi buraya yazın...",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı!",
+    "download": "İndir",
+    "heading": "Font Oluşturucu",
+    "subheading": "Aşağıya yazın ve her yere kopyalayıp yapıştırabileceğiniz şık fontlar elde edin."
+  },
+  "blog": {
+    "listingTitle": "Blog",
+    "listingDescription": "Fontlar ve tipografi hakkında ipuçları, rehberler ve güncellemeler.",
+    "readMore": "Devamını oku",
+    "publishedOn": "Yayınlanma tarihi",
+    "allCategories": "Tümü"
+  },
+"faq": {
+  "heading": "Sıkça Sorulan Sorular",
+  "items": [
+    {
+      "question": "Bu nasıl çalışır?",
+      "answer": "Metin alanına bir İngilizce alfabe, kelime, isim veya cümle yazın; sayfa hemen birkaç varyasyon oluşturacaktır. Sonuçları karşılaştırıp ihtiyacınıza uygun olanı seçebilirsiniz."
+    },
+    {
+      "question": "Fontlar Instagram'da çalışır mı?",
+      "answer": "Bu fontlar, Instagram'ın Unicode karakterlere izin verdiği profil açıklamaları, altyazılar, yorumlar ve mesajlar gibi alanlar için uygundur. Unicode desteği Instagram'ın farklı alanlarına göre değişebilir."
+    },
+    {
+      "question": "Bazı karakterler neden kutu olarak görünüyor?",
+      "answer": "Bir kutu genellikle seçilen karakterin mevcut ortamda görüntülenemediği anlamına gelir. Daha geniş cihaz ve platform desteğine sahip karakterler kullanan başka bir varyasyon deneyin."
+    },
+    {
+      "question": "Bunları Free Fire, BGMI veya PUBG için bir isim olarak kullanabilir miyim?",
+      "answer": "Bu, oyunun kısıtlamalarına bağlıdır. Bazı dekoratif karakterler kabul edilebilirken diğerleri reddedilebilir, bu yüzden oluşturulan ismi kaydetmeden önce oyunun isim alanında test edin."
+    },
+    {
+      "question": "Süslü metin erişilebilirliği veya SEO'yu etkiler mi?",
+      "answer": "Bazı yardımcı teknolojiler ve arama sistemleri dekoratif karakterleri yorumlamakta zorlanabilir. Önemli bilgiler için metni sade tutun ve süslü karakterleri esas olarak görsel vurgu için kullanın."
+    },
+    {
+      "question": "Oluşturulan metin emojilerle aynı mı?",
+      "answer": "Hayır. Emojiler, esas olarak resimsel semboller olarak tasarlanmış ayrı bir Unicode karakter grubudur. Süslü metin ise farklı metin stilleri oluşturmak için Unicode harfleri, işaretleri, sembolleri veya bunların kombinasyonlarını kullanabilir."
+    }
+  ]
+},
+  "share": {
+    "label": "Paylaş"
+  }
+}
