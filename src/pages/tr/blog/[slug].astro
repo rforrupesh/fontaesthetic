@@ -17,7 +17,7 @@ const lang = 'tr';
 const strings = t(lang);
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', (e) => e.id.startsWith('fr/'));
+  const posts = await getCollection('blog', (e) => e.id.startsWith('tr/'));
   return posts.map((post) => {
     const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
     return { params: { slug }, props: { post } };
@@ -28,7 +28,7 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
 
-const allPosts = await getCollection('blog', (e) => e.id.startsWith('fr/'));
+const allPosts = await getCollection('blog', (e) => e.id.startsWith('tr/'));
 const related = allPosts
   .filter((p) => p.id !== post.id)
   .filter((p) => p.data.tags.some((tag) => post.data.tags.includes(tag)))
