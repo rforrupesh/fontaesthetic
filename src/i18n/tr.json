@@ -24,12 +24,12 @@
     "recent": "Son Yazılar"
   },
   "tool": {
-    "placeholder": "Metninizi buraya yazın...",
+    "placeholder": "Nickinizi Yazın",
     "copy": "Kopyala",
     "copied": "Kopyalandı!",
     "download": "İndir",
-    "heading": "Font Oluşturucu",
-    "subheading": "Aşağıya yazın ve her yere kopyalayıp yapıştırabileceğiniz şık fontlar elde edin."
+    "heading": "Şekilli Nick - Şekilli yazı ve isim oluşturucu",
+    "subheading": "Nick Yazma Aşağıya yazın ve her yere kopyalayıp yapıştırabileceğiniz şık fontlar elde edin."
   },
   "blog": {
     "listingTitle": "Blog",
