@@ -1,73 +1,73 @@
 {
   "site": {
     "name": "AestheticFonts",
-    "tagline": "Free Online Font Generator"
+    "tagline": "Ücretsiz Çevrimiçi Font Oluşturucu"
   },
   "nav": {
-    "home": "Home",
+    "home": "Ana Sayfa",
     "blog": "Blog",
-    "about": "About",
-    "contact": "Contact"
+    "about": "Hakkımızda",
+    "contact": "İletişim"
   },
   "footer": {
-    "rights": "All rights reserved.",
-    "about": "About",
-    "contact": "Contact Us",
-    "privacy": "Privacy Policy",
+    "rights": "Tüm hakları saklıdır.",
+    "about": "Hakkımızda",
+    "contact": "Bize Ulaşın",
+    "privacy": "Gizlilik Politikası",
     "blog": "Blog",
-    "madeWith": "#1 Font Generator for creating eye-catching text with 100+ unique styles. Make your words Ⓒⓞⓞⓛ, ₛₘₐₗₗ, 𝓬𝓾𝓻𝓼𝓲𝓿𝓮 and more, then copy and paste them anywhere.",
-    "follow": "Follow along"
+    "madeWith": "100'den fazla benzersiz stille göz alıcı metinler oluşturmak için #1 Font Oluşturucu. Kelimelerinizi Ⓒⓞⓞⓛ, ₛₘₐₗₗ, 𝓬𝓾𝓻𝓼𝓲𝓿𝓮 ve daha fazlasına dönüştürün, ardından her yere kopyalayıp yapıştırın.",
+    "follow": "Bizi takip edin"
   },
   "sidebar": {
-    "toc": "Table of Contents",
-    "related": "Related Posts",
-    "recent": "Recent Posts"
+    "toc": "İçindekiler",
+    "related": "İlgili Yazılar",
+    "recent": "Son Yazılar"
   },
   "tool": {
-    "placeholder": "Type your text here...",
-    "copy": "Copy",
-    "copied": "Copied!",
-    "download": "Download",
-    "heading": "Font Generator",
-    "subheading": "Type below and get stylish fonts to copy-paste anywhere."
+    "placeholder": "Metninizi buraya yazın...",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı!",
+    "download": "İndir",
+    "heading": "Font Oluşturucu",
+    "subheading": "Aşağıya yazın ve her yere kopyalayıp yapıştırabileceğiniz şık fontlar elde edin."
   },
   "blog": {
     "listingTitle": "Blog",
-    "listingDescription": "Tips, guides and updates about fonts and typography.",
-    "readMore": "Read more",
-    "publishedOn": "Published on",
-    "allCategories": "All"
+    "listingDescription": "Fontlar ve tipografi hakkında ipuçları, rehberler ve güncellemeler.",
+    "readMore": "Devamını oku",
+    "publishedOn": "Yayınlanma tarihi",
+    "allCategories": "Tümü"
   },
 "faq": {
-  "heading": "Frequently Asked Questions",
+  "heading": "Sıkça Sorulan Sorular",
   "items": [
     {
-      "question": "How does this work?",
-      "answer": "Type an English alphabet, word, name, or sentence into the text field and the page will create several variations immediately. You can compare the results and choose the one that meets your needs."
+      "question": "Bu nasıl çalışır?",
+      "answer": "Metin alanına bir harf, kelime, isim veya cümle yazın; sayfa anında birçok varyasyon oluşturacaktır. Sonuçları karşılaştırıp ihtiyacınıza uygun olanı seçebilirsiniz."
     },
     {
-      "question": "Will the fonts work on Instagram?",
-      "answer": "They are suitable for places where Instagram allows Unicode characters, such as profile descriptions, captions, comments, and messages. Unicode support may differ among different Instagram fields."
+      "question": "Fontlar Instagram'da çalışır mı?",
+      "answer": "Instagram'ın Unicode karakterlere izin verdiği profil açıklamaları, alt yazılar, yorumlar ve mesajlar gibi alanlarda kullanılabilirler. Unicode desteği Instagram'ın farklı alanlarına göre değişebilir."
     },
     {
-      "question": "Why do some characters appear as boxes?",
-      "answer": "A box usually means that the selected character cannot be displayed in the current environment. Try another variation that uses characters with wider device and platform support."
+      "question": "Bazı karakterler neden kutu olarak görünüyor?",
+      "answer": "Kutu işareti genellikle seçilen karakterin mevcut ortamda görüntülenemediği anlamına gelir. Daha geniş cihaz ve platform desteğine sahip karakterler kullanan başka bir varyasyonu deneyin."
     },
     {
-      "question": "Could I use these as a name for Free Fire, BGMI or PUBG?",
-      "answer": "It depends on the restrictions of the game. Some decorative characters may be accepted while others may be rejected, so test the generated name in the game's name field before saving it."
+      "question": "Bunları Free Fire, BGMI veya PUBG için isim olarak kullanabilir miyim?",
+      "answer": "Bu, oyunun kısıtlamalarına bağlıdır. Bazı dekoratif karakterler kabul edilirken bazıları reddedilebilir; bu yüzden oluşturduğunuz ismi kaydetmeden önce oyunun isim alanında test edin."
     },
     {
-      "question": "Does fancy text affect accessibility or SEO?",
-      "answer": "Some assistive technologies and search systems may have difficulty interpreting decorative characters. For important information, keep the text simple and use fancy characters mainly for visual emphasis."
+      "question": "Şık metin erişilebilirliği veya SEO'yu etkiler mi?",
+      "answer": "Bazı yardımcı teknolojiler ve arama sistemleri dekoratif karakterleri yorumlamakta zorlanabilir. Önemli bilgiler için metni sade tutun ve şık karakterleri esas olarak görsel vurgu için kullanın."
     },
     {
-      "question": "Is the generated text the same as emojis?",
-      "answer": "No. Emojis are a separate group of Unicode characters mainly designed as pictorial symbols. Fancy text can use Unicode letters, marks, symbols, or combinations of them to create different text styles."
+      "question": "Oluşturulan metin emoji ile aynı mı?",
+      "answer": "Hayır. Emojiler, temelde resimli semboller olarak tasarlanmış ayrı bir Unicode karakter grubudur. Şık metin ise farklı metin stilleri oluşturmak için Unicode harfleri, işaretleri, sembolleri veya bunların kombinasyonlarını kullanabilir."
     }
   ]
 },
   "share": {
-    "label": "Share"
+    "label": "Paylaş"
   }
 }
