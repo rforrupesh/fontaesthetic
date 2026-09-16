@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import ShareButtons from '../../../components/ShareButtons.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import MobileToc from '../../../components/MobileToc.astro';
+import AdSlot from '../../../components/AdSlot.astro';
+import RelatedPosts from '../../../components/RelatedPosts.astro';
+import BreadcrumbSchema from '../../../components/schema/BreadcrumbSchema.astro';
+import ArticleSchema from '../../../components/schema/ArticleSchema.astro';
+import OrganizationSchema from '../../../components/schema/OrganizationSchema.astro';
+import { getCollection, render } from 'astro:content';
+import { t, getPath } from '../../../i18n';
+import { slugify } from '../../../lib/slugify';
+
+const lang = 'tr';
+const strings = t(lang);
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', (e) => e.id.startsWith('fr/'));
+  return posts.map((post) => {
+    const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
+    return { params: { slug }, props: { post } };
+  });
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
+
+const allPosts = await getCollection('blog', (e) => e.id.startsWith('fr/'));
+const related = allPosts
+  .filter((p) => p.id !== post.id)
+  .filter((p) => p.data.tags.some((tag) => post.data.tags.includes(tag)))
+  .slice(0, 3)
+  .map((p) => ({
+    title: p.data.title,
+    description: p.data.description,
+    image: p.data.image,
+    categories: p.data.categories,
+    slug: p.data.slug ?? p.id.split('/').slice(1).join('/'),
+  }));
+
+// Find the equivalent article in every other language via translationId,
+// so canonical/hreflang tags and the language switcher point to the
+// correct (possibly differently-slugged) translated URL.
+const allLangs = ['en', 'fr', 'ar', 'th'];
+const alternates: Record<string, string> = {};
+for (const l of allLangs) {
+  const postsInLang = l === lang ? allPosts : await getCollection('blog', (e) => e.id.startsWith(`${l}/`));
+  const match = postsInLang.find((p) => p.data.translationId === post.data.translationId);
+  if (match) {
+    const slugL = match.data.slug ?? match.id.split('/').slice(1).join('/');
+    alternates[l] = `/blog/${slugL}/`;
+  }
+}
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+const pageUrl = siteUrl + getPath(lang, `/blog/${slug}/`);
+const logoUrl = `${siteUrl}${base}logo.svg`;
+const absImage = post.data.image
+  ? (post.data.image.startsWith('http') ? post.data.image : siteUrl + base + post.data.image.replace(/^\/+/, ''))
+  : undefined;
+
+const breadcrumbItems = [
+  { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
+  { name: strings.blog.listingTitle, url: siteUrl + getPath(lang, '/blog/') },
+  { name: post.data.title, url: pageUrl },
+];
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${post.data.title} — ${strings.site.name}`}
+  description={post.data.description}
+  path={`/blog/${slug}/`}
+  alternates={alternates}
+  availableLangs={Object.keys(alternates)}
+  image={post.data.image}
+>
+  <article class="w-full max-w-[1300px] mx-auto px-5 pt-6 pb-16">
+    <!-- Title + breadcrumb -->
+    <header class="mb-1">
+      {post.data.categories.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-3">
+          {post.data.categories.map((category) => (
+            <a
+              href={getPath(lang, `/blog/category/${slugify(category)}/`)}
+              class="inline-block text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+            >
+              {category}
+            </a>
+          ))}
+        </div>
+      )}
+      <h1 class="text-[clamp(1.6rem,4vw,2.2rem)] mb-2">{post.data.title}</h1>
+      <Breadcrumb items={breadcrumbItems} />
+    </header>
+
+    <!-- Mobile-only sticky TOC dropdown (compact, right above content) -->
+    <MobileToc lang={lang} headings={headings} />
+
+    <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr_280px] gap-8 lg:gap-10 items-start lg:mt-4">
+      <!-- Left: share buttons + TOC (desktop sticky column) -->
+      <div class="hidden lg:flex lg:flex-col lg:gap-6 lg:sticky lg:top-[calc(var(--header-h)+20px)]">
+        <ShareButtons lang={lang} url={pageUrl} title={post.data.title} variant="sticky" />
+        <Sidebar lang={lang} headings={headings} />
+      </div>
+
+      <!-- Center: content -->
+      <div class="min-w-0 pt-4 lg:pt-0">
+        {post.data.image && <img class="rounded-lg mb-6 w-full aspect-video object-contain bg-surface-2" src={post.data.image} alt={post.data.title} />}
+
+        <div class="prose">
+          <Content />
+        </div>
+
+        {post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mt-6 pt-6 border-t border-border">
+            {post.data.tags.map((tag) => (
+              <a
+                href={getPath(lang, `/blog/tag/${slugify(tag)}/`)}
+                class="text-xs px-3 py-1 rounded-full bg-surface border border-border text-text-muted hover:text-text hover:border-text-muted transition-colors"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <!-- Mobile-only share row: after the article, not before -->
+        <div class="lg:hidden mt-8 pt-6 border-t border-border">
+          <p class="text-[.8rem] text-text-muted mb-3">{strings.share.label}</p>
+          <ShareButtons lang={lang} url={pageUrl} title={post.data.title} variant="inline" />
+        </div>
+      </div>
+
+      <!-- Right: ads (desktop sticky column) -->
+      <div class="hidden lg:flex lg:flex-col lg:gap-6 lg:sticky lg:top-[calc(var(--header-h)+20px)]">
+        <AdSlot />
+        <AdSlot />
+      </div>
+    </div>
+
+    <!-- Related posts: full width, outside the content grid -->
+    <RelatedPosts lang={lang} posts={related} />
+  </article>
+
+  <BreadcrumbSchema items={breadcrumbItems} />
+  <ArticleSchema
+    headline={post.data.title}
+    description={post.data.description}
+    url={pageUrl}
+    image={absImage}
+    datePublished={post.data.date}
+    siteName={strings.site.name}
+    logoUrl={logoUrl}
+    lang={lang}
+  />
+  <OrganizationSchema name={strings.site.name} siteUrl={siteUrl + base} logoUrl={logoUrl} />
+</BaseLayout>

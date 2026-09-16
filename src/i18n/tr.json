@@ -1,0 +1,73 @@
+{
+  "site": {
+    "name": "AestheticFonts",
+    "tagline": "Free Online Font Generator"
+  },
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "about": "About",
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy",
+    "blog": "Blog",
+    "madeWith": "#1 Font Generator for creating eye-catching text with 100+ unique styles. Make your words Ⓒⓞⓞⓛ, ₛₘₐₗₗ, 𝓬𝓾𝓻𝓼𝓲𝓿𝓮 and more, then copy and paste them anywhere.",
+    "follow": "Follow along"
+  },
+  "sidebar": {
+    "toc": "Table of Contents",
+    "related": "Related Posts",
+    "recent": "Recent Posts"
+  },
+  "tool": {
+    "placeholder": "Type your text here...",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "download": "Download",
+    "heading": "Font Generator",
+    "subheading": "Type below and get stylish fonts to copy-paste anywhere."
+  },
+  "blog": {
+    "listingTitle": "Blog",
+    "listingDescription": "Tips, guides and updates about fonts and typography.",
+    "readMore": "Read more",
+    "publishedOn": "Published on",
+    "allCategories": "All"
+  },
+"faq": {
+  "heading": "Frequently Asked Questions",
+  "items": [
+    {
+      "question": "How does this work?",
+      "answer": "Type an English alphabet, word, name, or sentence into the text field and the page will create several variations immediately. You can compare the results and choose the one that meets your needs."
+    },
+    {
+      "question": "Will the fonts work on Instagram?",
+      "answer": "They are suitable for places where Instagram allows Unicode characters, such as profile descriptions, captions, comments, and messages. Unicode support may differ among different Instagram fields."
+    },
+    {
+      "question": "Why do some characters appear as boxes?",
+      "answer": "A box usually means that the selected character cannot be displayed in the current environment. Try another variation that uses characters with wider device and platform support."
+    },
+    {
+      "question": "Could I use these as a name for Free Fire, BGMI or PUBG?",
+      "answer": "It depends on the restrictions of the game. Some decorative characters may be accepted while others may be rejected, so test the generated name in the game's name field before saving it."
+    },
+    {
+      "question": "Does fancy text affect accessibility or SEO?",
+      "answer": "Some assistive technologies and search systems may have difficulty interpreting decorative characters. For important information, keep the text simple and use fancy characters mainly for visual emphasis."
+    },
+    {
+      "question": "Is the generated text the same as emojis?",
+      "answer": "No. Emojis are a separate group of Unicode characters mainly designed as pictorial symbols. Fancy text can use Unicode letters, marks, symbols, or combinations of them to create different text styles."
+    }
+  ]
+},
+  "share": {
+    "label": "Share"
+  }
+}
