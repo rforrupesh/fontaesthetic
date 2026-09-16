@@ -1,16 +1,18 @@
 import en from './en.json';
 import fr from './fr.json';
 import ar from './ar.json';
+import th from './th.json';
 
 export const languages = {
   en: { label: 'English', native: 'English' },
   fr: { label: 'French', native: 'Français' },
   ar: { label: 'Arabic', native: 'العربية' },
+  th: { label: 'Thai', native: 'ไทย' },
 };
 
 export const defaultLang = 'en';
 
-export const translations = { en, fr, ar } as const;
+export const translations = { en, fr, ar, th } as const;
 
 export type Lang = keyof typeof translations;
 

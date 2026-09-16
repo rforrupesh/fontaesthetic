@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import BreadcrumbSchema from '../../../../components/schema/BreadcrumbSchema.astro';
+import CollectionPageSchema from '../../../../components/schema/CollectionPageSchema.astro';
+import OrganizationSchema from '../../../../components/schema/OrganizationSchema.astro';
+import { getCollection } from 'astro:content';
+import { t, getPath } from '../../../../i18n';
+import { slugify } from '../../../../lib/slugify';
+
+const lang = 'th';
+const strings = t(lang);
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', (e) => e.id.startsWith('th/'));
+  // Group original category text by its lowercase URL slug, so "Guides"
+  // and "guides" collapse to one /blog/category/guides/ page. A post can
+  // belong to multiple categories, same as tags.
+  const slugToCategory = new Map<string, string>();
+  posts.forEach((p) => p.data.categories.forEach((category) => {
+    const slug = slugify(category);
+    if (!slugToCategory.has(slug)) slugToCategory.set(slug, category);
+  }));
+
+  return Array.from(slugToCategory.entries()).map(([slug, category]) => ({
+    params: { category: slug },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+
+const allPosts = await getCollection('blog', (e) => e.id.startsWith('th/'));
+
+const posts = allPosts
+  .filter((p) => p.data.categories.some((c) => slugify(c) === slugify(category)))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Unique categories (by slug) across all posts, for the filter bar.
+const slugToCategory = new Map<string, string>();
+allPosts.forEach((p) => p.data.categories.forEach((c) => {
+  const s = slugify(c);
+  if (!slugToCategory.has(s)) slugToCategory.set(s, c);
+}));
+const categories = Array.from(slugToCategory.entries());
+
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+const pageUrl = siteUrl + getPath(lang, `/blog/category/${slugify(category)}/`);
+const logoUrl = `${siteUrl}${base}logo.svg`;
+const title = category;
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${title} — ${strings.blog.listingTitle} — ${strings.site.name}`}
+  description={strings.blog.listingDescription}
+  path={`/blog/category/${slugify(category)}/`}
+  availableLangs={[lang]}
+>
+  <section class="wrap py-12 pb-6 text-center">
+    <h1 class="text-[clamp(1.7rem,4vw,2.2rem)]">{title}</h1>
+    <p class="text-text-muted">{strings.blog.listingDescription}</p>
+  </section>
+
+  {categories.length > 0 && (
+    <section class="wrap flex flex-wrap gap-2 justify-center pb-8">
+      <a
+        href={getPath(lang, '/blog/')}
+        class="inline-block text-[.8rem] font-medium px-3.5 py-1.5 rounded-full bg-primary/10 text-primary hover:bg-primary/20"
+      >
+        {strings.blog.allCategories}
+      </a>
+      {categories.map(([slug, c]) => (
+        <a
+          href={getPath(lang, `/blog/category/${slug}/`)}
+          class={`inline-block text-[.8rem] font-medium px-3.5 py-1.5 rounded-full ${slug === slugify(category) ? 'bg-primary text-white' : 'bg-primary/10 text-primary hover:bg-primary/20'}`}
+        >
+          {c}
+        </a>
+      ))}
+    </section>
+  )}
+
+  <section class="wrap grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 pb-12">
+    {posts.map((post) => {
+      const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
+      const postHref = getPath(lang, `/blog/${slug}/`);
+      const cat = post.data.categories[0];
+      return (
+        <div class="card overflow-hidden flex flex-col">
+          <a href={postHref} aria-label={post.data.title}>
+            {post.data.image && <img src={post.data.image} alt={post.data.title} loading="lazy" class="w-full aspect-video object-contain bg-surface-2" />}
+          </a>
+          <div class="p-5 pb-6">
+            {cat && (
+              <a
+                href={getPath(lang, `/blog/category/${slugify(cat)}/`)}
+                class="inline-block text-[.7rem] font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary mb-2 hover:bg-primary/20"
+              >
+                {cat}
+              </a>
+            )}
+            <h2 class="text-[1.05rem] mb-2">
+              <a href={postHref} class="hover:text-primary">{post.data.title}</a>
+            </h2>
+            <p class="text-[.88rem] text-text-muted mb-0">{post.data.description}</p>
+          </div>
+        </div>
+      );
+    })}
+  </section>
+
+  <BreadcrumbSchema
+    items={[
+      { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
+      { name: strings.blog.listingTitle, url: siteUrl + getPath(lang, '/blog/') },
+      { name: title, url: pageUrl },
+    ]}
+  />
+  <CollectionPageSchema
+    name={`${title} — ${strings.blog.listingTitle}`}
+    description={strings.blog.listingDescription}
+    url={pageUrl}
+    lang={lang}
+  />
+  <OrganizationSchema name={strings.site.name} siteUrl={siteUrl + base} logoUrl={logoUrl} />
+</BaseLayout>

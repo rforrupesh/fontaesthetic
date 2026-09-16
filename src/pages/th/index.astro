@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FontTool from '../../components/FontTool.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { t, getPath } from '../../i18n';
+
+const lang = 'th';
+const strings = t(lang);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+const pageUrl = siteUrl + getPath(lang, '/');
+const logoUrl = `${siteUrl}${base}logo.svg`;
+---
+
+<BaseLayout
+  lang={lang}
+  title="สร้างฟอนต์สวยๆ ฟรี — ชื่อเท่ๆ ตัวอักษรลายมือ พร้อมคัดลอก"
+  description="เปลี่ยนข้อความหรือชื่อธรรมดาให้เป็นฟอนต์สวยงามและทันสมัยด้วยเครื่องมือสร้างฟอนต์ออนไลน์ฟรี พิมพ์แล้วคัดลอกไปใช้ได้ทันที"
+  path="/"
+>
+
+  <FontTool lang={lang} />
+
+<article class="prose wrap max-w-[820px] mx-auto py-10">
+
+  <h2 class="text-3xl sm:text-4xl font-bold text-text leading-tight mb-6">
+    สร้างฟอนต์สวยๆ และชื่อเท่ๆ พร้อมคัดลอกใช้งานได้ทันที
+  </h2>
+
+  <p>
+    กำลังมองหาวิธี <strong>สร้างฟอนต์สวยๆ</strong> ให้ชื่อหรือข้อความของคุณดูโดดเด่นอยู่ใช่ไหม?
+    ด้วยเครื่องมือสร้างฟอนต์นี้ คุณสามารถเปลี่ยนชื่อหรือคำภาษาอังกฤษธรรมดาให้กลายเป็น
+    <strong>ฟอนต์และชื่อสไตล์สวยงาม</strong> ได้ภายในไม่กี่วินาที
+  </p>
+
+  <p>
+    เพียงพิมพ์ชื่อหรือข้อความที่ต้องการลงในช่องด้านบน แล้วระบบจะแสดงรูปแบบต่าง ๆ
+    ให้คุณเลือกดูและคัดลอกได้ทันที เหมาะสำหรับใช้ในโปรไฟล์โซเชียลมีเดีย เกม ไบโอ
+    แคปชัน ข้อความ และอื่น ๆ อีกมากมาย
+  </p>
+
+  <h2>ฟอนต์สวยคืออะไร?</h2>
+
+  <p>
+    <strong>ฟอนต์สวย</strong> คือการเปลี่ยนตัวอักษรภาษาอังกฤษธรรมดาให้เป็นรูปแบบต่าง ๆ
+    โดยใช้อักขระและสัญลักษณ์ยูนิโค้ด แทนที่จะพิมพ์แบบธรรมดา เช่น:
+  </p>
+
+  <div class="not-prose my-6 rounded-xl bg-surface-2 p-5 text-center text-xl font-medium text-text">
+    Alex
+  </div>
+
+  <p>คุณสามารถได้รูปแบบต่าง ๆ เช่น:</p>
+
+  <div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-3 my-6">
+    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">𝐀𝐥𝐞𝐱</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">𝑨𝒍𝒆𝒙</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">𝓐𝓵𝓮𝔁</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">𝔄𝔩𝔢𝔵</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">Ａｌｅｘ</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">Ⓐⓛⓔⓧ</div>
+  </div>
+
+  <h2>ตั้งชื่อเท่ๆ ในเกม</h2>
+
+  <p>
+    ผู้เล่นเกมจำนวนมากมองหา <strong>ชื่อเท่ๆ</strong> สำหรับ Free Fire, PUBG, BGMI
+    หรือเกมอื่น ๆ เพื่อให้ชื่อในเกมโดดเด่นไม่ซ้ำใคร ลองใช้สัญลักษณ์และกรอบตกแต่ง
+    เพื่อสร้างชื่อที่มีเอกลักษณ์เฉพาะตัว
+  </p>
+
+  <div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-3 my-6">
+    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">꧁𝑲𝒊𝒏𝒈꧂</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">★彡𝑺𝒉𝒂𝒅𝒐𝒘彡★</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">『𝑾𝒂𝒓𝒓𝒊𝒐𝒓』</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm text-center text-xl">⚡𝑭𝒊𝒓𝒆⚡</div>
+  </div>
+
+  <p>
+    อย่างไรก็ตาม บางเกมอาจไม่รองรับสัญลักษณ์หรืออักขระตกแต่งทุกแบบ
+    ควรทดลองตั้งชื่อในเกมก่อนบันทึกจริงเสมอ
+  </p>
+
+  <h2>สไตล์ตัวอักษรยอดนิยม</h2>
+
+  <div class="not-prose grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 my-6">
+    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวหนา</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวเอียง</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm">ลายมือ</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm">Fraktur</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm">ข้อความฟองสบู่</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวอักษรในกรอบ</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm">ข้อความกว้าง</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวพิมพ์เล็กจิ๋ว</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวยก</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm">ตัวห้อย</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm">ขีดฆ่า</div>
+    <div class="bg-surface p-4 rounded-lg shadow-sm">ขีดเส้นใต้</div>
+  </div>
+
+  <h2>ใช้งานได้อย่างไม่ต้องติดตั้งอะไร</h2>
+
+  <div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+    <div class="bg-surface p-5 rounded-lg shadow-sm">
+      <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3 rounded-lg text-primary font-bold">1</div>
+      <h3 class="text-base font-semibold text-text mb-1">พิมพ์ข้อความ</h3>
+      <p class="text-sm text-text-muted">พิมพ์ชื่อหรือข้อความที่ต้องการลงในช่องกรอกข้อมูล</p>
+    </div>
+    <div class="bg-surface p-5 rounded-lg shadow-sm">
+      <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3 rounded-lg text-primary font-bold">2</div>
+      <h3 class="text-base font-semibold text-text mb-1">ดูผลลัพธ์</h3>
+      <p class="text-sm text-text-muted">เลื่อนดูสไตล์ต่าง ๆ ที่สร้างขึ้นและเลือกแบบที่ชอบ</p>
+    </div>
+    <div class="bg-surface p-5 rounded-lg shadow-sm">
+      <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3 rounded-lg text-primary font-bold">3</div>
+      <h3 class="text-base font-semibold text-text mb-1">เลือกสไตล์</h3>
+      <p class="text-sm text-text-muted">เลือกฟอนต์ที่ถูกใจที่สุด</p>
+    </div>
+    <div class="bg-surface p-5 rounded-lg shadow-sm">
+      <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3 rounded-lg text-primary font-bold">4</div>
+      <h3 class="text-base font-semibold text-text mb-1">คัดลอกและวาง</h3>
+      <p class="text-sm text-text-muted">คัดลอกข้อความและนำไปใช้ในที่ที่ต้องการได้เลย</p>
+    </div>
+  </div>
+
+  <h2>ใช้ได้ทุกแพลตฟอร์ม</h2>
+
+  <p>
+    ฟอนต์ยูนิโค้ดเหล่านี้ใช้ได้กับ Instagram, WhatsApp, Facebook, TikTok, Discord,
+    Twitter/X และแพลตฟอร์มอื่น ๆ ที่รองรับการวางข้อความธรรมดา
+    แต่การรองรับสัญลักษณ์อาจแตกต่างกันไปในแต่ละแพลตฟอร์มและอุปกรณ์
+  </p>
+
+</article>
+
+  <FaqSection lang={lang} />
+  <SchemaOrg lang={lang} pageUrl={pageUrl} siteUrl={siteUrl + base} logoUrl={logoUrl} />
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { t } from '../../i18n';
+const strings = t('th');
+
+const features = [
+  { title: 'ไม่ต้องสมัครสมาชิก', text: 'เปิดหน้าเว็บแล้วเริ่มพิมพ์ได้เลย ไม่ต้องมีบัญชี ไม่ต้องดาวน์โหลด' },
+  { title: 'ใช้ได้ทุกที่', text: 'วางบน Instagram, WhatsApp, Discord, Twitter/X และอื่น ๆ' },
+  { title: 'ฟรี 100%', text: 'ไม่มีค่าใช้จ่ายแอบแฝง ไม่มีแพ็กเกจพรีเมียม' },
+];
+---
+<BaseLayout lang="th" title={`เกี่ยวกับเรา — ${strings.site.name}`} description="ทำความรู้จัก AestheticFonts เครื่องมือสร้างฟอนต์ออนไลน์ฟรี" path="/about/">
+  <PageHero
+    title="เกี่ยวกับเรา"
+    subtitle="เครื่องมือสร้างฟอนต์ออนไลน์ฟรีที่เปลี่ยนข้อความธรรมดาของคุณให้เป็นฟอนต์ยูนิโค้ดสวยงาม พร้อมคัดลอกไปวางได้ทุกที่"
+  />
+
+  <section class="wrap py-10 max-w-[820px] mx-auto">
+    <div class="grid sm:grid-cols-3 gap-5 mb-8">
+      {features.map((f) => (
+        <div class="card p-5">
+          <div class="w-8 h-8 rounded-md bg-primary/15 text-primary flex items-center justify-center mb-3">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+          </div>
+          <h3 class="text-[1.02rem] mb-1.5">{f.title}</h3>
+          <p class="text-text-muted text-[.9rem] m-0">{f.text}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-text-muted text-center max-w-[560px] mx-auto">
+      สร้างขึ้นสำหรับครีเอเตอร์ นักการตลาด และทุกคนที่อยากให้ข้อความของตัวเองโดดเด่นกว่าใคร
+    </p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import BreadcrumbSchema from '../../../../components/schema/BreadcrumbSchema.astro';
+import CollectionPageSchema from '../../../../components/schema/CollectionPageSchema.astro';
+import OrganizationSchema from '../../../../components/schema/OrganizationSchema.astro';
+import { getCollection } from 'astro:content';
+import { t, getPath } from '../../../../i18n';
+import { slugify } from '../../../../lib/slugify';
+
+const lang = 'th';
+const strings = t(lang);
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', (e) => e.id.startsWith('th/'));
+  // Group original tag text by its lowercase URL slug, so "Fonts" and
+  // "fonts" collapse to one /blog/tag/fonts/ page and the URL is always
+  // lowercase regardless of how the tag was capitalized in frontmatter.
+  const slugToTag = new Map<string, string>();
+  posts.forEach((p) => p.data.tags.forEach((tag) => {
+    const slug = slugify(tag);
+    if (!slugToTag.has(slug)) slugToTag.set(slug, tag);
+  }));
+
+  return Array.from(slugToTag.entries()).map(([slug, tag]) => ({
+    params: { tag: slug },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+
+const posts = (await getCollection('blog', (e) => e.id.startsWith('th/')))
+  .filter((p) => p.data.tags.some((t) => slugify(t) === slugify(tag)))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+const pageUrl = siteUrl + getPath(lang, `/blog/tag/${slugify(tag)}/`);
+const logoUrl = `${siteUrl}${base}logo.svg`;
+const title = `#${tag}`;
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${title} — ${strings.blog.listingTitle} — ${strings.site.name}`}
+  description={strings.blog.listingDescription}
+  path={`/blog/tag/${slugify(tag)}/`}
+  availableLangs={[lang]}
+>
+  <section class="wrap py-12 pb-6 text-center">
+    <h1 class="text-[clamp(1.7rem,4vw,2.2rem)]">{title}</h1>
+    <p class="text-text-muted">{strings.blog.listingDescription}</p>
+  </section>
+
+  <section class="wrap grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 pb-12">
+    {posts.map((post) => {
+      const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
+      return (
+        <a class="card overflow-hidden flex flex-col" href={getPath(lang, `/blog/${slug}/`)}>
+          {post.data.image && <img src={post.data.image} alt={post.data.title} loading="lazy" class="w-full aspect-video object-contain bg-surface-2" />}
+          <div class="p-5 pb-6">
+            {post.data.categories.length > 0 && (
+              <span class="inline-block text-[.7rem] font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary mb-2">
+                {post.data.categories[0]}
+              </span>
+            )}
+            <h2 class="text-[1.05rem] mb-2">{post.data.title}</h2>
+            <p class="text-[.88rem] text-text-muted mb-0">{post.data.description}</p>
+          </div>
+        </a>
+      );
+    })}
+  </section>
+
+  <BreadcrumbSchema
+    items={[
+      { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
+      { name: strings.blog.listingTitle, url: siteUrl + getPath(lang, '/blog/') },
+      { name: title, url: pageUrl },
+    ]}
+  />
+  <CollectionPageSchema
+    name={`${title} — ${strings.blog.listingTitle}`}
+    description={strings.blog.listingDescription}
+    url={pageUrl}
+    lang={lang}
+  />
+  <OrganizationSchema name={strings.site.name} siteUrl={siteUrl + base} logoUrl={logoUrl} />
+</BaseLayout>
