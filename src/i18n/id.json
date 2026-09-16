@@ -1,0 +1,73 @@
+{
+  "site": {
+    "name": "AestheticFonts",
+    "tagline": "Generator Font Online Gratis"
+  },
+  "nav": {
+    "home": "Beranda",
+    "blog": "Blog",
+    "about": "Tentang",
+    "contact": "Kontak"
+  },
+  "footer": {
+    "rights": "Semua hak dilindungi.",
+    "about": "Tentang",
+    "contact": "Hubungi Kami",
+    "privacy": "Kebijakan Privasi",
+    "blog": "Blog",
+    "madeWith": "Generator Font #1 untuk membuat teks menarik dengan 100+ gaya unik. Jadikan tulisanmu Ⓒⓞⓞⓛ, ₛₘₐₗₗ, 𝓬𝓾𝓻𝓼𝓲𝓿𝓮 dan lainnya, lalu salin dan tempel di mana saja.",
+    "follow": "Ikuti kami"
+  },
+  "sidebar": {
+    "toc": "Daftar Isi",
+    "related": "Postingan Terkait",
+    "recent": "Postingan Terbaru"
+  },
+  "tool": {
+    "placeholder": "Ketik teksmu di sini...",
+    "copy": "Salin",
+    "copied": "Tersalin!",
+    "download": "Unduh",
+    "heading": "Generator Font",
+    "subheading": "Ketik di bawah ini dan dapatkan font kece untuk disalin-tempel di mana saja."
+  },
+  "blog": {
+    "listingTitle": "Blog",
+    "listingDescription": "Tips, panduan, dan info terbaru seputar font dan tipografi.",
+    "readMore": "Baca selengkapnya",
+    "publishedOn": "Dipublikasikan pada",
+    "allCategories": "Semua"
+  },
+  "faq": {
+    "heading": "Pertanyaan yang Sering Diajukan",
+    "items": [
+      {
+        "question": "Bagaimana cara kerjanya?",
+        "answer": "Ketik huruf, kata, nama, atau kalimat ke dalam kolom teks dan halaman akan langsung membuat beberapa variasi. Kamu bisa membandingkan hasilnya dan memilih yang sesuai kebutuhanmu."
+      },
+      {
+        "question": "Apakah font ini berfungsi di Instagram?",
+        "answer": "Font ini cocok untuk tempat yang mendukung karakter Unicode di Instagram, seperti deskripsi profil, keterangan, komentar, dan pesan. Dukungan Unicode bisa berbeda-beda di setiap kolom Instagram."
+      },
+      {
+        "question": "Kenapa beberapa karakter muncul sebagai kotak?",
+        "answer": "Kotak biasanya berarti karakter yang dipilih tidak bisa ditampilkan di perangkat atau lingkunganmu saat ini. Coba variasi lain yang menggunakan karakter dengan dukungan perangkat dan platform yang lebih luas."
+      },
+      {
+        "question": "Bisakah saya gunakan ini sebagai nama di Free Fire, BGMI, atau PUBG?",
+        "answer": "Tergantung pada batasan game tersebut. Beberapa karakter dekoratif mungkin diterima sementara yang lain ditolak, jadi uji dulu nama yang dihasilkan di kolom nama game sebelum menyimpannya."
+      },
+      {
+        "question": "Apakah teks unik ini memengaruhi aksesibilitas atau SEO?",
+        "answer": "Beberapa teknologi bantu dan sistem pencarian mungkin kesulitan membaca karakter dekoratif. Untuk informasi penting, gunakan teks sederhana dan pakai teks unik terutama untuk penekanan visual."
+      },
+      {
+        "question": "Apakah teks unik ini sama dengan emoji?",
+        "answer": "Tidak. Emoji adalah kelompok karakter Unicode terpisah yang dirancang terutama sebagai simbol bergambar. Teks unik bisa menggunakan huruf, tanda, simbol Unicode, atau kombinasinya untuk membuat berbagai gaya teks."
+      }
+    ]
+  },
+  "share": {
+    "label": "Bagikan"
+  }
+}
