@@ -98,5 +98,17 @@ const [xDefaultLang, xDefaultPath] = resolvedAlternates[defaultLang]
       <slot />
     </main>
     <Footer lang={lang} alternates={resolvedAlternates} availableLangs={availableLangs} />
+
+    <script is:inline define:vars={{ base }}>
+      // Registers the service worker that caches static assets and pages
+      // so repeat visits (and full page navigations) load instantly from
+      // the browser instead of hitting the network every time. It runs
+      // after 'load' so it never competes with this page's own loading.
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register(`${base}sw.js`, { scope: base });
+        });
+      }
+    </script>
   </body>
 </html>
