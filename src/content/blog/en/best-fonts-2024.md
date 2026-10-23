@@ -16,7 +16,7 @@ Every year a few font styles <a href="https://www.w3schools.com/">Visit W3School
 
 ## 1. Bold Serif
 
-Clean and confident — great for headings and bios that need to stand out immediately.
+Clean and  out immediately.
 
 ## 2. Bubble Text
 
