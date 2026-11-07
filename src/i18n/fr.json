@@ -41,36 +41,43 @@
     "updatedOn": "Mis à jour le",
     "allCategories": "Tout"
   },
-"faq": {
-  "heading": "Questions fréquemment posées",
-  "items": [
-    {
-      "question": "Comment cela fonctionne-t-il ?",
-      "answer": "Saisissez une lettre de l’alphabet anglais, un mot, un nom ou une phrase dans le champ de texte. La page crée alors plusieurs variantes immédiatement. Vous pouvez comparer les résultats et choisir celui qui vous convient."
-    },
-    {
-      "question": "Les polices fonctionneront-elles sur Instagram ?",
-      "answer": "Elles peuvent être utilisées dans les endroits où Instagram accepte les caractères Unicode, comme les descriptions de profil, les légendes, les commentaires et les messages. La prise en charge d’Unicode peut varier selon les champs d’Instagram."
-    },
-    {
-      "question": "Pourquoi certains caractères apparaissent-ils sous forme de carrés ?",
-      "answer": "Un carré signifie généralement que le caractère sélectionné ne peut pas être affiché dans l’environnement utilisé. Essayez une autre variante avec des caractères mieux pris en charge par les appareils et les plateformes."
-    },
-    {
-      "question": "Puis-je utiliser ces caractères comme nom dans Free Fire, BGMI ou PUBG ?",
-      "answer": "Cela dépend des restrictions du jeu. Certains caractères décoratifs peuvent être acceptés tandis que d’autres peuvent être refusés. Testez donc le nom généré dans le champ prévu à cet effet avant de l’enregistrer."
-    },
-    {
-      "question": "Le texte décoratif affecte-t-il l’accessibilité ou le SEO ?",
-      "answer": "Certains outils d’assistance et moteurs de recherche peuvent avoir plus de difficulté à interpréter les caractères décoratifs. Pour les informations importantes, il est préférable de garder un texte simple et d’utiliser les caractères décoratifs principalement pour attirer l’attention."
-    },
-    {
-      "question": "Le texte généré est-il identique aux emojis ?",
-      "answer": "Non. Les emojis constituent un groupe distinct de caractères Unicode principalement conçus comme des symboles graphiques. Le texte décoratif peut utiliser des lettres, des signes, des symboles Unicode ou une combinaison de ceux-ci pour créer différents styles."
-    }
-  ]
-},
+  "faq": {
+    "heading": "Questions fréquemment posées",
+    "items": [
+      {
+        "question": "Comment cela fonctionne-t-il ?",
+        "answer": "Saisissez une lettre de l’alphabet anglais, un mot, un nom ou une phrase dans le champ de texte. La page crée alors plusieurs variantes immédiatement. Vous pouvez comparer les résultats et choisir celui qui vous convient."
+      },
+      {
+        "question": "Les polices fonctionneront-elles sur Instagram ?",
+        "answer": "Elles peuvent être utilisées dans les endroits où Instagram accepte les caractères Unicode, comme les descriptions de profil, les légendes, les commentaires et les messages. La prise en charge d’Unicode peut varier selon les champs d’Instagram."
+      },
+      {
+        "question": "Pourquoi certains caractères apparaissent-ils sous forme de carrés ?",
+        "answer": "Un carré signifie généralement que le caractère sélectionné ne peut pas être affiché dans l’environnement utilisé. Essayez une autre variante avec des caractères mieux pris en charge par les appareils et les plateformes."
+      },
+      {
+        "question": "Puis-je utiliser ces caractères comme nom dans Free Fire, BGMI ou PUBG ?",
+        "answer": "Cela dépend des restrictions du jeu. Certains caractères décoratifs peuvent être acceptés tandis que d’autres peuvent être refusés. Testez donc le nom généré dans le champ prévu à cet effet avant de l’enregistrer."
+      },
+      {
+        "question": "Le texte décoratif affecte-t-il l’accessibilité ou le SEO ?",
+        "answer": "Certains outils d’assistance et moteurs de recherche peuvent avoir plus de difficulté à interpréter les caractères décoratifs. Pour les informations importantes, il est préférable de garder un texte simple et d’utiliser les caractères décoratifs principalement pour attirer l’attention."
+      },
+      {
+        "question": "Le texte généré est-il identique aux emojis ?",
+        "answer": "Non. Les emojis constituent un groupe distinct de caractères Unicode principalement conçus comme des symboles graphiques. Le texte décoratif peut utiliser des lettres, des signes, des symboles Unicode ou une combinaison de ceux-ci pour créer différents styles."
+      }
+    ]
+  },
   "share": {
     "label": "Partager"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "text": "La page que vous cherchez n'existe pas ou a été déplacée. Essayez le générateur de polices ou parcourez notre blog.",
+    "home": "Aller au générateur de polices",
+    "blog": "Parcourir le blog",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée."
   }
 }

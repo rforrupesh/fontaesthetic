@@ -1,28 +1,40 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { t, getPath } from '../i18n';
-const strings = t('en');
-const homeHref = getPath('en', '/');
-const blogHref = getPath('en', '/blog/');
+const lang = 'en';
+const strings = t(lang);
+const nf = strings.notFound;
 ---
 <BaseLayout
-  lang="en"
-  title={`Page not found — ${strings.site.name}`}
-  description="The page you are looking for does not exist or has been moved."
+  lang={lang}
+  title={`${nf.title} — ${strings.site.name}`}
+  description={nf.description}
   path="/404/"
-  availableLangs={['en']}
+  availableLangs={[lang]}
   noindex={true}
 >
   <section class="wrap py-20 text-center max-w-[560px] mx-auto">
     <p class="text-primary font-bold text-[clamp(3.5rem,12vw,6rem)] leading-none mb-2">404</p>
-    <h1 class="text-[clamp(1.5rem,4vw,2rem)] mb-3">Page not found</h1>
-    <p class="text-text-muted mb-8">
-      The page you are looking for doesn't exist or may have been moved.
-      Try the font generator or browse our blog instead.
-    </p>
+    <h1 class="text-[clamp(1.5rem,4vw,2rem)] mb-3">{nf.title}</h1>
+    <p class="text-text-muted mb-8">{nf.text}</p>
     <div class="flex flex-wrap gap-3 justify-center">
-      <a class="btn" href={homeHref}>Go to font generator</a>
-      <a class="btn" href={blogHref}>Browse the blog</a>
+      <a class="btn" href={getPath(lang, '/')}>{nf.home}</a>
+      <a class="btn" href={getPath(lang, '/blog/')}>{nf.blog}</a>
     </div>
   </section>
+
+  <!-- GitHub Pages serves ONE 404.html for every wrong URL. If the wrong URL was under a
+       language folder (e.g. /fontaesthetic/fr/xyz), swap in that language's 404 page
+       without changing the address bar. Falls back to this English page on any error. -->
+  <script is:inline define:vars={{ base: import.meta.env.BASE_URL }}>
+    (function () {
+      var langs = ['fr', 'ar', 'th', 'tr', 'id'];
+      var rest = location.pathname.indexOf(base) === 0 ? location.pathname.slice(base.length) : '';
+      var l = rest.split('/')[0];
+      if (langs.indexOf(l) === -1) return;
+      fetch(base + l + '/404/').then(function (r) { return r.ok ? r.text() : Promise.reject(); })
+        .then(function (html) { document.open(); document.write(html); document.close(); })
+        .catch(function () {});
+    })();
+  </script>
 </BaseLayout>

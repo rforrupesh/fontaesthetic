@@ -72,5 +72,12 @@
   },
   "share": {
     "label": "Bagikan"
+  },
+  "notFound": {
+    "title": "Halaman tidak ditemukan",
+    "text": "Halaman yang Anda cari tidak ada atau telah dipindahkan. Coba generator font atau jelajahi blog kami.",
+    "home": "Buka generator font",
+    "blog": "Jelajahi blog",
+    "description": "Halaman yang Anda cari tidak ada atau telah dipindahkan."
   }
 }
