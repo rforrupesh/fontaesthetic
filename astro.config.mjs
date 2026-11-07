@@ -13,6 +13,8 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     sitemap({
+      // tag pages are noindex, so keep them out of the sitemap
+      filter: (page) => !page.includes('/blog/tag/'),
       i18n: {
         defaultLocale: 'en',
         locales: { en: 'en-US', fr: 'fr-FR', ar: 'ar', th: 'th-TH', tr: 'tr-TR', id: 'id-ID' },
