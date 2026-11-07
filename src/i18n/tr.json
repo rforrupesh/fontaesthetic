@@ -34,6 +34,8 @@
   "blog": {
     "listingTitle": "Blog",
     "listingDescription": "Fontlar ve tipografi hakkında ipuçları, rehberler ve güncellemeler.",
+    "tagDescription": "“{name}” etiketli {count} yazı tipi makalesine göz atın: şık metinler için ipuçları, rehberler ve fikirler.",
+    "categoryDescription": "“{name}” kategorisindeki {count} yazı tipi makalesine göz atın: şık metinler için ipuçları, rehberler ve fikirler.",
     "readMore": "Devamını oku",
     "publishedOn": "Yayınlanma tarihi",
     "updatedOn": "Son güncelleme",

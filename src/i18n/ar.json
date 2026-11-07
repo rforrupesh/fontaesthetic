@@ -34,6 +34,8 @@
   "blog": {
     "listingTitle": "المدونة",
     "listingDescription": "نصائح وأدلة وتحديثات حول الخطوط والطباعة.",
+    "tagDescription": "تصفّح {count} مقال عن الخطوط بوسم «{name}»: نصائح وأدلة وأفكار لنصوص أنيقة.",
+    "categoryDescription": "تصفّح {count} مقال عن الخطوط في قسم «{name}»: نصائح وأدلة وأفكار لنصوص أنيقة.",
     "readMore": "اقرأ المزيد",
     "publishedOn": "تاريخ النشر",
     "updatedOn": "آخر تحديث",

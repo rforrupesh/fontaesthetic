@@ -34,6 +34,8 @@
   "blog": {
     "listingTitle": "Blog",
     "listingDescription": "Tips, panduan, dan info terbaru seputar font dan tipografi.",
+    "tagDescription": "Jelajahi {count} artikel font dengan tag “{name}”: tips, panduan, dan ide untuk teks yang stylish.",
+    "categoryDescription": "Jelajahi {count} artikel font di kategori “{name}”: tips, panduan, dan ide untuk teks yang stylish.",
     "readMore": "Baca selengkapnya",
     "publishedOn": "Dipublikasikan pada",
     "updatedOn": "Diperbarui pada",
