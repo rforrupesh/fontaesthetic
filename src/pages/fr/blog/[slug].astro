@@ -11,6 +11,7 @@ import ArticleSchema from '../../../components/schema/ArticleSchema.astro';
 import OrganizationSchema from '../../../components/schema/OrganizationSchema.astro';
 import { getCollection, render } from 'astro:content';
 import { t, getPath } from '../../../i18n';
+import { lastCommitDate } from '../../../lib/gitDate';
 import { slugify } from '../../../lib/slugify';
 
 const lang = 'fr';
@@ -64,11 +65,14 @@ const absImage = post.data.image
   : undefined;
 
 const datePublished = post.data.date;
-// Only treat as "updated" if an `updated` date exists and is actually later than the publish date.
-const dateModified = post.data.updated && post.data.updated > datePublished ? post.data.updated : undefined;
+// Last modified = latest of: the last git commit touching this file (automatic on every push)
+// and an optional manual `updated:` in frontmatter. Falls back to the publish date.
+const gitDate = lastCommitDate(post.filePath);
+const candidates = [post.data.updated, gitDate].filter((d): d is Date => !!d);
+const dateModified = candidates.length ? new Date(Math.max(...candidates.map((d) => d.valueOf()))) : undefined;
 const fmtDate = (d: Date) =>
-  new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(d);
-const isoDay = (d: Date) => d.toISOString().slice(0, 10);
+  new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kolkata' }).format(d);
+const isoDay = (d: Date) => d.toISOString();
 
 const breadcrumbItems = [
   { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
@@ -106,11 +110,10 @@ const breadcrumbItems = [
         </div>
       )}
       <h1 class="text-[clamp(1.6rem,4vw,2.2rem)] mb-2">{post.data.title}</h1>
-      <p class="flex flex-wrap gap-x-4 gap-y-1 text-[.85rem] text-text-muted mb-3">
-        <span>{strings.blog.publishedOn} <time datetime={isoDay(datePublished)}>{fmtDate(datePublished)}</time></span>
-        {dateModified && (
-          <span>{strings.blog.updatedOn} <time datetime={isoDay(dateModified)}>{fmtDate(dateModified)}</time></span>
-        )}
+      <p class="text-[.85rem] text-text-muted mb-3">
+        {dateModified
+          ? <>{strings.blog.updatedOn} <time datetime={isoDay(dateModified)}>{fmtDate(dateModified)}</time></>
+          : <>{strings.blog.publishedOn} <time datetime={isoDay(datePublished)}>{fmtDate(datePublished)}</time></>}
       </p>
       <Breadcrumb items={breadcrumbItems} />
     </header>
