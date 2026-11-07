@@ -19,6 +19,7 @@ interface Props {
   publishedTime?: Date;
   modifiedTime?: Date;
   tags?: string[];
+  noindex?: boolean;
 }
 
 const {
@@ -33,6 +34,7 @@ const {
   publishedTime,
   modifiedTime,
   tags = [],
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
@@ -85,7 +87,7 @@ const [xDefaultLang, xDefaultPath] = resolvedAlternates[defaultLang]
     ))}
     <link rel="alternate" hreflang="x-default" href={absoluteUrl(xDefaultLang, xDefaultPath)} />
 
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
 
     <meta property="og:site_name" content={strings.site.name} />
     <meta property="og:locale" content={ogLocales[lang] ?? 'en_US'} />

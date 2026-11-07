@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { t, getPath } from '../i18n';
+const strings = t('en');
+const homeHref = getPath('en', '/');
+const blogHref = getPath('en', '/blog/');
+---
+<BaseLayout
+  lang="en"
+  title={`Page not found — ${strings.site.name}`}
+  description="The page you are looking for does not exist or has been moved."
+  path="/404/"
+  availableLangs={['en']}
+  noindex={true}
+>
+  <section class="wrap py-20 text-center max-w-[560px] mx-auto">
+    <p class="text-primary font-bold text-[clamp(3.5rem,12vw,6rem)] leading-none mb-2">404</p>
+    <h1 class="text-[clamp(1.5rem,4vw,2rem)] mb-3">Page not found</h1>
+    <p class="text-text-muted mb-8">
+      The page you are looking for doesn't exist or may have been moved.
+      Try the font generator or browse our blog instead.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a class="btn" href={homeHref}>Go to font generator</a>
+      <a class="btn" href={blogHref}>Browse the blog</a>
+    </div>
+  </section>
+</BaseLayout>
