@@ -119,11 +119,38 @@ const [xDefaultLang, xDefaultPath] = resolvedAlternates[defaultLang]
     </script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">{strings.a11y.skipToContent}</a>
     <Navbar lang={lang} alternates={resolvedAlternates} availableLangs={availableLangs} />
-    <main>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
     <Footer lang={lang} alternates={resolvedAlternates} availableLangs={availableLangs} />
+
+    <button type="button" id="back-to-top" class="back-to-top" aria-label={strings.a11y.backToTop} title={strings.a11y.backToTop} hidden>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg>
+    </button>
+    <script is:inline>
+      (function () {
+        var btn = document.getElementById('back-to-top');
+        if (!btn) return;
+        var ticking = false;
+        function update() {
+          var show = window.scrollY > 500;
+          if (show) { btn.hidden = false; requestAnimationFrame(function () { btn.classList.add('is-visible'); }); }
+          else { btn.classList.remove('is-visible'); }
+          ticking = false;
+        }
+        window.addEventListener('scroll', function () {
+          if (!ticking) { ticking = true; requestAnimationFrame(update); }
+        }, { passive: true });
+        btn.addEventListener('transitionend', function () { if (!btn.classList.contains('is-visible')) btn.hidden = true; });
+        btn.addEventListener('click', function () {
+          var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+        });
+        update();
+      })();
+    </script>
 
     <script is:inline define:vars={{ base }}>
       // Registers the service worker that caches static assets and pages

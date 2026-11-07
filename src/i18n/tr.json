@@ -79,5 +79,9 @@
     "home": "Yazı tipi oluşturucuya git",
     "blog": "Blogu keşfet",
     "description": "Aradığınız sayfa mevcut değil veya taşınmış."
+  },
+  "a11y": {
+    "skipToContent": "İçeriğe geç",
+    "backToTop": "Başa dön"
   }
 }

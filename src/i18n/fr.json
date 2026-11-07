@@ -79,5 +79,9 @@
     "home": "Aller au générateur de polices",
     "blog": "Parcourir le blog",
     "description": "La page que vous recherchez n'existe pas ou a été déplacée."
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu",
+    "backToTop": "Retour en haut"
   }
 }

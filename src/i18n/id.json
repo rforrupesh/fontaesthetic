@@ -79,5 +79,9 @@
     "home": "Buka generator font",
     "blog": "Jelajahi blog",
     "description": "Halaman yang Anda cari tidak ada atau telah dipindahkan."
+  },
+  "a11y": {
+    "skipToContent": "Langsung ke konten",
+    "backToTop": "Kembali ke atas"
   }
 }

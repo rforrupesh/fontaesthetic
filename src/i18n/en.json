@@ -79,5 +79,9 @@
     "home": "Go to font generator",
     "blog": "Browse the blog",
     "description": "The page you are looking for does not exist or has been moved."
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "backToTop": "Back to top"
   }
 }
