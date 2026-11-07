@@ -4,7 +4,7 @@ slug: "2024-en-iyi-font-stilleri"
 title: "2024'te Trend Olan En İyi Font Stilleri"
 description: "Sosyal medya ve biyografiler için bu yılın en popüler şık font trendlerinin bir derlemesi."
 date: 2024-07-02
-image: "https://rforrupesh.github.io/fontaesthetic/images/logo_aestheticfonts.webp"
+image: "/images/seo-newsletters-featured-image-1280x717.webp"
 tags: ["trendler", "fontlar"]
 categories: ["Rehberler"]
 

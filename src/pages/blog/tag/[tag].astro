@@ -1,4 +1,5 @@
 ---
+import { imgUrl } from '../../../lib/imageUrl';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import BreadcrumbSchema from '../../../components/schema/BreadcrumbSchema.astro';
 import CollectionPageSchema from '../../../components/schema/CollectionPageSchema.astro';
@@ -60,7 +61,7 @@ const title = `#${tag}`;
       const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
       return (
         <a class="card overflow-hidden flex flex-col" href={getPath(lang, `/blog/${slug}/`)}>
-          {post.data.image && <img src={post.data.image} alt={post.data.title} loading="lazy" class="w-full aspect-video object-contain bg-surface-2" />}
+          {post.data.image && <img src={imgUrl(post.data.image)} alt={post.data.title} loading="lazy" class="w-full aspect-video object-contain bg-surface-2" />}
           <div class="p-5 pb-6">
             {post.data.categories.length > 0 && (
               <span class="inline-block text-[.7rem] font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary mb-2">

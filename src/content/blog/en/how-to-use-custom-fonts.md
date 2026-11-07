@@ -5,6 +5,7 @@ title: "How to Use Custom Fonts Anywhere"
 description: "A complete guide on generating and using stylish fonts on Instagram, WhatsApp, Discord and more."
 date: 2024-06-15
 tags: ["guide", "fonts"]
+categories: ["Tips"]
 ---
 
 ## Introduction
