@@ -16,6 +16,7 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
+    updated: z.coerce.date().optional(), // set when you edit a post; shown on page + dateModified in SEO
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
     categories: z.array(z.string()).default([]),

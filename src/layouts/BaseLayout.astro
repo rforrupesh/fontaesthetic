@@ -14,6 +14,11 @@ interface Props {
   // optional: restrict which languages appear in the language switcher, for
   // pages that only exist in one language (e.g. an English-only tool page).
   availableLangs?: string[];
+  // article SEO (blog posts)
+  type?: 'website' | 'article';
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  tags?: string[];
 }
 
 const {
@@ -24,6 +29,10 @@ const {
   alternates,
   image,
   availableLangs,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  tags = [],
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
@@ -34,6 +43,11 @@ function absoluteUrl(l: string, p: string) {
 }
 
 const canonicalUrl = absoluteUrl(lang, path);
+// Images may already be absolute (https://...) -- don't prefix those.
+const ogImage = image
+  ? (/^https?:\/\//.test(image) ? image : siteUrl + base + image.replace(/^\/+/, ''))
+  : undefined;
+const ogLocales: Record<string, string> = { en: 'en_US', fr: 'fr_FR', ar: 'ar_AR', th: 'th_TH', tr: 'tr_TR', id: 'id_ID' };
 const strings = t(lang);
 
 // Build the lang -> path map used for hreflang tags AND the language
@@ -71,12 +85,22 @@ const [xDefaultLang, xDefaultPath] = resolvedAlternates[defaultLang]
     ))}
     <link rel="alternate" hreflang="x-default" href={absoluteUrl(xDefaultLang, xDefaultPath)} />
 
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+
+    <meta property="og:site_name" content={strings.site.name} />
+    <meta property="og:locale" content={ogLocales[lang] ?? 'en_US'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalUrl} />
-    {image && <meta property="og:image" content={siteUrl + base + image.replace(/^\/+/, '')} />}
-    <meta name="twitter:card" content="summary_large_image" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {type === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+    {type === 'article' && modifiedTime && <meta property="article:modified_time" content={modifiedTime.toISOString()} />}
+    {type === 'article' && tags.map((tg) => <meta property="article:tag" content={tg} />)}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
 
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
 

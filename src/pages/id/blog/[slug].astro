@@ -63,6 +63,13 @@ const absImage = post.data.image
   ? (post.data.image.startsWith('http') ? post.data.image : siteUrl + base + post.data.image.replace(/^\/+/, ''))
   : undefined;
 
+const datePublished = post.data.date;
+// Only treat as "updated" if an `updated` date exists and is actually later than the publish date.
+const dateModified = post.data.updated && post.data.updated > datePublished ? post.data.updated : undefined;
+const fmtDate = (d: Date) =>
+  new Intl.DateTimeFormat('id-ID', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(d);
+const isoDay = (d: Date) => d.toISOString().slice(0, 10);
+
 const breadcrumbItems = [
   { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
   { name: strings.blog.listingTitle, url: siteUrl + getPath(lang, '/blog/') },
@@ -78,6 +85,10 @@ const breadcrumbItems = [
   alternates={alternates}
   availableLangs={Object.keys(alternates)}
   image={post.data.image}
+  type="article"
+  publishedTime={datePublished}
+  modifiedTime={dateModified ?? datePublished}
+  tags={post.data.tags}
 >
   <article class="w-full max-w-[1300px] mx-auto px-5 pt-6 pb-16">
     <!-- Title + breadcrumb -->
@@ -95,6 +106,12 @@ const breadcrumbItems = [
         </div>
       )}
       <h1 class="text-[clamp(1.6rem,4vw,2.2rem)] mb-2">{post.data.title}</h1>
+      <p class="flex flex-wrap gap-x-4 gap-y-1 text-[.85rem] text-text-muted mb-3">
+        <span>{strings.blog.publishedOn} <time datetime={isoDay(datePublished)}>{fmtDate(datePublished)}</time></span>
+        {dateModified && (
+          <span>{strings.blog.updatedOn} <time datetime={isoDay(dateModified)}>{fmtDate(dateModified)}</time></span>
+        )}
+      </p>
       <Breadcrumb items={breadcrumbItems} />
     </header>
 
@@ -153,7 +170,8 @@ const breadcrumbItems = [
     description={post.data.description}
     url={pageUrl}
     image={absImage}
-    datePublished={post.data.date}
+    datePublished={datePublished}
+    dateModified={dateModified}
     siteName={strings.site.name}
     logoUrl={logoUrl}
     lang={lang}
