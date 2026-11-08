@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const author = getAuthor(post.data.author);
+const author = getAuthor(post.data.author, lang);
 const authorHref = getPath(lang, authorPath(post.data.author));
 const { Content, headings } = await render(post);
 const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');

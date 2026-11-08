@@ -6,7 +6,7 @@ import OrganizationSchema from '../../../../components/schema/OrganizationSchema
 import { getCollection } from 'astro:content';
 import { t, getPath } from '../../../../i18n';
 import { slugify } from '../../../../lib/slugify';
-import { authors, authorPath } from '../../../../data/authors';
+import { authors, authorPath, getAuthor } from '../../../../data/authors';
 
 const lang = 'ar';
 const strings = t(lang);
@@ -17,7 +17,7 @@ export function getStaticPaths() {
 }
 
 const { key } = Astro.props;
-const author = authors[key];
+const author = getAuthor(key, lang);
 
 const posts = (await getCollection('blog', (e) => e.id.startsWith('ar/')))
   .filter((p) => p.data.author === key)

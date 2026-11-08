@@ -118,7 +118,24 @@ author: "rupesh"
 - `bio` chhota rakho (post ke box me aata hai). Lamba bio `fullBio` me likho, wo sirf author page par dikhta hai.
 - `author: "kuch-galat"` likha to build error aayega aur batayega kaun-kaun si keys available hain.
 - Default author badalna ho to `DEFAULT_AUTHOR` ki value badlo.
-- Labels ("By", "About the author") 6 languages me translate hain (`src/i18n/*.json` ka `blog.by` aur `blog.aboutAuthor`). Author ka naam aur bio jaisa authors.ts me likha hai waisa hi har language me dikhta hai.
+- Labels ("By", "About the author", "Contributions" etc.) 6 languages me translate hain (`src/i18n/*.json`, `blog` section).
+- **Bio ko har language me likhna (SEO ke liye zaroori):** French page par English bio dikhana mixed-language content hota hai. Isliye `displayName`, `bio`, `fullBio`, `role` ko do tarah se likh sakte ho:
+
+```ts
+bio: 'Ek hi text sab languages me',          // simple
+
+bio: {                                       // language-wise (recommended)
+  en: 'English bio',
+  fr: 'Bio en français',
+  ar: '...', th: '...', tr: '...', id: '...',
+},
+fullBio: {
+  en: ['Paragraph 1', 'Paragraph 2'],
+  fr: ['Paragraphe 1', 'Paragraphe 2'],
+},
+```
+
+  Jis language ka text nahi likha, wahan English dikhta hai. Editorial Team ka bio 6 languages me already likha hua hai. Brand/naam (`displayName`) English me rakha hai taaki SEO me naam ek hi rahe, chaho to wo bhi language-wise kar sakte ho.
 
 ---
 
