@@ -30,12 +30,13 @@ const navItems = [
       </a>
 
       <!-- Desktop: single-row menu -->
-      <nav class="hidden md:flex gap-4">
+      <nav class="hidden md:flex gap-4 relative" id="desktop-nav">
         {navItems.map((item) => (
-          <a href={item.href} class="text-sm text-text-muted hover:text-text transition-colors duration-150">
+          <a href={item.href} class="nav-link text-sm text-text-muted hover:text-text transition-colors duration-150 py-1">
             {item.label}
           </a>
         ))}
+        <span id="nav-underline" aria-hidden="true"></span>
       </nav>
     </div>
 
@@ -104,4 +105,34 @@ const navItems = [
       toggle?.setAttribute('aria-expanded', 'false');
     });
   });
+
+  // Sliding underline for desktop nav
+  const nav = document.getElementById('desktop-nav');
+  const line = document.getElementById('nav-underline');
+  const links = nav ? [...nav.querySelectorAll<HTMLAnchorElement>('.nav-link')] : [];
+  const norm = (p: string) => p.replace(/\/$/, '') || '/';
+  const path = norm(location.pathname);
+  const active =
+    links.find((a) => norm(new URL(a.href).pathname) === path) ??
+    links.find((a) => { const lp = norm(new URL(a.href).pathname); return lp !== '/' && path.startsWith(lp); });
+
+  const moveTo = (el?: HTMLElement | null) => {
+    if (!line) return;
+    if (!el) { line.style.opacity = '0'; return; }
+    line.style.opacity = '1';
+    line.style.width = el.offsetWidth + 'px';
+    line.style.transform = `translateX(${el.offsetLeft}px)`;
+  };
+
+  links.forEach((a) => {
+    a.addEventListener('mouseenter', () => moveTo(a));
+    a.addEventListener('focus', () => moveTo(a));
+  });
+  nav?.addEventListener('mouseleave', () => moveTo(active));
+  nav?.addEventListener('focusout', () => moveTo(active));
+
+  active?.classList.add('!text-text');
+  moveTo(active);
+  requestAnimationFrame(() => line?.classList.add('ready'));
+  window.addEventListener('resize', () => moveTo(active));
 </script>
