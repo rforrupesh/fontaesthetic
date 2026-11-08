@@ -56,6 +56,12 @@
     "typePerson": "Author",
     "allCategories": "All"
   },
+  "theme": {
+    "label": "Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
   "faq": {
     "heading": "Frequently Asked Questions",
     "items": [

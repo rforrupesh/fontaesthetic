@@ -56,6 +56,12 @@
     "typePerson": "كاتب",
     "allCategories": "الكل"
   },
+  "theme": {
+    "label": "المظهر",
+    "system": "النظام",
+    "light": "فاتح",
+    "dark": "داكن"
+  },
   "faq": {
     "heading": "الأسئلة الشائعة",
     "items": [

@@ -56,6 +56,12 @@
     "typePerson": "Yazar",
     "allCategories": "Tümü"
   },
+  "theme": {
+    "label": "Tema",
+    "system": "Sistem",
+    "light": "Açık",
+    "dark": "Koyu"
+  },
   "faq": {
     "heading": "Sıkça Sorulan Sorular",
     "items": [

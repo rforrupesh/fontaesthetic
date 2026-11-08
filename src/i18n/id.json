@@ -56,6 +56,12 @@
     "typePerson": "Penulis",
     "allCategories": "Semua"
   },
+  "theme": {
+    "label": "Tema",
+    "system": "Sistem",
+    "light": "Terang",
+    "dark": "Gelap"
+  },
   "faq": {
     "heading": "Pertanyaan yang Sering Diajukan",
     "items": [

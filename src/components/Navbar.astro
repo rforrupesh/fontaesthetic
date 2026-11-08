@@ -40,13 +40,13 @@ const navItems = [
     </div>
 
     <div class="hidden md:flex items-center gap-2.5 shrink-0">
-      <ThemeToggle />
+      <ThemeToggle lang={lang} />
       <LanguageSwitcher lang={lang} alternates={alternates} availableLangs={availableLangs} />
     </div>
 
     <!-- Mobile: theme toggle + hamburger -->
     <div class="md:hidden flex items-center gap-2 shrink-0">
-      <ThemeToggle />
+      <ThemeToggle lang={lang} />
       <button
         id="menu-toggle"
         type="button"

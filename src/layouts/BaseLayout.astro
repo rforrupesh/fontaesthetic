@@ -108,13 +108,31 @@ const [xDefaultLang, xDefaultPath] = resolvedAlternates[defaultLang]
 
     <script is:inline>
       (function () {
-        if (!localStorage.getItem('theme-v2')) {
-          localStorage.removeItem('theme');
-          localStorage.setItem('theme-v2', '1');
+        // pref = what the user picked: 'system' (default) | 'light' | 'dark'.
+        // data-theme = what is actually shown ('light' or 'dark'), so the CSS only knows two themes.
+        var pref = 'system';
+        try {
+          if (!localStorage.getItem('theme-v2')) {
+            localStorage.removeItem('theme');
+            localStorage.setItem('theme-v2', '1');
+          }
+          var stored = localStorage.getItem('theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (e) {}
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        var root = document.documentElement;
+        function apply() {
+          root.setAttribute('data-theme-pref', pref);
+          root.setAttribute('data-theme', pref === 'system' ? (mq.matches ? 'dark' : 'light') : pref);
         }
-        const stored = localStorage.getItem('theme');
-        const theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
+        apply();
+        // In "system" mode, follow the OS when it switches (e.g. automatic night mode).
+        mq.addEventListener('change', function () { if (pref === 'system') apply(); });
+        window.__setThemePref = function (next) {
+          pref = next;
+          try { localStorage.setItem('theme', next); } catch (e) {}
+          apply();
+        };
       })();
     </script>
   </head>

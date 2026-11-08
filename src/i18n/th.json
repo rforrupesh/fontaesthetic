@@ -56,6 +56,12 @@
     "typePerson": "ผู้เขียน",
     "allCategories": "ทั้งหมด"
   },
+  "theme": {
+    "label": "ธีม",
+    "system": "ระบบ",
+    "light": "สว่าง",
+    "dark": "มืด"
+  },
   "faq": {
     "heading": "คำถามที่พบบ่อย",
     "items": [
