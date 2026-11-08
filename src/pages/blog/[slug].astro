@@ -10,6 +10,8 @@ import RelatedPosts from '../../components/RelatedPosts.astro';
 import BreadcrumbSchema from '../../components/schema/BreadcrumbSchema.astro';
 import ArticleSchema from '../../components/schema/ArticleSchema.astro';
 import OrganizationSchema from '../../components/schema/OrganizationSchema.astro';
+import AuthorBox from '../../components/AuthorBox.astro';
+import { getAuthor } from '../../data/authors';
 import { getCollection, render } from 'astro:content';
 import { t, getPath } from '../../i18n';
 import { lastCommitDate } from '../../lib/gitDate';
@@ -27,6 +29,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const author = getAuthor(post.data.author);
 const { Content, headings } = await render(post);
 const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
 
@@ -112,6 +115,7 @@ const breadcrumbItems = [
       )}
       <h1 class="text-[clamp(1.6rem,4vw,2.2rem)] mb-2">{post.data.title}</h1>
       <p class="text-[.85rem] text-text-muted mb-3">
+        <AuthorBox lang={lang} author={author} variant="byline" /> <span aria-hidden="true">·</span>{' '}
         {dateModified
           ? <>{strings.blog.updatedOn} <time datetime={isoDay(dateModified)}>{fmtDate(dateModified)}</time></>
           : <>{strings.blog.publishedOn} <time datetime={isoDay(datePublished)}>{fmtDate(datePublished)}</time></>}
@@ -150,6 +154,8 @@ const breadcrumbItems = [
           </div>
         )}
 
+        <AuthorBox lang={lang} author={author} variant="box" />
+
         <!-- Mobile-only share row: after the article, not before -->
         <div class="lg:hidden mt-8 pt-6 border-t border-border">
           <p class="text-[.8rem] text-text-muted mb-3">{strings.share.label}</p>
@@ -179,6 +185,7 @@ const breadcrumbItems = [
     siteName={strings.site.name}
     logoUrl={logoUrl}
     lang={lang}
+    author={{ displayName: author.displayName, type: author.type, url: author.url }}
   />
   <OrganizationSchema name={strings.site.name} siteUrl={siteUrl + base} logoUrl={logoUrl} />
 </BaseLayout>

@@ -9,8 +9,9 @@ interface Props {
   siteName: string;
   logoUrl: string;      // absolute, used for publisher.logo
   lang: string;
+  author?: { displayName: string; type?: string; url?: string; image?: string };
 }
-const { headline, description, url, image, datePublished, dateModified, siteName, logoUrl, lang } = Astro.props;
+const { headline, description, url, image, datePublished, dateModified, siteName, logoUrl, lang, author } = Astro.props;
 
 const article = {
   '@context': 'https://schema.org',
@@ -22,10 +23,13 @@ const article = {
   ...(image ? { image: [image] } : {}),
   datePublished: datePublished.toISOString(),
   dateModified: (dateModified ?? datePublished).toISOString(),
-  author: {
-    '@type': 'Organization',
-    name: siteName,
-  },
+  author: author
+    ? {
+        '@type': author.type ?? 'Person',
+        name: author.displayName,
+        ...(author.url ? { url: author.url } : {}),
+      }
+    : { '@type': 'Organization', name: siteName },
   publisher: {
     '@type': 'Organization',
     name: siteName,

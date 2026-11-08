@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { authors, DEFAULT_AUTHOR } from './data/authors';
 
 const blog = defineCollection({
   // Use the file path itself as the id (e.g. "en/how-to-use-fonts") instead of
@@ -20,6 +21,11 @@ const blog = defineCollection({
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
     categories: z.array(z.string()).default([]),
+    // key from src/data/authors.ts; defaults to the Editorial Team
+    author: z
+      .string()
+      .default(DEFAULT_AUTHOR)
+      .refine((k) => k in authors, { message: `Unknown author. Add it to src/data/authors.ts. Known: ${Object.keys(authors).join(', ')}` }),
   }),
 });
 

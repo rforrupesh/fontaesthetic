@@ -1,0 +1,28 @@
+---
+import { t } from '../i18n';
+import { imgUrl } from '../lib/imageUrl';
+import type { Author } from '../data/authors';
+
+interface Props { lang: string; author: Author; variant?: 'byline' | 'box'; }
+const { lang, author, variant = 'box' } = Astro.props;
+const strings = t(lang);
+const avatar = imgUrl(author.image);
+const initials = author.displayName.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
+---
+
+{variant === 'byline' ? (
+  <span>{strings.blog.by} <span class="font-medium text-text" rel="author">{author.displayName}</span></span>
+) : (
+  <aside class="mt-8 pt-6 border-t border-border" aria-label={strings.blog.aboutAuthor}>
+    <div class="card flex items-start gap-4 p-4">
+      {avatar
+        ? <img src={avatar} alt="" width="56" height="56" loading="lazy" class="w-14 h-14 rounded-full object-cover bg-surface-2 shrink-0" />
+        : <div class="w-14 h-14 rounded-full bg-surface-2 text-text-muted flex items-center justify-center font-semibold shrink-0" aria-hidden="true">{initials}</div>}
+      <div class="min-w-0">
+        <p class="text-[.72rem] uppercase tracking-wide text-text-muted mb-0.5">{strings.blog.aboutAuthor}</p>
+        <p class="font-semibold mb-1">{author.displayName}</p>
+        <p class="text-[.9rem] text-text-muted leading-relaxed">{author.bio}</p>
+      </div>
+    </div>
+  </aside>
+)}
