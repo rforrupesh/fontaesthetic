@@ -28,7 +28,7 @@ const nf = strings.notFound;
        without changing the address bar. Falls back to this English page on any error. -->
   <script is:inline define:vars={{ base: import.meta.env.BASE_URL }}>
     (function () {
-      var langs = ['fr', 'ar', 'th', 'tr', 'id'];
+      var langs = ['fr', 'ar', 'th', 'tr', 'id', 'vi', 'pl', 'es', 'it', 'ja', 'de', 'pt'];
       var rest = location.pathname.indexOf(base) === 0 ? location.pathname.slice(base.length) : '';
       var l = rest.split('/')[0];
       if (langs.indexOf(l) === -1) return;

@@ -1,0 +1,419 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FontTool from '../../components/FontTool.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { t, getPath } from '../../i18n';
+
+const lang = 'ja';
+const strings = t(lang);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+const pageUrl = siteUrl + getPath(lang, '/');
+const logoUrl = `${siteUrl}${base}logo.svg`;
+---
+
+<BaseLayout
+  lang={lang}
+  title="𝓕𝓪𝓷𝓬𝔂 𝓣𝓮𝔁𝓽 / フォントジェネレーター - 500種類の無料スタイルをコピー＆ペースト | AestheticFonts"
+  description="AestheticFontsで、あなたのテキストを𝔣𝔞𝔫𝔠𝔶のような500種類以上の目を引くフォントスタイルに変換。おしゃれなテキストを生成し、お気に入りのフォントをコピーして、必要な場所に貼り付けましょう。"
+  path="/"
+>
+  <FontTool lang={lang} />
+
+<article class="prose wrap max-w-[820px] mx-auto py-10">
+
+<p><strong>フォント</strong>とは、基本的に<strong>テキストの見た目のスタイル</strong>のことです。画面上や紙の上での文字、数字、記号の見え方を変えます。</p>
+
+<p>しかし、<strong>SNSやオンラインゲーム</strong>では、名前、プロフィール、ユーザー名、メッセージを少し違った見た目にしたいことがあります。アプリでは選択肢があまり用意されていないこともあります。</p>
+
+<p>そこで活躍するのが<strong>おしゃれな装飾テキスト</strong>です。<strong>𝔽𝕒𝕟𝕔𝕪</strong>、<strong>𝕿𝖊𝖝𝖙</strong>、<strong>🄱🄾🅇🄴🄳</strong>のような、何百種類もの装飾的でスタイリッシュなテキストバリエーションが、あなたのテキストを引き立てます。好きなスタイルをコピーして、好きな場所に貼り付けるだけです。</p>
+
+<p>気分や個性、伝えたいメッセージの種類に合うスタイルを、いろいろ試して探せます。フォントライブラリのインストールやダウンロードは一切必要ありません。</p>
+
+<h2>気分に合わせてフォントスタイルをコピー</h2>
+
+<p><strong>AestheticFonts</strong>は、普通のテキストをおしゃれなフォント、かっこいい記号、装飾文字、ユニークなテキストスタイルに変換するオンラインの<strong>フォントジェネレーター兼装飾文字ツール</strong>です。<strong>エモいテキスト、おしゃれなユーザー名、SNSのプロフィール、キャプション、ゲームネーム、クリエイティブなメッセージ</strong>を作って、お気に入りのスタイルをすぐにコピー＆ペースト。登録、ダウンロード、フォントのインストールは不要です。</p>
+
+<p>AestheticFontsには、<strong>𝔉𝔯𝔞𝔨𝔱𝔲𝔯</strong>や<strong>𝘐𝘵𝘢𝘭𝘪𝘤</strong>から<strong>𝓒𝓾𝓻𝓼𝓲𝓿𝓮 𝓑𝓸𝓵𝓭</strong>、<strong>Ⓑⓤⓑⓑⓛⓔⓢ</strong>、<strong>Emojis</strong>、<strong>ՏφՄɿԳԳʅe</strong>まで、さまざまなテキストスタイルが揃っています。珍しい<strong>テキスト記号</strong>やクリエイティブなスタイルを探して、テキストの印象を変えることもできます。</p>
+
+<p>これらのスタイルは、<strong>Instagramのプロフィール、Discordのユーザー名、Facebookの投稿、ゲームのプロフィール、WhatsAppのチャット、コメント、キャプション、オンラインチャット</strong>で使えます。シンプルですっきりしたものもあれば、より装飾的で遊び心のあるものもあります。</p>
+
+<p>AestheticFontsで<strong>生成できるフォントスタイルの一部</strong>をご紹介します。</p>
+
+<div class="not-prose overflow-x-auto my-6">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="bg-surface-2">
+        <th class="text-left py-3 px-4 font-semibold text-text">フォントスタイル</th>
+        <th class="text-left py-3 px-4 font-semibold text-text">例</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border">
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Fraktur</td>
+        <td class="py-2.5 px-4 text-text-muted">𝔉𝔯𝔞𝔨𝔱𝔲𝔯</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Fraktur Bold</td>
+        <td class="py-2.5 px-4 text-text-muted">𝕱𝖗𝖆𝖐𝖙𝖚𝖗 𝕭𝖔𝖑𝖉</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Double Struck</td>
+        <td class="py-2.5 px-4 text-text-muted">𝔻𝕠𝕦𝕓𝕝𝕖 𝕊𝕥𝕣𝕦𝕔𝕜</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Cursive</td>
+        <td class="py-2.5 px-4 text-text-muted">𝒞𝓊𝓇𝓈𝒾𝓋𝑒</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Cursive Bold</td>
+        <td class="py-2.5 px-4 text-text-muted">𝓒𝓾𝓻𝓼𝓲𝓿𝓮 𝓑𝓸𝓵𝓭</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Bubbles</td>
+        <td class="py-2.5 px-4 text-text-muted">Ⓑⓤⓑⓑⓛⓔⓢ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Dark Bubbles</td>
+        <td class="py-2.5 px-4 text-text-muted">🅓🅐🅡🅚 🅑🅤🅑🅑🅛🅔🅢</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Squares</td>
+        <td class="py-2.5 px-4 text-text-muted">🅂🅀🅄🄰🅁🄴🅂</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Dark Squares</td>
+        <td class="py-2.5 px-4 text-text-muted">🅳🅰🆁🅺 🆂🆀🆄🅰🆁🅴🆂</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Bold</td>
+        <td class="py-2.5 px-4 text-text-muted">𝐁𝐨𝐥𝐝</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Bold Sans</td>
+        <td class="py-2.5 px-4 text-text-muted">𝗕𝗼𝗹𝗱 𝗦𝗮𝗻𝘀</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Italic</td>
+        <td class="py-2.5 px-4 text-text-muted">𝘐𝘵𝘢𝘭𝘪𝘤</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Italic Bold</td>
+        <td class="py-2.5 px-4 text-text-muted">𝙄𝙩𝙖𝙡𝙞𝙘 𝘽𝙤𝙡𝙙</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Squiggle</td>
+        <td class="py-2.5 px-4 text-text-muted">ՏφՄɿԳԳʅe</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Squiggle 2</td>
+        <td class="py-2.5 px-4 text-text-muted">sզմíցցlҽ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Squiggle 3</td>
+        <td class="py-2.5 px-4 text-text-muted">ʂϙυιɠɠʅҽ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Squiggle 4</td>
+        <td class="py-2.5 px-4 text-text-muted">ֆզʊɨɢɢʟɛ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Strikethrough</td>
+        <td class="py-2.5 px-4 text-text-muted">S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Tilde Strikethrough</td>
+        <td class="py-2.5 px-4 text-text-muted">T̴i̴l̴d̴e̴ ̴S̴t̴r̴i̴k̴e̴T̴h̴r̴o̴u̴g̴h̴</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Slash Through</td>
+        <td class="py-2.5 px-4 text-text-muted">S̷l̷a̷s̷h̷T̷h̷r̷o̷u̷g̷h̷</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Underline</td>
+        <td class="py-2.5 px-4 text-text-muted">U̲n̲d̲e̲r̲l̲i̲n̲e̲</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Seagull</td>
+        <td class="py-2.5 px-4 text-text-muted">S̼e̼a̼g̼u̼l̼l̼</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Arrow</td>
+        <td class="py-2.5 px-4 text-text-muted">A͎r͎r͎o͎w͎</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Upside Down</td>
+        <td class="py-2.5 px-4 text-text-muted">ʇuoℲ uʍoᗡ ǝpısd∩</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Upside Down 2</td>
+        <td class="py-2.5 px-4 text-text-muted">ƚᴎoꟻ ᴎwoᗡ ɘbiꙅqU</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Crazy</td>
+        <td class="py-2.5 px-4 text-text-muted">ⓢ☿♔♭⊙↳ⓢ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Tribal</td>
+        <td class="py-2.5 px-4 text-text-muted">꓄ꋪꀤꌃꍏ꒒</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Crazy 2</td>
+        <td class="py-2.5 px-4 text-text-muted">ᑕʳΔⓩί𝕗ⓨ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Asian</td>
+        <td class="py-2.5 px-4 text-text-muted">卂丂丨卂几</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Kirby Hug</td>
+        <td class="py-2.5 px-4 text-text-muted">(っ◔◡◔)っ ♥ KirbyHug ♥</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Cool Emoticon</td>
+        <td class="py-2.5 px-4 text-text-muted">(⌐■*■) Cool (⌐■*■)</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Lenny Emoticon</td>
+        <td class="py-2.5 px-4 text-text-muted">ᕦ( ͡° ͜ʖ ͡°)ᕤ 𝓔𝓶𝓸𝓽𝓲𝓬𝓸𝓷</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Emojis</td>
+        <td class="py-2.5 px-4 text-text-muted">🍉 ⋆ 🍭 Eɱ😍ʝιʂ 🍭 ⋆ 🍉</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Emojis &amp; fancy symbols</td>
+        <td class="py-2.5 px-4 text-text-muted">🐨🍪 𝐄𝐦𝐨𝐣𝐢𝐬 ♗🍫</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>AestheticFontsのフォントジェネレーターの使い方</h2>
+
+<div class="not-prose grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
+
+  <div class="bg-surface p-5 shadow-sm hover:shadow-md transition-all">
+    <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20h9"/>
+        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+      </svg>
+    </div>
+    <h3 class="text-base font-semibold text-text mb-1">1. テキストを入力</h3>
+    <p class="text-sm text-text-muted">英語の名前、単語、文章、キャプションなど、スタイルを変えたいものを入力します。</p>
+  </div>
+
+  <div class="bg-surface p-5 shadow-sm hover:shadow-md transition-all">
+    <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </div>
+    <h3 class="text-base font-semibold text-text mb-1">2. スタイルを選ぶ</h3>
+    <p class="text-sm text-text-muted">利用できるフォントスタイルを見て、気分に合うものを探しましょう。お気に入りが見つかるまでいくつか試してみてください。</p>
+  </div>
+
+  <div class="bg-surface p-5 shadow-sm hover:shadow-md transition-all">
+    <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </div>
+    <h3 class="text-base font-semibold text-text mb-1">3. コピーして貼り付け</h3>
+    <p class="text-sm text-text-muted">気に入ったスタイルが見つかったら、コピーボタンをクリック。装飾テキストを貼り付ける準備が整います。</p>
+  </div>
+
+</div>
+
+<h2>最適なフォントの選び方</h2>
+
+<p>すべてのスタイルがあらゆるテキストに合うわけではありません。選ぶ前に、<strong>テキストで伝えたい雰囲気</strong>と、ほかの人にとっての読みやすさを考えましょう。</p>
+
+<p><strong>すっきりとシンプルな印象</strong>にしたいなら、文字の形がはっきりしたスタイルを選びましょう。もっと表現力がほしいなら、装飾的なスタイルが短いテキストに強い個性を加えてくれます。</p>
+
+<p>テキストの長さも重要です。細かく凝ったスタイルは、名前や数語ならすてきに見えますが、長い文章では読みにくくなることがあります。</p>
+
+<p>使う予定のプラットフォームでスタイルがどう表示されるかも確認しておきましょう。<strong>Unicodeテキストは、アプリや端末によって見え方が少し異なる</strong>ことがあるので、あちこちで使う前に選んだスタイルを試してください。</p>
+
+<p>ぴったりのスタイルを見つける一番簡単な方法は、いくつかを並べて試すことです。テキストが分かりにくくならずに、イメージ通りの見た目になるスタイルを選びましょう。</p>
+
+<h2>フォントスタイルのクリエイティブな使い方</h2>
+
+<p>かっこいいテキストは、名前の見た目を変えるだけではありません。さまざまなオンラインコンテンツに、ちょっとしたビジュアルのアクセントを加えられます。</p>
+
+<div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">プロフィールのハイライト</h3>
+      <p class="text-sm text-text-muted">セクション名、ラベル、短いプロフィール文に装飾文字を使いましょう。</p>
+    </div>
+  </div>
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">コメントと返信</h3>
+      <p class="text-sm text-text-muted">スタイル付きの小さな単語や記号を加えて、短い返信を目立たせましょう。</p>
+    </div>
+  </div>
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">コミュニティ投稿</h3>
+      <p class="text-sm text-text-muted">見出しや短いお知らせに、少しだけ個性をプラスします。</p>
+    </div>
+  </div>
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">クリエイティブなプロジェクト</h3>
+      <p class="text-sm text-text-muted">ポスター、サムネイル、デジタルアート、オリジナルのデザインにUnicodeテキストを加えましょう。</p>
+    </div>
+  </div>
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><path d="M12 3v6l3-2 3 2V3"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">特別な日</h3>
+      <p class="text-sm text-text-muted">目を引くあいさつ、誕生日メッセージ、招待状、お祝いの投稿を作れます。</p>
+    </div>
+  </div>
+
+
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="5"/>
+    <circle cx="12" cy="12" r="4"/>
+    <circle cx="17.5" cy="6.5" r=".5"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">Instagram</h3>
+    <p class="text-sm text-text-muted">Instagramは見た目が命。文字を少し変えるだけでも、プロフィールの印象が変わります。プロフィール文、キャプション、ストーリーズのハイライト、ユーザー名のアイデアなどに、さまざまなスタイルを使えます。筆記体はエレガントなプロフィールに合い、太字、斜体、ゴシック体は短いフレーズを際立たせます。言葉を入力してスタイルを選び、InstagramがUnicodeに対応している場所へコピー＆ペーストしましょう。</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">Facebook</h3>
+    <p class="text-sm text-text-muted">Facebookには、プロフィールの自己紹介から近況投稿、コメントまで、おしゃれな文字を試せる場所がたくさんあります。太字はイベントのお知らせを目立たせ、筆記体や装飾フォントは誕生日のメッセージ、名言、プロフィール文によく合います。メッセージに合ったスタイルを選び、変換したテキストをコピーしてFacebookに直接貼り付けましょう。</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m22 8-6 4 6 4V8Z"/>
+    <rect x="2" y="6" width="14" height="12" rx="2"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">YouTube</h3>
+    <p class="text-sm text-text-muted">YouTubeのクリエイターは、チャンネルやコンテンツをもっと覚えてもらうための工夫を常に探しています。装飾テキストなら、チャンネルの説明、動画の説明、コミュニティ投稿などで試せます。太字はチュートリアルの見出しを分かりやすくし、ゴシックやメタル風の文字はゲーム実況に合うかもしれません。お気に入りのスタイルをコピーして、対応している入力欄に貼り付けましょう。</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">WhatsApp</h3>
+    <p class="text-sm text-text-muted">WhatsAppは日常の会話やグループでのやり取りに使われるので、装飾文字の使いどころがたくさんあります。「自己紹介」、ステータス、グループの説明、個人的なメッセージで試してみましょう。大切なお知らせには太字、名言には筆記体、誕生日や行事のあいさつには装飾文字がおすすめです。メッセージを入力してスタイルを選び、チャットやステータスに貼り付けましょう。</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2a10 10 0 1 0 10 10c0-4-2-7-5-9"/>
+    <path d="M8 12h8M12 8v8"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">TikTok</h3>
+    <p class="text-sm text-text-muted">TikTokのプロフィールはクリエイターの個性を映すことが多く、合ったテキストスタイルを選ぶと統一感のある見た目になります。プロフィール、表示名、キャプションでいろいろなスタイルを試してみましょう。かわいいフォントはライフスタイルやビューティー系に、太字やゴシックはゲームやエンタメ系に向いています。コンテンツに合うスタイルをコピーして、該当の入力欄に貼り付けましょう。</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 4h16v12H7l-3 3V4z"/>
+    <path d="M8 8h8M8 12h5"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">X (Twitter)</h3>
+    <p class="text-sm text-text-muted">Xでは、流れの速いタイムラインの中で、短い投稿やプロフィール文が注目を競っています。装飾テキストなら、表示名、プロフィール、投稿、強調したいフレーズを個性的に演出できます。短いお知らせには太字のUnicode、名言には斜体、個人的な紹介文には筆記体を試してみてください。Xは基本的にテキスト中心のプラットフォームなので、読みやすさを保ち、装飾文字は効果的な場所だけに使いましょう。</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 12h8M12 8v8"/>
+    <circle cx="12" cy="12" r="10"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">Discord</h3>
+    <p class="text-sm text-text-muted">Discordのユーザーは、ゲームの好み、コミュニティ、個人のスタイルを表すためにプロフィールをカスタマイズすることがよくあります。装飾テキストは、Discordのプロフィール、サーバーの説明、チャンネルの紹介、一部のメッセージで役立ちます。ゴシック体や太字はゲームコミュニティに、おしゃれなフォントや装飾記号は個人のプロフィールに違った雰囲気を与えます。お好みのフォントを生成し、Unicode文字をコピーして、対応している入力欄に貼り付けましょう。</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m6 3 12 18M18 3 6 21"/>
+    <path d="M3 8h18M3 16h18"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">ゲームのプロフィール</h3>
+    <p class="text-sm text-text-muted">個性的なゲームネームは、マルチプレイヤーゲームやオンラインコミュニティで自分らしさを表現する助けになります。ゲーム用フォントジェネレーターで、かっこいいユーザー名、おしゃれなゲームネーム、クラン名、装飾付きのプレイヤープロフィールを探してみましょう。太字、ゴシック、スモールキャップ、珍しいUnicode文字で、ゲーム内のアイデンティティにさまざまな表情が生まれます。生成した名前を使う前に、ゲームがそのUnicode文字に対応しているか確認してください。特殊な文字や記号を制限しているゲームもあります。</p>
+  </div>
+</div>
+
+
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6"/><path d="M9 11h6"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">個人的なメモ</h3>
+      <p class="text-sm text-text-muted">スタイルを使い分けて、短いセクションを区切ったり、大切な単語を強調したりしましょう。</p>
+    </div>
+  </div>
+
+</div>
+
+<p>これらの<strong>装飾フォント</strong>スタイルはテキスト文字でできているので、ページ全体やプロジェクトのデザインを変えずに試せます。オンラインのジェネレーターを使えば、すばやく探して作成できます。</p>
+
+<h2>注目：さらに500種類以上のフォントスタイルを探そう</h2>
+
+<p>私たちのフォントコレクションには、さまざまな見た目の特徴を持つ<strong>かっこいいテキストスタイル</strong>が集まっています。<strong>太字や斜体</strong>から、<strong>ゴシック、筆記体、バブル、アウトライン、上下逆さま、装飾テキスト</strong>まで揃っています。</p>
+
+<p>コレクションは、特定の<strong>テキストの世界観</strong>を探しているときにも役立ちます。ミニマルなスタイルなら言葉をすっきり見せられ、珍しい文字、Unicode記号、字形を使えばより個性的な印象になります。</p>
+
+<p>関連するスタイルをまとめているので、長いリストを探し回らなくても、似たデザインを見比べられます。まだ試したことのない<strong>新しいUnicodeテキストのバリエーション</strong>も見つけやすくなります。</p>
+
+<p>新しいスタイルは随時追加される予定なので、このセクションも<strong>装飾テキスト、かっこいい文字、装飾文字、クリエイティブなUnicodeの組み合わせ</strong>とともに成長し続けます。</p>
+
+</article>
+
+<FaqSection lang={lang} />
+  <SchemaOrg lang={lang} pageUrl={pageUrl} siteUrl={siteUrl + base} logoUrl={logoUrl} />
+</BaseLayout>

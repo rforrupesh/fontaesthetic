@@ -1,0 +1,109 @@
+{
+  "site": {
+    "name": "AestheticFonts",
+    "tagline": "Generador de fuentes online gratis"
+  },
+  "nav": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "about": "Acerca de",
+    "contact": "Contacto"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "about": "Acerca de",
+    "contact": "Contáctanos",
+    "privacy": "Política de privacidad",
+    "blog": "Blog",
+    "madeWith": "El generador de fuentes n.º 1 para crear textos llamativos con más de 500 estilos únicos. Convierte tus palabras en Ⓒⓞⓞⓛ, ₛₘₐₗₗ, 𝓬𝓾𝓻𝓼𝓲𝓿𝓮 y mucho más, y luego cópialas y pégalas donde quieras.",
+    "follow": "Síguenos"
+  },
+  "sidebar": {
+    "toc": "Índice",
+    "related": "Artículos relacionados",
+    "recent": "Artículos recientes"
+  },
+  "tool": {
+    "placeholder": "Escribe tu texto aquí...",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "favorite": "Añadir a favoritos",
+    "unfavorite": "Quitar de favoritos",
+    "favorites": "Favoritos",
+    "loadMore": "Cargar más",
+    "download": "Descargar",
+    "heading": "Generador de fuentes",
+    "subheading": "Escribe abajo y obtén fuentes con estilo para copiar y pegar donde quieras."
+  },
+  "blog": {
+    "listingTitle": "Blog",
+    "listingDescription": "Consejos, guías y novedades sobre fuentes y tipografía.",
+    "tagDescription": "Explora artículos sobre fuentes con la etiqueta «{name}»: consejos, guías e ideas para textos con estilo.",
+    "categoryDescription": "Explora artículos sobre fuentes en la categoría «{name}»: consejos, guías e ideas para textos con estilo.",
+    "archives": "Archivo",
+    "readMore": "Leer más",
+    "publishedOn": "Publicado el",
+    "updatedOn": "Última actualización",
+    "by": "Por",
+    "aboutAuthor": "Sobre el autor",
+    "authorDescription": "Artículos y guías de {name}: lee todo lo que ha escrito sobre fuentes y tipografía.",
+    "contributions": "Contribuciones",
+    "articles": "Artículos",
+    "topicsCovered": "Temas tratados",
+    "noPosts": "Aún no hay artículos.",
+    "viewProfile": "Ver perfil completo",
+    "latestArticle": "Último artículo",
+    "typeOrganization": "Organización",
+    "typePerson": "Autor",
+    "allCategories": "Todos"
+  },
+  "theme": {
+    "label": "Tema",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Oscuro"
+  },
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Cómo funciona?",
+        "answer": "Escribe un alfabeto, palabra, nombre o frase en inglés en el campo de texto y la página creará al instante varias variaciones. Puedes comparar los resultados y elegir la que mejor se adapte a ti."
+      },
+      {
+        "question": "¿Funcionan las fuentes en Instagram?",
+        "answer": "Sirven en los lugares donde Instagram admite caracteres Unicode, como la descripción del perfil, los pies de foto, los comentarios y los mensajes. La compatibilidad con Unicode puede variar entre los distintos campos de Instagram."
+      },
+      {
+        "question": "¿Por qué algunos caracteres aparecen como cuadrados?",
+        "answer": "Un cuadrado suele significar que el carácter elegido no se puede mostrar en el entorno actual. Prueba otra variación que use caracteres con mayor compatibilidad entre dispositivos y plataformas."
+      },
+      {
+        "question": "¿Puedo usarlas como nombre en Free Fire, BGMI o PUBG?",
+        "answer": "Depende de las restricciones del juego. Algunos caracteres decorativos pueden aceptarse y otros rechazarse, así que prueba el nombre generado en el campo de nombre del juego antes de guardarlo."
+      },
+      {
+        "question": "¿El texto decorativo afecta a la accesibilidad o al SEO?",
+        "answer": "Algunas tecnologías de asistencia y sistemas de búsqueda pueden tener dificultades para interpretar los caracteres decorativos. Para información importante, usa texto sencillo y reserva los caracteres decorativos para el énfasis visual."
+      },
+      {
+        "question": "¿El texto generado es lo mismo que los emojis?",
+        "answer": "No. Los emojis son un grupo independiente de caracteres Unicode pensado sobre todo como símbolos pictóricos. El texto decorativo puede usar letras, marcas y símbolos Unicode, o combinaciones de ellos, para crear distintos estilos de texto."
+      }
+    ]
+  },
+  "share": {
+    "label": "Compartir"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "text": "La página que buscas no existe o puede haberse movido. Prueba el generador de fuentes o echa un vistazo a nuestro blog.",
+    "home": "Ir al generador de fuentes",
+    "blog": "Ver el blog",
+    "description": "La página que buscas no existe o se ha movido."
+  },
+  "a11y": {
+    "skipToContent": "Saltar al contenido",
+    "backToTop": "Volver arriba"
+  }
+}

@@ -1,0 +1,204 @@
+---
+import { imgUrl } from '../../../lib/imageUrl';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import ShareButtons from '../../../components/ShareButtons.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import MobileToc from '../../../components/MobileToc.astro';
+import AdSlot from '../../../components/AdSlot.astro';
+import RelatedPosts from '../../../components/RelatedPosts.astro';
+import BreadcrumbSchema from '../../../components/schema/BreadcrumbSchema.astro';
+import ArticleSchema from '../../../components/schema/ArticleSchema.astro';
+import OrganizationSchema from '../../../components/schema/OrganizationSchema.astro';
+import WebSiteSchema from '../../../components/schema/WebSiteSchema.astro';
+import AuthorBox from '../../../components/AuthorBox.astro';
+import { getAuthor, authorPath } from '../../../data/authors';
+import { getCollection, render } from 'astro:content';
+import { t, getPath } from '../../../i18n';
+import { lastCommitDate } from '../../../lib/gitDate';
+import { slugify } from '../../../lib/slugify';
+
+const lang = 'pl';
+const strings = t(lang);
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', (e) => e.id.startsWith('pl/'));
+  return posts.map((post) => {
+    const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
+    return { params: { slug }, props: { post } };
+  });
+}
+
+const { post } = Astro.props;
+const author = getAuthor(post.data.author, lang);
+const authorHref = getPath(lang, authorPath(post.data.author));
+const { Content, headings } = await render(post);
+const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
+
+const allPosts = await getCollection('blog', (e) => e.id.startsWith('pl/'));
+const related = allPosts
+  .filter((p) => p.id !== post.id)
+  .filter((p) => p.data.tags.some((tag) => post.data.tags.includes(tag)))
+  .slice(0, 3)
+  .map((p) => ({
+    title: p.data.title,
+    description: p.data.description,
+    image: p.data.image,
+    categories: p.data.categories,
+    slug: p.data.slug ?? p.id.split('/').slice(1).join('/'),
+  }));
+
+// Find the equivalent article in every other language via translationId,
+// so canonical/hreflang tags and the language switcher point to the
+// correct (possibly differently-slugged) translated URL.
+const allLangs = ['en', 'fr', 'ar', 'th', 'tr', 'id', 'vi', 'pl', 'es', 'it', 'ja', 'de', 'pt'];
+const alternates: Record<string, string> = {};
+for (const l of allLangs) {
+  const postsInLang = l === lang ? allPosts : await getCollection('blog', (e) => e.id.startsWith(`${l}/`));
+  const match = postsInLang.find((p) => p.data.translationId === post.data.translationId);
+  if (match) {
+    const slugL = match.data.slug ?? match.id.split('/').slice(1).join('/');
+    alternates[l] = `/blog/${slugL}/`;
+  }
+}
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+const pageUrl = siteUrl + getPath(lang, `/blog/${slug}/`);
+const logoUrl = `${siteUrl}${base}logo.svg`;
+const absImage = post.data.image
+  ? (post.data.image.startsWith('http') ? post.data.image : siteUrl + base + post.data.image.replace(/^\/+/, ''))
+  : undefined;
+
+const datePublished = post.data.date;
+// Last modified = latest of: the last git commit touching this file (automatic on every push)
+// and an optional manual `updated:` in frontmatter. Falls back to the publish date.
+const gitDate = lastCommitDate(post.filePath);
+const candidates = [post.data.updated, gitDate].filter((d): d is Date => !!d);
+const dateModified = candidates.length ? new Date(Math.max(...candidates.map((d) => d.valueOf()))) : undefined;
+const fmtDate = (d: Date) =>
+  new Intl.DateTimeFormat('pl-PL', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kolkata' }).format(d);
+const isoDay = (d: Date) => d.toISOString();
+// Visible date is always "Last updated" (falls back to the publish date if never edited).
+const lastUpdated = dateModified ?? datePublished;
+
+const breadcrumbItems = [
+  { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
+  { name: strings.blog.listingTitle, url: siteUrl + getPath(lang, '/blog/') },
+  { name: post.data.title, url: pageUrl },
+];
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${post.data.title} — ${strings.site.name}`}
+  description={post.data.description}
+  path={`/blog/${slug}/`}
+  alternates={alternates}
+  availableLangs={Object.keys(alternates)}
+  image={post.data.image}
+  type="article"
+  publishedTime={datePublished}
+  modifiedTime={dateModified ?? datePublished}
+  tags={post.data.tags}
+>
+  <article class="w-full max-w-[1300px] mx-auto px-5 pt-6 pb-16">
+    <!-- Title + breadcrumb -->
+    <header class="mb-1">
+      {post.data.categories.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-3">
+          {post.data.categories.map((category) => (
+            <a
+              href={getPath(lang, `/blog/category/${slugify(category)}/`)}
+              class="inline-block text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+            >
+              {category}
+            </a>
+          ))}
+        </div>
+      )}
+      <h1 class="text-[clamp(1.6rem,4vw,2.2rem)] mb-2">{post.data.title}</h1>
+      <p class="text-[.85rem] text-text-muted mb-3">
+        <AuthorBox lang={lang} author={author} href={authorHref} variant="byline" /> <span aria-hidden="true">·</span>{' '}
+        {strings.blog.updatedOn} <time datetime={isoDay(lastUpdated)}>{fmtDate(lastUpdated)}</time>
+      </p>
+      <Breadcrumb items={breadcrumbItems} />
+    </header>
+
+    <!-- Mobile-only sticky TOC dropdown (compact, right above content) -->
+    <MobileToc lang={lang} headings={headings} />
+
+    <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr_280px] gap-8 lg:gap-10 items-start lg:mt-4">
+      <!-- Left: share buttons + TOC (desktop sticky column) -->
+      <div class="hidden lg:flex lg:flex-col lg:gap-6 lg:sticky lg:top-[calc(var(--header-h)+20px)]">
+        <ShareButtons lang={lang} url={pageUrl} title={post.data.title} variant="sticky" />
+        <Sidebar lang={lang} headings={headings} />
+      </div>
+
+      <!-- Center: content -->
+      <div class="min-w-0 pt-4 lg:pt-0">
+        {post.data.image && <img class="rounded-lg mb-6 w-full aspect-video object-contain bg-surface-2" src={imgUrl(post.data.image)} alt={post.data.title} />}
+
+        <div class="prose">
+          <Content />
+        </div>
+
+        {post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mt-6 pt-6 border-t border-border">
+            {post.data.tags.map((tag) => (
+              <a
+                href={getPath(lang, `/blog/tag/${slugify(tag)}/`)}
+                class="text-xs px-3 py-1 rounded-full bg-surface border border-border text-text-muted hover:text-text hover:border-text-muted transition-colors"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <AuthorBox lang={lang} author={author} href={authorHref} variant="box" />
+
+        <!-- Mobile-only share row: after the article, not before -->
+        <div class="lg:hidden mt-8 pt-6 border-t border-border">
+          <p class="text-[.8rem] text-text-muted mb-3">{strings.share.label}</p>
+          <ShareButtons lang={lang} url={pageUrl} title={post.data.title} variant="inline" />
+        </div>
+      </div>
+
+      <!-- Right: ads (desktop sticky column) -->
+      <div class="hidden lg:flex lg:flex-col lg:gap-6 lg:sticky lg:top-[calc(var(--header-h)+20px)]">
+        <AdSlot />
+        <AdSlot />
+      </div>
+    </div>
+
+    <!-- Related posts: full width, outside the content grid -->
+    <RelatedPosts lang={lang} posts={related} />
+  </article>
+
+  <BreadcrumbSchema items={breadcrumbItems} />
+  <ArticleSchema
+    headline={post.data.title}
+    description={post.data.description}
+    url={pageUrl}
+    image={absImage}
+    datePublished={datePublished}
+    dateModified={dateModified}
+    siteName={strings.site.name}
+    siteUrl={siteUrl + base}
+    logoUrl={logoUrl}
+    lang={lang}
+    keywords={post.data.tags}
+    section={post.data.categories}
+    author={{
+      displayName: author.displayName,
+      type: author.type,
+      role: author.role,
+      url: siteUrl + authorHref,
+      sameAs: author.url,
+      image: author.image ? (author.image.startsWith('http') ? author.image : siteUrl + base + author.image.replace(/^\/+/, '')) : undefined,
+    }}
+  />
+  <OrganizationSchema name={strings.site.name} siteUrl={siteUrl + base} logoUrl={logoUrl} />
+  <WebSiteSchema name={strings.site.name} siteUrl={siteUrl + base} lang={lang} />
+</BaseLayout>

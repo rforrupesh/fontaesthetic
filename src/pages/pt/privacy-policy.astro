@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { t } from '../../i18n';
+const strings = t('pt');
+
+const sections = [
+  {
+    title: "O que coletamos",
+    text: "O AestheticFonts não armazena o texto que você digita no gerador de fontes. Toda a conversão acontece diretamente no seu navegador.",
+  },
+  {
+    title: "Análises",
+    text: "Podemos usar análises básicas e que respeitam a privacidade para entender o uso do site. Não vendemos dados pessoais a terceiros.",
+  },
+];
+---
+<BaseLayout lang="pt" title={`Política de Privacidade — ${strings.site.name}`} description="Política de privacidade do AestheticFonts." path="/privacy-policy/">
+  <PageHero title="Política de Privacidade" subtitle="Última atualização: janeiro de 2026" />
+
+  <section class="wrap py-10 max-w-[680px] mx-auto flex flex-col gap-5">
+    {sections.map((s) => (
+      <div class="card p-5">
+        <h2 class="text-[1.05rem] mb-2">{s.title}</h2>
+        <p class="text-text-muted m-0">{s.text}</p>
+      </div>
+    ))}
+  </section>
+</BaseLayout>

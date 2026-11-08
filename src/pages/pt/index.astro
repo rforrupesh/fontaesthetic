@@ -1,0 +1,419 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FontTool from '../../components/FontTool.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { t, getPath } from '../../i18n';
+
+const lang = 'pt';
+const strings = t(lang);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+const pageUrl = siteUrl + getPath(lang, '/');
+const logoUrl = `${siteUrl}${base}logo.svg`;
+---
+
+<BaseLayout
+  lang={lang}
+  title="𝓕𝓪𝓷𝓬𝔂 𝓣𝓮𝔁𝓽 / Gerador de fontes - Copie e cole 500 estilos grátis | AestheticFonts"
+  description="Transforme seu texto em mais de 500 estilos de fonte chamativos como 𝔣𝔞𝔫𝔠𝔶 com o AestheticFonts. Gere texto estiloso, copie sua fonte favorita e cole onde precisar."
+  path="/"
+>
+  <FontTool lang={lang} />
+
+<article class="prose wrap max-w-[820px] mx-auto py-10">
+
+<p>Uma <strong>fonte</strong> é basicamente o <strong>estilo visual do texto</strong>. Ela muda a aparência de letras, números e símbolos na tela ou no papel.</p>
+
+<p>Mas, nas <strong>redes sociais ou em jogos online</strong>, você pode querer que seu nome, bio, nome de usuário ou mensagem fique um pouco diferente. O aplicativo nem sempre oferece muitas opções para isso.</p>
+
+<p>É aí que entra o <strong>texto decorativo estiloso</strong>. Existem centenas de variações de texto decorativas e estilizadas como <strong>𝔽𝕒𝕟𝕔𝕪</strong>, <strong>𝕿𝖊𝖝𝖙</strong> ou <strong>🄱🄾🅇🄴🄳</strong> que podem fazer seu texto se destacar. Basta copiar e colar esses estilos onde quiser.</p>
+
+<p>Você pode experimentar estilos diferentes para encontrar o que combina com seu humor, sua personalidade ou o tipo de mensagem que quer compartilhar. Não é preciso instalar nenhuma biblioteca de fontes nem baixar nada.</p>
+
+<h2>Copie um estilo de fonte para cada humor</h2>
+
+<p>O <strong>AestheticFonts</strong> é uma ferramenta online de <strong>gerador de fontes e letras decorativas</strong> que transforma texto comum em fontes estilosas, símbolos legais, letras decorativas e estilos de texto únicos. Crie <strong>texto estético, nomes de usuário diferentes, bios para redes sociais, legendas, nomes para jogos e mensagens criativas</strong>, depois copie e cole na hora o estilo que preferir. Sem cadastro, sem downloads e sem instalar fontes.</p>
+
+<p>No AestheticFonts, temos uma coleção de estilos de texto diferentes, de <strong>𝔉𝔯𝔞𝔨𝔱𝔲𝔯</strong> e <strong>𝘐𝘵𝘢𝘭𝘪𝘤</strong> a <strong>𝓒𝓾𝓻𝓼𝓲𝓿𝓮 𝓑𝓸𝓵𝓭</strong>, <strong>Ⓑⓤⓑⓑⓛⓔⓢ</strong>, <strong>Emojis</strong> e <strong>ՏφՄɿԳԳʅe</strong>. Você também pode explorar <strong>símbolos de texto</strong> incomuns e estilos criativos para dar um visual diferente ao seu texto.</p>
+
+<p>Esses estilos podem ser usados em <strong>bios do Instagram, nomes de usuário do Discord, posts do Facebook, perfis de jogos, conversas do WhatsApp, comentários, legendas e chats online</strong>. Alguns estilos são simples e limpos, enquanto outros são mais decorativos ou divertidos.</p>
+
+<p>Veja alguns dos <strong>estilos de fonte que você pode gerar com o AestheticFonts</strong>:</p>
+
+<div class="not-prose overflow-x-auto my-6">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="bg-surface-2">
+        <th class="text-left py-3 px-4 font-semibold text-text">Estilo de fonte</th>
+        <th class="text-left py-3 px-4 font-semibold text-text">Exemplo</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border">
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Fraktur</td>
+        <td class="py-2.5 px-4 text-text-muted">𝔉𝔯𝔞𝔨𝔱𝔲𝔯</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Fraktur Bold</td>
+        <td class="py-2.5 px-4 text-text-muted">𝕱𝖗𝖆𝖐𝖙𝖚𝖗 𝕭𝖔𝖑𝖉</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Double Struck</td>
+        <td class="py-2.5 px-4 text-text-muted">𝔻𝕠𝕦𝕓𝕝𝕖 𝕊𝕥𝕣𝕦𝕔𝕜</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Cursive</td>
+        <td class="py-2.5 px-4 text-text-muted">𝒞𝓊𝓇𝓈𝒾𝓋𝑒</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Cursive Bold</td>
+        <td class="py-2.5 px-4 text-text-muted">𝓒𝓾𝓻𝓼𝓲𝓿𝓮 𝓑𝓸𝓵𝓭</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Bubbles</td>
+        <td class="py-2.5 px-4 text-text-muted">Ⓑⓤⓑⓑⓛⓔⓢ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Dark Bubbles</td>
+        <td class="py-2.5 px-4 text-text-muted">🅓🅐🅡🅚 🅑🅤🅑🅑🅛🅔🅢</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Squares</td>
+        <td class="py-2.5 px-4 text-text-muted">🅂🅀🅄🄰🅁🄴🅂</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Dark Squares</td>
+        <td class="py-2.5 px-4 text-text-muted">🅳🅰🆁🅺 🆂🆀🆄🅰🆁🅴🆂</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Bold</td>
+        <td class="py-2.5 px-4 text-text-muted">𝐁𝐨𝐥𝐝</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Bold Sans</td>
+        <td class="py-2.5 px-4 text-text-muted">𝗕𝗼𝗹𝗱 𝗦𝗮𝗻𝘀</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Italic</td>
+        <td class="py-2.5 px-4 text-text-muted">𝘐𝘵𝘢𝘭𝘪𝘤</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Italic Bold</td>
+        <td class="py-2.5 px-4 text-text-muted">𝙄𝙩𝙖𝙡𝙞𝙘 𝘽𝙤𝙡𝙙</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Squiggle</td>
+        <td class="py-2.5 px-4 text-text-muted">ՏφՄɿԳԳʅe</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Squiggle 2</td>
+        <td class="py-2.5 px-4 text-text-muted">sզմíցցlҽ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Squiggle 3</td>
+        <td class="py-2.5 px-4 text-text-muted">ʂϙυιɠɠʅҽ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Squiggle 4</td>
+        <td class="py-2.5 px-4 text-text-muted">ֆզʊɨɢɢʟɛ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Strikethrough</td>
+        <td class="py-2.5 px-4 text-text-muted">S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Tilde Strikethrough</td>
+        <td class="py-2.5 px-4 text-text-muted">T̴i̴l̴d̴e̴ ̴S̴t̴r̴i̴k̴e̴T̴h̴r̴o̴u̴g̴h̴</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Slash Through</td>
+        <td class="py-2.5 px-4 text-text-muted">S̷l̷a̷s̷h̷T̷h̷r̷o̷u̷g̷h̷</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Underline</td>
+        <td class="py-2.5 px-4 text-text-muted">U̲n̲d̲e̲r̲l̲i̲n̲e̲</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Seagull</td>
+        <td class="py-2.5 px-4 text-text-muted">S̼e̼a̼g̼u̼l̼l̼</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Arrow</td>
+        <td class="py-2.5 px-4 text-text-muted">A͎r͎r͎o͎w͎</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Upside Down</td>
+        <td class="py-2.5 px-4 text-text-muted">ʇuoℲ uʍoᗡ ǝpısd∩</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Upside Down 2</td>
+        <td class="py-2.5 px-4 text-text-muted">ƚᴎoꟻ ᴎwoᗡ ɘbiꙅqU</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Crazy</td>
+        <td class="py-2.5 px-4 text-text-muted">ⓢ☿♔♭⊙↳ⓢ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Tribal</td>
+        <td class="py-2.5 px-4 text-text-muted">꓄ꋪꀤꌃꍏ꒒</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Crazy 2</td>
+        <td class="py-2.5 px-4 text-text-muted">ᑕʳΔⓩί𝕗ⓨ</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Asian</td>
+        <td class="py-2.5 px-4 text-text-muted">卂丂丨卂几</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Kirby Hug</td>
+        <td class="py-2.5 px-4 text-text-muted">(っ◔◡◔)っ ♥ KirbyHug ♥</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Cool Emoticon</td>
+        <td class="py-2.5 px-4 text-text-muted">(⌐■*■) Cool (⌐■*■)</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Lenny Emoticon</td>
+        <td class="py-2.5 px-4 text-text-muted">ᕦ( ͡° ͜ʖ ͡°)ᕤ 𝓔𝓶𝓸𝓽𝓲𝓬𝓸𝓷</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Emojis</td>
+        <td class="py-2.5 px-4 text-text-muted">🍉 ⋆ 🍭 Eɱ😍ʝιʂ 🍭 ⋆ 🍉</td>
+      </tr>
+      <tr class="odd:bg-surface even:bg-surface-2 hover:bg-primary/10 transition-colors">
+        <td class="py-2.5 px-4 font-medium text-text">Emojis &amp; fancy symbols</td>
+        <td class="py-2.5 px-4 text-text-muted">🐨🍪 𝐄𝐦𝐨𝐣𝐢𝐬 ♗🍫</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Como usar o gerador de fontes do AestheticFonts</h2>
+
+<div class="not-prose grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
+
+  <div class="bg-surface p-5 shadow-sm hover:shadow-md transition-all">
+    <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20h9"/>
+        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+      </svg>
+    </div>
+    <h3 class="text-base font-semibold text-text mb-1">1. Digite seu texto</h3>
+    <p class="text-sm text-text-muted">Digite seu nome, palavra, frase, legenda em inglês ou qualquer outra coisa que queira estilizar.</p>
+  </div>
+
+  <div class="bg-surface p-5 shadow-sm hover:shadow-md transition-all">
+    <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </div>
+    <h3 class="text-base font-semibold text-text mb-1">2. Escolha um estilo</h3>
+    <p class="text-sm text-text-muted">Navegue pelos estilos de fonte disponíveis e encontre um que combine com seu humor. Experimente alguns visuais até achar o seu favorito.</p>
+  </div>
+
+  <div class="bg-surface p-5 shadow-sm hover:shadow-md transition-all">
+    <div class="w-10 h-10 bg-primary/15 flex items-center justify-center mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </div>
+    <h3 class="text-base font-semibold text-text mb-1">3. Copie e cole</h3>
+    <p class="text-sm text-text-muted">Quando encontrar um estilo de que goste, clique no botão Copiar. Seu texto decorativo está pronto para colar.</p>
+  </div>
+
+</div>
+
+<h2>Como escolher a fonte certa</h2>
+
+<p>Nem todo estilo combina com todo texto. Antes de escolher, pense na <strong>sensação que quer transmitir</strong> e em como o texto deve ser fácil de ler para os outros.</p>
+
+<p>Para um <strong>visual limpo e simples</strong>, escolha estilos com formas de letras claras. Se quiser algo mais expressivo, estilos decorativos podem dar mais personalidade visual a textos curtos.</p>
+
+<p>O tamanho do texto também importa. Estilos muito detalhados podem ficar ótimos em um nome ou em poucas palavras, mas ficam difíceis de ler em uma frase longa.</p>
+
+<p>Vale também conferir como o estilo aparece na plataforma em que você pretende usá-lo. <strong>O texto Unicode pode ficar um pouco diferente entre aplicativos e dispositivos</strong>, então teste o estilo escolhido antes de usá-lo em todo lugar.</p>
+
+<p>A maneira mais fácil de encontrar o certo é experimentar algumas opções lado a lado. Escolha o estilo que dá o visual desejado sem dificultar a compreensão do texto.</p>
+
+<h2>Formas criativas de usar os estilos de fonte</h2>
+
+<p>O texto estiloso serve para mais do que apenas mudar a aparência de um nome. Você pode usá-lo para adicionar um toque visual a diferentes tipos de conteúdo online.</p>
+
+<div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">Destaques do perfil</h3>
+      <p class="text-sm text-text-muted">Use caracteres decorativos em nomes de seções, rótulos ou descrições curtas do perfil.</p>
+    </div>
+  </div>
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">Comentários e respostas</h3>
+      <p class="text-sm text-text-muted">Adicione uma pequena palavra ou símbolo estilizado para dar mais destaque a uma resposta curta.</p>
+    </div>
+  </div>
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">Posts da comunidade</h3>
+      <p class="text-sm text-text-muted">Dê um pouco mais de personalidade a títulos ou avisos curtos.</p>
+    </div>
+  </div>
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">Projetos criativos</h3>
+      <p class="text-sm text-text-muted">Adicione texto Unicode a pôsteres, miniaturas, arte digital ou designs pessoais.</p>
+    </div>
+  </div>
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><path d="M12 3v6l3-2 3 2V3"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">Ocasiões especiais</h3>
+      <p class="text-sm text-text-muted">Crie saudações chamativas, mensagens de aniversário, convites ou posts de comemoração.</p>
+    </div>
+  </div>
+
+
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="5"/>
+    <circle cx="12" cy="12" r="4"/>
+    <circle cx="17.5" cy="6.5" r=".5"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">Instagram</h3>
+    <p class="text-sm text-text-muted">O Instagram é todo sobre apresentação visual, e até uma pequena mudança nas letras pode dar ao seu perfil outra aparência. Você pode usar diferentes estilos na bio, nas legendas, nos destaques dos stories e em ideias de nome de usuário. Fontes cursivas combinam com um perfil elegante, enquanto negrito, itálico e gótico fazem frases curtas se destacarem. Digite suas palavras, escolha um estilo, copie e cole onde o Instagram aceitar Unicode.</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">Facebook</h3>
+    <p class="text-sm text-text-muted">O Facebook oferece muitos lugares para experimentar letras estilosas, da apresentação do perfil às atualizações de status e comentários. O negrito pode deixar o anúncio de um evento mais visível, enquanto fontes cursivas e decorativas ficam bonitas em mensagens de aniversário, citações e descrições de perfil. Escolha um estilo que combine com sua mensagem, copie o texto convertido e cole direto no Facebook.</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m22 8-6 4 6 4V8Z"/>
+    <rect x="2" y="6" width="14" height="12" rx="2"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">YouTube</h3>
+    <p class="text-sm text-text-muted">Criadores do YouTube estão sempre buscando formas de deixar seus canais e conteúdos mais reconhecíveis. O texto decorativo permite experimentar na descrição do canal, nas descrições de vídeos e nos posts da comunidade. O negrito dá clareza a títulos de tutoriais, enquanto o gótico ou o estilo metal podem combinar com conteúdo de games. Copie o estilo de sua preferência e cole nos campos compatíveis.</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">WhatsApp</h3>
+    <p class="text-sm text-text-muted">O WhatsApp é usado em conversas do dia a dia e na comunicação em grupo, então há muitas formas de usar letras decorativas. Experimente no Recado, no status, nas descrições de grupos e em mensagens pessoais. Use negrito em avisos importantes, cursiva em citações ou letras decorativas em mensagens de aniversário e felicitações. Digite sua mensagem, escolha um estilo e cole o texto na conversa ou no status.</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2a10 10 0 1 0 10 10c0-4-2-7-5-9"/>
+    <path d="M8 12h8M12 8v8"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">TikTok</h3>
+    <p class="text-sm text-text-muted">Os perfis do TikTok costumam refletir a personalidade do criador, então o estilo de texto certo ajuda a criar um visual consistente. Experimente estilos diferentes na bio, no nome de exibição e nas legendas. Fontes fofas combinam com conteúdo de estilo de vida e beleza, enquanto negrito e gótico funcionam melhor em perfis de games ou entretenimento. Copie o estilo que combina com seu conteúdo e cole no campo correspondente.</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 4h16v12H7l-3 3V4z"/>
+    <path d="M8 8h8M8 12h5"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">X (Twitter)</h3>
+    <p class="text-sm text-text-muted">No X, posts curtos e descrições de perfil disputam atenção em um feed muito rápido. O texto decorativo oferece mais uma forma de estilizar seu nome de exibição, bio, posts e frases selecionadas. Experimente Unicode em negrito para avisos curtos, itálico para citações ou fontes manuscritas para uma descrição de perfil mais pessoal. Como o X é uma plataforma principalmente de texto, mantenha a mensagem fácil de ler e use caracteres decorativos só onde agregarem valor.</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 12h8M12 8v8"/>
+    <circle cx="12" cy="12" r="10"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">Discord</h3>
+    <p class="text-sm text-text-muted">Usuários do Discord costumam personalizar o perfil para refletir seus interesses em jogos, comunidades e estilo pessoal. O texto decorativo é útil em bios, descrições de servidores, apresentações de canais e algumas mensagens. Fontes góticas e negrito combinam com comunidades de games, enquanto fontes estéticas e símbolos decorativos dão ao perfil pessoal outra aparência. Gere sua fonte preferida, copie os caracteres Unicode e cole nos campos compatíveis.</p>
+  </div>
+</div>
+
+<div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m6 3 12 18M18 3 6 21"/>
+    <path d="M3 8h18M3 16h18"/>
+  </svg>
+  <div>
+    <h3 class="text-sm font-semibold text-text mb-0.5">Perfis de jogos</h3>
+    <p class="text-sm text-text-muted">Um nome de jogador marcante ajuda a expressar sua personalidade em jogos multiplayer e comunidades online. Use um gerador de fontes para games para explorar nomes de usuário legais, nicks estilosos, nomes de clã e bios decoradas para jogadores. Negrito, gótico, versalete e letras Unicode incomuns oferecem visuais diferentes para sua identidade gamer. Antes de usar um nome gerado, verifique se o jogo aceita esses caracteres Unicode, pois alguns restringem letras e símbolos especiais.</p>
+  </div>
+</div>
+
+
+
+  <div class="bg-surface p-4 flex gap-3 items-start transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6"/><path d="M9 11h6"/>
+    </svg>
+    <div>
+      <h3 class="text-sm font-semibold text-text mb-0.5">Notas pessoais</h3>
+      <p class="text-sm text-text-muted">Use estilos diferentes para separar seções curtas ou enfatizar uma palavra importante.</p>
+    </div>
+  </div>
+
+</div>
+
+<p>Como esses estilos de <strong>fontes decorativas</strong> são feitos de caracteres de texto, você pode experimentá-los sem mudar o design da página inteira ou do projeto. Use um gerador online para explorá-los e criá-los rapidamente.</p>
+
+<h2>Em alta: mais de 500 outros estilos de fonte para explorar</h2>
+
+<p>Nossa coleção de fontes reúne <strong>estilos de texto legais</strong> com diferentes características visuais. Você encontra de tudo, de <strong>letras em negrito e itálico</strong> a <strong>texto gótico, cursivo, bolha, contornado, de cabeça para baixo e decorativo</strong>.</p>
+
+<p>A coleção também é útil quando você procura uma <strong>estética de texto</strong> específica. Um estilo minimalista mantém suas palavras limpas, enquanto caracteres incomuns, símbolos Unicode e formatos de letra podem criar um visual mais marcante.</p>
+
+<p>Agrupamos estilos relacionados para você comparar designs parecidos sem percorrer uma lista longa. Assim fica mais fácil descobrir <strong>novas variações de texto Unicode</strong> que talvez você ainda não tenha experimentado.</p>
+
+<p>Novos estilos podem ser adicionados com o tempo, então esta seção continuará crescendo com mais <strong>texto decorativo, lettering legal, caracteres decorativos e combinações criativas de Unicode</strong>.</p>
+
+</article>
+
+<FaqSection lang={lang} />
+  <SchemaOrg lang={lang} pageUrl={pageUrl} siteUrl={siteUrl + base} logoUrl={logoUrl} />
+</BaseLayout>

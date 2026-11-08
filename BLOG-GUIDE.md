@@ -16,6 +16,13 @@ Ye guide batata hai ki blog post kaise banate hain, kaun-kaun si cheezein post m
    | Thai | `src/content/blog/th/` |
    | Turkish | `src/content/blog/tr/` |
    | Indonesian | `src/content/blog/id/` |
+   | Vietnamese | `src/content/blog/vi/` |
+   | Polish | `src/content/blog/pl/` |
+   | Spanish | `src/content/blog/es/` |
+   | Italian | `src/content/blog/it/` |
+   | Japanese | `src/content/blog/ja/` |
+   | German | `src/content/blog/de/` |
+   | Portuguese | `src/content/blog/pt/` |
 
 2. File ke upar `---` ke beech **frontmatter** likho (neeche poori list hai), uske baad normal Markdown content.
 3. Image ho to `public/images/` me rakho.
@@ -75,7 +82,7 @@ Har author ka apna page banta hai, har language me:
 
 ```
 /blog/author/<key>/        -> https://rforrupesh.github.io/fontaesthetic/blog/author/editorial-team/
-/fr/blog/author/<key>/     (aur ar, th, tr, id ke liye bhi)
+/fr/blog/author/<key>/     (aur ar, th, tr, id, vi, pl, es, it, ja, de, pt ke liye bhi)
 ```
 
 - Post me author ka naam (title ke neeche) aur "About the author" box ka **View full profile** link isi page par le jaate hain.
@@ -128,7 +135,7 @@ bio: 'Ek hi text sab languages me',          // simple
 bio: {                                       // language-wise (recommended)
   en: 'English bio',
   fr: 'Bio en français',
-  ar: '...', th: '...', tr: '...', id: '...',
+  ar: '...', th: '...', tr: '...', id: '...', vi: '...', pl: '...', es: '...', it: '...', ja: '...', de: '...', pt: '...',
 },
 fullBio: {
   en: ['Paragraph 1', 'Paragraph 2'],
@@ -222,7 +229,7 @@ npm run build      # production build (galtiyan yahin pakdi jaati hain)
 | `src/content.config.ts` | Frontmatter fields ka schema |
 | `src/data/authors.ts` | Authors ki list aur default author |
 | `src/components/AuthorBox.astro` | Byline aur "About the author" box ka design |
-| `src/pages/blog/author/[author].astro` (aur `fr/ar/th/tr/id` ke) | Author page (bio + contributions) |
-| `src/pages/blog/[slug].astro` (aur `fr/ar/th/tr/id` ke) | Post page ka layout |
+| `src/pages/blog/author/[author].astro` (aur `fr/ar/th/tr/id/vi/pl/es/it/ja/de/pt` ke) | Author page (bio + contributions) |
+| `src/pages/blog/[slug].astro` (aur `fr/ar/th/tr/id/vi/pl/es/it/ja/de/pt` ke) | Post page ka layout |
 | `src/components/schema/ArticleSchema.astro` | SEO Article schema |
 | `src/i18n/*.json` | Site ke translated labels |

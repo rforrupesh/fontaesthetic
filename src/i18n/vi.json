@@ -1,0 +1,109 @@
+{
+  "site": {
+    "name": "AestheticFonts",
+    "tagline": "Trình tạo phông chữ trực tuyến miễn phí"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "blog": "Blog",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ"
+  },
+  "footer": {
+    "rights": "Bảo lưu mọi quyền.",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ",
+    "privacy": "Chính sách bảo mật",
+    "blog": "Blog",
+    "madeWith": "Trình tạo phông chữ số 1 để tạo văn bản nổi bật với hơn 500 kiểu độc đáo. Biến chữ của bạn thành Ⓒⓞⓞⓛ, ₛₘₐₗₗ, 𝓬𝓾𝓻𝓼𝓲𝓿𝓮 và nhiều hơn nữa, rồi sao chép và dán ở bất cứ đâu.",
+    "follow": "Theo dõi chúng tôi"
+  },
+  "sidebar": {
+    "toc": "Mục lục",
+    "related": "Bài viết liên quan",
+    "recent": "Bài viết mới nhất"
+  },
+  "tool": {
+    "placeholder": "Nhập văn bản của bạn tại đây...",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép!",
+    "favorite": "Thêm vào yêu thích",
+    "unfavorite": "Xóa khỏi yêu thích",
+    "favorites": "Yêu thích",
+    "loadMore": "Xem thêm",
+    "download": "Tải xuống",
+    "heading": "Trình tạo phông chữ",
+    "subheading": "Nhập bên dưới để nhận các kiểu chữ đẹp, sao chép và dán ở bất cứ đâu."
+  },
+  "blog": {
+    "listingTitle": "Blog",
+    "listingDescription": "Mẹo, hướng dẫn và cập nhật về phông chữ và kiểu chữ.",
+    "tagDescription": "Khám phá các bài viết về phông chữ có thẻ “{name}”: mẹo, hướng dẫn và ý tưởng cho văn bản phong cách.",
+    "categoryDescription": "Khám phá các bài viết về phông chữ trong chuyên mục “{name}”: mẹo, hướng dẫn và ý tưởng cho văn bản phong cách.",
+    "archives": "Lưu trữ",
+    "readMore": "Đọc tiếp",
+    "publishedOn": "Đăng ngày",
+    "updatedOn": "Cập nhật lần cuối",
+    "by": "Bởi",
+    "aboutAuthor": "Về tác giả",
+    "authorDescription": "Bài viết và hướng dẫn của {name}: đọc mọi nội dung họ đã viết về phông chữ và kiểu chữ.",
+    "contributions": "Đóng góp",
+    "articles": "Bài viết",
+    "topicsCovered": "Chủ đề đã đề cập",
+    "noPosts": "Chưa có bài viết nào.",
+    "viewProfile": "Xem hồ sơ đầy đủ",
+    "latestArticle": "Bài viết mới nhất",
+    "typeOrganization": "Tổ chức",
+    "typePerson": "Tác giả",
+    "allCategories": "Tất cả"
+  },
+  "theme": {
+    "label": "Giao diện",
+    "system": "Hệ thống",
+    "light": "Sáng",
+    "dark": "Tối"
+  },
+  "faq": {
+    "heading": "Câu hỏi thường gặp",
+    "items": [
+      {
+        "question": "Công cụ này hoạt động như thế nào?",
+        "answer": "Hãy nhập bảng chữ cái, từ, tên hoặc câu tiếng Anh vào ô văn bản, trang sẽ tạo ngay nhiều biến thể khác nhau. Bạn có thể so sánh kết quả và chọn kiểu phù hợp nhất."
+      },
+      {
+        "question": "Các phông chữ này có dùng được trên Instagram không?",
+        "answer": "Chúng phù hợp ở những nơi Instagram cho phép ký tự Unicode, như phần tiểu sử, chú thích, bình luận và tin nhắn. Mức hỗ trợ Unicode có thể khác nhau giữa các trường trên Instagram."
+      },
+      {
+        "question": "Tại sao một số ký tự hiển thị thành ô vuông?",
+        "answer": "Ô vuông thường có nghĩa là thiết bị hiện tại không hiển thị được ký tự đã chọn. Hãy thử một biến thể khác dùng ký tự được nhiều thiết bị và nền tảng hỗ trợ hơn."
+      },
+      {
+        "question": "Tôi có thể dùng làm tên trong Free Fire, BGMI hoặc PUBG không?",
+        "answer": "Điều này tùy thuộc vào giới hạn của từng game. Một số ký tự trang trí có thể được chấp nhận, số khác thì không, vì vậy hãy thử tên đã tạo trong ô nhập tên của game trước khi lưu."
+      },
+      {
+        "question": "Văn bản nghệ thuật có ảnh hưởng đến khả năng truy cập hay SEO không?",
+        "answer": "Một số công nghệ hỗ trợ và công cụ tìm kiếm có thể khó đọc các ký tự trang trí. Với thông tin quan trọng, hãy giữ văn bản đơn giản và chỉ dùng ký tự nghệ thuật để nhấn mạnh về mặt hình ảnh."
+      },
+      {
+        "question": "Văn bản được tạo ra có giống emoji không?",
+        "answer": "Không. Emoji là một nhóm ký tự Unicode riêng, chủ yếu được thiết kế như biểu tượng hình ảnh. Văn bản nghệ thuật có thể dùng chữ cái, dấu, ký hiệu Unicode hoặc sự kết hợp của chúng để tạo nên các kiểu chữ khác nhau."
+      }
+    ]
+  },
+  "share": {
+    "label": "Chia sẻ"
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "text": "Trang bạn đang tìm không tồn tại hoặc có thể đã được chuyển đi. Hãy thử trình tạo phông chữ hoặc xem blog của chúng tôi.",
+    "home": "Đến trình tạo phông chữ",
+    "blog": "Xem blog",
+    "description": "Trang bạn đang tìm không tồn tại hoặc đã được chuyển đi."
+  },
+  "a11y": {
+    "skipToContent": "Chuyển đến nội dung",
+    "backToTop": "Lên đầu trang"
+  }
+}

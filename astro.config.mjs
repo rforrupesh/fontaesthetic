@@ -17,7 +17,7 @@ export default defineConfig({
       filter: (page) => !page.includes('/blog/tag/'),
       i18n: {
         defaultLocale: 'en',
-        locales: { en: 'en-US', fr: 'fr-FR', ar: 'ar', th: 'th-TH', tr: 'tr-TR', id: 'id-ID' },
+        locales: { en: 'en-US', fr: 'fr-FR', ar: 'ar', th: 'th-TH', tr: 'tr-TR', id: 'id-ID', vi: 'vi-VN', pl: 'pl-PL', es: 'es-ES', it: 'it-IT', ja: 'ja-JP', de: 'de-DE', pt: 'pt-BR' },
       },
     }),
   ],

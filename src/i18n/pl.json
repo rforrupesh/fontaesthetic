@@ -1,0 +1,109 @@
+{
+  "site": {
+    "name": "AestheticFonts",
+    "tagline": "Darmowy generator czcionek online"
+  },
+  "nav": {
+    "home": "Strona główna",
+    "blog": "Blog",
+    "about": "O nas",
+    "contact": "Kontakt"
+  },
+  "footer": {
+    "rights": "Wszelkie prawa zastrzeżone.",
+    "about": "O nas",
+    "contact": "Kontakt",
+    "privacy": "Polityka prywatności",
+    "blog": "Blog",
+    "madeWith": "Generator czcionek nr 1 do tworzenia efektownych tekstów w ponad 500 unikalnych stylach. Zamień swoje słowa w Ⓒⓞⓞⓛ, ₛₘₐₗₗ, 𝓬𝓾𝓻𝓼𝓲𝓿𝓮 i wiele więcej, a potem skopiuj i wklej je gdziekolwiek.",
+    "follow": "Śledź nas"
+  },
+  "sidebar": {
+    "toc": "Spis treści",
+    "related": "Powiązane wpisy",
+    "recent": "Najnowsze wpisy"
+  },
+  "tool": {
+    "placeholder": "Wpisz tutaj swój tekst...",
+    "copy": "Kopiuj",
+    "copied": "Skopiowano!",
+    "favorite": "Dodaj do ulubionych",
+    "unfavorite": "Usuń z ulubionych",
+    "favorites": "Ulubione",
+    "loadMore": "Pokaż więcej",
+    "download": "Pobierz",
+    "heading": "Generator czcionek",
+    "subheading": "Wpisz tekst poniżej i otrzymaj stylowe czcionki do skopiowania i wklejenia gdziekolwiek."
+  },
+  "blog": {
+    "listingTitle": "Blog",
+    "listingDescription": "Porady, poradniki i nowości o czcionkach i typografii.",
+    "tagDescription": "Przeglądaj artykuły o czcionkach z tagiem „{name}”: porady, poradniki i pomysły na stylowy tekst.",
+    "categoryDescription": "Przeglądaj artykuły o czcionkach w kategorii „{name}”: porady, poradniki i pomysły na stylowy tekst.",
+    "archives": "Archiwum",
+    "readMore": "Czytaj dalej",
+    "publishedOn": "Opublikowano",
+    "updatedOn": "Ostatnia aktualizacja",
+    "by": "Autor:",
+    "aboutAuthor": "O autorze",
+    "authorDescription": "Artykuły i poradniki autorstwa {name}: przeczytaj wszystko, co napisał o czcionkach i typografii.",
+    "contributions": "Wkład",
+    "articles": "Artykuły",
+    "topicsCovered": "Omawiane tematy",
+    "noPosts": "Brak artykułów.",
+    "viewProfile": "Zobacz pełny profil",
+    "latestArticle": "Najnowszy artykuł",
+    "typeOrganization": "Organizacja",
+    "typePerson": "Autor",
+    "allCategories": "Wszystkie"
+  },
+  "theme": {
+    "label": "Motyw",
+    "system": "Systemowy",
+    "light": "Jasny",
+    "dark": "Ciemny"
+  },
+  "faq": {
+    "heading": "Najczęściej zadawane pytania",
+    "items": [
+      {
+        "question": "Jak to działa?",
+        "answer": "Wpisz w pole tekstowe angielski alfabet, słowo, imię lub zdanie, a strona od razu utworzy kilka wariantów. Możesz porównać wyniki i wybrać ten, który Ci odpowiada."
+      },
+      {
+        "question": "Czy te czcionki działają na Instagramie?",
+        "answer": "Nadają się tam, gdzie Instagram pozwala na znaki Unicode, takie jak opisy profilu, podpisy, komentarze i wiadomości. Obsługa Unicode może się różnić w poszczególnych polach Instagrama."
+      },
+      {
+        "question": "Dlaczego niektóre znaki wyświetlają się jako kwadraty?",
+        "answer": "Kwadrat zwykle oznacza, że wybrany znak nie może zostać wyświetlony w bieżącym środowisku. Spróbuj innego wariantu ze znakami, które są szerzej obsługiwane na różnych urządzeniach i platformach."
+      },
+      {
+        "question": "Czy mogę użyć tego jako nicku w Free Fire, BGMI lub PUBG?",
+        "answer": "To zależy od ograniczeń danej gry. Niektóre ozdobne znaki mogą zostać zaakceptowane, a inne odrzucone, dlatego przetestuj wygenerowany nick w polu nazwy w grze, zanim go zapiszesz."
+      },
+      {
+        "question": "Czy ozdobny tekst wpływa na dostępność lub SEO?",
+        "answer": "Niektóre technologie asystujące i wyszukiwarki mogą mieć trudności z interpretacją ozdobnych znaków. W ważnych informacjach używaj prostego tekstu, a ozdobne znaki stosuj głównie dla efektu wizualnego."
+      },
+      {
+        "question": "Czy wygenerowany tekst to to samo co emoji?",
+        "answer": "Nie. Emoji to osobna grupa znaków Unicode, zaprojektowana głównie jako symbole obrazkowe. Ozdobny tekst może wykorzystywać litery, znaki, symbole Unicode lub ich kombinacje, aby tworzyć różne style tekstu."
+      }
+    ]
+  },
+  "share": {
+    "label": "Udostępnij"
+  },
+  "notFound": {
+    "title": "Nie znaleziono strony",
+    "text": "Strona, której szukasz, nie istnieje lub została przeniesiona. Wypróbuj generator czcionek lub przejrzyj nasz blog.",
+    "home": "Przejdź do generatora czcionek",
+    "blog": "Przeglądaj blog",
+    "description": "Strona, której szukasz, nie istnieje lub została przeniesiona."
+  },
+  "a11y": {
+    "skipToContent": "Przejdź do treści",
+    "backToTop": "Wróć na górę"
+  }
+}

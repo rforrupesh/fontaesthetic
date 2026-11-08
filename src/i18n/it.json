@@ -1,0 +1,109 @@
+{
+  "site": {
+    "name": "AestheticFonts",
+    "tagline": "Generatore di font online gratuito"
+  },
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "Chi siamo",
+    "contact": "Contatti"
+  },
+  "footer": {
+    "rights": "Tutti i diritti riservati.",
+    "about": "Chi siamo",
+    "contact": "Contattaci",
+    "privacy": "Informativa sulla privacy",
+    "blog": "Blog",
+    "madeWith": "Il generatore di font n. 1 per creare testi accattivanti con oltre 500 stili unici. Trasforma le tue parole in Ⓒⓞⓞⓛ, ₛₘₐₗₗ, 𝓬𝓾𝓻𝓼𝓲𝓿𝓮 e molto altro, poi copiale e incollale ovunque.",
+    "follow": "Seguici"
+  },
+  "sidebar": {
+    "toc": "Indice",
+    "related": "Articoli correlati",
+    "recent": "Articoli recenti"
+  },
+  "tool": {
+    "placeholder": "Scrivi qui il tuo testo...",
+    "copy": "Copia",
+    "copied": "Copiato!",
+    "favorite": "Aggiungi ai preferiti",
+    "unfavorite": "Rimuovi dai preferiti",
+    "favorites": "Preferiti",
+    "loadMore": "Carica altro",
+    "download": "Scarica",
+    "heading": "Generatore di font",
+    "subheading": "Scrivi qui sotto e ottieni font alla moda da copiare e incollare ovunque."
+  },
+  "blog": {
+    "listingTitle": "Blog",
+    "listingDescription": "Consigli, guide e novità su font e tipografia.",
+    "tagDescription": "Sfoglia gli articoli sui font con il tag “{name}”: consigli, guide e idee per testi alla moda.",
+    "categoryDescription": "Sfoglia gli articoli sui font nella categoria “{name}”: consigli, guide e idee per testi alla moda.",
+    "archives": "Archivio",
+    "readMore": "Leggi tutto",
+    "publishedOn": "Pubblicato il",
+    "updatedOn": "Ultimo aggiornamento",
+    "by": "Di",
+    "aboutAuthor": "Informazioni sull’autore",
+    "authorDescription": "Articoli e guide di {name}: leggi tutto ciò che ha scritto su font e tipografia.",
+    "contributions": "Contributi",
+    "articles": "Articoli",
+    "topicsCovered": "Argomenti trattati",
+    "noPosts": "Ancora nessun articolo.",
+    "viewProfile": "Vedi il profilo completo",
+    "latestArticle": "Ultimo articolo",
+    "typeOrganization": "Organizzazione",
+    "typePerson": "Autore",
+    "allCategories": "Tutti"
+  },
+  "theme": {
+    "label": "Tema",
+    "system": "Sistema",
+    "light": "Chiaro",
+    "dark": "Scuro"
+  },
+  "faq": {
+    "heading": "Domande frequenti",
+    "items": [
+      {
+        "question": "Come funziona?",
+        "answer": "Scrivi un alfabeto, una parola, un nome o una frase in inglese nel campo di testo e la pagina creerà subito diverse varianti. Puoi confrontare i risultati e scegliere quella più adatta a te."
+      },
+      {
+        "question": "I font funzionano su Instagram?",
+        "answer": "Vanno bene nei punti in cui Instagram consente i caratteri Unicode, come la descrizione del profilo, le didascalie, i commenti e i messaggi. Il supporto Unicode può variare tra i diversi campi di Instagram."
+      },
+      {
+        "question": "Perché alcuni caratteri appaiono come quadrati?",
+        "answer": "Un quadrato di solito significa che il carattere scelto non può essere visualizzato nell’ambiente attuale. Prova un’altra variante che usi caratteri con un supporto più ampio tra dispositivi e piattaforme."
+      },
+      {
+        "question": "Posso usarli come nome per Free Fire, BGMI o PUBG?",
+        "answer": "Dipende dalle restrizioni del gioco. Alcuni caratteri decorativi possono essere accettati e altri rifiutati, quindi prova il nome generato nel campo nome del gioco prima di salvarlo."
+      },
+      {
+        "question": "Il testo decorativo influisce su accessibilità o SEO?",
+        "answer": "Alcune tecnologie assistive e motori di ricerca possono avere difficoltà a interpretare i caratteri decorativi. Per le informazioni importanti usa un testo semplice e riserva i caratteri decorativi soprattutto all’enfasi visiva."
+      },
+      {
+        "question": "Il testo generato è uguale alle emoji?",
+        "answer": "No. Le emoji sono un gruppo separato di caratteri Unicode pensato soprattutto come simboli illustrati. Il testo decorativo può usare lettere, segni, simboli Unicode o loro combinazioni per creare stili di testo diversi."
+      }
+    ]
+  },
+  "share": {
+    "label": "Condividi"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "text": "La pagina che cerchi non esiste o potrebbe essere stata spostata. Prova il generatore di font o sfoglia il nostro blog.",
+    "home": "Vai al generatore di font",
+    "blog": "Sfoglia il blog",
+    "description": "La pagina che cerchi non esiste o è stata spostata."
+  },
+  "a11y": {
+    "skipToContent": "Vai al contenuto",
+    "backToTop": "Torna su"
+  }
+}

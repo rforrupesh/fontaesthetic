@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { t } from '../../i18n';
+const strings = t('ja');
+
+const sections = [
+  {
+    title: "収集する情報",
+    text: "AestheticFontsは、フォントジェネレーターに入力されたテキストを保存しません。変換はすべてお使いのブラウザ上で直接行われます。",
+  },
+  {
+    title: "アクセス解析",
+    text: "サイトの利用状況を把握するため、プライバシーに配慮した基本的なアクセス解析を使用する場合があります。個人データを第三者に販売することはありません。",
+  },
+];
+---
+<BaseLayout lang="ja" title={`プライバシーポリシー — ${strings.site.name}`} description="AestheticFontsのプライバシーポリシー。" path="/privacy-policy/">
+  <PageHero title="プライバシーポリシー" subtitle="最終更新：2026年1月" />
+
+  <section class="wrap py-10 max-w-[680px] mx-auto flex flex-col gap-5">
+    {sections.map((s) => (
+      <div class="card p-5">
+        <h2 class="text-[1.05rem] mb-2">{s.title}</h2>
+        <p class="text-text-muted m-0">{s.text}</p>
+      </div>
+    ))}
+  </section>
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { t } from '../../i18n';
+const strings = t('pt');
+
+const features = [
+  { title: "Sem cadastro", text: "Basta abrir a página e começar a digitar. Sem contas, sem downloads." },
+  { title: "Funciona em qualquer lugar", text: "Cole no Instagram, WhatsApp, Discord, Twitter/X e mais." },
+  { title: "100% grátis", text: "Sem taxas ocultas, sem plano premium, nunca." },
+];
+---
+<BaseLayout lang="pt" title={`Sobre — ${strings.site.name}`} description="Saiba mais sobre o AestheticFonts, o gerador de fontes online gratuito." path="/about/">
+  <PageHero
+    title="Sobre nós"
+    subtitle="Um gerador de fontes online gratuito que transforma texto comum em fontes Unicode estilosas para copiar e colar em qualquer lugar."
+  />
+
+  <section class="wrap py-10 max-w-[820px] mx-auto">
+    <div class="grid sm:grid-cols-3 gap-5 mb-8">
+      {features.map((f) => (
+        <div class="card p-5">
+          <div class="w-8 h-8 rounded-md bg-primary/15 text-primary flex items-center justify-center mb-3">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+          </div>
+          <h3 class="text-[1.02rem] mb-1.5">{f.title}</h3>
+          <p class="text-text-muted text-[.9rem] m-0">{f.text}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-text-muted text-center max-w-[560px] mx-auto">
+      Feito para criadores, profissionais de marketing e qualquer pessoa que queira destacar seu texto.
+    </p>
+  </section>
+</BaseLayout>

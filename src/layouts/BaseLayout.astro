@@ -49,7 +49,7 @@ const canonicalUrl = absoluteUrl(lang, path);
 const ogImage = image
   ? (/^https?:\/\//.test(image) ? image : siteUrl + base + image.replace(/^\/+/, ''))
   : undefined;
-const ogLocales: Record<string, string> = { en: 'en_US', fr: 'fr_FR', ar: 'ar_AR', th: 'th_TH', tr: 'tr_TR', id: 'id_ID' };
+const ogLocales: Record<string, string> = { en: 'en_US', fr: 'fr_FR', ar: 'ar_AR', th: 'th_TH', tr: 'tr_TR', id: 'id_ID', vi: 'vi_VN', pl: 'pl_PL', es: 'es_ES', it: 'it_IT', ja: 'ja_JP', de: 'de_DE', pt: 'pt_BR' };
 const strings = t(lang);
 
 // Build the lang -> path map used for hreflang tags AND the language

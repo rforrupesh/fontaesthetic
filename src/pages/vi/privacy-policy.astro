@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { t } from '../../i18n';
+const strings = t('vi');
+
+const sections = [
+  {
+    title: "Chúng tôi thu thập gì",
+    text: "AestheticFonts không lưu văn bản bạn nhập vào trình tạo phông chữ. Mọi quá trình chuyển đổi diễn ra trực tiếp trong trình duyệt của bạn.",
+  },
+  {
+    title: "Phân tích",
+    text: "Chúng tôi có thể sử dụng công cụ phân tích cơ bản, thân thiện với quyền riêng tư để hiểu cách trang web được sử dụng. Chúng tôi không bán dữ liệu cá nhân cho bên thứ ba.",
+  },
+];
+---
+<BaseLayout lang="vi" title={`Chính sách bảo mật — ${strings.site.name}`} description="Chính sách bảo mật của AestheticFonts." path="/privacy-policy/">
+  <PageHero title="Chính sách bảo mật" subtitle="Cập nhật lần cuối: Tháng 1 năm 2026" />
+
+  <section class="wrap py-10 max-w-[680px] mx-auto flex flex-col gap-5">
+    {sections.map((s) => (
+      <div class="card p-5">
+        <h2 class="text-[1.05rem] mb-2">{s.title}</h2>
+        <p class="text-text-muted m-0">{s.text}</p>
+      </div>
+    ))}
+  </section>
+</BaseLayout>

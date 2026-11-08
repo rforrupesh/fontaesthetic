@@ -1,0 +1,109 @@
+{
+  "site": {
+    "name": "AestheticFonts",
+    "tagline": "Kostenloser Online-Schriftgenerator"
+  },
+  "nav": {
+    "home": "Startseite",
+    "blog": "Blog",
+    "about": "Über uns",
+    "contact": "Kontakt"
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "privacy": "Datenschutzerklärung",
+    "blog": "Blog",
+    "madeWith": "Der Schriftgenerator Nr. 1, um auffälligen Text mit über 500 einzigartigen Stilen zu erstellen. Verwandle deine Wörter in Ⓒⓞⓞⓛ, ₛₘₐₗₗ, 𝓬𝓾𝓻𝓼𝓲𝓿𝓮 und mehr, dann kopiere sie und füge sie überall ein.",
+    "follow": "Folge uns"
+  },
+  "sidebar": {
+    "toc": "Inhaltsverzeichnis",
+    "related": "Ähnliche Beiträge",
+    "recent": "Neueste Beiträge"
+  },
+  "tool": {
+    "placeholder": "Gib hier deinen Text ein...",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "favorite": "Zu Favoriten hinzufügen",
+    "unfavorite": "Aus Favoriten entfernen",
+    "favorites": "Favoriten",
+    "loadMore": "Mehr laden",
+    "download": "Herunterladen",
+    "heading": "Schriftgenerator",
+    "subheading": "Gib unten Text ein und erhalte stilvolle Schriften zum Kopieren und überall Einfügen."
+  },
+  "blog": {
+    "listingTitle": "Blog",
+    "listingDescription": "Tipps, Anleitungen und Neuigkeiten zu Schriften und Typografie.",
+    "tagDescription": "Durchsuche Schrift-Artikel mit dem Tag „{name}“: Tipps, Anleitungen und Ideen für stilvollen Text.",
+    "categoryDescription": "Durchsuche Schrift-Artikel in der Kategorie „{name}“: Tipps, Anleitungen und Ideen für stilvollen Text.",
+    "archives": "Archiv",
+    "readMore": "Weiterlesen",
+    "publishedOn": "Veröffentlicht am",
+    "updatedOn": "Zuletzt aktualisiert",
+    "by": "Von",
+    "aboutAuthor": "Über den Autor",
+    "authorDescription": "Artikel und Anleitungen von {name}: Lies alles, was er oder sie über Schriften und Typografie geschrieben hat.",
+    "contributions": "Beiträge",
+    "articles": "Artikel",
+    "topicsCovered": "Behandelte Themen",
+    "noPosts": "Noch keine Artikel.",
+    "viewProfile": "Vollständiges Profil ansehen",
+    "latestArticle": "Neuester Artikel",
+    "typeOrganization": "Organisation",
+    "typePerson": "Autor",
+    "allCategories": "Alle"
+  },
+  "theme": {
+    "label": "Design",
+    "system": "System",
+    "light": "Hell",
+    "dark": "Dunkel"
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "question": "Wie funktioniert das?",
+        "answer": "Gib ein englisches Alphabet, Wort, einen Namen oder Satz in das Textfeld ein, und die Seite erstellt sofort mehrere Varianten. Du kannst die Ergebnisse vergleichen und die passende auswählen."
+      },
+      {
+        "question": "Funktionieren die Schriften auf Instagram?",
+        "answer": "Sie eignen sich überall dort, wo Instagram Unicode-Zeichen erlaubt, etwa in Profilbeschreibungen, Bildunterschriften, Kommentaren und Nachrichten. Die Unicode-Unterstützung kann sich zwischen den einzelnen Instagram-Feldern unterscheiden."
+      },
+      {
+        "question": "Warum werden manche Zeichen als Kästchen angezeigt?",
+        "answer": "Ein Kästchen bedeutet meist, dass das gewählte Zeichen in der aktuellen Umgebung nicht dargestellt werden kann. Probiere eine andere Variante mit Zeichen, die von mehr Geräten und Plattformen unterstützt werden."
+      },
+      {
+        "question": "Kann ich sie als Namen für Free Fire, BGMI oder PUBG verwenden?",
+        "answer": "Das hängt von den Einschränkungen des Spiels ab. Manche Zierzeichen werden akzeptiert, andere abgelehnt. Teste den erzeugten Namen daher im Namensfeld des Spiels, bevor du ihn speicherst."
+      },
+      {
+        "question": "Beeinflusst ausgefallener Text Barrierefreiheit oder SEO?",
+        "answer": "Manche Hilfstechnologien und Suchsysteme haben möglicherweise Schwierigkeiten, dekorative Zeichen zu deuten. Verwende für wichtige Informationen einfachen Text und setze Zierzeichen vor allem zur optischen Hervorhebung ein."
+      },
+      {
+        "question": "Ist der erzeugte Text dasselbe wie Emojis?",
+        "answer": "Nein. Emojis sind eine eigene Gruppe von Unicode-Zeichen, die vor allem als Bildsymbole gedacht sind. Ausgefallener Text kann Unicode-Buchstaben, -Zeichen, -Symbole oder Kombinationen daraus nutzen, um verschiedene Textstile zu erzeugen."
+      }
+    ]
+  },
+  "share": {
+    "label": "Teilen"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "text": "Die gesuchte Seite existiert nicht oder wurde möglicherweise verschoben. Probiere den Schriftgenerator aus oder stöbere in unserem Blog.",
+    "home": "Zum Schriftgenerator",
+    "blog": "Blog durchsuchen",
+    "description": "Die gesuchte Seite existiert nicht oder wurde verschoben."
+  },
+  "a11y": {
+    "skipToContent": "Zum Inhalt springen",
+    "backToTop": "Nach oben"
+  }
+}
