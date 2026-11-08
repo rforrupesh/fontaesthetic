@@ -24,7 +24,7 @@
     "recent": "Bài viết mới nhất"
   },
   "tool": {
-    "placeholder": "Nhập văn bản của bạn tại đây...",
+    "placeholder": "kituhay",
     "copy": "Sao chép",
     "copied": "Đã sao chép!",
     "favorite": "Thêm vào yêu thích",
@@ -63,35 +63,51 @@
     "light": "Sáng",
     "dark": "Tối"
   },
-  "faq": {
-    "heading": "Câu hỏi thường gặp",
-    "items": [
-      {
-        "question": "Công cụ này hoạt động như thế nào?",
-        "answer": "Hãy nhập bảng chữ cái, từ, tên hoặc câu tiếng Anh vào ô văn bản, trang sẽ tạo ngay nhiều biến thể khác nhau. Bạn có thể so sánh kết quả và chọn kiểu phù hợp nhất."
-      },
-      {
-        "question": "Các phông chữ này có dùng được trên Instagram không?",
-        "answer": "Chúng phù hợp ở những nơi Instagram cho phép ký tự Unicode, như phần tiểu sử, chú thích, bình luận và tin nhắn. Mức hỗ trợ Unicode có thể khác nhau giữa các trường trên Instagram."
-      },
-      {
-        "question": "Tại sao một số ký tự hiển thị thành ô vuông?",
-        "answer": "Ô vuông thường có nghĩa là thiết bị hiện tại không hiển thị được ký tự đã chọn. Hãy thử một biến thể khác dùng ký tự được nhiều thiết bị và nền tảng hỗ trợ hơn."
-      },
-      {
-        "question": "Tôi có thể dùng làm tên trong Free Fire, BGMI hoặc PUBG không?",
-        "answer": "Điều này tùy thuộc vào giới hạn của từng game. Một số ký tự trang trí có thể được chấp nhận, số khác thì không, vì vậy hãy thử tên đã tạo trong ô nhập tên của game trước khi lưu."
-      },
-      {
-        "question": "Văn bản nghệ thuật có ảnh hưởng đến khả năng truy cập hay SEO không?",
-        "answer": "Một số công nghệ hỗ trợ và công cụ tìm kiếm có thể khó đọc các ký tự trang trí. Với thông tin quan trọng, hãy giữ văn bản đơn giản và chỉ dùng ký tự nghệ thuật để nhấn mạnh về mặt hình ảnh."
-      },
-      {
-        "question": "Văn bản được tạo ra có giống emoji không?",
-        "answer": "Không. Emoji là một nhóm ký tự Unicode riêng, chủ yếu được thiết kế như biểu tượng hình ảnh. Văn bản nghệ thuật có thể dùng chữ cái, dấu, ký hiệu Unicode hoặc sự kết hợp của chúng để tạo nên các kiểu chữ khác nhau."
-      }
-    ]
-  },
+"faq": {
+  "heading": "Câu hỏi thường gặp",
+  "items": [
+    {
+      "question": "Kí tự đặc biệt là gì?",
+      "answer": "Kí tự đặc biệt là những ký hiệu nằm ngoài chữ cái và chữ số thông thường, thuộc bộ mã Unicode. Chúng gồm trái tim, ngôi sao, vương miện, mũi tên, kaomoji và nhiều ký hiệu trang trí khác, giúp tên hoặc bio của bạn nổi bật hơn."
+    },
+    {
+      "question": "Cách copy paste kí tự đặc biệt như thế nào?",
+      "answer": "Bạn chỉ cần bấm nút sao chép ở ký tự yêu thích, sau đó mở game hoặc ứng dụng và dán vào ô nhập tên, tiểu sử hay tin nhắn. Không cần cài thêm bàn phím hay phần mềm nào."
+    },
+    {
+      "question": "Kí tự đặc biệt dùng được trên những nền tảng nào?",
+      "answer": "Hầu hết nền tảng đều hỗ trợ như Facebook, Instagram, TikTok, YouTube, Zalo, Discord, WhatsApp và nhiều game online. Mức hỗ trợ có thể khác nhau giữa từng ứng dụng và từng loại thiết bị."
+    },
+    {
+      "question": "Tại sao kí tự đặc biệt bị hiện thành ô vuông?",
+      "answer": "Ô vuông xuất hiện khi thiết bị hoặc phông chữ hiện tại chưa hỗ trợ ký tự đó. Bạn hãy thử một mẫu khác phổ biến hơn như trái tim, ngôi sao hoặc ngoặc cơ bản, hoặc kiểm tra trên một thiết bị khác."
+    },
+    {
+      "question": "Có dùng kí tự đặc biệt để đặt tên Free Fire, Liên Quân, PUBG Mobile được không?",
+      "answer": "Điều này tùy theo quy định và giới hạn ký tự của từng game. Một số ký tự được chấp nhận, số khác bị chặn, vì vậy hãy thử dán tên vào ô đặt tên của game trước khi xác nhận."
+    },
+    {
+      "question": "Kí tự khoảng trống (tên trống) là gì và dùng như thế nào?",
+      "answer": "Đây là ký tự trông như khoảng trắng nhưng được tính là một ký tự thật, giúp tạo tên có khoảng cách hoặc trông như tàng hình. Bạn sao chép ký tự này rồi dán vào ô tên, tuy nhiên một số game có thể không cho phép."
+    },
+    {
+      "question": "Có thể kết hợp nhiều kí tự đặc biệt trong một tên không?",
+      "answer": "Có. Bạn có thể ghép ký tự bên trái, bên phải và giữa tên để tạo phong cách riêng. Tuy nhiên hãy giữ tên gọn để dễ đọc và không vượt quá giới hạn độ dài của game hoặc mạng xã hội."
+    },
+    {
+      "question": "Kí tự đặc biệt có mất phí không?",
+      "answer": "Không. Bạn có thể tạo tên và sao chép ký tự không giới hạn, hoàn toàn miễn phí."
+    },
+    {
+      "question": "Kí tự đặc biệt có ảnh hưởng đến khả năng đọc hoặc tìm kiếm không?",
+      "answer": "Có thể. Một số công cụ đọc màn hình và công cụ tìm kiếm khó nhận diện ký tự trang trí. Với thông tin quan trọng như tên thương hiệu hoặc liên hệ, hãy dùng chữ thường và chỉ dùng ký tự đặc biệt để trang trí."
+    },
+    {
+      "question": "Kí tự đặc biệt khác emoji ở điểm nào?",
+      "answer": "Emoji là nhóm ký tự Unicode riêng, chủ yếu là biểu tượng hình ảnh có màu. Kí tự đặc biệt gồm nhiều loại ký hiệu, dấu và chữ cái biến thể, thường có dạng đơn sắc và dùng để trang trí tên, bio hay caption."
+    }
+  ]
+},
   "share": {
     "label": "Chia sẻ"
   },
