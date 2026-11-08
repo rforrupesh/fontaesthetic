@@ -56,7 +56,7 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
 
     <div class="max-w-[640px] mx-auto mt-5 flex flex-col items-center gap-2">
       <button id="load-more" class="btn inline-flex items-center justify-center gap-2" type="button">
-        <svg class="load-spin" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true" hidden><circle cx="12" cy="12" r="9" opacity=".25"/><path d="M21 12a9 9 0 0 0-9-9"/></svg>
+        <svg class="load-spin" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9" opacity=".25"/><path d="M21 12a9 9 0 0 0-9-9"/></svg>
         <span>{strings.tool.loadMore}</span>
       </button>
     </div>
@@ -80,7 +80,8 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
   .fav-group { background-color: rgba(245,166,35,.16); border: 1px solid rgba(245,166,35,.45); border-radius: .9rem; padding: .6rem; }
   @keyframes load-spin { to { transform: rotate(360deg); } }
   .load-spin { animation: load-spin .7s linear infinite; }
-  .load-spin[hidden] { display: none; }
+  .load-spin { display: none; }
+  #load-more.is-loading .load-spin { display: inline-block; }
   #load-more:disabled { opacity: .7; cursor: wait; }
   @keyframes row-in { from { opacity: 0; transform: translateY(10px); } }
   .row-in { animation: row-in .35s ease-out; }
@@ -102,7 +103,6 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
   const input = document.getElementById('font-input');
   const results = document.getElementById('font-results');
   const loadMoreBtn = document.getElementById('load-more');
-  const spinEl = loadMoreBtn.querySelector('.load-spin');
   const rowTpl = document.getElementById('row-tpl').content.firstElementChild;
   const copiedLabel = results.dataset.copiedLabel;
   const favLabel = results.dataset.favLabel;
@@ -240,11 +240,11 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
     if (loading) return;
     loading = true;
     loadMoreBtn.disabled = true;
-    spinEl.hidden = false;
+    loadMoreBtn.classList.add('is-loading');
     setTimeout(() => {
       shown += BATCH;
       render();
-      spinEl.hidden = true;
+      loadMoreBtn.classList.remove('is-loading');
       loadMoreBtn.disabled = false;
       loading = false;
     }, 600);
