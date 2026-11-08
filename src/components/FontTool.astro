@@ -35,19 +35,35 @@ const rows = FONT_STYLES.map((style) => ({
       id="font-results"
       class="max-w-[640px] mx-auto mt-6 flex flex-col gap-2.5 text-left"
       data-copied-label={strings.tool.copied}
+      data-fav-label={strings.tool.favorite}
+      data-unfav-label={strings.tool.unfavorite}
     >
-      {rows.map((row) => (
-        <div class="card flex items-center justify-between gap-4 px-3.5 py-3" data-style-slug={row.slug}>
+      {rows.map((row, i) => (
+        <div class="card flex items-center justify-between gap-4 px-3.5 py-3" data-style-slug={row.slug} data-order={i}>
           <div class="min-w-0">
             <div class="text-[.72rem] uppercase tracking-wide text-text-muted mb-1" data-role="name">{row.name}</div>
             <div class="break-words text-[1.05rem]" data-role="output">{row.sample}</div>
           </div>
-          <button class="btn shrink-0" type="button" data-role="copy">{strings.tool.copy}</button>
+          <div class="flex items-center gap-2 shrink-0">
+            <button class="fav-btn" type="button" data-role="fav" aria-pressed="false" aria-label={strings.tool.favorite} title={strings.tool.favorite}>
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+            </button>
+            <button class="btn" type="button" data-role="copy">{strings.tool.copy}</button>
+          </div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style is:global>
+  .fav-btn { display:inline-flex; align-items:center; justify-content:center; width:2.1rem; height:2.1rem; border-radius:.5rem; background:transparent; border:1px solid var(--color-border, rgba(128,128,128,.35)); color:var(--color-text-muted, #888); cursor:pointer; transition:color .15s, border-color .15s, transform .15s; }
+  .fav-btn svg { fill:none; }
+  .fav-btn:hover { color:#f5a623; border-color:#f5a623; }
+  .fav-btn:active { transform:scale(.9); }
+  .fav-btn[aria-pressed="true"] { color:#f5a623; border-color:#f5a623; }
+  .fav-btn[aria-pressed="true"] svg { fill:#f5a623; }
+</style>
 
 <script>
   // Kept as a static import on purpose: a chunk with zero imports (static or
@@ -59,10 +75,42 @@ const rows = FONT_STYLES.map((style) => ({
   const results = document.getElementById('font-results');
   const copiedLabel = results.dataset.copiedLabel;
   const rowsEls = Array.from(results.querySelectorAll('[data-style-slug]'));
+  const favLabel = results.dataset.favLabel;
+  const unfavLabel = results.dataset.unfavLabel;
+  const KEY = 'fontaesthetic:favorites';
+
+  // Favorites are stored by style slug (language independent) in localStorage.
+  let favs = [];
+  try { favs = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) {}
+  const saveFavs = () => { try { localStorage.setItem(KEY, JSON.stringify(favs)); } catch (e) {} };
+
+  // Favorites float to the top (most recently added first); the rest keep
+  // their original order. Re-appending DOM nodes only moves them.
+  function render() {
+    const favRows = favs.map((s) => rowsEls.find((r) => r.dataset.styleSlug === s)).filter(Boolean);
+    const rest = rowsEls.filter((r) => !favRows.includes(r)).sort((a, b) => a.dataset.order - b.dataset.order);
+    [...favRows, ...rest].forEach((r) => {
+      const on = favs.includes(r.dataset.styleSlug);
+      const b = r.querySelector('[data-role="fav"]');
+      b.setAttribute('aria-pressed', String(on));
+      b.setAttribute('aria-label', on ? unfavLabel : favLabel);
+      b.title = on ? unfavLabel : favLabel;
+      results.appendChild(r);
+    });
+  }
+  render();
 
   // Copy needs no conversion code at all -- it just reads whatever the row
   // currently shows. One delegated listener instead of one per row.
   results.addEventListener('click', (e) => {
+    const fav = e.target.closest('[data-role="fav"]');
+    if (fav) {
+      const slug = fav.closest('[data-style-slug]').dataset.styleSlug;
+      favs = favs.includes(slug) ? favs.filter((s) => s !== slug) : [slug, ...favs];
+      saveFavs();
+      render();
+      return;
+    }
     const btn = e.target.closest('[data-role="copy"]');
     if (!btn) return;
     const row = btn.closest('[data-style-slug]');

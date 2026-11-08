@@ -27,6 +27,8 @@
     "placeholder": "Type your text here...",
     "copy": "Copy",
     "copied": "Copied!",
+    "favorite": "Add to favorites",
+    "unfavorite": "Remove from favorites",
     "download": "Download",
     "heading": "Font Generator",
     "subheading": "Type below and get stylish fonts to copy-paste anywhere."
