@@ -1,4 +1,7 @@
 ---
+// One JSON-LD @graph for a single post: Article + WebPage + ImageObject(s) + Person.
+// BreadcrumbList, WebSite and Organization are separate components on the same page;
+// everything is tied together with @id references.
 interface Props {
   headline: string;
   description: string;
@@ -7,39 +10,73 @@ interface Props {
   datePublished: Date;
   dateModified?: Date;
   siteName: string;
-  logoUrl: string;      // absolute, used for publisher.logo
+  siteUrl: string;      // absolute site root WITH trailing slash (same value Organization/WebSite get)
+  logoUrl: string;      // absolute
   lang: string;
-  author?: { displayName: string; type?: string; url?: string; sameAs?: string; image?: string };
+  keywords?: string[];  // post tags
+  section?: string[];   // post categories
+  author?: { displayName: string; type?: string; url?: string; sameAs?: string; image?: string; role?: string };
 }
-const { headline, description, url, image, datePublished, dateModified, siteName, logoUrl, lang, author } = Astro.props;
+const { headline, description, url, image, datePublished, dateModified, siteName, siteUrl, logoUrl, lang, keywords = [], section = [], author } = Astro.props;
 
-const article = {
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline,
-  description,
-  inLanguage: lang,
-  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-  ...(image ? { image: [image] } : {}),
-  datePublished: datePublished.toISOString(),
-  dateModified: (dateModified ?? datePublished).toISOString(),
-  author: author
-    ? {
-        '@type': author.type ?? 'Person',
-        name: author.displayName,
-        ...(author.url ? { url: author.url } : {}),
-        ...(author.sameAs ? { sameAs: [author.sameAs] } : {}),
-      }
-    : { '@type': 'Organization', name: siteName },
-  publisher: {
-    '@type': 'Organization',
-    name: siteName,
-    logo: {
-      '@type': 'ImageObject',
-      url: logoUrl,
-    },
+const modified = (dateModified ?? datePublished).toISOString();
+const orgId = `${siteUrl}#organization`;
+const siteId = `${siteUrl}#website`;
+const pageId = `${url}#webpage`;
+const articleId = `${url}#article`;
+const imageId = `${url}#primaryimage`;
+const crumbId = `${url}#breadcrumb`;
+const authorId = author?.url ? `${author.url}#${(author.type ?? 'Person').toLowerCase()}` : orgId;
+
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'Article',
+    '@id': articleId,
+    headline,
+    description,
+    inLanguage: lang,
+    isPartOf: { '@id': pageId },
+    mainEntityOfPage: { '@id': pageId },
+    ...(image ? { image: { '@id': imageId }, thumbnailUrl: image } : {}),
+    datePublished: datePublished.toISOString(),
+    dateModified: modified,
+    ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
+    ...(section.length ? { articleSection: section } : {}),
+    author: { '@id': authorId },
+    publisher: { '@id': orgId },
   },
-};
+  {
+    '@type': 'WebPage',
+    '@id': pageId,
+    url,
+    name: headline,
+    description,
+    inLanguage: lang,
+    isPartOf: { '@id': siteId },
+    ...(image ? { primaryImageOfPage: { '@id': imageId } } : {}),
+    breadcrumb: { '@id': crumbId },
+    datePublished: datePublished.toISOString(),
+    dateModified: modified,
+  },
+];
+
+if (image) {
+  graph.push({ '@type': 'ImageObject', '@id': imageId, url: image, contentUrl: image, inLanguage: lang });
+}
+
+if (author?.url) {
+  graph.push({
+    '@type': author.type ?? 'Person',
+    '@id': authorId,
+    name: author.displayName,
+    url: author.url,
+    ...(author.role ? { jobTitle: author.role } : {}),
+    ...(author.sameAs ? { sameAs: [author.sameAs] } : {}),
+    ...(author.image ? { image: { '@type': 'ImageObject', url: author.image, contentUrl: author.image } } : {}),
+  });
+}
+
+const data = { '@context': 'https://schema.org', '@graph': graph };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(article)} />
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

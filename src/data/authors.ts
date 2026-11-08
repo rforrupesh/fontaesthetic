@@ -75,7 +75,6 @@ export const authors: Record<string, AuthorInput> = {
         'Tujuan kami sederhana: panduan praktis yang mudah diikuti agar konten Anda lebih menonjol. Setiap artikel ditulis agar berguna lebih dulu, sehingga Anda bisa langsung menyalin ide dan memakainya.',
       ],
     },
-    type: 'Organization',
     image: '/images/editorial-team.svg',
   },
 };

@@ -10,6 +10,7 @@ import RelatedPosts from '../../components/RelatedPosts.astro';
 import BreadcrumbSchema from '../../components/schema/BreadcrumbSchema.astro';
 import ArticleSchema from '../../components/schema/ArticleSchema.astro';
 import OrganizationSchema from '../../components/schema/OrganizationSchema.astro';
+import WebSiteSchema from '../../components/schema/WebSiteSchema.astro';
 import AuthorBox from '../../components/AuthorBox.astro';
 import { getAuthor, authorPath } from '../../data/authors';
 import { getCollection, render } from 'astro:content';
@@ -184,9 +185,20 @@ const breadcrumbItems = [
     datePublished={datePublished}
     dateModified={dateModified}
     siteName={strings.site.name}
+    siteUrl={siteUrl + base}
     logoUrl={logoUrl}
     lang={lang}
-    author={{ displayName: author.displayName, type: author.type, url: siteUrl + authorHref, sameAs: author.url }}
+    keywords={post.data.tags}
+    section={post.data.categories}
+    author={{
+      displayName: author.displayName,
+      type: author.type,
+      role: author.role,
+      url: siteUrl + authorHref,
+      sameAs: author.url,
+      image: author.image ? (author.image.startsWith('http') ? author.image : siteUrl + base + author.image.replace(/^\/+/, '')) : undefined,
+    }}
   />
   <OrganizationSchema name={strings.site.name} siteUrl={siteUrl + base} logoUrl={logoUrl} />
+  <WebSiteSchema name={strings.site.name} siteUrl={siteUrl + base} lang={lang} />
 </BaseLayout>
