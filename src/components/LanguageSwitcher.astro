@@ -47,7 +47,7 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
   </button>
 
   <ul
-    class="lang-menu hidden fixed z-50 w-max py-1 bg-surface border border-border rounded-md shadow-lg max-h-[60vh] overflow-y-auto"
+    class="lang-menu hidden fixed z-[100] w-max py-1 bg-surface border border-border rounded-md shadow-lg max-h-[60vh] overflow-y-auto"
     role="listbox"
   >
     {Object.entries(visibleLanguages).map(([code, info]) => (
@@ -72,8 +72,16 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
   // single unique id.
   const GAP = 6; // space kept between the trigger and the menu
 
+  // The menu is moved to <body> while open so no ancestor (header backdrop-filter,
+  // transformed mobile links, overflow:hidden panels) can clip or re-anchor it.
+  const homes = new WeakMap<HTMLElement, HTMLElement>();
+
   function closeAll() {
-    document.querySelectorAll<HTMLElement>('.lang-menu').forEach((m) => m.classList.add('hidden'));
+    document.querySelectorAll<HTMLElement>('.lang-menu').forEach((m) => {
+      m.classList.add('hidden');
+      const home = homes.get(m);
+      if (home && m.parentElement !== home) home.appendChild(m);
+    });
     document.querySelectorAll<HTMLElement>('.lang-trigger').forEach((t) => t.setAttribute('aria-expanded', 'false'));
     document.querySelectorAll<HTMLElement>('.lang-arrow').forEach((a) => a.classList.remove('rotate-180'));
   }
@@ -111,6 +119,8 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
     if (!trigger || !menu) return;
 
     function open() {
+      homes.set(menu!, wrap as HTMLElement);
+      document.body.appendChild(menu!);
       menu!.classList.remove('hidden');
       positionMenu(trigger!, menu!);
       trigger!.setAttribute('aria-expanded', 'true');
@@ -132,6 +142,14 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
     if (e.key === 'Escape') closeAll();
   });
   // Reposition (or just close) if the viewport changes shape while open.
-  window.addEventListener('resize', closeAll);
-  window.addEventListener('scroll', closeAll, true);
+  let lastW = window.innerWidth;
+  window.addEventListener('resize', () => {
+    if (window.innerWidth !== lastW) { lastW = window.innerWidth; closeAll(); }
+  });
+  window.addEventListener('scroll', (e) => {
+    const t = e.target as Node | null;
+    // scrolling the language list itself must not close it
+    if (t instanceof Element && t.closest('.lang-menu')) return;
+    closeAll();
+  }, true);
 </script>
