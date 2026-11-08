@@ -115,6 +115,7 @@ author: "rupesh"
 
 - Key (`'rupesh'`) chhoti, lowercase, bina space ke rakho. Wahi `author:` me likhte hain.
 - `image` na do to initials ka circle dikhta hai.
+- **Author image ka size:** **SQUARE (1:1), 400 × 400 px**, format `.webp` ya `.jpg`, 50 KB se kam. Chehra/logo bilkul beech me rakho, kyunki image **gol (circle)** me kat ke dikhti hai (post box me 56px, author page par 96px). Kam se kam 200 × 200 px (retina ke liye 2x). Wide/lambi image (jaise site ka logo) mat lagao, wo kat jaati hai. Image `public/images/` me rakho aur `image: '/images/naam.webp'` likho.
 - `bio` chhota rakho (post ke box me aata hai). Lamba bio `fullBio` me likho, wo sirf author page par dikhta hai.
 - `author: "kuch-galat"` likha to build error aayega aur batayega kaun-kaun si keys available hain.
 - Default author badalna ho to `DEFAULT_AUTHOR` ki value badlo.

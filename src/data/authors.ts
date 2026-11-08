@@ -17,7 +17,7 @@ interface AuthorInput {
   fullBio?: L<string[]>;        // extra paragraphs, shown ONLY on the author page
   role?: L<string>;             // e.g. 'Typography Writer'
   type?: 'Organization' | 'Person'; // schema.org type (default: Person)
-  image?: string;               // "/images/x.webp" (in public/) or full https URL
+  image?: string;               // SQUARE image, 400x400 px recommended: "/images/x.webp" (in public/) or full https URL
   url?: string;                 // optional absolute URL of own site/profile (SEO sameAs)
   links?: { label: string; url: string }[]; // optional social links (author page)
 }
@@ -76,7 +76,7 @@ export const authors: Record<string, AuthorInput> = {
       ],
     },
     type: 'Organization',
-    image: '/logo.svg',
+    image: '/images/editorial-team.svg',
   },
 };
 
