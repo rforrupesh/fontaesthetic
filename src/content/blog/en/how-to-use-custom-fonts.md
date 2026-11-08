@@ -1,7 +1,7 @@
 ---
 translationId: "howto-fonts"
 slug: "how-to-use-custom-fonts"
-title: "How to Use Custom Fonts Anywhere"
+title: "How to Use Custom Fonts Anywhere g"
 description: "A complete guide on generating and using stylish fonts on Instagram, WhatsApp, Discord and more."
 date: 2024-06-15
 tags: ["guide", "fonts"]
