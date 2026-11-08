@@ -35,9 +35,9 @@ export default defineConfig({
     build: {
       // Astro only inlines a client script when its bundled chunk has no
       // imports AND fits under this limit (default 4 KiB). The font tool's
-      // chunk is ~7 KiB, so raising the ceiling ships it inside the HTML and
+      // chunk is ~15 KiB, so raising the ceiling ships it inside the HTML and
       // leaves the page with zero JS requests in its load chain.
-      assetsInlineLimit: 12288,
+      assetsInlineLimit: 24576,
     },
   },
 });
