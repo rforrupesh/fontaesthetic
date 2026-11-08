@@ -15,10 +15,10 @@ const navItems = [
 ];
 ---
 
-<header class="sticky top-0 z-50 h-[var(--header-h)] flex items-center bg-surface/90 backdrop-blur-sm border-b border-border">
+<header class="site-header sticky top-0 z-50 h-[var(--header-h)] flex items-center bg-surface/90 backdrop-blur-sm border-b border-border">
   <div class="wrap flex items-center justify-between gap-4">
-    <div class="flex items-center gap-8">
-      <a href={getPath(lang, '/')} class="flex items-center h-9 md:h-10 shrink-0" aria-label={strings.site.name}>
+    <div class="flex items-center gap-6">
+      <a href={getPath(lang, '/')} class="logo-link flex items-center h-9 md:h-10 shrink-0" aria-label={strings.site.name}>
         <img
           src={`${import.meta.env.BASE_URL}logo.svg`}
           alt={strings.site.name}
@@ -30,9 +30,10 @@ const navItems = [
       </a>
 
       <!-- Desktop: single-row menu -->
-      <nav class="hidden md:flex gap-5 lg:gap-7 relative" id="desktop-nav">
+      <nav class="hidden md:flex gap-1 lg:gap-2 relative" id="desktop-nav">
+        <span id="nav-pill" aria-hidden="true"></span>
         {navItems.map((item) => (
-          <a href={item.href} class="nav-link text-base lg:text-lg font-medium text-text-muted hover:text-text transition-colors duration-150 py-1.5">
+          <a href={item.href} class="nav-link relative z-10 px-3 text-base lg:text-lg font-medium text-text-muted py-1.5">
             {item.label}
           </a>
         ))}
@@ -54,61 +55,63 @@ const navItems = [
         aria-label="Open menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
-        class="inline-flex flex-col justify-center items-center gap-1.5 w-9 h-9 shrink-0"
+        class="menu-toggle inline-flex flex-col justify-center items-center gap-1.5 w-9 h-9 shrink-0 rounded-md"
       >
-        <span class="menu-bar block w-6 h-0.5 bg-text transition-transform duration-200"></span>
-        <span class="menu-bar block w-6 h-0.5 bg-text transition-opacity duration-200"></span>
-        <span class="menu-bar block w-6 h-0.5 bg-text transition-transform duration-200"></span>
+        <span class="menu-bar block w-6 h-0.5 bg-text"></span>
+        <span class="menu-bar block w-6 h-0.5 bg-text"></span>
+        <span class="menu-bar block w-6 h-0.5 bg-text"></span>
       </button>
     </div>
   </div>
 
-  <!-- Mobile menu panel -->
-  <div
-    id="mobile-menu"
-    class="hidden md:hidden absolute top-[var(--header-h)] left-0 w-full bg-surface border-b border-border shadow-lg"
-  >
-    <nav class="wrap flex flex-col py-4 gap-1">
-      {navItems.map((item) => (
-        <a href={item.href} class="py-2.5 text-sm text-text-muted hover:text-text transition-colors duration-150">
-          {item.label}
-        </a>
-      ))}
-      <div class="pt-3 mt-2 border-t border-border">
-        <LanguageSwitcher lang={lang} alternates={alternates} availableLangs={availableLangs} />
-      </div>
-    </nav>
+  <!-- Mobile menu panel (animated open/close) -->
+  <div id="mobile-menu" class="mobile-panel md:hidden absolute top-[var(--header-h)] left-0 w-full bg-surface">
+    <div class="mobile-panel-inner">
+      <nav class="wrap flex flex-col py-4 gap-1">
+        {navItems.map((item, i) => (
+          <a href={item.href} style={`--i:${i}`} class="mobile-link py-2.5 text-sm text-text-muted">
+            {item.label}
+          </a>
+        ))}
+        <div class="mobile-link pt-3 mt-2 border-t border-border" style={`--i:${navItems.length}`}>
+          <LanguageSwitcher lang={lang} alternates={alternates} availableLangs={availableLangs} />
+        </div>
+      </nav>
+    </div>
   </div>
 </header>
 
 <script>
+  const header = document.querySelector<HTMLElement>('.site-header');
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
-  const bars = toggle?.querySelectorAll('.menu-bar');
 
-  toggle?.addEventListener('click', () => {
-    const isOpen = menu?.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', String(isOpen));
-    if (bars && bars.length === 3) {
-      bars[0].classList.toggle('rotate-45');
-      bars[0].classList.toggle('translate-y-2');
-      bars[1].classList.toggle('opacity-0');
-      bars[2].classList.toggle('-rotate-45');
-      bars[2].classList.toggle('-translate-y-2');
-    }
+  // Header: soft shadow once the page is scrolled
+  const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Mobile menu
+  const setMenu = (open: boolean) => {
+    menu?.classList.toggle('is-open', open);
+    toggle?.classList.toggle('is-open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+    toggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (open) menu?.removeAttribute('inert'); else menu?.setAttribute('inert', '');
+  };
+  menu?.setAttribute('inert', '');
+  toggle?.addEventListener('click', () => setMenu(!menu?.classList.contains('is-open')));
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+  document.addEventListener('click', (e) => {
+    if (menu?.classList.contains('is-open') && !header?.contains(e.target as Node)) setMenu(false);
   });
+  window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
 
-  // Close the menu when a link inside it is clicked (mobile navigation).
-  menu?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      menu.classList.add('hidden');
-      toggle?.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // Sliding underline for desktop nav
+  // Desktop nav: gliding hover pill + sliding underline (rests on the active page)
   const nav = document.getElementById('desktop-nav');
   const line = document.getElementById('nav-underline');
+  const pill = document.getElementById('nav-pill');
   const links = nav ? [...nav.querySelectorAll<HTMLAnchorElement>('.nav-link')] : [];
   const norm = (p: string) => p.replace(/\/$/, '') || '/';
   const path = norm(location.pathname);
@@ -116,50 +119,76 @@ const navItems = [
     links.find((a) => norm(new URL(a.href).pathname) === path) ??
     links.find((a) => { const lp = norm(new URL(a.href).pathname); return lp !== '/' && path.startsWith(lp); });
 
-  let visible = false;
-  let curL = 0;
+  active?.classList.add('is-active');
+  active?.setAttribute('aria-current', 'page');
+
   const ease = 'cubic-bezier(0.65, 0, 0.35, 1)';
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  const moveTo = (el?: HTMLElement | null) => {
-    if (!line || !nav) return;
-    if (!el) {
-      visible = false;
-      line.style.transition = 'opacity 0.2s';
-      line.style.opacity = '0';
-      return;
+  // --- Pill ---
+  let pillVisible = false;
+  const movePill = (el?: HTMLElement | null) => {
+    if (!pill) return;
+    if (!el) { pillVisible = false; pill.style.opacity = '0'; pill.style.transform = pill.style.transform.replace(/ scale\([^)]*\)/, '') + ' scale(0.96)'; return; }
+    const place = `translate(${el.offsetLeft}px, ${el.offsetTop}px)`;
+    pill.style.width = el.offsetWidth + 'px';
+    pill.style.height = el.offsetHeight + 'px';
+    if (!pillVisible) {
+      pill.style.transition = 'none';
+      pill.style.transform = place + ' scale(0.96)';
+      void pill.offsetWidth;
+      pill.style.transition = '';
+      pill.style.transform = place + ' scale(1)';
+      pill.style.opacity = '1';
+      pillVisible = true;
+    } else {
+      pill.style.transform = place + ' scale(1)';
     }
-    const L = el.offsetLeft;
-    const R = nav.offsetWidth - L - el.offsetWidth;
+  };
 
-    if (!visible) {
-      // pehli hover: left side se grow hoke menu ki poori length cover kare
+  // --- Underline ---
+  let lineVisible = false;
+  let curL = 0;
+  const moveLine = (el?: HTMLElement | null) => {
+    if (!line || !nav) return;
+    if (!el) { lineVisible = false; line.style.transition = 'opacity 0.2s'; line.style.opacity = '0'; return; }
+    const pad = parseFloat(getComputedStyle(el).paddingLeft) || 0;
+    const L = el.offsetLeft + pad;
+    const R = nav.offsetWidth - el.offsetLeft - el.offsetWidth + pad;
+    const animate = !reduce.matches;
+
+    if (!lineVisible) {
       line.style.transition = 'none';
       line.style.left = L + 'px';
-      line.style.right = R + el.offsetWidth + 'px';
+      line.style.right = (animate ? R + (el.offsetWidth - 2 * pad) : R) + 'px';
       line.style.opacity = '1';
       void line.offsetWidth;
-      line.style.transition = `right 0.4s ${ease}`;
+      line.style.transition = animate ? `right 0.45s ${ease}, opacity 0.2s` : 'none';
       line.style.right = R + 'px';
-      visible = true;
+      lineVisible = true;
     } else {
-      // item-to-item: aage wala edge pehle jaye, peeche wala baad me (stretch + swipe)
       const goingRight = L > curL;
       const fast = `0.25s ${ease}`;
       const slow = `0.4s ${ease} 0.07s`;
-      line.style.transition = goingRight ? `right ${fast}, left ${slow}` : `left ${fast}, right ${slow}`;
+      line.style.transition = !animate ? 'none' : goingRight ? `right ${fast}, left ${slow}` : `left ${fast}, right ${slow}`;
       line.style.left = L + 'px';
       line.style.right = R + 'px';
     }
     curL = L;
   };
 
-  links.forEach((a) => {
-    a.addEventListener('mouseenter', () => moveTo(a));
-    a.addEventListener('focus', () => moveTo(a));
-  });
-  nav?.addEventListener('mouseleave', () => moveTo(null));
-  nav?.addEventListener('focusout', () => moveTo(null));
-  window.addEventListener('resize', () => moveTo(null));
+  const rest = () => { movePill(null); moveLine(active); };
 
-  active?.classList.add('!text-text');
+  links.forEach((a) => {
+    const enter = () => { movePill(a); moveLine(a); };
+    a.addEventListener('mouseenter', enter);
+    a.addEventListener('focus', () => { if (a.matches(':focus-visible')) enter(); });
+  });
+  nav?.addEventListener('mouseleave', rest);
+  nav?.addEventListener('focusout', (e) => { if (!nav.contains((e as FocusEvent).relatedTarget as Node)) rest(); });
+  window.addEventListener('resize', () => { lineVisible = false; pillVisible = false; rest(); });
+
+  // Initial state: underline grows in under the current page once fonts settle
+  const init = () => { lineVisible = false; moveLine(active); };
+  (document.fonts?.ready ?? Promise.resolve()).then(init);
 </script>
