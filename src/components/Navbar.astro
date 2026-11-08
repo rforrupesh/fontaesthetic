@@ -116,21 +116,41 @@ const navItems = [
     links.find((a) => norm(new URL(a.href).pathname) === path) ??
     links.find((a) => { const lp = norm(new URL(a.href).pathname); return lp !== '/' && path.startsWith(lp); });
 
+  let visible = false;
+  let curL = 0;
+  const ease = 'cubic-bezier(0.65, 0, 0.35, 1)';
+
   const moveTo = (el?: HTMLElement | null) => {
-    if (!line) return;
-    if (!el) { line.style.opacity = '0'; return; }
-    // pehli hover pe sidha item ke neeche aaye, baad me item-to-item slide kare
-    if (line.style.opacity !== '1') {
-      line.classList.remove('ready');
-      line.style.width = el.offsetWidth + 'px';
-      line.style.transform = `translateX(${el.offsetLeft}px)`;
-      void line.offsetWidth;
-      line.classList.add('ready');
-    } else {
-      line.style.width = el.offsetWidth + 'px';
-      line.style.transform = `translateX(${el.offsetLeft}px)`;
+    if (!line || !nav) return;
+    if (!el) {
+      visible = false;
+      line.style.transition = 'opacity 0.2s';
+      line.style.opacity = '0';
+      return;
     }
-    line.style.opacity = '1';
+    const L = el.offsetLeft;
+    const R = nav.offsetWidth - L - el.offsetWidth;
+
+    if (!visible) {
+      // pehli hover: left side se grow hoke menu ki poori length cover kare
+      line.style.transition = 'none';
+      line.style.left = L + 'px';
+      line.style.right = R + el.offsetWidth + 'px';
+      line.style.opacity = '1';
+      void line.offsetWidth;
+      line.style.transition = `right 0.4s ${ease}`;
+      line.style.right = R + 'px';
+      visible = true;
+    } else {
+      // item-to-item: aage wala edge pehle jaye, peeche wala baad me (stretch + swipe)
+      const goingRight = L > curL;
+      const fast = `0.25s ${ease}`;
+      const slow = `0.4s ${ease} 0.07s`;
+      line.style.transition = goingRight ? `right ${fast}, left ${slow}` : `left ${fast}, right ${slow}`;
+      line.style.left = L + 'px';
+      line.style.right = R + 'px';
+    }
+    curL = L;
   };
 
   links.forEach((a) => {
@@ -139,7 +159,7 @@ const navItems = [
   });
   nav?.addEventListener('mouseleave', () => moveTo(null));
   nav?.addEventListener('focusout', () => moveTo(null));
+  window.addEventListener('resize', () => moveTo(null));
 
   active?.classList.add('!text-text');
-  requestAnimationFrame(() => line?.classList.add('ready'));
 </script>
