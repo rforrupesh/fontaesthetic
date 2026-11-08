@@ -4,16 +4,35 @@ interface Props {
   description: string;
   url: string; // absolute URL of the collection/listing page
   lang: string;
+  siteUrl?: string; // absolute site root with trailing slash -> links the page to WebSite + Organization
+  image?: string; // absolute URL of the page's main image (becomes an ImageObject)
+  items?: { name: string; url: string }[]; // posts listed on the page
 }
-const { name, description, url, lang } = Astro.props;
+const { name, description, url, lang, siteUrl, image, items = [] } = Astro.props;
+
+const imageObject = image
+  ? { '@type': 'ImageObject', '@id': `${url}#primaryimage`, url: image, contentUrl: image }
+  : undefined;
 
 const collectionPage = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
+  '@id': url,
   name,
   description,
   url,
   inLanguage: lang,
+  ...(siteUrl ? { isPartOf: { '@id': `${siteUrl}#website` }, publisher: { '@id': `${siteUrl}#organization` } } : {}),
+  ...(imageObject ? { primaryImageOfPage: imageObject, image: { '@id': `${url}#primaryimage` } } : {}),
+  ...(items.length
+    ? {
+        mainEntity: {
+          '@type': 'ItemList',
+          numberOfItems: items.length,
+          itemListElement: items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, url: it.url })),
+        },
+      }
+    : {}),
 };
 ---
 

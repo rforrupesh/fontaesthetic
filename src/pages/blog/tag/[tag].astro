@@ -4,6 +4,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import BreadcrumbSchema from '../../../components/schema/BreadcrumbSchema.astro';
 import CollectionPageSchema from '../../../components/schema/CollectionPageSchema.astro';
 import OrganizationSchema from '../../../components/schema/OrganizationSchema.astro';
+import WebSiteSchema from '../../../components/schema/WebSiteSchema.astro';
 import { getCollection } from 'astro:content';
 import { t, getPath } from '../../../i18n';
 import { slugify } from '../../../lib/slugify';
@@ -39,6 +40,12 @@ const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const base = import.meta.env.BASE_URL;
 const pageUrl = siteUrl + getPath(lang, `/blog/tag/${slugify(tag)}/`);
 const logoUrl = `${siteUrl}${base}logo.svg`;
+const absImg = (img?: string) => { const u = imgUrl(img); return u ? (/^https?:/.test(u) ? u : siteUrl + u) : undefined; };
+const collectionImage = absImg(posts.find((p) => p.data.image)?.data.image) ?? logoUrl;
+const collectionItems = posts.map((p) => ({
+  name: p.data.title,
+  url: siteUrl + getPath(lang, `/blog/${p.data.slug ?? p.id.split('/').slice(1).join('/')}/`),
+}));
 const pageDescription = strings.blog.tagDescription.replace('{name}', tag).replace('{count}', String(posts.length));
 const title = tag;
 ---
@@ -96,6 +103,10 @@ const title = tag;
     description={pageDescription}
     url={pageUrl}
     lang={lang}
+    siteUrl={siteUrl + base}
+    image={collectionImage}
+    items={collectionItems}
   />
   <OrganizationSchema name={strings.site.name} siteUrl={siteUrl + base} logoUrl={logoUrl} />
+  <WebSiteSchema name={strings.site.name} siteUrl={siteUrl + base} lang={lang} />
 </BaseLayout>

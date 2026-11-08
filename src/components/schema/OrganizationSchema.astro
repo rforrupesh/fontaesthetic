@@ -9,9 +9,16 @@ const { name, siteUrl, logoUrl } = Astro.props;
 const organization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': `${siteUrl}#organization`,
   name,
   url: siteUrl,
-  logo: logoUrl,
+  logo: {
+    '@type': 'ImageObject',
+    '@id': `${siteUrl}#logo`,
+    url: logoUrl,
+    contentUrl: logoUrl,
+  },
+  image: { '@id': `${siteUrl}#logo` },
 };
 ---
 

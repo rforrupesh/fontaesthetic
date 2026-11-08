@@ -1,0 +1,22 @@
+---
+interface Props {
+  name: string;
+  siteUrl: string; // absolute, with trailing slash (same value OrganizationSchema gets)
+  lang: string;
+  description?: string;
+}
+const { name, siteUrl, lang, description } = Astro.props;
+
+const webSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}#website`,
+  name,
+  url: siteUrl,
+  inLanguage: lang,
+  ...(description ? { description } : {}),
+  publisher: { '@id': `${siteUrl}#organization` },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(webSite)} />
