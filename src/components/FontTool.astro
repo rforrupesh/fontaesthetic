@@ -55,8 +55,10 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
     </div>
 
     <div class="max-w-[640px] mx-auto mt-5 flex flex-col items-center gap-2">
-      <button id="load-more" class="btn" type="button">{strings.tool.loadMore}</button>
-      <p id="style-count" class="text-[.78rem] text-text-muted mb-0" aria-live="polite"></p>
+      <button id="load-more" class="btn inline-flex items-center justify-center gap-2" type="button">
+        <svg class="load-spin" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true" hidden><circle cx="12" cy="12" r="9" opacity=".25"/><path d="M21 12a9 9 0 0 0-9-9"/></svg>
+        <span>{strings.tool.loadMore}</span>
+      </button>
     </div>
 
     <template id="row-tpl">
@@ -76,6 +78,10 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
   .fav-btn[aria-pressed="true"] svg { fill:#f5a623; }
   /* Favorites live in ONE light-yellow group box; the rows inside stay normal cards */
   .fav-group { background-color: rgba(245,166,35,.16); border: 1px solid rgba(245,166,35,.45); border-radius: .9rem; padding: .6rem; }
+  @keyframes load-spin { to { transform: rotate(360deg); } }
+  .load-spin { animation: load-spin .7s linear infinite; }
+  .load-spin[hidden] { display: none; }
+  #load-more:disabled { opacity: .7; cursor: wait; }
   @keyframes row-in { from { opacity: 0; transform: translateY(10px); } }
   .row-in { animation: row-in .35s ease-out; }
   .fav-group[hidden] { display: none; }
@@ -96,7 +102,7 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
   const input = document.getElementById('font-input');
   const results = document.getElementById('font-results');
   const loadMoreBtn = document.getElementById('load-more');
-  const countEl = document.getElementById('style-count');
+  const spinEl = loadMoreBtn.querySelector('.load-spin');
   const rowTpl = document.getElementById('row-tpl').content.firstElementChild;
   const copiedLabel = results.dataset.copiedLabel;
   const favLabel = results.dataset.favLabel;
@@ -174,8 +180,6 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
     });
 
     const total = FONT_STYLES.length;
-    const visibleNonFav = rest.length;
-    countEl.textContent = `${visibleNonFav + favRows.length} / ${total}`;
     loadMoreBtn.hidden = shown >= total - favRows.length;
 
     if (!moved || reduceMotion || !keep.has(moved)) return;
@@ -231,9 +235,19 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
       });
   });
 
+  let loading = false;
   loadMoreBtn.addEventListener('click', () => {
-    shown += BATCH;
-    render();
+    if (loading) return;
+    loading = true;
+    loadMoreBtn.disabled = true;
+    spinEl.hidden = false;
+    setTimeout(() => {
+      shown += BATCH;
+      render();
+      spinEl.hidden = true;
+      loadMoreBtn.disabled = false;
+      loading = false;
+    }, 600);
   });
 
   input.addEventListener('input', () => {
