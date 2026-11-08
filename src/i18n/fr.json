@@ -40,6 +40,7 @@
     "listingDescription": "Astuces, guides et actualités sur les polices et la typographie.",
     "tagDescription": "Découvrez {count} article(s) sur les polices avec le tag « {name} » : astuces, guides et idées pour un texte stylé.",
     "categoryDescription": "Découvrez {count} article(s) sur les polices dans la catégorie « {name} » : astuces, guides et idées pour un texte stylé.",
+    "archives": "Archives",
     "readMore": "Lire la suite",
     "publishedOn": "Publié le",
     "updatedOn": "Mis à jour le",

@@ -55,7 +55,7 @@ const title = category;
 
 <BaseLayout
   lang={lang}
-  title={`${title} — ${strings.blog.listingTitle} — ${strings.site.name}`}
+  title={`${title} ${strings.blog.archives} - ${strings.site.name}`}
   description={pageDescription}
   path={`/blog/category/${slugify(category)}/`}
   availableLangs={[lang]}
@@ -120,7 +120,7 @@ const title = category;
     ]}
   />
   <CollectionPageSchema
-    name={`${title} — ${strings.blog.listingTitle}`}
+    name={`${title} ${strings.blog.archives}`}
     description={pageDescription}
     url={pageUrl}
     lang={lang}

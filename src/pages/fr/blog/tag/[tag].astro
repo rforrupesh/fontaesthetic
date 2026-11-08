@@ -45,7 +45,7 @@ const title = tag;
 
 <BaseLayout
   lang={lang}
-  title={`${title} — ${strings.blog.listingTitle} — ${strings.site.name}`}
+  title={`${title} ${strings.blog.archives} - ${strings.site.name}`}
   description={pageDescription}
   path={`/blog/tag/${slugify(tag)}/`}
   availableLangs={[lang]}
@@ -94,7 +94,7 @@ const title = tag;
     ]}
   />
   <CollectionPageSchema
-    name={`${title} — ${strings.blog.listingTitle}`}
+    name={`${title} ${strings.blog.archives}`}
     description={pageDescription}
     url={pageUrl}
     lang={lang}
