@@ -1,0 +1,17 @@
+---
+interface Props { slug: string; name: string; sample: string; copy: string; favorite: string; }
+const { slug, name, sample, copy, favorite } = Astro.props;
+---
+
+<div class="card flex items-center justify-between gap-4 px-3.5 py-3" data-style-slug={slug}>
+  <div class="min-w-0">
+    <div class="text-[.72rem] uppercase tracking-wide text-text-muted mb-1" data-role="name">{name}</div>
+    <div class="break-words text-[1.05rem]" data-role="output">{sample}</div>
+  </div>
+  <div class="flex items-center gap-2 shrink-0">
+    <button class="fav-btn" type="button" data-role="fav" aria-pressed="false" aria-label={favorite} data-tip={favorite}>
+      <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+    </button>
+    <button class="btn" type="button" data-role="copy">{copy}</button>
+  </div>
+</div>

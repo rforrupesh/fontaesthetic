@@ -1,16 +1,20 @@
 ---
 import { t } from '../i18n';
 import { FONT_STYLES, convert } from '../lib/fontStyles';
+import FontRow from './FontRow.astro';
+
+// How many styles are visible at first, and how many each "Load more" click adds.
+const INITIAL_COUNT = 14;
+const BATCH_SIZE = 7;
 
 interface Props { lang: string; }
 const { lang } = Astro.props;
 const strings = t(lang);
 
-// Pre-render every style with a real sample so the markup (and view-source)
-// already contains all the converted text -- crawlers see full content
-// with zero JS, instead of one empty div filled in by the browser.
+// Only the first INITIAL_COUNT styles are pre-rendered (crawlers + no-JS see real
+// converted text). The rest are created by the script on "Load more".
 const sampleText = strings.tool.placeholder;
-const rows = FONT_STYLES.map((style) => ({
+const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
   slug: style.slug,
   name: style.name,
   sample: convert(sampleText, style),
@@ -37,26 +41,27 @@ const rows = FONT_STYLES.map((style) => ({
       data-copied-label={strings.tool.copied}
       data-fav-label={strings.tool.favorite}
       data-unfav-label={strings.tool.unfavorite}
+      data-sample={sampleText}
+      data-initial={INITIAL_COUNT}
+      data-batch={BATCH_SIZE}
     >
       <div id="fav-group" class="fav-group" hidden>
         <div class="fav-group-title">★ {strings.tool.favorites}</div>
         <div id="fav-list" class="flex flex-col gap-2.5"></div>
       </div>
-      {rows.map((row, i) => (
-        <div class="card flex items-center justify-between gap-4 px-3.5 py-3" data-style-slug={row.slug} data-order={i}>
-          <div class="min-w-0">
-            <div class="text-[.72rem] uppercase tracking-wide text-text-muted mb-1" data-role="name">{row.name}</div>
-            <div class="break-words text-[1.05rem]" data-role="output">{row.sample}</div>
-          </div>
-          <div class="flex items-center gap-2 shrink-0">
-            <button class="fav-btn" type="button" data-role="fav" aria-pressed="false" aria-label={strings.tool.favorite} data-tip={strings.tool.favorite}>
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
-            </button>
-            <button class="btn" type="button" data-role="copy">{strings.tool.copy}</button>
-          </div>
-        </div>
+      {rows.map((row) => (
+        <FontRow slug={row.slug} name={row.name} sample={row.sample} copy={strings.tool.copy} favorite={strings.tool.favorite} />
       ))}
     </div>
+
+    <div class="max-w-[640px] mx-auto mt-5 flex flex-col items-center gap-2">
+      <button id="load-more" class="btn" type="button">{strings.tool.loadMore}</button>
+      <p id="style-count" class="text-[.78rem] text-text-muted mb-0" aria-live="polite"></p>
+    </div>
+
+    <template id="row-tpl">
+      <FontRow slug="" name="" sample="" copy={strings.tool.copy} favorite={strings.tool.favorite} />
+    </template>
   </div>
 </section>
 
@@ -71,6 +76,8 @@ const rows = FONT_STYLES.map((style) => ({
   .fav-btn[aria-pressed="true"] svg { fill:#f5a623; }
   /* Favorites live in ONE light-yellow group box; the rows inside stay normal cards */
   .fav-group { background-color: rgba(245,166,35,.16); border: 1px solid rgba(245,166,35,.45); border-radius: .9rem; padding: .6rem; }
+  @keyframes row-in { from { opacity: 0; transform: translateY(10px); } }
+  .row-in { animation: row-in .35s ease-out; }
   .fav-group[hidden] { display: none; }
   .fav-group-title { font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #b9770e; margin: 0 .25rem .5rem; }
   /* After a move/auto-scroll: bright yellow border for ~3s, then fades back */
@@ -88,22 +95,46 @@ const rows = FONT_STYLES.map((style) => ({
 
   const input = document.getElementById('font-input');
   const results = document.getElementById('font-results');
+  const loadMoreBtn = document.getElementById('load-more');
+  const countEl = document.getElementById('style-count');
+  const rowTpl = document.getElementById('row-tpl').content.firstElementChild;
   const copiedLabel = results.dataset.copiedLabel;
-  const rowsEls = Array.from(results.querySelectorAll('[data-style-slug]'));
   const favLabel = results.dataset.favLabel;
   const unfavLabel = results.dataset.unfavLabel;
+  const sampleText = results.dataset.sample;
+  const BATCH = Number(results.dataset.batch) || 7;
   const KEY = 'fontaesthetic:favorites';
+
+  const styleBySlug = new Map(FONT_STYLES.map((st) => [st.slug, st]));
+  const rowsBySlug = new Map(); // every row element created so far
+  results.querySelectorAll('[data-style-slug]').forEach((r) => rowsBySlug.set(r.dataset.styleSlug, r));
+
+  let currentText = sampleText;           // what the rows currently show
+  let shown = Number(results.dataset.initial) || 14; // how many NON-favorite styles are visible
 
   // Favorites are stored by style slug (language independent) in localStorage.
   let favs = [];
   try { favs = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) {}
+  favs = favs.filter((slug) => styleBySlug.has(slug));
   const saveFavs = () => { try { localStorage.setItem(KEY, JSON.stringify(favs)); } catch (e) {} };
 
-  // Favorites float to the top (most recently added first); the rest keep
-  // their original order. Re-appending DOM nodes only moves them.
   const favGroup = document.getElementById('fav-group');
   const favList = document.getElementById('fav-list');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Rows beyond the server-rendered ones are created on demand from the <template>.
+  function getRow(style) {
+    let row = rowsBySlug.get(style.slug);
+    if (!row) {
+      row = rowTpl.cloneNode(true);
+      row.dataset.styleSlug = style.slug;
+      row.querySelector('[data-role="name"]').textContent = style.name;
+      row.querySelector('[data-role="output"]').textContent = convert(currentText, style);
+      row.dataset.isNew = '1';
+      rowsBySlug.set(style.slug, row);
+    }
+    return row;
+  }
 
   // moved = the row the user just (un)favorited. We animate (FLIP): measure
   // old positions, reorder, then slide every row from old -> new position so
@@ -111,13 +142,22 @@ const rows = FONT_STYLES.map((style) => ({
   function render(moved) {
     // Clear any previous highlight FIRST. Moving a node in the DOM restarts its CSS
     // animation, so an old highlighted row would flash again on the next click.
-    rowsEls.forEach((r) => r.classList.remove('fav-flash'));
-    const before = new Map(rowsEls.map((r) => [r, r.getBoundingClientRect().top]));
+    rowsBySlug.forEach((r) => r.classList.remove('fav-flash'));
+    const before = new Map();
+    rowsBySlug.forEach((r) => { if (r.isConnected) before.set(r, r.getBoundingClientRect().top); });
 
-    const favRows = favs.map((s) => rowsEls.find((r) => r.dataset.styleSlug === s)).filter(Boolean);
-    const rest = rowsEls.filter((r) => !favRows.includes(r)).sort((a, b) => a.dataset.order - b.dataset.order);
-    [...favRows, ...rest].forEach((r) => {
-      const on = favs.includes(r.dataset.styleSlug);
+    const favRows = favs.map((slug) => getRow(styleBySlug.get(slug)));
+    const favSet = new Set(favs);
+    // The visible list = the first `shown` styles that are NOT favorites.
+    const rest = [];
+    for (let i = 0; i < FONT_STYLES.length && rest.length < shown; i++) {
+      if (!favSet.has(FONT_STYLES[i].slug)) rest.push(getRow(FONT_STYLES[i]));
+    }
+    const keep = new Set([...favRows, ...rest]);
+    rowsBySlug.forEach((r) => { if (!keep.has(r) && r.isConnected) r.remove(); });
+
+    keep.forEach((r) => {
+      const on = favSet.has(r.dataset.styleSlug);
       const b = r.querySelector('[data-role="fav"]');
       b.setAttribute('aria-pressed', String(on));
       b.setAttribute('aria-label', on ? unfavLabel : favLabel);
@@ -128,17 +168,28 @@ const rows = FONT_STYLES.map((style) => ({
     rest.forEach((r) => results.appendChild(r));
     favGroup.hidden = favRows.length === 0;
 
-    if (!moved || reduceMotion) return;
+    // Rows that were just created fade in.
+    keep.forEach((r) => {
+      if (r.dataset.isNew) { delete r.dataset.isNew; if (!reduceMotion) r.classList.add('row-in'); }
+    });
+
+    const total = FONT_STYLES.length;
+    const visibleNonFav = rest.length;
+    countEl.textContent = `${visibleNonFav + favRows.length} / ${total}`;
+    loadMoreBtn.hidden = shown >= total - favRows.length;
+
+    if (!moved || reduceMotion || !keep.has(moved)) return;
 
     // Keep the moved row in view: smooth-scroll to it if it landed off-screen.
-    const isFav = favs.includes(moved.dataset.styleSlug);
+    const isFav = favSet.has(moved.dataset.styleSlug);
     const rect = moved.getBoundingClientRect();
     if (rect.top < 90 || rect.bottom > window.innerHeight) {
       moved.style.scrollMarginTop = '100px';
       moved.scrollIntoView({ behavior: 'smooth', block: isFav ? 'start' : 'center' });
     }
 
-    rowsEls.forEach((r) => {
+    keep.forEach((r) => {
+      if (!before.has(r)) return;
       const delta = before.get(r) - r.getBoundingClientRect().top;
       if (!delta) return;
       r.style.transition = 'none';
@@ -153,11 +204,12 @@ const rows = FONT_STYLES.map((style) => ({
     void moved.offsetWidth;
     moved.classList.add('fav-flash');
   }
-  rowsEls.forEach((r) => r.addEventListener('animationend', () => r.classList.remove('fav-flash')));
-  render();
 
-  // Copy needs no conversion code at all -- it just reads whatever the row
-  // currently shows. One delegated listener instead of one per row.
+  results.addEventListener('animationend', (e) => {
+    e.target.classList.remove('fav-flash', 'row-in');
+  });
+
+  // One delegated listener for fav + copy buttons (works for rows created later too).
   results.addEventListener('click', (e) => {
     const fav = e.target.closest('[data-role="fav"]');
     if (fav) {
@@ -179,11 +231,17 @@ const rows = FONT_STYLES.map((style) => ({
       });
   });
 
+  loadMoreBtn.addEventListener('click', () => {
+    shown += BATCH;
+    render();
+  });
+
   input.addEventListener('input', () => {
-    const text = input.value.trim();
-    if (!text) return; // keep the SSR sample text showing when the box is empty
-    FONT_STYLES.forEach((style, i) => {
-      rowsEls[i].querySelector('[data-role="output"]').textContent = convert(text, style);
+    currentText = input.value.trim() || sampleText; // empty box -> back to the sample text
+    rowsBySlug.forEach((row, slug) => {
+      row.querySelector('[data-role="output"]').textContent = convert(currentText, styleBySlug.get(slug));
     });
   });
+
+  render();
 </script>
