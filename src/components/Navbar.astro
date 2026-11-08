@@ -119,20 +119,27 @@ const navItems = [
   const moveTo = (el?: HTMLElement | null) => {
     if (!line) return;
     if (!el) { line.style.opacity = '0'; return; }
+    // pehli hover pe sidha item ke neeche aaye, baad me item-to-item slide kare
+    if (line.style.opacity !== '1') {
+      line.classList.remove('ready');
+      line.style.width = el.offsetWidth + 'px';
+      line.style.transform = `translateX(${el.offsetLeft}px)`;
+      void line.offsetWidth;
+      line.classList.add('ready');
+    } else {
+      line.style.width = el.offsetWidth + 'px';
+      line.style.transform = `translateX(${el.offsetLeft}px)`;
+    }
     line.style.opacity = '1';
-    line.style.width = el.offsetWidth + 'px';
-    line.style.transform = `translateX(${el.offsetLeft}px)`;
   };
 
   links.forEach((a) => {
     a.addEventListener('mouseenter', () => moveTo(a));
     a.addEventListener('focus', () => moveTo(a));
   });
-  nav?.addEventListener('mouseleave', () => moveTo(active));
-  nav?.addEventListener('focusout', () => moveTo(active));
+  nav?.addEventListener('mouseleave', () => moveTo(null));
+  nav?.addEventListener('focusout', () => moveTo(null));
 
   active?.classList.add('!text-text');
-  moveTo(active);
   requestAnimationFrame(() => line?.classList.add('ready'));
-  window.addEventListener('resize', () => moveTo(active));
 </script>
