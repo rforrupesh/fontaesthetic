@@ -45,7 +45,7 @@ const rows = FONT_STYLES.map((style) => ({
             <div class="break-words text-[1.05rem]" data-role="output">{row.sample}</div>
           </div>
           <div class="flex items-center gap-2 shrink-0">
-            <button class="fav-btn" type="button" data-role="fav" aria-pressed="false" aria-label={strings.tool.favorite} title={strings.tool.favorite}>
+            <button class="fav-btn" type="button" data-role="fav" aria-pressed="false" aria-label={strings.tool.favorite} data-tip={strings.tool.favorite}>
               <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
             </button>
             <button class="btn" type="button" data-role="copy">{strings.tool.copy}</button>
@@ -57,12 +57,16 @@ const rows = FONT_STYLES.map((style) => ({
 </section>
 
 <style is:global>
-  .fav-btn { display:inline-flex; align-items:center; justify-content:center; width:2.1rem; height:2.1rem; border-radius:.5rem; background:transparent; border:1px solid var(--color-border, rgba(128,128,128,.35)); color:var(--color-text-muted, #888); cursor:pointer; transition:color .15s, border-color .15s, transform .15s; }
+  .fav-btn { position:relative; display:inline-flex; align-items:center; justify-content:center; width:2.1rem; height:2.1rem; border-radius:.5rem; background:transparent; border:1px solid var(--color-border, rgba(128,128,128,.35)); color:var(--color-text-muted, #888); cursor:pointer; transition:color .15s, border-color .15s, transform .15s; }
   .fav-btn svg { fill:none; }
+  .fav-btn::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 8px); right:0; white-space:nowrap; background:#000; color:#fff; font-size:.72rem; line-height:1; padding:.4rem .55rem; border-radius:.4rem; box-shadow:0 2px 8px rgba(0,0,0,.35); opacity:0; transform:translateY(3px); pointer-events:none; transition:opacity .15s, transform .15s; z-index:20; }
+  .fav-btn:hover::after, .fav-btn:focus-visible::after { opacity:1; transform:none; }
   .fav-btn:hover { color:#f5a623; border-color:#f5a623; }
   .fav-btn:active { transform:scale(.9); }
   .fav-btn[aria-pressed="true"] { color:#f5a623; border-color:#f5a623; }
   .fav-btn[aria-pressed="true"] svg { fill:#f5a623; }
+  @keyframes fav-flash { 0%,100% { box-shadow:0 0 0 0 rgba(245,166,35,0); } 30% { box-shadow:0 0 0 3px rgba(245,166,35,.85), 0 0 18px rgba(245,166,35,.5); } }
+  .fav-flash { animation: fav-flash 1.1s ease-out .15s; }
 </style>
 
 <script>
@@ -86,7 +90,14 @@ const rows = FONT_STYLES.map((style) => ({
 
   // Favorites float to the top (most recently added first); the rest keep
   // their original order. Re-appending DOM nodes only moves them.
-  function render() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // moved = the row the user just (un)favorited. We animate (FLIP): measure
+  // old positions, reorder, then slide every row from old -> new position so
+  // the user SEES the style travel to the top instead of vanishing.
+  function render(moved) {
+    const before = new Map(rowsEls.map((r) => [r, r.getBoundingClientRect().top]));
+
     const favRows = favs.map((s) => rowsEls.find((r) => r.dataset.styleSlug === s)).filter(Boolean);
     const rest = rowsEls.filter((r) => !favRows.includes(r)).sort((a, b) => a.dataset.order - b.dataset.order);
     [...favRows, ...rest].forEach((r) => {
@@ -94,9 +105,34 @@ const rows = FONT_STYLES.map((style) => ({
       const b = r.querySelector('[data-role="fav"]');
       b.setAttribute('aria-pressed', String(on));
       b.setAttribute('aria-label', on ? unfavLabel : favLabel);
-      b.title = on ? unfavLabel : favLabel;
+      b.dataset.tip = on ? unfavLabel : favLabel;
       results.appendChild(r);
     });
+
+    if (!moved || reduceMotion) return;
+
+    // Keep the moved row in view: smooth-scroll to it if it landed off-screen.
+    const isFav = favs.includes(moved.dataset.styleSlug);
+    const rect = moved.getBoundingClientRect();
+    if (rect.top < 90 || rect.bottom > window.innerHeight) {
+      moved.style.scrollMarginTop = '100px';
+      moved.scrollIntoView({ behavior: 'smooth', block: isFav ? 'start' : 'center' });
+    }
+
+    rowsEls.forEach((r) => {
+      const delta = before.get(r) - r.getBoundingClientRect().top;
+      if (!delta) return;
+      r.style.transition = 'none';
+      r.style.transform = `translateY(${delta}px)`;
+      r.style.zIndex = r === moved ? '5' : '';
+      r.getBoundingClientRect(); // force reflow
+      r.style.transition = 'transform .6s cubic-bezier(.2,.8,.2,1)';
+      r.style.transform = '';
+    });
+
+    moved.classList.remove('fav-flash');
+    void moved.offsetWidth;
+    moved.classList.add('fav-flash');
   }
   render();
 
@@ -108,7 +144,7 @@ const rows = FONT_STYLES.map((style) => ({
       const slug = fav.closest('[data-style-slug]').dataset.styleSlug;
       favs = favs.includes(slug) ? favs.filter((s) => s !== slug) : [slug, ...favs];
       saveFavs();
-      render();
+      render(fav.closest('[data-style-slug]'));
       return;
     }
     const btn = e.target.closest('[data-role="copy"]');
