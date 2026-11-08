@@ -92,7 +92,6 @@ html[data-theme="light"] {
   html[data-theme-pref='light'] .theme-toggle .ic-light,
   html[data-theme-pref='dark'] .theme-toggle .ic-dark { display: block; }
 }
-}
 
 /* Skip-to-content link: hidden until focused with the keyboard (Tab) */
 .skip-link {
