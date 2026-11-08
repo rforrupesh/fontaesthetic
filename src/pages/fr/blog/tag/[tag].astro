@@ -40,7 +40,7 @@ const base = import.meta.env.BASE_URL;
 const pageUrl = siteUrl + getPath(lang, `/blog/tag/${slugify(tag)}/`);
 const logoUrl = `${siteUrl}${base}logo.svg`;
 const pageDescription = strings.blog.tagDescription.replace('{name}', tag).replace('{count}', String(posts.length));
-const title = `#${tag}`;
+const title = tag;
 ---
 
 <BaseLayout
