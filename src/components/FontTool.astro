@@ -109,6 +109,9 @@ const rows = FONT_STYLES.map((style) => ({
   // old positions, reorder, then slide every row from old -> new position so
   // the user SEES the style travel to the top instead of vanishing.
   function render(moved) {
+    // Clear any previous highlight FIRST. Moving a node in the DOM restarts its CSS
+    // animation, so an old highlighted row would flash again on the next click.
+    rowsEls.forEach((r) => r.classList.remove('fav-flash'));
     const before = new Map(rowsEls.map((r) => [r, r.getBoundingClientRect().top]));
 
     const favRows = favs.map((s) => rowsEls.find((r) => r.dataset.styleSlug === s)).filter(Boolean);
@@ -150,6 +153,7 @@ const rows = FONT_STYLES.map((style) => ({
     void moved.offsetWidth;
     moved.classList.add('fav-flash');
   }
+  rowsEls.forEach((r) => r.addEventListener('animationend', () => r.classList.remove('fav-flash')));
   render();
 
   // Copy needs no conversion code at all -- it just reads whatever the row
