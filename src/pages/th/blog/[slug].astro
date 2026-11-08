@@ -78,6 +78,8 @@ const dateModified = candidates.length ? new Date(Math.max(...candidates.map((d)
 const fmtDate = (d: Date) =>
   new Intl.DateTimeFormat('th-TH', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kolkata' }).format(d);
 const isoDay = (d: Date) => d.toISOString();
+// Visible date is always "Last updated" (falls back to the publish date if never edited).
+const lastUpdated = dateModified ?? datePublished;
 
 const breadcrumbItems = [
   { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
@@ -117,9 +119,7 @@ const breadcrumbItems = [
       <h1 class="text-[clamp(1.6rem,4vw,2.2rem)] mb-2">{post.data.title}</h1>
       <p class="text-[.85rem] text-text-muted mb-3">
         <AuthorBox lang={lang} author={author} href={authorHref} variant="byline" /> <span aria-hidden="true">·</span>{' '}
-        {dateModified
-          ? <>{strings.blog.updatedOn} <time datetime={isoDay(dateModified)}>{fmtDate(dateModified)}</time></>
-          : <>{strings.blog.publishedOn} <time datetime={isoDay(datePublished)}>{fmtDate(datePublished)}</time></>}
+        {strings.blog.updatedOn} <time datetime={isoDay(lastUpdated)}>{fmtDate(lastUpdated)}</time>
       </p>
       <Breadcrumb items={breadcrumbItems} />
     </header>

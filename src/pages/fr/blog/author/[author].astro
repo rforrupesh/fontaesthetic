@@ -24,8 +24,6 @@ const posts = (await getCollection('blog', (e) => e.id.startsWith('fr/')))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const categories = Array.from(new Set(posts.flatMap((p) => p.data.categories)));
-const fmtDate = (d: Date) =>
-  new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kolkata' }).format(d);
 
 const avatar = imgUrl(author.image);
 const initials = author.displayName.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
@@ -56,7 +54,7 @@ const profile = {
 
 <BaseLayout
   lang={lang}
-  title={`${author.displayName} — ${strings.blog.listingTitle} — ${strings.site.name}`}
+  title={`${author.displayName} — ${strings.blog.articles} — ${strings.site.name}`}
   description={description}
   path={authorPath(key)}
 >
@@ -81,14 +79,10 @@ const profile = {
 
   <section class="wrap max-w-[860px] mx-auto pb-6">
     <h2 class="text-[1.2rem] mb-4">{strings.blog.contributions}</h2>
-    <div class="grid grid-cols-2 gap-3 mb-5">
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5">
       <div class="card p-4">
         <p class="text-[1.6rem] font-semibold leading-none mb-1">{posts.length}</p>
         <p class="text-[.78rem] uppercase tracking-wide text-text-muted mb-0">{strings.blog.articles}</p>
-      </div>
-      <div class="card p-4">
-        <p class="text-[1rem] font-semibold leading-tight mb-1">{posts.length ? fmtDate(posts[0].data.date) : '—'}</p>
-        <p class="text-[.78rem] uppercase tracking-wide text-text-muted mb-0">{strings.blog.latestArticle}</p>
       </div>
     </div>
     {categories.length > 0 && (
@@ -117,7 +111,6 @@ const profile = {
               </span>
             )}
             <h3 class="text-[1.05rem] mb-2">{post.data.title}</h3>
-            <p class="text-[.78rem] text-text-muted mb-2"><time datetime={post.data.date.toISOString()}>{fmtDate(post.data.date)}</time></p>
             <p class="text-[.88rem] text-text-muted mb-0">{post.data.description}</p>
           </div>
         </a>
