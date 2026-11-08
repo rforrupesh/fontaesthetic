@@ -38,6 +38,10 @@ const rows = FONT_STYLES.map((style) => ({
       data-fav-label={strings.tool.favorite}
       data-unfav-label={strings.tool.unfavorite}
     >
+      <div id="fav-group" class="fav-group" hidden>
+        <div class="fav-group-title">★ {strings.tool.favorites}</div>
+        <div id="fav-list" class="flex flex-col gap-2.5"></div>
+      </div>
       {rows.map((row, i) => (
         <div class="card flex items-center justify-between gap-4 px-3.5 py-3" data-style-slug={row.slug} data-order={i}>
           <div class="min-w-0">
@@ -65,8 +69,10 @@ const rows = FONT_STYLES.map((style) => ({
   .fav-btn:active { transform:scale(.9); }
   .fav-btn[aria-pressed="true"] { color:#f5a623; border-color:#f5a623; }
   .fav-btn[aria-pressed="true"] svg { fill:#f5a623; }
-  /* Favorite rows: light yellow tint (works on light + dark theme) */
-  .card.is-fav { background-color: rgba(245,166,35,.14); border-color: rgba(245,166,35,.5); }
+  /* Favorites live in ONE light-yellow group box; the rows inside stay normal cards */
+  .fav-group { background-color: rgba(245,166,35,.16); border: 1px solid rgba(245,166,35,.45); border-radius: .9rem; padding: .6rem; }
+  .fav-group[hidden] { display: none; }
+  .fav-group-title { font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #b9770e; margin: 0 .25rem .5rem; }
   /* After a move/auto-scroll: bright yellow border for ~3s, then fades back */
   @keyframes fav-flash {
     0%, 75% { border-color: #f5a623; box-shadow: 0 0 0 2px rgba(245,166,35,.9), 0 0 20px rgba(245,166,35,.55); }
@@ -95,6 +101,8 @@ const rows = FONT_STYLES.map((style) => ({
 
   // Favorites float to the top (most recently added first); the rest keep
   // their original order. Re-appending DOM nodes only moves them.
+  const favGroup = document.getElementById('fav-group');
+  const favList = document.getElementById('fav-list');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // moved = the row the user just (un)favorited. We animate (FLIP): measure
@@ -111,9 +119,11 @@ const rows = FONT_STYLES.map((style) => ({
       b.setAttribute('aria-pressed', String(on));
       b.setAttribute('aria-label', on ? unfavLabel : favLabel);
       b.dataset.tip = on ? unfavLabel : favLabel;
-      r.classList.toggle('is-fav', on);
-      results.appendChild(r);
     });
+    // Favorites go inside the yellow group box, everything else stays in the main list.
+    favRows.forEach((r) => favList.appendChild(r));
+    rest.forEach((r) => results.appendChild(r));
+    favGroup.hidden = favRows.length === 0;
 
     if (!moved || reduceMotion) return;
 
