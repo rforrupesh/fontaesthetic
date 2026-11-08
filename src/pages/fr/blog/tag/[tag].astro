@@ -62,7 +62,6 @@ const title = tag;
       const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
       const postHref = getPath(lang, `/blog/${slug}/`);
       const cat = post.data.categories[0];
-      const date = post.data.date.toLocaleDateString(lang, { year: 'numeric', month: 'short', day: 'numeric' });
       return (
         <article class="card overflow-hidden flex flex-col sm:flex-row">
           {post.data.image && (
@@ -75,7 +74,6 @@ const title = tag;
               {cat && (
                 <a href={getPath(lang, `/blog/category/${slugify(cat)}/`)} class="font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary hover:bg-primary/20">{cat}</a>
               )}
-              <time datetime={post.data.date.toISOString()}>{date}</time>
             </div>
             <h2 class="text-[1.15rem] mb-0"><a href={postHref} class="hover:text-primary">{post.data.title}</a></h2>
             <p class="text-[.9rem] text-text-muted mb-0">{post.data.description}</p>
