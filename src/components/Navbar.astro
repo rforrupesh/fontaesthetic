@@ -30,9 +30,9 @@ const navItems = [
       </a>
 
       <!-- Desktop: single-row menu -->
-      <nav class="hidden md:flex gap-4 relative" id="desktop-nav">
+      <nav class="hidden md:flex gap-5 lg:gap-7 relative" id="desktop-nav">
         {navItems.map((item) => (
-          <a href={item.href} class="nav-link text-sm text-text-muted hover:text-text transition-colors duration-150 py-1">
+          <a href={item.href} class="nav-link text-base lg:text-lg font-medium text-text-muted hover:text-text transition-colors duration-150 py-1.5">
             {item.label}
           </a>
         ))}
