@@ -31,7 +31,6 @@ const navItems = [
 
       <!-- Desktop: single-row menu -->
       <nav class="hidden md:flex gap-1 lg:gap-2 relative" id="desktop-nav">
-        <span id="nav-pill" aria-hidden="true"></span>
         {navItems.map((item) => (
           <a href={item.href} class="nav-link relative z-10 px-3 text-base lg:text-lg font-medium text-text-muted py-1.5">
             {item.label}
@@ -108,87 +107,95 @@ const navItems = [
   });
   window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
 
-  // Desktop nav: gliding hover pill + sliding underline (rests on the active page)
+  // Desktop nav: jelly underline — appears only while hovering / keyboard-focusing a link
   const nav = document.getElementById('desktop-nav');
   const line = document.getElementById('nav-underline');
-  const pill = document.getElementById('nav-pill');
   const links = nav ? [...nav.querySelectorAll<HTMLAnchorElement>('.nav-link')] : [];
   const norm = (p: string) => p.replace(/\/$/, '') || '/';
   const path = norm(location.pathname);
   const active =
     links.find((a) => norm(new URL(a.href).pathname) === path) ??
     links.find((a) => { const lp = norm(new URL(a.href).pathname); return lp !== '/' && path.startsWith(lp); });
-
   active?.classList.add('is-active');
   active?.setAttribute('aria-current', 'page');
 
-  const ease = 'cubic-bezier(0.65, 0, 0.35, 1)';
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const SPRING = 'cubic-bezier(0.34, 1.75, 0.5, 1)'; // overshoots, then settles = jelly
+  let visible = false;
+  let curL = 0;
+  let curR = 0;
 
-  // --- Pill ---
-  let pillVisible = false;
-  const movePill = (el?: HTMLElement | null) => {
-    if (!pill) return;
-    if (!el) { pillVisible = false; pill.style.opacity = '0'; pill.style.transform = pill.style.transform.replace(/ scale\([^)]*\)/, '') + ' scale(0.96)'; return; }
-    const place = `translate(${el.offsetLeft}px, ${el.offsetTop}px)`;
-    pill.style.width = el.offsetWidth + 'px';
-    pill.style.height = el.offsetHeight + 'px';
-    if (!pillVisible) {
-      pill.style.transition = 'none';
-      pill.style.transform = place + ' scale(0.96)';
-      void pill.offsetWidth;
-      pill.style.transition = '';
-      pill.style.transform = place + ' scale(1)';
-      pill.style.opacity = '1';
-      pillVisible = true;
-    } else {
-      pill.style.transform = place + ' scale(1)';
-    }
+  // squash & stretch: the bar thins while travelling, then wobbles back
+  const wobble = () => {
+    if (reduce.matches || !line) return;
+    line.animate(
+      [
+        { transform: 'scaleY(1)' },
+        { transform: 'scaleY(0.45)', offset: 0.3 },
+        { transform: 'scaleY(1.45)', offset: 0.6 },
+        { transform: 'scaleY(0.9)', offset: 0.8 },
+        { transform: 'scaleY(1)' },
+      ],
+      { duration: 560, easing: 'ease-out' },
+    );
   };
 
-  // --- Underline ---
-  let lineVisible = false;
-  let curL = 0;
-  const moveLine = (el?: HTMLElement | null) => {
+  const show = (el: HTMLElement) => {
     if (!line || !nav) return;
-    if (!el) { lineVisible = false; line.style.transition = 'opacity 0.2s'; line.style.opacity = '0'; return; }
     const pad = parseFloat(getComputedStyle(el).paddingLeft) || 0;
     const L = el.offsetLeft + pad;
     const R = nav.offsetWidth - el.offsetLeft - el.offsetWidth + pad;
-    const animate = !reduce.matches;
 
-    if (!lineVisible) {
+    if (reduce.matches) {
       line.style.transition = 'none';
       line.style.left = L + 'px';
-      line.style.right = (animate ? R + (el.offsetWidth - 2 * pad) : R) + 'px';
+      line.style.right = R + 'px';
+      line.style.opacity = '1';
+    } else if (!visible) {
+      // pops out of the centre of the link and springs to full width
+      const mid = (L + (nav.offsetWidth - R)) / 2;
+      line.style.transition = 'none';
+      line.style.left = mid + 'px';
+      line.style.right = nav.offsetWidth - mid + 'px';
       line.style.opacity = '1';
       void line.offsetWidth;
-      line.style.transition = animate ? `right 0.45s ${ease}, opacity 0.2s` : 'none';
-      line.style.right = R + 'px';
-      lineVisible = true;
-    } else {
-      const goingRight = L > curL;
-      const fast = `0.25s ${ease}`;
-      const slow = `0.4s ${ease} 0.07s`;
-      line.style.transition = !animate ? 'none' : goingRight ? `right ${fast}, left ${slow}` : `left ${fast}, right ${slow}`;
+      line.style.transition = `left 0.55s ${SPRING}, right 0.55s ${SPRING}, opacity 0.15s`;
       line.style.left = L + 'px';
       line.style.right = R + 'px';
+      wobble();
+    } else {
+      // leading edge shoots ahead, trailing edge lags behind (stretch), both overshoot
+      const goingRight = L > curL;
+      const lead = `0.32s ${SPRING}`;
+      const trail = `0.6s ${SPRING} 0.06s`;
+      line.style.transition = (goingRight ? `right ${lead}, left ${trail}` : `left ${lead}, right ${trail}`) + ', opacity 0.15s';
+      line.style.left = L + 'px';
+      line.style.right = R + 'px';
+      line.style.opacity = '1';
+      wobble();
     }
+    visible = true;
     curL = L;
+    curR = R;
   };
 
-  const rest = () => { movePill(null); moveLine(active); };
+  const hide = () => {
+    if (!line || !nav || !visible) return;
+    visible = false;
+    if (reduce.matches) { line.style.transition = 'none'; line.style.opacity = '0'; return; }
+    // squeezes back into the centre and fades
+    const mid = (curL + (nav.offsetWidth - curR)) / 2;
+    line.style.transition = 'left 0.3s ease-in, right 0.3s ease-in, opacity 0.3s ease-in';
+    line.style.left = mid + 'px';
+    line.style.right = nav.offsetWidth - mid + 'px';
+    line.style.opacity = '0';
+  };
 
   links.forEach((a) => {
-    const enter = () => { movePill(a); moveLine(a); };
-    a.addEventListener('mouseenter', enter);
-    a.addEventListener('focus', () => { if (a.matches(':focus-visible')) enter(); });
+    a.addEventListener('mouseenter', () => show(a));
+    a.addEventListener('focus', () => { if (a.matches(':focus-visible')) show(a); });
   });
-  nav?.addEventListener('mouseleave', rest);
-  nav?.addEventListener('focusout', (e) => { if (!nav.contains((e as FocusEvent).relatedTarget as Node)) rest(); });
-  window.addEventListener('resize', () => { lineVisible = false; pillVisible = false; rest(); });
-
-  // Initial state: underline grows in under the current page once fonts settle
-  const init = () => { lineVisible = false; moveLine(active); };
-  (document.fonts?.ready ?? Promise.resolve()).then(init);
+  nav?.addEventListener('mouseleave', hide);
+  nav?.addEventListener('focusout', (e) => { if (!nav.contains((e as FocusEvent).relatedTarget as Node)) hide(); });
+  window.addEventListener('resize', hide);
 </script>
