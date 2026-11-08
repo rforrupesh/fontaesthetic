@@ -43,6 +43,15 @@
     "updatedOn": "Mis à jour le",
     "by": "Par",
     "aboutAuthor": "À propos de l'auteur",
+    "authorDescription": "Articles et guides de {name} : tout ce qui a été écrit sur les polices et la typographie.",
+    "contributions": "Contributions",
+    "articles": "Articles",
+    "topicsCovered": "Sujets abordés",
+    "noPosts": "Aucun article pour le moment.",
+    "viewProfile": "Voir le profil complet",
+    "latestArticle": "Dernier article",
+    "typeOrganization": "Organisation",
+    "typePerson": "Auteur",
     "allCategories": "Tout"
   },
   "faq": {

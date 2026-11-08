@@ -43,6 +43,15 @@
     "updatedOn": "Diperbarui pada",
     "by": "Oleh",
     "aboutAuthor": "Tentang penulis",
+    "authorDescription": "Artikel dan panduan dari {name}: baca semua tulisan tentang font dan tipografi.",
+    "contributions": "Kontribusi",
+    "articles": "Artikel",
+    "topicsCovered": "Topik yang dibahas",
+    "noPosts": "Belum ada artikel.",
+    "viewProfile": "Lihat profil lengkap",
+    "latestArticle": "Artikel terbaru",
+    "typeOrganization": "Organisasi",
+    "typePerson": "Penulis",
     "allCategories": "Semua"
   },
   "faq": {

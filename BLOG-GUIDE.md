@@ -70,6 +70,19 @@ Kuch na likho to post par **AestheticFonts Editorial Team** dikhta hai:
 - Post ke end me "About the author" box (logo + bio)
 - SEO (JSON-LD) me author bhi yahi jaata hai
 
+### Author page (full bio + contributions)
+Har author ka apna page banta hai, har language me:
+
+```
+/blog/author/<key>/        -> https://rforrupesh.github.io/fontaesthetic/blog/author/editorial-team/
+/fr/blog/author/<key>/     (aur ar, th, tr, id ke liye bhi)
+```
+
+- Post me author ka naam (title ke neeche) aur "About the author" box ka **View full profile** link isi page par le jaate hain.
+- Page par dikhta hai: photo, role, **full bio**, links, **Contributions** (kitne articles, latest article ki date, kin topics/categories par likha) aur us author ke saare posts ki list (naye pehle).
+- Ye page index hota hai aur sitemap me aata hai. Article ke SEO schema me author ka URL bhi yahi hota hai.
+- Posts apne aap judte hain: jis post me `author: "<key>"` hai wo us author ke page par aa jaata hai. Alag se kuch nahi karna.
+
 ### Post ka author badalna
 Frontmatter me `author` likho, key `src/data/authors.ts` se:
 
@@ -87,12 +100,22 @@ author: "rupesh"
   bio: 'Rupesh writes about fonts and typography.',
   type: 'Person',                   // 'Person' ya 'Organization'
   image: '/images/rupesh.webp',     // optional, public/ me rakho
-  url: 'https://example.com/rupesh' // optional, SEO schema ke liye
+  url: 'https://example.com/rupesh', // optional, apni website/profile (SEO sameAs + button)
+  role: 'Typography Writer',         // optional, author page par naam ke upar dikhta hai
+  fullBio: [                         // optional, author page par extra paragraphs
+    'Pehla lamba paragraph...',
+    'Doosra paragraph...',
+  ],
+  links: [                           // optional, author page par buttons
+    { label: 'Instagram', url: 'https://instagram.com/...' },
+    { label: 'LinkedIn', url: 'https://linkedin.com/in/...' },
+  ],
 },
 ```
 
 - Key (`'rupesh'`) chhoti, lowercase, bina space ke rakho. Wahi `author:` me likhte hain.
 - `image` na do to initials ka circle dikhta hai.
+- `bio` chhota rakho (post ke box me aata hai). Lamba bio `fullBio` me likho, wo sirf author page par dikhta hai.
 - `author: "kuch-galat"` likha to build error aayega aur batayega kaun-kaun si keys available hain.
 - Default author badalna ho to `DEFAULT_AUTHOR` ki value badlo.
 - Labels ("By", "About the author") 6 languages me translate hain (`src/i18n/*.json` ka `blog.by` aur `blog.aboutAuthor`). Author ka naam aur bio jaisa authors.ts me likha hai waisa hi har language me dikhta hai.
@@ -181,6 +204,7 @@ npm run build      # production build (galtiyan yahin pakdi jaati hain)
 | `src/content.config.ts` | Frontmatter fields ka schema |
 | `src/data/authors.ts` | Authors ki list aur default author |
 | `src/components/AuthorBox.astro` | Byline aur "About the author" box ka design |
+| `src/pages/blog/author/[author].astro` (aur `fr/ar/th/tr/id` ke) | Author page (bio + contributions) |
 | `src/pages/blog/[slug].astro` (aur `fr/ar/th/tr/id` ke) | Post page ka layout |
 | `src/components/schema/ArticleSchema.astro` | SEO Article schema |
 | `src/i18n/*.json` | Site ke translated labels |

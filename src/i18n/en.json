@@ -43,6 +43,15 @@
     "updatedOn": "Last updated",
     "by": "By",
     "aboutAuthor": "About the author",
+    "authorDescription": "Articles and guides by {name}: read everything they have written about fonts and typography.",
+    "contributions": "Contributions",
+    "articles": "Articles",
+    "topicsCovered": "Topics covered",
+    "noPosts": "No articles yet.",
+    "viewProfile": "View full profile",
+    "latestArticle": "Latest article",
+    "typeOrganization": "Organization",
+    "typePerson": "Author",
     "allCategories": "All"
   },
   "faq": {

@@ -1,0 +1,137 @@
+---
+import { imgUrl } from '../../../../lib/imageUrl';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import BreadcrumbSchema from '../../../../components/schema/BreadcrumbSchema.astro';
+import OrganizationSchema from '../../../../components/schema/OrganizationSchema.astro';
+import { getCollection } from 'astro:content';
+import { t, getPath } from '../../../../i18n';
+import { slugify } from '../../../../lib/slugify';
+import { authors, authorPath } from '../../../../data/authors';
+
+const lang = 'tr';
+const strings = t(lang);
+
+// One page per author in src/data/authors.ts, in every language.
+export function getStaticPaths() {
+  return Object.keys(authors).map((key) => ({ params: { author: key }, props: { key } }));
+}
+
+const { key } = Astro.props;
+const author = authors[key];
+
+const posts = (await getCollection('blog', (e) => e.id.startsWith('tr/')))
+  .filter((p) => p.data.author === key)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categories = Array.from(new Set(posts.flatMap((p) => p.data.categories)));
+const fmtDate = (d: Date) =>
+  new Intl.DateTimeFormat('tr-TR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kolkata' }).format(d);
+
+const avatar = imgUrl(author.image);
+const initials = author.displayName.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
+const paragraphs = author.fullBio?.length ? [author.bio, ...author.fullBio] : [author.bio];
+const typeLabel = author.type === 'Organization' ? strings.blog.typeOrganization : strings.blog.typePerson;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL;
+const pageUrl = siteUrl + getPath(lang, authorPath(key));
+const logoUrl = `${siteUrl}${base}logo.svg`;
+const description = strings.blog.authorDescription.replace('{name}', author.displayName);
+
+const profile = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url: pageUrl,
+  inLanguage: lang,
+  mainEntity: {
+    '@type': author.type ?? 'Person',
+    name: author.displayName,
+    description: author.bio,
+    ...(author.role ? { jobTitle: author.role } : {}),
+    ...(avatar ? { image: /^https?:/.test(avatar) ? avatar : siteUrl + avatar } : {}),
+    ...(author.url || author.links?.length ? { sameAs: [author.url, ...(author.links ?? []).map((l) => l.url)].filter(Boolean) } : {}),
+  },
+};
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${author.displayName} — ${strings.blog.listingTitle} — ${strings.site.name}`}
+  description={description}
+  path={authorPath(key)}
+>
+  <section class="wrap py-10 pb-4">
+    <div class="card p-6 flex flex-col sm:flex-row gap-5 items-start max-w-[860px] mx-auto">
+      {avatar
+        ? <img src={avatar} alt={author.displayName} width="96" height="96" class="w-24 h-24 rounded-full object-cover bg-surface-2 shrink-0" />
+        : <div class="w-24 h-24 rounded-full bg-surface-2 text-text-muted flex items-center justify-center text-2xl font-semibold shrink-0" aria-hidden="true">{initials}</div>}
+      <div class="min-w-0">
+        <p class="text-[.72rem] uppercase tracking-wide text-text-muted mb-1">{author.role ?? typeLabel}</p>
+        <h1 class="text-[clamp(1.5rem,3.6vw,2rem)] mb-3">{author.displayName}</h1>
+        {paragraphs.map((para) => <p class="text-text-muted leading-relaxed mb-3">{para}</p>)}
+        {(author.links?.length || author.url) && (
+          <div class="flex flex-wrap gap-2 mt-4">
+            {author.url && <a href={author.url} rel="me noopener" target="_blank" class="btn">{new URL(author.url).hostname}</a>}
+            {author.links?.map((l) => <a href={l.url} rel="me noopener" target="_blank" class="btn">{l.label}</a>)}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap max-w-[860px] mx-auto pb-6">
+    <h2 class="text-[1.2rem] mb-4">{strings.blog.contributions}</h2>
+    <div class="grid grid-cols-2 gap-3 mb-5">
+      <div class="card p-4">
+        <p class="text-[1.6rem] font-semibold leading-none mb-1">{posts.length}</p>
+        <p class="text-[.78rem] uppercase tracking-wide text-text-muted mb-0">{strings.blog.articles}</p>
+      </div>
+      <div class="card p-4">
+        <p class="text-[1rem] font-semibold leading-tight mb-1">{posts.length ? fmtDate(posts[0].data.date) : '—'}</p>
+        <p class="text-[.78rem] uppercase tracking-wide text-text-muted mb-0">{strings.blog.latestArticle}</p>
+      </div>
+    </div>
+    {categories.length > 0 && (
+      <div class="mb-2">
+        <p class="text-[.78rem] uppercase tracking-wide text-text-muted mb-2">{strings.blog.topicsCovered}</p>
+        <div class="flex flex-wrap gap-2">
+          {categories.map((c) => (
+            <a href={getPath(lang, `/blog/category/${slugify(c)}/`)} class="inline-block text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">{c}</a>
+          ))}
+        </div>
+      </div>
+    )}
+  </section>
+
+  <section class="wrap grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 pb-12">
+    {posts.length === 0 && <p class="text-text-muted sm:col-span-2 lg:col-span-3 text-center">{strings.blog.noPosts}</p>}
+    {posts.map((post) => {
+      const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
+      return (
+        <a class="card overflow-hidden flex flex-col" href={getPath(lang, `/blog/${slug}/`)}>
+          {post.data.image && <img src={imgUrl(post.data.image)} alt={post.data.title} loading="lazy" class="w-full aspect-video object-contain bg-surface-2" />}
+          <div class="p-5 pb-6">
+            {post.data.categories.length > 0 && (
+              <span class="inline-block text-[.7rem] font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary mb-2">
+                {post.data.categories[0]}
+              </span>
+            )}
+            <h3 class="text-[1.05rem] mb-2">{post.data.title}</h3>
+            <p class="text-[.78rem] text-text-muted mb-2"><time datetime={post.data.date.toISOString()}>{fmtDate(post.data.date)}</time></p>
+            <p class="text-[.88rem] text-text-muted mb-0">{post.data.description}</p>
+          </div>
+        </a>
+      );
+    })}
+  </section>
+
+  <BreadcrumbSchema
+    items={[
+      { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
+      { name: strings.blog.listingTitle, url: siteUrl + getPath(lang, '/blog/') },
+      { name: author.displayName, url: pageUrl },
+    ]}
+  />
+  <script type="application/ld+json" set:html={JSON.stringify(profile)} />
+  <OrganizationSchema name={strings.site.name} siteUrl={siteUrl + base} logoUrl={logoUrl} />
+</BaseLayout>

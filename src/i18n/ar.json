@@ -43,6 +43,15 @@
     "updatedOn": "آخر تحديث",
     "by": "بقلم",
     "aboutAuthor": "عن الكاتب",
+    "authorDescription": "مقالات وأدلة من {name}: اقرأ كل ما كُتب عن الخطوط والتايبوغرافي.",
+    "contributions": "المساهمات",
+    "articles": "مقالات",
+    "topicsCovered": "المواضيع المغطاة",
+    "noPosts": "لا توجد مقالات بعد.",
+    "viewProfile": "عرض الملف الكامل",
+    "latestArticle": "أحدث مقال",
+    "typeOrganization": "منظمة",
+    "typePerson": "كاتب",
     "allCategories": "الكل"
   },
   "faq": {

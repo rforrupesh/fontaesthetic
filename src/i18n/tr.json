@@ -43,6 +43,15 @@
     "updatedOn": "Son güncelleme",
     "by": "Yazar:",
     "aboutAuthor": "Yazar hakkında",
+    "authorDescription": "{name} tarafından yazılan makaleler ve rehberler: yazı tipleri ve tipografi hakkında yazılan her şey.",
+    "contributions": "Katkılar",
+    "articles": "Makale",
+    "topicsCovered": "İşlenen konular",
+    "noPosts": "Henüz makale yok.",
+    "viewProfile": "Tüm profili gör",
+    "latestArticle": "Son makale",
+    "typeOrganization": "Kuruluş",
+    "typePerson": "Yazar",
     "allCategories": "Tümü"
   },
   "faq": {

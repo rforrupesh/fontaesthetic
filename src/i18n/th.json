@@ -43,6 +43,15 @@
     "updatedOn": "อัปเดตล่าสุด",
     "by": "โดย",
     "aboutAuthor": "เกี่ยวกับผู้เขียน",
+    "authorDescription": "บทความและคู่มือโดย {name} อ่านทุกเรื่องเกี่ยวกับฟอนต์และการออกแบบตัวอักษร",
+    "contributions": "ผลงาน",
+    "articles": "บทความ",
+    "topicsCovered": "หัวข้อที่เขียน",
+    "noPosts": "ยังไม่มีบทความ",
+    "viewProfile": "ดูโปรไฟล์ทั้งหมด",
+    "latestArticle": "บทความล่าสุด",
+    "typeOrganization": "องค์กร",
+    "typePerson": "ผู้เขียน",
     "allCategories": "ทั้งหมด"
   },
   "faq": {

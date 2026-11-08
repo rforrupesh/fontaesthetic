@@ -9,7 +9,7 @@ interface Props {
   siteName: string;
   logoUrl: string;      // absolute, used for publisher.logo
   lang: string;
-  author?: { displayName: string; type?: string; url?: string; image?: string };
+  author?: { displayName: string; type?: string; url?: string; sameAs?: string; image?: string };
 }
 const { headline, description, url, image, datePublished, dateModified, siteName, logoUrl, lang, author } = Astro.props;
 
@@ -28,6 +28,7 @@ const article = {
         '@type': author.type ?? 'Person',
         name: author.displayName,
         ...(author.url ? { url: author.url } : {}),
+        ...(author.sameAs ? { sameAs: [author.sameAs] } : {}),
       }
     : { '@type': 'Organization', name: siteName },
   publisher: {
