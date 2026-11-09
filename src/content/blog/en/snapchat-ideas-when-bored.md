@@ -354,6 +354,8 @@ A picture becomes easier to understand when you add a little context. Write a sh
 
 Avoid putting too much text on one snap. Keep it easy to read.
 
+Choosing a suitable [text style](blog/how-to-choose-the-right-font-style/)  can also make your captions look more appealing
+
 ### Mix Pictures and Videos
 
 If you usually post selfies, try sharing short videos or pictures of your surroundings. If you mostly post random pictures, add a quick video once in a while.
