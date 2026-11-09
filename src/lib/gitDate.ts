@@ -61,3 +61,40 @@ export function firstCommitDate(filePath?: string): Date | undefined {
   firstCache.set(filePath, result);
   return result;
 }
+
+// Time of the last commit that REALLY changed the post's content. Commits that
+// only touch line endings (CRLF/LF), spaces or blank lines — e.g. re-uploading the
+// whole project — are ignored, so "Last updated" only moves when you edit the post.
+// Returns undefined if there is no such commit (then the publish date is used).
+const realCache = new Map<string, Date | undefined>();
+
+export function lastRealChangeDate(filePath?: string): Date | undefined {
+  if (!filePath) return undefined;
+  if (realCache.has(filePath)) return realCache.get(filePath);
+  let result: Date | undefined;
+  const git = (args: string[]) =>
+    execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+  try {
+    const commits = git(['log', '--diff-filter=M', '--format=%H\t%cI', '--', filePath])
+      .split('\n')
+      .filter(Boolean); // newest first
+    for (const line of commits) {
+      const [hash, iso] = line.split('\t');
+      let changed = false;
+      try {
+        git(['diff', '-w', '--ignore-blank-lines', '--ignore-cr-at-eol', '--quiet', `${hash}^`, hash, '--', filePath]);
+      } catch {
+        changed = true; // exit code 1 = real differences
+      }
+      if (changed) {
+        const d = new Date(iso);
+        if (!isNaN(d.valueOf())) result = d;
+        break;
+      }
+    }
+  } catch {
+    /* no git available */
+  }
+  realCache.set(filePath, result);
+  return result;
+}

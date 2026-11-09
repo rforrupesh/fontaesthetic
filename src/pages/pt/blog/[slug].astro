@@ -1,4 +1,5 @@
 ---
+import { lastRealChangeDate } from '../../../lib/gitDate';
 import { imgUrl } from '../../../lib/imageUrl';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
@@ -70,9 +71,11 @@ const absImage = post.data.image
   : undefined;
 
 const datePublished = post.data.date;
-// Last modified: only changes when you set `updated:` in the frontmatter yourself.
-// Until then it is the same as the publish date (git commits never change it).
-const dateModified = post.data.updated ?? datePublished;
+// Last modified: a custom `updated:` wins; otherwise the last git commit that REALLY
+// changed this post (whitespace / line-ending-only commits are ignored); otherwise
+// it simply equals the publish date.
+const realChange = lastRealChangeDate(post.filePath);
+const dateModified = post.data.updated ?? (realChange && realChange > datePublished ? realChange : datePublished);
 const fmtDate = (d: Date) =>
   new Intl.DateTimeFormat('pt-BR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kolkata' }).format(d);
 const isoDay = (d: Date) => d.toISOString();
