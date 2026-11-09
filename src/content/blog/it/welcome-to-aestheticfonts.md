@@ -1,7 +1,7 @@
 ---
 translationId: "welcome-to-aestheticfonts"
 slug: "welcome-to-aestheticfonts"
-title: "Benvenuto su AestheticFonts: Font Generator con 500+ Caratteri Speciali, Copia e Incolla all'Istante"
+title: "Benvenuto su AestheticFonts: Font Generator di Caratteri Speciali"
 description: "Scopri AestheticFonts, il generatore gratuito di caratteri speciali con oltre 500 stili di font. Crea testi personalizzati all'istante e usa copia e incolla ovunque."
 image: "/images/welcome-to-aestheticfonts.webp"
 tags: ["font generator", "caratteri speciali", "font gratis", "lettere particolari", "testo scritto online", "copia e incolla", "simboli", "testi personalizzati"]
