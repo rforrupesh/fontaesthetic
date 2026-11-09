@@ -1,7 +1,7 @@
 ---
 translationId: "welcome-to-aestheticfonts"
 slug: "welcome-to-aestheticfonts"
-title: "Bem-vindo ao AestheticFonts: Crie 500+ Letras Diferentes e Fontes Bonitas na Hora"
+title: "Bem-vindo ao AestheticFonts: Letras Diferentes e Fontes Bonitas na Hora"
 description: "Conheça o AestheticFonts, gerador grátis de letras diferentes e bonitas com mais de 500 estilos de fontes. Crie texto estiloso na hora e use copiar e colar em qualquer lugar."
 image: "/images/welcome-to-aestheticfonts.webp"
 tags: ["gerador de fontes", "letras diferentes", "letras bonitas", "fontes personalizadas", "copiar e colar", "texto estiloso", "fontes cursivas"]
