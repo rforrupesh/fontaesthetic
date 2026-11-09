@@ -211,9 +211,14 @@ a.mobile-link::before {
   transition: height .2s ease;
 }
 a.mobile-link.is-active { color: var(--color-primary); }
-a.mobile-link.is-active::before { height: 60%; }
-a.mobile-link:hover, a.mobile-link:focus-visible { color: var(--color-text); padding-left: 8px; transition-delay: 0s; }
-a.mobile-link:hover::before, a.mobile-link:focus-visible::before { height: 60%; }
+a.mobile-link.is-pressed, a.mobile-link:focus-visible { color: var(--color-text); padding-left: 8px; transition-delay: 0s; }
+a.mobile-link.is-pressed::before, a.mobile-link:focus-visible::before { height: 60%; }
+/* real hover only on devices that have it (no sticky hover on touch) */
+@media (hover: hover) {
+  a.mobile-link:hover { color: var(--color-text); padding-left: 8px; transition-delay: 0s; }
+  a.mobile-link:hover::before { height: 60%; }
+  a.mobile-link:hover .mobile-label::after { opacity: 1; animation: jelly-line .6s cubic-bezier(.34,1.75,.5,1) both; }
+}
 
 /* Mobile link: same jelly underline as desktop on hover / tap / keyboard focus */
 .mobile-label { position: relative; display: inline-block; }
@@ -223,11 +228,9 @@ a.mobile-link:hover::before, a.mobile-link:focus-visible::before { height: 60%; 
   transform: scaleX(0); transform-origin: center; opacity: 0;
   transition: transform .3s ease-in, opacity .3s ease-in;
 }
-a.mobile-link:hover .mobile-label::after,
-a.mobile-link:focus-visible .mobile-label::after,
-a.mobile-link:active .mobile-label::after,
 a.mobile-link.is-pressed .mobile-label::after,
-a.mobile-link.is-active .mobile-label::after {
+a.mobile-link:active .mobile-label::after,
+a.mobile-link:focus-visible .mobile-label::after {
   opacity: 1;
   animation: jelly-line .6s cubic-bezier(.34,1.75,.5,1) both;
 }
