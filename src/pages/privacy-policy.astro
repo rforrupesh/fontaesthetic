@@ -5,16 +5,16 @@ import { t } from '../i18n';
 
 const strings = t('en');
 
-// Change these to true only if these services are enabled on your website.
 const usesGoogleAnalytics = false;
 const usesGoogleAdsense = false;
+const usesCloudflare = true;
 
 ---
 
 <BaseLayout
   lang="en"
   title={`Privacy Policy — ${strings.site.name}`}
-  description="Read the AestheticFonts Privacy Policy to learn how we handle visitor information, cookies, analytics, advertising and data privacy."
+  description="Read the AestheticFonts Privacy Policy to understand how we handle visitor information, cookies, analytics, advertising and data privacy."
   path="/privacy-policy/"
 >
   <PageHero
@@ -26,15 +26,15 @@ const usesGoogleAdsense = false;
 
     <div class="mb-8">
       <p class="text-text-muted">
-        Welcome to AestheticFonts (https://aestheticfonts.in/). Protecting the privacy of our visitors is important to us. This Privacy Policy explains what information may be collected when you visit our website, how that information is used and the choices available to you.
+        Welcome to AestheticFonts (https://aestheticfonts.in/). Protecting the privacy of our visitors is important to us. This Privacy Policy explains what information may be collected when you visit our website, how that information is used, and the choices available to you regarding your data.
       </p>
 
       <p class="text-text-muted">
-        AestheticFonts is a free online Unicode font generator and text styling tool. You can use our website to create fancy letters, stylish text and decorative characters without creating an account or signing in.
+        AestheticFonts is a free online Unicode Font Generator and Text Styling Tool. It allows visitors to transform ordinary text into stylish letters, fancy fonts and decorative Unicode characters that can be copied and pasted into different applications and websites.
       </p>
 
       <p class="text-text-muted">
-        By using our website, you agree to the practices described in this Privacy Policy. If you have any questions about how we handle information, you can contact us through our website.
+        You can use our font generator without creating an account, signing in or providing personal information directly to us. By accessing or using our website, you acknowledge the practices described in this Privacy Policy.
       </p>
     </div>
 
@@ -42,49 +42,51 @@ const usesGoogleAdsense = false;
       <h2>Information We Collect</h2>
 
       <p class="text-text-muted">
-        AestheticFonts does not require visitors to provide personal information such as their name, email address or phone number to use the font generator.
+        AestheticFonts does not require visitors to register or provide personal details such as their name, email address or phone number to use the font generator.
       </p>
 
       <p class="text-text-muted">
-        The text you enter into our generator is processed in your browser to create different Unicode text styles. We do not intentionally collect or store the text you generate or copy through our tool.
+        The text you enter into our font generator is processed directly in your browser to create different Unicode text styles. We do not intentionally collect or store the text you type, generate or copy through the tool.
       </p>
 
       <p class="text-text-muted">
-        Like most websites, certain technical information may be collected automatically by our hosting provider and other services used to operate and protect the website. This information may include:
+        Like most websites, certain technical information may be collected automatically by our hosting provider and other third-party services. Depending on the services enabled, this information may include:
       </p>
 
       <ul class="text-text-muted list-disc pl-6 space-y-2">
-        <li>IP address and general location information.</li>
-        <li>Browser type and version.</li>
+        <li>IP address and approximate geographic location.</li>
+        <li>Browser type, version and language.</li>
         <li>Device type and operating system.</li>
         <li>Pages visited and time spent on the website.</li>
-        <li>Referring website or traffic source.</li>
-        <li>Technical information related to website requests and security.</li>
+        <li>Referring website and traffic source.</li>
+        <li>Technical information about website requests.</li>
+        <li>Information related to website performance and security.</li>
       </ul>
 
       <p class="text-text-muted">
-        This information is generally used for website operation, performance monitoring, troubleshooting and security purposes.
+        This information helps us understand website activity, maintain the service and identify potential technical or security issues.
       </p>
     </div>
 
     <div class="mb-8">
-      <h2>How We Use Information</h2>
+      <h2>How We Use Your Information</h2>
 
       <p class="text-text-muted">
-        Any information collected through our website or its service providers may be used for the following purposes:
+        Information collected through AestheticFonts or its service providers may be used for the following purposes:
       </p>
 
       <ul class="text-text-muted list-disc pl-6 space-y-2">
-        <li>To operate and maintain AestheticFonts.</li>
-        <li>To understand how visitors use our website.</li>
-        <li>To improve website performance and user experience.</li>
-        <li>To identify technical issues and fix errors.</li>
+        <li>To operate and maintain our website and font generator.</li>
+        <li>To understand how visitors interact with different pages and features.</li>
+        <li>To improve website speed, usability and performance.</li>
+        <li>To identify technical problems and fix website errors.</li>
         <li>To protect the website against spam, abuse and security threats.</li>
-        <li>To display advertisements, where applicable.</li>
+        <li>To display and measure advertisements, where applicable.</li>
+        <li>To maintain the reliability and availability of our services.</li>
       </ul>
 
       <p class="text-text-muted">
-        We do not sell or rent personal information to third parties. We only use information for legitimate website operations and the purposes described in this policy.
+        We do not sell or rent personal information to third parties. Information is used for legitimate website operations and the purposes explained in this policy.
       </p>
     </div>
 
@@ -92,11 +94,11 @@ const usesGoogleAdsense = false;
       <h2>Cookies and Similar Technologies</h2>
 
       <p class="text-text-muted">
-        Cookies are small text files that websites may store on your device when you visit them. They help websites remember certain information and improve the browsing experience.
+        Cookies are small text files that websites may store on your device when you visit them. They can help websites remember preferences, understand visitor activity and provide certain features.
       </p>
 
       <p class="text-text-muted">
-        AestheticFonts and its third-party service providers may use cookies or similar technologies for purposes such as:
+        AestheticFonts and its third-party service providers may use cookies, local storage or similar technologies for purposes such as:
       </p>
 
       <ul class="text-text-muted list-disc pl-6 space-y-2">
@@ -104,11 +106,16 @@ const usesGoogleAdsense = false;
         <li>Remembering certain website preferences.</li>
         <li>Measuring website performance.</li>
         <li>Displaying and measuring advertisements, where applicable.</li>
-        <li>Maintaining website security and preventing abuse.</li>
+        <li>Maintaining website security and preventing fraudulent activity.</li>
       </ul>
 
       <p class="text-text-muted">
-        You can manage or disable cookies through your browser settings. Please note that blocking certain cookies may affect how some third-party services work.
+        You can manage or disable cookies through your browser settings. However, blocking certain cookies may affect the operation of some website features or third-party services.
+      </p>
+
+      <p class="text-text-muted">
+        For more information about cookies and Google's use of them, visit
+        <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer">Google's Cookie Policy</a>.
       </p>
     </div>
 
@@ -117,21 +124,21 @@ const usesGoogleAdsense = false;
         <h2>Google Analytics</h2>
 
         <p class="text-text-muted">
-          We use Google Analytics to understand how visitors interact with AestheticFonts. This service may collect information such as pages visited, approximate location, browser type, device information and time spent on the website.
+          We use Google Analytics to understand how visitors interact with AestheticFonts. This service may collect information such as pages visited, approximate location, browser type, device information, referral sources and time spent on the website.
         </p>
 
         <p class="text-text-muted">
-          We use these insights to understand visitor activity and improve our website and its features.
+          We use these insights to understand visitor activity, identify popular content and improve the website experience.
         </p>
 
         <p class="text-text-muted">
-          Learn more about how Google uses information from websites that use its services:
+          Learn more about how Google uses information from websites and applications that use its services:
           {' '}
-          <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">Google's Partner Sites Policy</a>.
+          <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google Uses Information</a>.
         </p>
 
         <p class="text-text-muted">
-          You can also opt out of Google Analytics using the
+          You can opt out of Google Analytics using the
           {' '}
           <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-out Browser Add-on</a>.
         </p>
@@ -143,7 +150,7 @@ const usesGoogleAdsense = false;
         <h2>Advertising and Google AdSense</h2>
 
         <p class="text-text-muted">
-          We may display advertisements through Google AdSense to help support the operation and maintenance of AestheticFonts and keep our tool free to use.
+          We may display advertisements through Google AdSense to help support the operation and maintenance of AestheticFonts and keep our font generator free to use.
         </p>
 
         <p class="text-text-muted">
@@ -159,20 +166,50 @@ const usesGoogleAdsense = false;
         <p class="text-text-muted">
           You can also learn about advertising choices through
           {' '}
-          <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">AboutAds.info</a>.
+          <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">About Ads Choices</a>.
+        </p>
+
+        <p class="text-text-muted">
+          For more details about how Google handles advertising information, visit
+          {' '}
+          <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google Advertising Policies</a>.
+        </p>
+      </div>
+    )}
+
+    {usesCloudflare && (
+      <div class="mb-8">
+        <h2>Cloudflare and Website Security</h2>
+
+        <p class="text-text-muted">
+          We may use Cloudflare services to help deliver website content, improve performance and protect AestheticFonts against malicious traffic and security threats.
+        </p>
+
+        <p class="text-text-muted">
+          Cloudflare may process certain technical information, including IP addresses and browser-related data, when visitors access our website. This processing helps provide network security, traffic management and performance services.
+        </p>
+
+        <p class="text-text-muted">
+          For more information, read the
+          {' '}
+          <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare Privacy Policy</a>.
         </p>
       </div>
     )}
 
     <div class="mb-8">
-      <h2>Third-Party Services</h2>
+      <h2>Third-Party Services and External Links</h2>
 
       <p class="text-text-muted">
-        We may rely on third-party providers for website hosting, security, analytics and other technical services. These providers may process certain technical information as needed to perform their services.
+        We may rely on third-party providers for website hosting, security, analytics, advertising and other technical services. These providers may process certain information as necessary to provide their services.
       </p>
 
       <p class="text-text-muted">
-        Third-party websites and services operate under their own privacy policies. We recommend reviewing their policies to understand how they handle information. AestheticFonts does not control the privacy practices of external websites.
+        Our website may also contain links to external websites and resources. Once you visit another website, its own privacy policy and terms apply. We do not control the privacy practices, content or security of external websites.
+      </p>
+
+      <p class="text-text-muted">
+        We recommend reviewing the privacy policies of third-party services before using them.
       </p>
     </div>
 
@@ -180,7 +217,7 @@ const usesGoogleAdsense = false;
       <h2>Data Security</h2>
 
       <p class="text-text-muted">
-        We take reasonable steps to protect our website and any information processed through the services we use. These measures may include website security features, technical monitoring and protection against unauthorised access or misuse.
+        We take reasonable technical and organisational measures to protect our website and the information processed through the services we use. These measures may include security features, technical monitoring and protection against unauthorised access or misuse.
       </p>
 
       <p class="text-text-muted">
@@ -208,23 +245,28 @@ const usesGoogleAdsense = false;
       </p>
 
       <ul class="text-text-muted list-disc pl-6 space-y-2">
-        <li>The right to know what personal information is collected.</li>
+        <li>The right to know what personal information is collected about you.</li>
         <li>The right to request access to your personal information.</li>
-        <li>The right to request correction or deletion of eligible personal information.</li>
-        <li>The right to object to or restrict certain data processing.</li>
+        <li>The right to request correction of inaccurate information.</li>
+        <li>The right to request deletion of eligible personal information.</li>
+        <li>The right to object to or restrict certain data processing activities.</li>
         <li>The right to opt out of certain targeted advertising or data-sharing activities, where applicable.</li>
       </ul>
 
       <p class="text-text-muted">
-        AestheticFonts does not sell personal information. You can also manage cookies and certain tracking preferences through your browser and available third-party privacy controls.
+        AestheticFonts does not sell personal information. You can also manage cookies and certain advertising preferences through your browser and available third-party privacy controls.
       </p>
     </div>
 
     <div class="mb-8">
-      <h2>External Links</h2>
+      <h2>International Visitors</h2>
 
       <p class="text-text-muted">
-        Our website may contain links to external websites or services for additional information. Once you leave AestheticFonts, the privacy policy of the external website will apply. We are not responsible for the content, security or privacy practices of third-party websites.
+        AestheticFonts may be accessed by visitors from different countries. Depending on the location of our hosting provider and third-party service providers, certain technical information may be processed in countries other than your own.
+      </p>
+
+      <p class="text-text-muted">
+        Where applicable, such processing is subject to relevant data protection requirements and the policies of the service providers involved.
       </p>
     </div>
 
@@ -232,28 +274,64 @@ const usesGoogleAdsense = false;
       <h2>Changes to This Privacy Policy</h2>
 
       <p class="text-text-muted">
-        We may update this Privacy Policy from time to time to reflect changes in our website, services or applicable privacy requirements.
+        We may update this Privacy Policy from time to time to reflect changes in our website, services, technologies or applicable privacy requirements.
       </p>
 
       <p class="text-text-muted">
-        Whenever we make changes, we will publish the updated policy on this page and revise the last updated date. We encourage visitors to review this page periodically to stay informed about our privacy practices.
+        Any updates will be published on this page along with a revised last updated date. We encourage visitors to review this page periodically to stay informed about our privacy practices.
       </p>
+    </div>
+
+    <div class="mb-8">
+      <h2>Useful Privacy Resources</h2>
+
+      <p class="text-text-muted">
+        The following official resources provide additional information about privacy, cookies, advertising and data protection:
+      </p>
+
+      <ul class="text-text-muted list-disc pl-6 space-y-2">
+        <li>
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>
+        </li>
+        <li>
+          <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google Uses Information</a>
+        </li>
+        <li>
+          <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer">Google Cookie Policy</a>
+        </li>
+        <li>
+          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-out</a>
+        </li>
+        <li>
+          <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>
+        </li>
+        <li>
+          <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">About Ads Choices</a>
+        </li>
+        <li>
+          <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare Privacy Policy</a>
+        </li>
+        <li>
+          <a href="https://www.unicode.org/standard/standard.html" target="_blank" rel="noopener noreferrer">Unicode Standard</a>
+        </li>
+      </ul>
     </div>
 
     <div class="mb-8">
       <h2>Contact Us</h2>
 
       <p class="text-text-muted">
-        If you have any questions, concerns or requests regarding this Privacy Policy or the way AestheticFonts handles information, please contact us through our Contact page.
+        If you have any questions, concerns or requests regarding this Privacy Policy or the way AestheticFonts handles information, you can contact us through our website's Contact page.
       </p>
 
       <p class="text-text-muted">
-        Website: https://aestheticfonts.in/
+        Website:
+        <a href="https://aestheticfonts.in/" target="_blank" rel="noopener noreferrer">https://aestheticfonts.in/</a>
       </p>
     </div>
 
     <p class="text-text-muted text-center">
-      Thank you for using AestheticFonts. Your privacy matters to us.
+      Thank you for visiting AestheticFonts. Your privacy matters to us.
     </p>
 
   </section>
