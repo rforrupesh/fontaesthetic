@@ -1,7 +1,7 @@
 ---
 translationId: "welcome-to-aestheticfonts"
 slug: "welcome-to-aestheticfonts"
-title: "Bienvenue sur AestheticFonts : créez instantanément plus de 500 polices d'écriture stylées"
+title: "Bienvenue sur AestheticFonts : polices d’écriture stylées"
 description: "Découvrez AestheticFonts, un générateur de polices fantaisie gratuit avec plus de 500 styles. Créez instantanément du texte stylé et copiez-collez-le où vous voulez."
 image: "/images/welcome-to-aestheticfonts.webp"
 tags: ["générateur de polices", "polices d'écriture", "écriture spéciale", "texte stylé", "police copier-coller"]
