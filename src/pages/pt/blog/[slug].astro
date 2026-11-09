@@ -15,7 +15,6 @@ import AuthorBox from '../../../components/AuthorBox.astro';
 import { getAuthor, authorPath } from '../../../data/authors';
 import { getCollection, render } from 'astro:content';
 import { t, getPath } from '../../../i18n';
-import { lastCommitDate } from '../../../lib/gitDate';
 import { slugify } from '../../../lib/slugify';
 
 const lang = 'pt';
@@ -71,10 +70,9 @@ const absImage = post.data.image
   : undefined;
 
 const datePublished = post.data.date;
-// Last modified: a custom `updated:` in the frontmatter wins; otherwise the last git
-// commit touching this file (automatic on every push). Falls back to the publish date.
-const gitDate = lastCommitDate(post.filePath);
-const dateModified = post.data.updated ?? gitDate;
+// Last modified: only changes when you set `updated:` in the frontmatter yourself.
+// Until then it is the same as the publish date (git commits never change it).
+const dateModified = post.data.updated ?? datePublished;
 const fmtDate = (d: Date) =>
   new Intl.DateTimeFormat('pt-BR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kolkata' }).format(d);
 const isoDay = (d: Date) => d.toISOString();

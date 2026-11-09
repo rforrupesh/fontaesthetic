@@ -56,7 +56,7 @@ categories: ["Guides"]
 | `description` | **Haan** | Meta description aur listing card text. ~150-160 characters best. |
 | `date` | Nahi | Publish date. Na likho to GitHub par file ka **pehla commit** automatic publish date ban jaata hai. Custom chahiye to likho: `YYYY-MM-DD` (ye hamesha jeetta hai). |
 | `slug` | Nahi | URL ka hissa. Na likho to file ka naam use hota hai. |
-| `updated` | Nahi | Last updated date. Na likho to GitHub ka **last commit** automatic dikhta hai. Custom chahiye to likho: `YYYY-MM-DD` (ye hamesha jeetta hai). |
+| `updated` | Nahi | Last updated date. Jab tak tum khud `updated: YYYY-MM-DD` na likho, Modified = Published date hi rehti hai (git commit se kabhi nahi badalti). |
 | `image` | Nahi | Featured image. `/images/x.webp` (public folder) ya poora `https://...` URL. |
 | `author` | Nahi | Author key. Na likho to **Editorial Team** (default). Section 3 dekho. |
 | `tags` | Nahi | Chhote keywords. Related posts inhi se bante hain. |
@@ -179,7 +179,7 @@ fullBio: {
 
 ## 5. Jo apne aap hota hai (tumhe kuch nahi karna)
 
-- Date ke saath "Last updated" (git commit date ya `updated`, jo nayi ho)
+- Date ke saath "Last updated" (`updated` agar likha ho, warna publish date)
 - Table of Contents (desktop + mobile)
 - Share buttons
 - Related posts (same tags wale, max 3)
