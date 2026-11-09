@@ -16,7 +16,7 @@ const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 <aside class="flex flex-col gap-5">
   {tocHeadings.length > 0 && (
     <div class="card p-5">
-      <h2 class="text-[.85rem] uppercase tracking-wide text-text-muted mb-3">{strings.sidebar.toc}</h2>
+      <p class="text-[.85rem] uppercase tracking-wide text-text-muted mb-3">{strings.sidebar.toc}</p>
       <nav class="flex flex-col gap-2">
         {tocHeadings.map((h) => (
           <a
