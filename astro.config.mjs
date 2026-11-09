@@ -37,7 +37,13 @@ export default defineConfig({
       // imports AND fits under this limit (default 4 KiB). The font tool's
       // chunk is ~15 KiB, so raising the ceiling ships it inside the HTML and
       // leaves the page with zero JS requests in its load chain.
-      assetsInlineLimit: 24576,
+      // Fonts must NOT be inlined: base64 woff2 got copied into the CSS of every
+      // page (218 pages x ~230 KB = 72 MB dist, very slow deploy). Keep them as
+      // cached files; only small non-font assets / the tool script are inlined.
+      assetsInlineLimit: (file, content) => {
+        if (/\.(woff2?|ttf|otf|eot)$/i.test(file)) return false;
+        return content.length <= 24576;
+      },
     },
   },
 });
