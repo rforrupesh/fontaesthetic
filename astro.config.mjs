@@ -2,14 +2,10 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
-// NOTE: When you connect a custom domain later, change:
-//   site -> 'https://yourdomain.com'
-//   base -> '/'
-// For now this is configured for GitHub Pages project site:
-// https://rforrupesh.github.io/fontaesthetic/
+// Custom domain on GitHub Pages: https://aestheticfonts.in/
 export default defineConfig({
-  site: 'https://rforrupesh.github.io',
-  base: '/fontaesthetic/',
+  site: 'https://aestheticfonts.in',
+  base: '/',
   trailingSlash: 'always',
   integrations: [
     sitemap({

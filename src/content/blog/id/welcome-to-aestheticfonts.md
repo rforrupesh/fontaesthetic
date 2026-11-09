@@ -1,7 +1,7 @@
 ---
 translationId: "welcome-to-aestheticfonts"
 slug: "welcome-to-aestheticfonts"
-title: "Selamat Datang di AestheticFonts: Font Generator Gratis untuk 500+ Tulisan Teks Keren Secara Instan"
+title: "Selamat Datang di AestheticFonts: Tulisan Teks Keren Secara Insta"
 description: "Kenali AestheticFonts, font generator gratis dengan 500+ gaya tulisan keren, unik, dan aesthetic. Buat teks stylish secara instan, lalu salin dan tempel di mana saja."
 image: "/images/welcome-to-aestheticfonts.webp"
 tags: ["font generator", "tulisan teks keren", "font gratis", "tulisan aesthetic", "copy paste font", "font keren"]

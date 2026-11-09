@@ -1,7 +1,7 @@
 ---
 translationId: "welcome-to-aestheticfonts"
 slug: "welcome-to-aestheticfonts"
-title: "Witaj w AestheticFonts: Darmowy Font Generator – 500+ Ozdobnych Czcionek Online do Skopiowania"
+title: "Witaj w AestheticFonts: Ozdobnych Czcionek Online do Skopiowania"
 description: "Poznaj AestheticFonts, darmowy generator czcionek z ponad 500 stylów. Twórz stylowe i ozdobne teksty online, kopiuj je jednym kliknięciem i wklejaj, gdzie chcesz."
 image: "/images/welcome-to-aestheticfonts.webp"
 tags: ["font generator", "czcionki do skopiowania", "darmowy generator czcionek", "ozdobne teksty", "stylowe teksty", "czcionki online"]

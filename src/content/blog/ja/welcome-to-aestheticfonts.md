@@ -1,7 +1,7 @@
 ---
 translationId: "welcome-to-aestheticfonts"
 slug: "welcome-to-aestheticfonts"
-title: "AestheticFontsへようこそ：500種類以上のおしゃれな文字フォントを無料のFont Generatorで一瞬で変換"
+title: "AestheticFontsへようこそ｜500種以上のおしゃれ文字を瞬時に変換"
 description: "無料のFont Generator「AestheticFonts」なら、500種類以上のおしゃれな英語フォントや特殊文字に簡単変換。かわいい文字を作ってコピー＆ペーストするだけで、InstagramやSNSですぐ使えます。"
 image: "/images/welcome-to-aestheticfonts.webp"
 tags: ["Font Generator", "文字 フォント 変換", "特殊文字変換", "かわいい文字", "英語フォント", "コピペ フォント"]

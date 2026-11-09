@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rforrupesh.github.io/fontaesthetic/sitemap-index.xml
+Sitemap: https://aestheticfonts.in/sitemap-index.xml

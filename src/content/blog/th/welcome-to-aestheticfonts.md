@@ -1,7 +1,7 @@
 ---
 translationId: "welcome-to-aestheticfonts"
 slug: "welcome-to-aestheticfonts"
-title: "ยินดีต้อนรับสู่ AestheticFonts: สร้างตัวอักษรพิเศษ ฟอนต์ภาษาอังกฤษน่ารักๆ กว่า 500 แบบทันที"
+title: "ยินดีต้อนรับสู่ AestheticFonts"
 description: "ค้นพบ AestheticFonts เครื่องมือสร้างตัวอักษรพิเศษ A-Z ฟอนต์ภาษาอังกฤษน่ารักๆ ฟรีกว่า 500 สไตล์ พร้อมสัญลักษณ์พิเศษและชื่อในเกมเท่ๆ สร้างข้อความสวยๆ ได้ทันที กดคัดลอกไปวางใช้ได้เลย ไม่ต้องติดตั้งฟอนต์เพิ่ม"
 image: "/images/welcome-to-aestheticfonts.webp"
 tags: ["ตัวอักษรพิเศษ", "ฟอนต์น่ารัก", "ฟอนต์ภาษาอังกฤษ", "ข้อความสวยๆ", "คัดลอกและวางฟอนต์"]

@@ -1,7 +1,7 @@
 ---
 translationId: "welcome-to-aestheticfonts"
 slug: "welcome-to-aestheticfonts"
-title: "Chào Mừng Đến Với AestheticFonts: Tạo 500+ Kí Tự Đặc Biệt Và Font Chữ Đẹp Ngay Lập Tức"
+title: "Chào Mừng Đến Với AestheticFonts: Kí Tự Đặc Biệt Và Font Chữ Đẹp Ngay Lập Tức"
 description: "Khám phá AestheticFonts, công cụ tạo kí tự đặc biệt miễn phí 100% với 500+ font chữ đẹp, cute, ngầu. Tạo tên độc đáo, biệt danh hay và copy paste ở bất cứ đâu."
 image: "/images/welcome-to-aestheticfonts.webp"
 tags: ["kí tự đặc biệt", "font chữ đẹp", "tên độc đáo", "biệt danh hay", "ký tự cute", "copy paste"]
