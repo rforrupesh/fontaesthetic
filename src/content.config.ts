@@ -1,23 +1,39 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { authors, DEFAULT_AUTHOR } from './data/authors';
+import { firstCommitDate } from './lib/gitDate';
+
+// Wrap the glob loader so a post WITHOUT `date:` in its frontmatter automatically
+// gets its publish date from git (first commit of the file). A `date:` written in
+// the frontmatter always wins (custom date).
+const globLoader = glob({
+  pattern: '**/*.md',
+  base: './src/content/blog',
+  generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+});
+const blogLoader = {
+  ...globLoader,
+  load: async (ctx: any) =>
+    globLoader.load({
+      ...ctx,
+      parseData: async (entry: any) => {
+        const data = { ...entry.data };
+        if (!data.date) data.date = firstCommitDate(entry.filePath) ?? new Date();
+        return ctx.parseData({ ...entry, data });
+      },
+    }),
+};
 
 const blog = defineCollection({
-  // Use the file path itself as the id (e.g. "en/how-to-use-fonts") instead of
-  // letting a frontmatter `slug` field override it — we need the language
-  // folder to stay part of the id so we can filter posts per language.
-  loader: glob({
-    pattern: '**/*.md',
-    base: './src/content/blog',
-    generateId: ({ entry }) => entry.replace(/\.md$/, ''),
-  }),
+  // Loader: file path is the id (language folder stays part of it); see blogLoader above.
+  loader: blogLoader,
   schema: z.object({
     translationId: z.string(),
     slug: z.string().optional(), // if omitted, filename is used as slug
     title: z.string(),
     description: z.string(),
-    date: z.coerce.date(),
-    updated: z.coerce.date().optional(), // set when you edit a post; shown on page + dateModified in SEO
+    date: z.coerce.date(), // optional in the .md file: if missing, the first git commit date is used
+    updated: z.coerce.date().optional(), // optional: set it only when you really update a post; if missing, 'last updated' = publish date
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
     categories: z.array(z.string()).default([]),

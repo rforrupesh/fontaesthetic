@@ -54,9 +54,9 @@ categories: ["Guides"]
 | `translationId` | **Haan** | Alag-alag languages ke same post ko jodta hai (hreflang + language switcher). Har language me same value rakho. |
 | `title` | **Haan** | Post ka title (H1 + SEO title). |
 | `description` | **Haan** | Meta description aur listing card text. ~150-160 characters best. |
-| `date` | **Haan** | Publish date. Format: `YYYY-MM-DD`. |
+| `date` | Nahi | Publish date. Na likho to GitHub par file ka **pehla commit** automatic publish date ban jaata hai. Custom chahiye to likho: `YYYY-MM-DD` (ye hamesha jeetta hai). |
 | `slug` | Nahi | URL ka hissa. Na likho to file ka naam use hota hai. |
-| `updated` | Nahi | Manual "last updated" date. Git commit date bhi automatic count hoti hai, jo bhi nayi ho wahi dikhti hai. |
+| `updated` | Nahi | Last updated date. Jab tak tum khud `updated: YYYY-MM-DD` na likho, Modified = Published date hi rehti hai (git commit se kabhi nahi badalti). |
 | `image` | Nahi | Featured image. `/images/x.webp` (public folder) ya poora `https://...` URL. |
 | `author` | Nahi | Author key. Na likho to **Editorial Team** (default). Section 3 dekho. |
 | `tags` | Nahi | Chhote keywords. Related posts inhi se bante hain. |
@@ -179,7 +179,7 @@ fullBio: {
 
 ## 5. Jo apne aap hota hai (tumhe kuch nahi karna)
 
-- Date ke saath "Last updated" (git commit date ya `updated`, jo nayi ho)
+- Date ke saath "Last updated" (`updated` agar likha ho, warna publish date)
 - Table of Contents (desktop + mobile)
 - Share buttons
 - Related posts (same tags wale, max 3)
@@ -204,7 +204,7 @@ Same `translationId` hone se language switcher ussi post ke translated version p
 
 ## 7. Publish se pehle checklist
 
-- [ ] `translationId`, `title`, `description`, `date` bhare hain
+- [ ] `translationId`, `title`, `description` bhare hain (`date` optional)
 - [ ] `slug` chhota, lowercase, hyphen wala (`best-font-styles-2024`)
 - [ ] `description` 150-160 characters ke aas-paas
 - [ ] Image `public/images/` me hai aur `.webp` jaisi halki hai
