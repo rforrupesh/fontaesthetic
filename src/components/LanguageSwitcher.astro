@@ -11,10 +11,8 @@ interface Props {
   // that only exist in one language (e.g. an English-only tool page). If
   // not provided, all configured languages are shown as usual.
   availableLangs?: string[];
-  // compact: icon-only globe button (used in the mobile header)
-  compact?: boolean;
 }
-const { lang, alternates, availableLangs, compact = false } = Astro.props;
+const { lang, alternates, availableLangs } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const visibleLanguages = availableLangs
   ? Object.fromEntries(Object.entries(languages).filter(([code]) => availableLangs.includes(code)))
@@ -44,30 +42,19 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
 ---
 
 <div class="lang-dropdown relative inline-block text-left">
-  {compact ? (
-    <button
-      type="button"
-      class="lang-trigger w-9 h-9 rounded-md bg-surface-2 border border-border flex items-center justify-center text-text-muted hover:text-text hover:border-primary transition-colors duration-150 cursor-pointer"
-      aria-haspopup="listbox"
-      aria-expanded="false"
-      aria-label={`Language: ${current.native}`}
-    >
-      <img src={flagSrc(lang)} alt="" width="22" height="16" class="w-[22px] h-4 rounded-[3px] object-cover ring-1 ring-black/15" />
-    </button>
-  ) : (
-    <button
-      type="button"
-      class="lang-trigger flex items-center gap-1.5 bg-surface-2 text-text border border-border rounded-md pl-2.5 pr-2 py-1.5 text-sm cursor-pointer transition-colors duration-150 hover:border-primary"
-      aria-haspopup="listbox"
-      aria-expanded="false"
-    >
-      <img src={flagSrc(lang)} alt="" width="20" height="15" class="w-5 h-[15px] rounded-[3px] object-cover ring-1 ring-black/15" />
-      <span class="lang-trigger-label">{current.native}</span>
-      <svg class="lang-arrow shrink-0 text-text-muted transition-transform duration-150" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M6 9l6 6 6-6" />
-      </svg>
-    </button>
-  )}
+  <button
+    type="button"
+    class="lang-trigger flex items-center justify-center gap-1.5 w-9 h-9 md:w-auto md:h-auto md:pl-2.5 md:pr-2 md:py-1.5 bg-surface-2 text-text border border-border rounded-md text-sm cursor-pointer transition-colors duration-150 hover:border-primary"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-label={`Language: ${current.native}`}
+  >
+    <img src={flagSrc(lang)} alt="" width="22" height="16" class="w-[22px] h-4 md:w-5 md:h-[15px] rounded-[3px] object-cover ring-1 ring-black/15" />
+    <span class="lang-trigger-label hidden md:inline">{current.native}</span>
+    <svg class="lang-arrow hidden md:block shrink-0 text-text-muted transition-transform duration-150" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  </button>
 
   <ul
     class="lang-menu hidden fixed z-[100] w-max py-1 bg-surface border border-border rounded-md shadow-lg max-h-[60vh] overflow-y-auto"

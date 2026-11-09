@@ -180,59 +180,62 @@ html[data-theme="light"] {
 .menu-toggle.is-open .menu-bar:nth-child(2) { opacity: 0; transform: scaleX(.3); }
 .menu-toggle.is-open .menu-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Mobile panel: height + fade, links stagger in */
-.mobile-panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  visibility: hidden;
-  opacity: 0;
-  border-bottom: 1px solid transparent;
-  transition: grid-template-rows .32s cubic-bezier(.65,0,.35,1), opacity .25s ease, visibility 0s linear .32s, box-shadow .3s ease;
-}
-.mobile-panel.is-open {
-  grid-template-rows: 1fr;
-  visibility: visible;
-  opacity: 1;
-  border-bottom-color: var(--color-border);
-  box-shadow: 0 16px 32px -16px rgb(0 0 0 / .35);
-  transition-delay: 0s;
-}
-.mobile-panel-inner { overflow: hidden; min-height: 0; }
-.mobile-link {
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity .25s ease, transform .3s cubic-bezier(.2,.8,.2,1), color .2s ease, padding-left .2s ease;
-}
-.mobile-panel.is-open .mobile-link { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 45ms + 80ms); }
-a.mobile-link { position: relative; }
-a.mobile-link::before {
-  content: ''; position: absolute; left: -10px; top: 50%; width: 3px; height: 0;
-  background: var(--color-primary); border-radius: 2px; transform: translateY(-50%);
-  transition: height .2s ease;
-}
-a.mobile-link.is-active { color: var(--color-primary); }
-a.mobile-link.is-pressed, a.mobile-link:focus-visible { color: var(--color-text); padding-left: 8px; transition-delay: 0s; }
-a.mobile-link.is-pressed::before, a.mobile-link:focus-visible::before { height: 60%; }
-/* real hover only on devices that have it (no sticky hover on touch) */
-@media (hover: hover) {
-  a.mobile-link:hover { color: var(--color-text); padding-left: 8px; transition-delay: 0s; }
-  a.mobile-link:hover::before { height: 60%; }
-  a.mobile-link:hover .mobile-label::after { opacity: 1; animation: jelly-line .6s cubic-bezier(.34,1.75,.5,1) both; }
-}
+/* ONE nav, two looks. Desktop: inline row (Tailwind classes + jelly underline from JS).
+   Phone: the same <nav> becomes a dropdown panel under the header. */
+@media (max-width: 767.98px) {
+  .site-nav {
+    position: absolute; top: 100%; left: 0; width: 100%;
+    display: flex; flex-direction: column;
+    padding: 4px 20px 8px;
+    background: var(--color-surface);
+    visibility: hidden; opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    border-bottom: 1px solid transparent;
+    transition: clip-path .32s cubic-bezier(.65,0,.35,1), opacity .25s ease, visibility 0s linear .32s, box-shadow .3s ease;
+  }
+  .site-nav.is-open {
+    visibility: visible; opacity: 1;
+    clip-path: inset(0 0 -40px 0);
+    border-bottom-color: var(--color-border);
+    box-shadow: 0 16px 32px -16px rgb(0 0 0 / .35);
+    transition-delay: 0s;
+  }
+  .site-nav .nav-link {
+    display: block; position: relative;
+    border-bottom: 1px solid var(--color-border);
+    border-radius: 0;
+    opacity: 0; transform: translateY(-6px);
+    transition: opacity .25s ease, transform .3s cubic-bezier(.2,.8,.2,1), color .2s ease, padding-left .2s ease;
+  }
+  .site-nav .nav-link:last-of-type { border-bottom: 0; }
+  .site-nav.is-open .nav-link { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 45ms + 80ms); }
+  .site-nav .nav-link.is-active { color: var(--color-primary); }
 
-/* Mobile link: same jelly underline as desktop on hover / tap / keyboard focus */
-.mobile-label { position: relative; display: inline-block; }
-.mobile-label::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 3px;
-  background: var(--color-primary); border-radius: 2px;
-  transform: scaleX(0); transform-origin: center; opacity: 0;
-  transition: transform .3s ease-in, opacity .3s ease-in;
-}
-a.mobile-link.is-pressed .mobile-label::after,
-a.mobile-link:active .mobile-label::after,
-a.mobile-link:focus-visible .mobile-label::after {
-  opacity: 1;
-  animation: jelly-line .6s cubic-bezier(.34,1.75,.5,1) both;
+  /* side bar + jelly underline: only while pressed / hovered (never by default) */
+  .site-nav .nav-link::before {
+    content: ''; position: absolute; left: -10px; top: 50%; width: 3px; height: 0;
+    background: var(--color-primary); border-radius: 2px; transform: translateY(-50%);
+    transition: height .2s ease;
+  }
+  .nav-label { position: relative; display: inline-block; }
+  .nav-label::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 3px;
+    background: var(--color-primary); border-radius: 2px;
+    transform: scaleX(0); transform-origin: center; opacity: 0;
+    transition: transform .3s ease-in, opacity .3s ease-in;
+  }
+  .site-nav .nav-link.is-pressed, .site-nav .nav-link:focus-visible { color: var(--color-text); padding-left: 8px; transition-delay: 0s; transform: none; }
+  .site-nav .nav-link.is-pressed::before, .site-nav .nav-link:focus-visible::before { height: 60%; }
+  .site-nav .nav-link.is-pressed .nav-label::after,
+  .site-nav .nav-link:active .nav-label::after,
+  .site-nav .nav-link:focus-visible .nav-label::after {
+    opacity: 1; animation: jelly-line .6s cubic-bezier(.34,1.75,.5,1) both;
+  }
+  @media (hover: hover) {
+    .site-nav .nav-link:hover { color: var(--color-text); padding-left: 8px; transition-delay: 0s; transform: none; }
+    .site-nav .nav-link:hover::before { height: 60%; }
+    .site-nav .nav-link:hover .nav-label::after { opacity: 1; animation: jelly-line .6s cubic-bezier(.34,1.75,.5,1) both; }
+  }
 }
 @keyframes jelly-line {
   0%   { transform: scaleX(0) scaleY(1); }
@@ -241,8 +244,7 @@ a.mobile-link:focus-visible .mobile-label::after {
   85%  { transform: scaleX(1) scaleY(.9); }
   100% { transform: scaleX(1) scaleY(1); }
 }
-@media (min-width: 768px) { .mobile-panel { display: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-header, .logo-link, .nav-link, .menu-bar, .mobile-panel, .mobile-link { transition: none !important; }
+  .site-header, .logo-link, .nav-link, .menu-bar, .site-nav, .site-nav .nav-link { transition: none !important; }
 }

@@ -17,13 +17,13 @@ const navItems = [
 
 <header class="site-header sticky top-0 z-50 h-[var(--header-h)] flex items-center bg-surface/90 backdrop-blur-sm border-b border-border">
   <div class="wrap grid grid-cols-[1fr_auto_1fr] md:flex items-center md:justify-between gap-3 md:gap-4">
-    <!-- Mobile: hamburger (left) -->
+    <!-- Hamburger (phone only) -->
     <button
       id="menu-toggle"
       type="button"
       aria-label="Open menu"
       aria-expanded="false"
-      aria-controls="mobile-menu"
+      aria-controls="site-nav"
       class="menu-toggle md:hidden justify-self-start inline-flex flex-col justify-center items-center gap-[5px] w-9 h-9 shrink-0 rounded-md bg-surface-2 border border-border"
     >
       <span class="menu-bar block w-[18px] h-0.5 rounded-full bg-text"></span>
@@ -43,41 +43,21 @@ const navItems = [
         />
       </a>
 
-      <!-- Desktop: single-row menu -->
-      <nav class="hidden md:flex gap-1 lg:gap-2 relative" id="desktop-nav">
-        {navItems.map((item) => (
-          <a href={item.href} class="nav-link relative z-10 px-3 text-base lg:text-lg font-medium text-text-muted py-1.5">
-            {item.label}
-          </a>
-        ))}
-        <span id="nav-underline" aria-hidden="true"></span>
-      </nav>
-    </div>
-
-    <div class="justify-self-end shrink-0">
-      <!-- Mobile: language + theme (right) -->
-      <div class="md:hidden flex items-center gap-2">
-        <LanguageSwitcher lang={lang} alternates={alternates} availableLangs={availableLangs} compact />
-        <ThemeToggle lang={lang} />
-      </div>
-      <!-- Desktop -->
-      <div class="hidden md:flex items-center gap-2.5">
-        <ThemeToggle lang={lang} />
-        <LanguageSwitcher lang={lang} alternates={alternates} availableLangs={availableLangs} />
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile menu panel (animated open/close) -->
-  <div id="mobile-menu" class="mobile-panel md:hidden absolute top-[var(--header-h)] left-0 w-full bg-surface">
-    <div class="mobile-panel-inner">
-      <nav class="wrap flex flex-col py-2" aria-label="Mobile">
+      <!-- ONE menu: inline row on desktop, dropdown panel on phone (pure CSS, see global.css) -->
+      <nav id="site-nav" class="site-nav md:flex md:gap-1 lg:gap-2 md:relative" aria-label="Main">
         {navItems.map((item, i) => (
-          <a href={item.href} style={`--i:${i}`} class="mobile-link py-3.5 text-base font-medium text-text-muted border-b border-border last:border-b-0">
-            <span class="mobile-label">{item.label}</span>
+          <a href={item.href} style={`--i:${i}`} class="nav-link relative z-10 md:px-3 text-base lg:text-lg font-medium text-text-muted py-3.5 md:py-1.5">
+            <span class="nav-label">{item.label}</span>
           </a>
         ))}
+        <span id="nav-underline" aria-hidden="true" class="hidden md:block"></span>
       </nav>
+    </div>
+
+    <!-- ONE language switcher + ONE theme toggle (icon-only on phone) -->
+    <div class="justify-self-end shrink-0 flex items-center gap-2 md:gap-2.5">
+      <div class="order-2 md:order-1"><ThemeToggle lang={lang} /></div>
+      <div class="order-1 md:order-2"><LanguageSwitcher lang={lang} alternates={alternates} availableLangs={availableLangs} /></div>
     </div>
   </div>
 </header>
@@ -85,40 +65,43 @@ const navItems = [
 <script>
   const header = document.querySelector<HTMLElement>('.site-header');
   const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
+  const menu = document.getElementById('site-nav');
+  const isPhone = () => window.matchMedia('(max-width: 767.98px)').matches;
+  const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Header: soft shadow once the page is scrolled
   const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  // Mobile menu
+  // Phone: the same nav acts as an animated dropdown panel
   const setMenu = (open: boolean) => {
     menu?.classList.toggle('is-open', open);
     toggle?.classList.toggle('is-open', open);
     toggle?.setAttribute('aria-expanded', String(open));
     toggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    if (open) menu?.removeAttribute('inert'); else menu?.setAttribute('inert', '');
+    if (open || !isPhone()) menu?.removeAttribute('inert'); else menu?.setAttribute('inert', '');
   };
-  menu?.setAttribute('inert', '');
+  setMenu(false);
   toggle?.addEventListener('click', () => setMenu(!menu?.classList.contains('is-open')));
-  // Touch screens have no real hover: play the jelly underline on press, then navigate
-  menu?.querySelectorAll<HTMLAnchorElement>('a.mobile-link').forEach((link) => {
-    link.addEventListener('pointerdown', () => link.classList.add('is-pressed'));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+  document.addEventListener('click', (e) => {
+    if (menu?.classList.contains('is-open') && !header?.contains(e.target as Node)) setMenu(false);
+  });
+  window.matchMedia('(min-width: 768px)').addEventListener('change', () => setMenu(false));
+
+  // Phone: touch has no real hover, so play the jelly underline on press, then navigate
+  menu?.querySelectorAll<HTMLAnchorElement>('a.nav-link').forEach((link) => {
+    link.addEventListener('pointerdown', () => { if (isPhone()) link.classList.add('is-pressed'); });
     ['pointerup', 'pointercancel', 'pointerleave'].forEach((ev) =>
       link.addEventListener(ev, () => setTimeout(() => link.classList.remove('is-pressed'), 700)));
     link.addEventListener('click', (e) => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!isPhone() || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || reduceMotion()) return;
       e.preventDefault();
       link.classList.add('is-pressed');
       setTimeout(() => { location.href = link.href; }, 380);
     });
   });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
-  document.addEventListener('click', (e) => {
-    if (menu?.classList.contains('is-open') && !header?.contains(e.target as Node)) setMenu(false);
-  });
-  window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
 
   // Desktop nav: jelly underline — appears only while hovering / keyboard-focusing a link
   const nav = document.getElementById('desktop-nav');
@@ -129,10 +112,6 @@ const navItems = [
   const active =
     links.find((a) => norm(new URL(a.href).pathname) === path) ??
     links.find((a) => { const lp = norm(new URL(a.href).pathname); return lp !== '/' && path.startsWith(lp); });
-  document.querySelectorAll<HTMLAnchorElement>('#mobile-menu a.mobile-link').forEach((a) => {
-    const lp = norm(new URL(a.href).pathname);
-    if (lp === path || (lp !== '/' && path.startsWith(lp))) { a.classList.add('is-active'); a.setAttribute('aria-current', 'page'); }
-  });
   active?.classList.add('is-active');
   active?.setAttribute('aria-current', 'page');
 
