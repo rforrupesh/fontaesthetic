@@ -34,24 +34,6 @@ const webApplication = {
   },
 };
 
-const product = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: `${strings.site.name} — ${strings.tool.heading}`,
-  description: strings.tool.subheading,
-  brand: {
-    '@type': 'Brand',
-    name: strings.site.name,
-  },
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
-    availability: 'https://schema.org/InStock',
-    url: pageUrl,
-  },
-};
-
 const faqPage = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -68,5 +50,4 @@ const faqPage = {
 
 <script type="application/ld+json" set:html={JSON.stringify(organization)} />
 <script type="application/ld+json" set:html={JSON.stringify(webApplication)} />
-<script type="application/ld+json" set:html={JSON.stringify(product)} />
 <script type="application/ld+json" set:html={JSON.stringify(faqPage)} />
