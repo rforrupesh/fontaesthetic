@@ -66,16 +66,43 @@ html[data-theme="light"] {
   }
 
   /* Blog article typography */
-  .prose h2 {
-    @apply mt-8 text-2xl;
+  /* Tailwind preflight resets headings, lists, tables, quotes etc., so every
+     markdown element needs its own style here. */
+  .prose { @apply text-text text-[1.0625rem] leading-[1.75]; overflow-wrap: anywhere; }
+  .prose > :first-child { margin-top: 0; }
+  .prose h1, .prose h2, .prose h3, .prose h4 {
+    @apply font-bold text-text leading-snug;
     scroll-margin-top: calc(var(--header-h) + 16px);
   }
-  .prose h3 {
-    @apply mt-6 text-lg;
-    scroll-margin-top: calc(var(--header-h) + 16px);
-  }
+  .prose h1 { @apply mt-10 mb-4 text-3xl; }
+  .prose h2 { @apply mt-10 mb-3 text-2xl pb-2 border-b border-border; }
+  .prose h3 { @apply mt-8 mb-2 text-xl; }
+  .prose h4 { @apply mt-6 mb-2 text-lg; }
   .prose p { @apply text-text my-4; }
-  .prose ul, .prose ol { @apply pl-6; }
+  .prose strong, .prose b { @apply font-bold text-text; }
+  .prose em, .prose i { font-style: italic; }
+  .prose ul { @apply list-disc pl-6 my-4; }
+  .prose ol { @apply list-decimal pl-6 my-4; }
+  .prose li { @apply my-1.5; }
+  .prose li > ul, .prose li > ol { @apply my-1.5; }
+  .prose li::marker { color: var(--color-text-muted); }
+  .prose blockquote {
+    @apply my-6 pl-4 py-1 italic text-text-muted border-l-4 border-primary bg-surface-2 rounded-r-md;
+  }
+  .prose hr { @apply my-8 border-0 border-t border-border; }
+  .prose img { @apply my-6 rounded-lg h-auto; }
+  .prose code {
+    @apply px-1.5 py-0.5 rounded bg-surface-2 border border-border text-[.9em];
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  .prose pre { @apply my-6 p-4 rounded-lg bg-surface-2 border border-border overflow-x-auto text-sm; }
+  .prose pre code { @apply p-0 border-0 bg-transparent; }
+  .prose table {
+    @apply my-6 w-full border-collapse text-[.95rem];
+  }
+  .prose th, .prose td { @apply border border-border px-3 py-2 text-left align-top; }
+  .prose th { @apply bg-surface-2 font-semibold; }
+  .prose tbody tr:nth-child(even) { background: color-mix(in srgb, var(--color-surface-2) 40%, transparent); }
   .prose a {
     @apply text-primary underline underline-offset-2 decoration-primary/40 rounded transition-colors duration-150;
   }
