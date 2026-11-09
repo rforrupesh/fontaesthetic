@@ -32,11 +32,13 @@ function hrefFor(code: string) {
   return code === 'en' ? base : `${base}${code}/`;
 }
 
-const flags: Record<string, string> = {
-  en: '🇬🇧', fr: '🇫🇷', ar: '🇸🇦', th: '🇹🇭', tr: '🇹🇷', id: '🇮🇩', vi: '🇻🇳',
-  pl: '🇵🇱', es: '🇪🇸', it: '🇮🇹', ja: '🇯🇵', de: '🇩🇪', pt: '🇵🇹',
+// language code -> country flag file in /public/flags (real SVGs, so they look
+// identical on every device; emoji flags don't render on Windows)
+const flagFile: Record<string, string> = {
+  en: 'gb', fr: 'fr', ar: 'sa', th: 'th', tr: 'tr', id: 'id', vi: 'vn',
+  pl: 'pl', es: 'es', it: 'it', ja: 'jp', de: 'de', pt: 'pt',
 };
-const flagOf = (c: string) => flags[c] ?? '🌐';
+const flagSrc = (c: string) => `${base}flags/${flagFile[c] ?? 'gb'}.svg`;
 
 const current = languages[lang as keyof typeof languages] ?? languages.en;
 ---
@@ -50,7 +52,7 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
       aria-expanded="false"
       aria-label={`Language: ${current.native}`}
     >
-      <span class="text-[17px] leading-none" aria-hidden="true">{flagOf(lang)}</span>
+      <img src={flagSrc(lang)} alt="" width="22" height="16" class="w-[22px] h-4 rounded-[3px] object-cover ring-1 ring-black/15" />
     </button>
   ) : (
     <button
@@ -59,7 +61,7 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
       aria-haspopup="listbox"
       aria-expanded="false"
     >
-      <span aria-hidden="true">{flagOf(lang)}</span>
+      <img src={flagSrc(lang)} alt="" width="20" height="15" class="w-5 h-[15px] rounded-[3px] object-cover ring-1 ring-black/15" />
       <span class="lang-trigger-label">{current.native}</span>
       <svg class="lang-arrow shrink-0 text-text-muted transition-transform duration-150" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 9l6 6 6-6" />
@@ -80,7 +82,7 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
             code === lang ? 'text-primary' : 'text-text-muted',
           ]}
         >
-          <span class="inline-flex items-center gap-2.5"><span aria-hidden="true">{flagOf(code)}</span>{info.native}</span>
+          <span class="inline-flex items-center gap-2.5"><img src={flagSrc(code)} alt="" width="20" height="15" loading="lazy" class="w-5 h-[15px] rounded-[3px] object-cover ring-1 ring-black/15" />{info.native}</span>
         </a>
       </li>
     ))}
