@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import { t } from '../../i18n';
+import { t, getPath } from '../../i18n';
 const strings = t('vi');
 
 const features = [
@@ -31,6 +31,11 @@ const features = [
 
     <p class="text-text-muted text-center max-w-[560px] mx-auto">
       Dành cho người sáng tạo, nhà tiếp thị và bất kỳ ai muốn văn bản của mình nổi bật.
+    </p>
+
+    <p class="text-text-muted text-center mt-2">
+      Bạn có câu hỏi hoặc đề xuất?
+      <a href={getPath('vi', '/contact/')} class="text-primary underline underline-offset-2 hover:text-primary-hover transition-colors duration-150">{strings.footer.contact}</a>
     </p>
   </section>
 </BaseLayout>

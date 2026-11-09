@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import { t } from '../../i18n';
+import { t, getPath } from '../../i18n';
 const strings = t('de');
 
 const sections = [
@@ -25,5 +25,10 @@ const sections = [
         <p class="text-text-muted m-0">{s.text}</p>
       </div>
     ))}
+
+    <p class="text-text-muted text-center mt-2">
+      Hast du eine Frage oder einen Vorschlag?
+      <a href={getPath('de', '/contact/')} class="text-primary underline underline-offset-2 hover:text-primary-hover transition-colors duration-150">{strings.footer.contact}</a>
+    </p>
   </section>
 </BaseLayout>
