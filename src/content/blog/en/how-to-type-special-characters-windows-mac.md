@@ -3,6 +3,7 @@ translationId: "type-special-characters"
 slug: "how-to-type-special-characters-windows-mac"
 title: "How to Type Special Characters on Windows and Mac: Easy Keyboard Tricks"
 description: "Discover easy ways to type special characters on Windows and Mac using keyboard shortcuts, Alt codes, Character Map, and copy-paste tricks."
+image: "/images/how-to-type-special-characters-windows-mac.webp"
 tags: ["special characters", "keyboard shortcuts", "unicode"]
 categories: ["Guides"]
 ---
