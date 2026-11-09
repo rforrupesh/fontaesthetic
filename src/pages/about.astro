@@ -2,35 +2,185 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import { t } from '../i18n';
+
 const strings = t('en');
 
 const features = [
-  { title: 'No sign-up required', text: 'Just open the page and start typing. No accounts, no downloads.' },
-  { title: 'Works everywhere', text: 'Paste into Instagram, WhatsApp, Discord, Twitter/X and more.' },
-  { title: '100% free', text: 'No hidden fees, no premium tier, ever.' },
+  {
+    title: 'Free to Use',
+    text: 'Create stylish text without paying anything. No subscriptions, premium plans or hidden charges.'
+  },
+  {
+    title: 'No Sign-Up Required',
+    text: 'Start creating fancy text instantly. You do not need to create an account or install any software.'
+  },
+  {
+    title: 'Easy Copy and Paste',
+    text: 'Copy your favourite text style with one click and use it on your favourite apps and websites.'
+  },
+  {
+    title: 'Multiple Text Styles',
+    text: 'Explore different Unicode text styles, including bold, italic, cursive, gothic, bubble and decorative letters.'
+  },
+  {
+    title: 'Works on Many Platforms',
+    text: 'Use your generated text on Instagram, WhatsApp, Facebook, TikTok, Discord, X and other platforms that support Unicode.'
+  },
+  {
+    title: 'Simple and Easy to Use',
+    text: 'A clean and straightforward tool that makes creating and copying stylish text quick and convenient.'
+  },
 ];
 ---
-<BaseLayout lang="en" title={`About — ${strings.site.name}`} description="Learn more about AestheticFonts, the free online font generator." path="/about/">
+
+<BaseLayout
+  lang="en"
+  title={`About — ${strings.site.name}`}
+  description="Learn about AestheticFonts, a free online Unicode font generator and text styling tool. Create fancy letters, stylish text and decorative fonts to copy and paste."
+  path="/about/"
+>
   <PageHero
-    title="About Us"
-    subtitle="A free online font generator that turns plain text into stylish Unicode fonts you can copy and paste anywhere."
+    title="About AestheticFonts"
+    subtitle="A free Unicode font generator that helps you turn ordinary text into stylish letters, fancy fonts and creative text styles you can copy and paste anywhere."
   />
 
   <section class="wrap py-10 max-w-[820px] mx-auto">
-    <div class="grid sm:grid-cols-3 gap-5 mb-8">
-      {features.map((f) => (
-        <div class="card p-5">
-          <div class="w-8 h-8 rounded-md bg-primary/15 text-primary flex items-center justify-center mb-3">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+
+    <div class="mb-10">
+      <h2>Welcome to AestheticFonts</h2>
+      <p class="text-text-muted">
+        Welcome to AestheticFonts, a free online font generator and text styling tool designed to make ordinary text look more interesting. Whether you want fancy letters for your social media profile, a creative username for gaming or stylish text for your messages, you can create different text styles in just a few seconds.
+      </p>
+      <p class="text-text-muted">
+        We believe personalising text should be simple. That is why AestheticFonts lets you enter your words, explore different styles and copy the results without creating an account or downloading additional software.
+      </p>
+      <p class="text-text-muted">
+        From aesthetic cursive letters to bold, italic, gothic and decorative text, our tool offers different ways to give your words a unique appearance. You can use these styles for personal profiles, captions, bios, comments, messages and many other creative purposes.
+      </p>
+    </div>
+
+    <div class="mb-10">
+      <h2>What Is AestheticFonts?</h2>
+      <p class="text-text-muted">
+        AestheticFonts is a Unicode font generator that converts regular text into different fancy text styles using special Unicode characters. It gives you an easy way to create stylish letters without installing traditional fonts on your device.
+      </p>
+      <p class="text-text-muted">
+        Unlike regular font files that change how text looks inside a particular application, Unicode characters are part of a standard character system supported by many modern devices and platforms. This makes it possible to copy your generated text and paste it into different places, including social media profiles, chat applications and websites.
+      </p>
+      <p class="text-text-muted">
+        Simply type your text, select a style you like and copy the result. Your creative text is ready to use wherever the characters are supported.
+      </p>
+    </div>
+
+    <div class="mb-10">
+      <h2>What Can You Do With Our Font Generator?</h2>
+      <p class="text-text-muted">
+        AestheticFonts is useful for everyday text styling and creative projects. You can use the generator for many different purposes, such as:
+      </p>
+      <ul class="text-text-muted list-disc pl-6 space-y-2">
+        <li>Create stylish Instagram bios and profile descriptions.</li>
+        <li>Make attractive Facebook posts and social media captions.</li>
+        <li>Generate unique usernames for games and online communities.</li>
+        <li>Write fancy WhatsApp messages and status updates.</li>
+        <li>Style your TikTok, Discord and X profiles.</li>
+        <li>Create decorative headings for personal projects.</li>
+        <li>Make your comments and messages look different.</li>
+        <li>Explore creative Unicode letters for everyday use.</li>
+      </ul>
+      <p class="text-text-muted">
+        You can experiment with different combinations and choose the style that matches your personality or the message you want to share.
+      </p>
+    </div>
+
+    <div class="mb-10">
+      <h2>Our Features</h2>
+      <p class="text-text-muted">
+        We focus on providing a straightforward text styling experience. Here are some of the things you can expect when using AestheticFonts.
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-5 mt-6">
+        {features.map((f) => (
+          <div class="card p-5">
+            <div class="w-8 h-8 rounded-md bg-primary/15 text-primary flex items-center justify-center mb-3">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </div>
+            <h3 class="text-[1.02rem] mb-1.5">{f.title}</h3>
+            <p class="text-text-muted text-[.9rem] m-0">{f.text}</p>
           </div>
-          <h3 class="text-[1.02rem] mb-1.5">{f.title}</h3>
-          <p class="text-text-muted text-[.9rem] m-0">{f.text}</p>
-        </div>
-      ))}
+        ))}
+      </div>
+    </div>
+
+    <div class="mb-10">
+      <h2>How Does a Unicode Font Generator Work?</h2>
+      <p class="text-text-muted">
+        A Unicode font generator works by replacing standard letters with visually different Unicode characters. Unicode is an international character encoding standard that gives unique codes to characters from different writing systems, symbols and special text styles.
+      </p>
+      <p class="text-text-muted">
+        For example, a regular letter can have several Unicode alternatives that look bold, mathematical, cursive or decorative. Our tool uses these characters to create different text appearances from your original words.
+      </p>
+      <p class="text-text-muted">
+        These are not traditional fonts in the usual sense. They are special characters that look like different font styles. That is why you can often copy and paste them into applications without installing a separate font file.
+      </p>
+      <p class="text-text-muted">
+        However, the appearance of some characters may vary depending on the device, operating system, browser or application. Some platforms may not support every Unicode character.
+      </p>
+    </div>
+
+    <div class="mb-10">
+      <h2>Who Is AestheticFonts For?</h2>
+      <p class="text-text-muted">
+        AestheticFonts is made for anyone who enjoys creative text and wants to personalise their online presence. You do not need technical knowledge or design experience to use the tool.
+      </p>
+      <p class="text-text-muted">
+        Social media users can create distinctive bios and captions. Gamers can experiment with different usernames. Content creators can style their posts and messages, while students and everyday users can explore decorative text for personal use.
+      </p>
+      <p class="text-text-muted">
+        Whether you are creating a simple profile description or looking for an unusual way to write your name, AestheticFonts gives you an easy starting point.
+      </p>
+    </div>
+
+    <div class="mb-10">
+      <h2>Our Approach to Privacy and Accessibility</h2>
+      <p class="text-text-muted">
+        We want text styling to be accessible without unnecessary barriers. You can use AestheticFonts without registering for an account or providing personal details just to generate stylish text.
+      </p>
+      <p class="text-text-muted">
+        Our aim is to keep the experience simple, accessible and convenient across different screen sizes and devices. Whether you visit from a desktop computer, tablet or smartphone, you can explore text styles and copy the results with ease.
+      </p>
+      <p class="text-text-muted">
+        Please remember that Unicode text is not always accessible to everyone. Screen readers may pronounce decorative characters differently from ordinary letters, so standard text is often a better choice for important information.
+      </p>
+    </div>
+
+    <div class="mb-10">
+      <h2>Our Goal</h2>
+      <p class="text-text-muted">
+        Our goal is to make stylish text creation easy and available to everyone. We want to provide a useful online tool where people can discover different Unicode characters, experiment with creative text styles and copy their favourite results without complicated steps.
+      </p>
+      <p class="text-text-muted">
+        We also aim to keep improving the website by making the tool easier to use, exploring useful text styles and providing a better experience for visitors.
+      </p>
+      <p class="text-text-muted">
+        AestheticFonts is built around a simple idea: a few different characters can give ordinary words a completely different look.
+      </p>
+    </div>
+
+    <div class="mb-10">
+      <h2>Thank You for Visiting</h2>
+      <p class="text-text-muted">
+        Thank you for choosing AestheticFonts for your text styling needs. We appreciate every visitor who uses our tool to create, explore and share stylish text.
+      </p>
+      <p class="text-text-muted">
+        We hope you enjoy experimenting with different letters and finding styles that suit you. Have fun creating something unique!
+      </p>
     </div>
 
     <p class="text-text-muted text-center max-w-[560px] mx-auto">
-      Made for creators, marketers, and anyone who wants their text to stand out.
+      AestheticFonts — Make Your Text Look Different.
     </p>
+
   </section>
 </BaseLayout>
