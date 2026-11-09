@@ -1,8 +1,8 @@
 ---
 translationId: "welcome-to-aestheticfonts"
 slug: "welcome-to-aestheticfonts"
-title: "Welcome To AestheticFonts: Create 200+ Cool Fancy Fonts Instantly"
-description: "Discover AestheticFonts, a free fancy font generator with 200+ cool font styles. Create stylish text instantly and copy and paste it anywhere."
+title: "Welcome To AestheticFonts: Create 500+ Cool Fancy Fonts Instantly"
+description: "Discover AestheticFonts, a free fancy font generator with 500+ cool font styles. Create stylish text instantly and copy and paste it anywhere."
 image: "/images/welcome-to-aestheticfonts.webp"
 tags: ["font generator", "fancy fonts", "cool fonts", "stylish text", "copy and paste fonts"]
 categories: ["Guides"]
@@ -12,11 +12,11 @@ categories: ["Guides"]
 
 Want your name to look cooler, your Instagram bio to feel more creative, or your messages to stand out instantly? Plain text can sometimes look a little boring, especially when you want to express your own style. A few fancy letters can quickly give your words a completely different appearance.
 
-That's exactly where **AestheticFonts** comes in! Instantly transform ordinary text into 200+ eye-catching fancy font styles. Explore beautiful cursive letters, bold text, gothic designs, cute bubble fonts, and much more. Simply type, browse, copy, and paste your favourite style wherever you want!
+That's exactly where **AestheticFonts** comes in! Instantly transform ordinary text into 500+ eye-catching fancy font styles. Explore beautiful cursive letters, bold text, gothic designs, cute bubble fonts, and much more. Simply type, browse, copy, and paste your favourite style wherever you want!
 
-## Create 200+ Cool Fancy Fonts Online
+## Create 500+ Cool Fancy Fonts Online
 
-AestheticFonts brings together more than 200 stylish text designs in one simple place. You can quickly turn ordinary words into decorative letters without downloading anything or installing special fonts.
+AestheticFonts brings together more than 500 stylish text designs in one simple place. You can quickly turn ordinary words into decorative letters without downloading anything or installing special fonts.
 
 Simply enter your text in the generator and watch it transform into different styles. From elegant cursive writing to bold and attractive letters, there are plenty of options to explore.
 
@@ -115,7 +115,7 @@ AestheticFonts is designed to make stylish text creation quick and simple. You d
 
 Here are some things you can enjoy:
 
-- **200+ Font Styles:** Explore a wide collection of fancy and decorative text designs.
+- **500+ Font Styles:** Explore a wide collection of fancy and decorative text designs.
 - **Free to Use:** Create stylish text without paying for a subscription.
 - **Instant Results:** See different text styles as you type.
 - **Easy Copy and Paste:** Copy your favourite design and use it almost anywhere.
@@ -129,4 +129,4 @@ Whether you are designing a social media bio or choosing a new nickname, everyth
 
 Why stick with ordinary letters when you can give your words a more interesting look? Explore different designs, experiment with creative combinations, and find the perfect style for your next bio, username, or caption.
 
-Visit **AestheticFonts** today and create 200+ cool fancy fonts instantly. Just type your text, choose a design, copy it, and paste it wherever you want. It's free, easy, and ready whenever inspiration strikes!
+Visit **AestheticFonts** today and create 500+ cool fancy fonts instantly. Just type your text, choose a design, copy it, and paste it wherever you want. It's free, easy, and ready whenever inspiration strikes!
