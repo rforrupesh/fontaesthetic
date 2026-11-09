@@ -11,8 +11,10 @@ interface Props {
   // that only exist in one language (e.g. an English-only tool page). If
   // not provided, all configured languages are shown as usual.
   availableLangs?: string[];
+  // compact: icon-only globe button (used in the mobile header)
+  compact?: boolean;
 }
-const { lang, alternates, availableLangs } = Astro.props;
+const { lang, alternates, availableLangs, compact = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const visibleLanguages = availableLangs
   ? Object.fromEntries(Object.entries(languages).filter(([code]) => availableLangs.includes(code)))
@@ -30,21 +32,40 @@ function hrefFor(code: string) {
   return code === 'en' ? base : `${base}${code}/`;
 }
 
+const flags: Record<string, string> = {
+  en: '🇬🇧', fr: '🇫🇷', ar: '🇸🇦', th: '🇹🇭', tr: '🇹🇷', id: '🇮🇩', vi: '🇻🇳',
+  pl: '🇵🇱', es: '🇪🇸', it: '🇮🇹', ja: '🇯🇵', de: '🇩🇪', pt: '🇵🇹',
+};
+const flagOf = (c: string) => flags[c] ?? '🌐';
+
 const current = languages[lang as keyof typeof languages] ?? languages.en;
 ---
 
 <div class="lang-dropdown relative inline-block text-left">
-  <button
-    type="button"
-    class="lang-trigger flex items-center gap-1.5 bg-surface-2 text-text border border-border rounded-md pl-2.5 pr-2 py-1.5 text-sm cursor-pointer transition-colors duration-150 hover:border-primary"
-    aria-haspopup="listbox"
-    aria-expanded="false"
-  >
-    <span class="lang-trigger-label">{current.native}</span>
-    <svg class="lang-arrow shrink-0 text-text-muted transition-transform duration-150" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M6 9l6 6 6-6" />
-    </svg>
-  </button>
+  {compact ? (
+    <button
+      type="button"
+      class="lang-trigger w-9 h-9 rounded-md bg-surface-2 border border-border flex items-center justify-center text-text-muted hover:text-text hover:border-primary transition-colors duration-150 cursor-pointer"
+      aria-haspopup="listbox"
+      aria-expanded="false"
+      aria-label={`Language: ${current.native}`}
+    >
+      <span class="text-[17px] leading-none" aria-hidden="true">{flagOf(lang)}</span>
+    </button>
+  ) : (
+    <button
+      type="button"
+      class="lang-trigger flex items-center gap-1.5 bg-surface-2 text-text border border-border rounded-md pl-2.5 pr-2 py-1.5 text-sm cursor-pointer transition-colors duration-150 hover:border-primary"
+      aria-haspopup="listbox"
+      aria-expanded="false"
+    >
+      <span aria-hidden="true">{flagOf(lang)}</span>
+      <span class="lang-trigger-label">{current.native}</span>
+      <svg class="lang-arrow shrink-0 text-text-muted transition-transform duration-150" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </button>
+  )}
 
   <ul
     class="lang-menu hidden fixed z-[100] w-max py-1 bg-surface border border-border rounded-md shadow-lg max-h-[60vh] overflow-y-auto"
@@ -59,7 +80,7 @@ const current = languages[lang as keyof typeof languages] ?? languages.en;
             code === lang ? 'text-primary' : 'text-text-muted',
           ]}
         >
-          {info.native}
+          <span class="inline-flex items-center gap-2.5"><span aria-hidden="true">{flagOf(code)}</span>{info.native}</span>
         </a>
       </li>
     ))}
