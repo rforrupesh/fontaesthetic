@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aestheticfonts.in/sitemap-index.xml
+Sitemap: https://aestheticfonts.in/sitemap.xml
