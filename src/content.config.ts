@@ -33,7 +33,7 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(), // optional in the .md file: if missing, the first git commit date is used
-    updated: z.coerce.date().optional(), // optional custom 'last updated'; if missing, the last git commit date is used
+    updated: z.coerce.date().optional(), // optional: set it only when you really update a post; if missing, 'last updated' = publish date
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
     categories: z.array(z.string()).default([]),
