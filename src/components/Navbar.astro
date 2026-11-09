@@ -74,7 +74,7 @@ const navItems = [
       <nav class="wrap flex flex-col py-2" aria-label="Mobile">
         {navItems.map((item, i) => (
           <a href={item.href} style={`--i:${i}`} class="mobile-link py-3.5 text-base font-medium text-text-muted border-b border-border last:border-b-0">
-            {item.label}
+            <span class="mobile-label">{item.label}</span>
           </a>
         ))}
       </nav>

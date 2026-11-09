@@ -214,6 +214,28 @@ a.mobile-link.is-active { color: var(--color-primary); }
 a.mobile-link.is-active::before { height: 60%; }
 a.mobile-link:hover, a.mobile-link:focus-visible { color: var(--color-text); padding-left: 8px; transition-delay: 0s; }
 a.mobile-link:hover::before, a.mobile-link:focus-visible::before { height: 60%; }
+
+/* Mobile link: same jelly underline as desktop on hover / tap / keyboard focus */
+.mobile-label { position: relative; display: inline-block; }
+.mobile-label::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 3px;
+  background: var(--color-primary); border-radius: 2px;
+  transform: scaleX(0); transform-origin: center; opacity: 0;
+  transition: transform .3s ease-in, opacity .3s ease-in;
+}
+a.mobile-link:hover .mobile-label::after,
+a.mobile-link:focus-visible .mobile-label::after,
+a.mobile-link:active .mobile-label::after {
+  opacity: 1;
+  animation: jelly-line .6s cubic-bezier(.34,1.75,.5,1) both;
+}
+@keyframes jelly-line {
+  0%   { transform: scaleX(0) scaleY(1); }
+  40%  { transform: scaleX(1.12) scaleY(.45); }
+  65%  { transform: scaleX(.97) scaleY(1.45); }
+  85%  { transform: scaleX(1) scaleY(.9); }
+  100% { transform: scaleX(1) scaleY(1); }
+}
 @media (min-width: 768px) { .mobile-panel { display: none; } }
 
 @media (prefers-reduced-motion: reduce) {
