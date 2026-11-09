@@ -248,3 +248,31 @@ html[data-theme="light"] {
 @media (prefers-reduced-motion: reduce) {
   .site-header, .logo-link, .nav-link, .menu-bar, .site-nav, .site-nav .nav-link { transition: none !important; }
 }
+
+/* Contact page: "Show Email Address" call-to-action */
+.email-reveal-btn {
+  animation: emailPulse 2.2s ease-out infinite;
+}
+.email-reveal-btn:hover,
+.email-reveal-btn:focus-visible {
+  animation: none;
+}
+.email-reveal-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+@keyframes emailPulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 45%, transparent); }
+  70%  { box-shadow: 0 0 0 12px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.email-revealed {
+  animation: emailIn .25s ease-out both;
+}
+@keyframes emailIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .email-reveal-btn, .email-revealed { animation: none; }
+}
