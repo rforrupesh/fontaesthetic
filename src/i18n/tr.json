@@ -55,7 +55,11 @@
     "latestArticle": "Son makale",
     "typeOrganization": "Kuruluş",
     "typePerson": "Yazar",
-    "allCategories": "Tümü"
+    "allCategories": "Tümü",
+    "page": "Sayfa",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "pagination": "Sayfalama"
   },
   "theme": {
     "label": "Tema",

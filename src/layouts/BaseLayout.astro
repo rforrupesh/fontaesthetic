@@ -20,6 +20,9 @@ interface Props {
   modifiedTime?: Date;
   tags?: string[];
   noindex?: boolean;
+  // paginated pages (/blog/2/): other languages may not have that page, so
+  // the language switcher links to this path instead and hreflang stays self-only.
+  switcherPath?: string;
 }
 
 const {
@@ -35,6 +38,7 @@ const {
   modifiedTime,
   tags = [],
   noindex = false,
+  switcherPath,
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
@@ -60,6 +64,9 @@ const strings = t(lang);
 const langCodes = availableLangs ?? Object.keys(languages);
 const resolvedAlternates: Record<string, string> =
   alternates ?? Object.fromEntries(langCodes.map((l) => [l, path]));
+const switcherAlternates: Record<string, string> = switcherPath
+  ? Object.fromEntries(langCodes.map((l) => [l, switcherPath]))
+  : resolvedAlternates;
 const hreflangEntries = Object.entries(resolvedAlternates).filter(
   ([l]) => !availableLangs || availableLangs.includes(l)
 );
@@ -138,11 +145,11 @@ const [xDefaultLang, xDefaultPath] = resolvedAlternates[defaultLang]
   </head>
   <body>
     <a href="#main-content" class="skip-link">{strings.a11y.skipToContent}</a>
-    <Navbar lang={lang} alternates={resolvedAlternates} availableLangs={availableLangs} />
+    <Navbar lang={lang} alternates={switcherAlternates} availableLangs={availableLangs} />
     <main id="main-content" tabindex="-1">
       <slot />
     </main>
-    <Footer lang={lang} alternates={resolvedAlternates} availableLangs={availableLangs} />
+    <Footer lang={lang} alternates={switcherAlternates} availableLangs={availableLangs} />
 
     <button type="button" id="back-to-top" class="back-to-top" aria-label={strings.a11y.backToTop} title={strings.a11y.backToTop} hidden>
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg>

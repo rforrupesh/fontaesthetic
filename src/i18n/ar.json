@@ -55,7 +55,11 @@
     "latestArticle": "أحدث مقال",
     "typeOrganization": "منظمة",
     "typePerson": "كاتب",
-    "allCategories": "الكل"
+    "allCategories": "الكل",
+    "page": "صفحة",
+    "previous": "السابق",
+    "next": "التالي",
+    "pagination": "ترقيم الصفحات"
   },
   "theme": {
     "label": "المظهر",

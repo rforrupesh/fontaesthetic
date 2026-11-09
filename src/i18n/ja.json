@@ -55,7 +55,11 @@
     "latestArticle": "最新記事",
     "typeOrganization": "組織",
     "typePerson": "著者",
-    "allCategories": "すべて"
+    "allCategories": "すべて",
+    "page": "ページ",
+    "previous": "前へ",
+    "next": "次へ",
+    "pagination": "ページネーション"
   },
   "theme": {
     "label": "テーマ",

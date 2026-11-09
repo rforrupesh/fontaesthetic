@@ -55,7 +55,11 @@
     "latestArticle": "บทความล่าสุด",
     "typeOrganization": "องค์กร",
     "typePerson": "ผู้เขียน",
-    "allCategories": "ทั้งหมด"
+    "allCategories": "ทั้งหมด",
+    "page": "หน้า",
+    "previous": "ก่อนหน้า",
+    "next": "ถัดไป",
+    "pagination": "การแบ่งหน้า"
   },
   "theme": {
     "label": "ธีม",

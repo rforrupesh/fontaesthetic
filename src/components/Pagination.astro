@@ -1,0 +1,49 @@
+---
+import { t, getPath } from '../i18n';
+
+interface Props {
+  lang: string;
+  // bare path of page 1 without lang prefix, e.g. '/blog/' or '/blog/tag/fonts/'
+  basePath: string;
+  current: number;
+  last: number;
+}
+const { lang, basePath, current, last } = Astro.props;
+const s = t(lang).blog;
+
+const hrefFor = (n: number) => getPath(lang, n <= 1 ? basePath : `${basePath.replace(/\/+$/, '')}/${n}/`);
+
+// 1 … 4 5 [6] 7 8 … 20
+const nums: (number | '…')[] = [];
+for (let i = 1; i <= last; i++) {
+  if (i === 1 || i === last || Math.abs(i - current) <= 2) nums.push(i);
+  else if (nums[nums.length - 1] !== '…') nums.push('…');
+}
+const item = 'min-w-10 h-10 px-3 inline-flex items-center justify-center rounded-md border text-sm font-medium';
+const idle = 'border-border bg-surface';
+const link = `${idle} hover:border-primary hover:text-primary`;
+---
+
+{last > 1 && (
+  <nav class="wrap flex flex-wrap items-center justify-center gap-2 pb-16" aria-label={s.pagination}>
+    {current > 1 ? (
+      <a href={hrefFor(current - 1)} rel="prev" class={`${item} ${link}`}>← {s.previous}</a>
+    ) : (
+      <span class={`${item} ${idle} opacity-40`} aria-disabled="true">← {s.previous}</span>
+    )}
+
+    {nums.map((n) => n === '…' ? (
+      <span class="px-1 text-text-muted" aria-hidden="true">…</span>
+    ) : n === current ? (
+      <span class={`${item} bg-primary border-primary text-white`} aria-current="page" aria-label={`${s.page} ${n}`}>{n}</span>
+    ) : (
+      <a href={hrefFor(n)} class={`${item} ${link}`} aria-label={`${s.page} ${n}`}>{n}</a>
+    ))}
+
+    {current < last ? (
+      <a href={hrefFor(current + 1)} rel="next" class={`${item} ${link}`}>{s.next} →</a>
+    ) : (
+      <span class={`${item} ${idle} opacity-40`} aria-disabled="true">{s.next} →</span>
+    )}
+  </nav>
+)}

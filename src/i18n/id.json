@@ -55,7 +55,11 @@
     "latestArticle": "Artikel terbaru",
     "typeOrganization": "Organisasi",
     "typePerson": "Penulis",
-    "allCategories": "Semua"
+    "allCategories": "Semua",
+    "page": "Halaman",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "pagination": "Paginasi"
   },
   "theme": {
     "label": "Tema",

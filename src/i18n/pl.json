@@ -55,7 +55,11 @@
     "latestArticle": "Najnowszy artykuł",
     "typeOrganization": "Organizacja",
     "typePerson": "Autor",
-    "allCategories": "Wszystkie"
+    "allCategories": "Wszystkie",
+    "page": "Strona",
+    "previous": "Poprzednia",
+    "next": "Następna",
+    "pagination": "Paginacja"
   },
   "theme": {
     "label": "Motyw",

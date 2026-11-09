@@ -55,7 +55,11 @@
     "latestArticle": "Neuester Artikel",
     "typeOrganization": "Organisation",
     "typePerson": "Autor",
-    "allCategories": "Alle"
+    "allCategories": "Alle",
+    "page": "Seite",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "pagination": "Seitennavigation"
   },
   "theme": {
     "label": "Design",
