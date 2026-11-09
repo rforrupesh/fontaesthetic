@@ -225,7 +225,9 @@ a.mobile-link:hover::before, a.mobile-link:focus-visible::before { height: 60%; 
 }
 a.mobile-link:hover .mobile-label::after,
 a.mobile-link:focus-visible .mobile-label::after,
-a.mobile-link:active .mobile-label::after {
+a.mobile-link:active .mobile-label::after,
+a.mobile-link.is-pressed .mobile-label::after,
+a.mobile-link.is-active .mobile-label::after {
   opacity: 1;
   animation: jelly-line .6s cubic-bezier(.34,1.75,.5,1) both;
 }
