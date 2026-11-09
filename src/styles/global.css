@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "@fontsource-variable/lora";
+@import "@fontsource-variable/lora/wght-italic.css";
+@import "@fontsource-variable/fraunces";
 
 @theme {
   --color-bg: #0f1115;
@@ -11,6 +14,8 @@
   --color-primary-hover: #0755b3;
   --color-accent: #ff6b9d;
 
+  --font-serif: 'Lora Variable', Georgia, 'Times New Roman', serif;
+  --font-display: 'Fraunces Variable', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   --radius-md: 8px;
@@ -68,10 +73,13 @@ html[data-theme="light"] {
   /* Blog article typography */
   /* Tailwind preflight resets headings, lists, tables, quotes etc., so every
      markdown element needs its own style here. */
-  .prose { @apply text-text text-[1.0625rem] leading-[1.75]; overflow-wrap: anywhere; }
+  .prose { @apply text-text text-[1.125rem] leading-[1.8]; font-family: var(--font-serif); overflow-wrap: anywhere; }
+  article > header h1 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
   .prose > :first-child { margin-top: 0; }
   .prose h1, .prose h2, .prose h3, .prose h4 {
     @apply font-bold text-text leading-snug;
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
     scroll-margin-top: calc(var(--header-h) + 16px);
   }
   .prose h1 { @apply mt-10 mb-4 text-3xl; }
