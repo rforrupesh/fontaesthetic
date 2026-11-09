@@ -42,7 +42,7 @@ These fonts are not exact copies of OpenAI Sans. However, they can give your tex
 
 ## How to Create ChatGPT-Style Fancy Text
 
-If you want something different from the normal ChatGPT appearance, you can also try a [fancy font generator](https://fontaesthetic.in/). It converts ordinary letters into Unicode characters that you can copy and paste.
+If you want something different from the normal ChatGPT appearance, you can also try a [Font Generator](https://aestheticfonts.in/) . It converts ordinary letters into Unicode characters that you can copy and paste.
 
 For example, a normal text style can look like this:
 
