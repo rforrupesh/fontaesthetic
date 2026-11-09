@@ -1,7 +1,7 @@
 ---
 translationId: "welcome-to-aestheticfonts"
 slug: "welcome-to-aestheticfonts"
-title: "AestheticFonts'a Hoş Geldiniz: 500+ Havalı Yazı Stili ve Şekilli Nick Fontunu Anında Oluşturun"
+title: "AestheticFonts'a Hoş Geldiniz: Yazı Stili ve Şekilli Nick Fontunu Anında Oluşturun"
 description: "AestheticFonts ile 500'den fazla havalı yazı stili içeren ücretsiz şekilli yazı oluşturucuyu keşfedin. Şekilli nick ve yazıları anında oluşturup istediğiniz yere kopyalayıp yapıştırın."
 image: "/images/welcome-to-aestheticfonts.webp"
 tags: ["yazı stilleri", "şekilli nick", "yazı fontları", "şekilli yazı oluşturucu", "havalı fontlar", "kopyala yapıştır fontlar"]
