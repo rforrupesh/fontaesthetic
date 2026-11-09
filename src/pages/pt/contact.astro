@@ -20,9 +20,15 @@ const strings = t('pt');
         </svg>
       </div>
       <p class="text-text-muted mb-1.5 text-[.85rem]">Envie um e-mail para</p>
-      <a href="mailto:hello@aestheticfonts.example" class="text-primary text-[1.05rem] font-semibold hover:text-primary-hover transition-colors duration-150">
-        hello@aestheticfonts.example
-      </a>
+      <button
+        id="showEmailBtn"
+        type="button"
+        class="text-primary text-[1.05rem] font-semibold hover:text-primary-hover transition-colors duration-150"
+      >
+        Mostrar endereço de e-mail
+      </button>
+
+      <p id="emailDisplay" class="mt-2" hidden></p>
     </div>
 
     <p class="text-text-muted text-[.85rem] mt-8 mb-3">Ou encontre-nos aqui</p>
@@ -30,4 +36,34 @@ const strings = t('pt');
       <SocialLinks size="md" />
     </div>
   </section>
+
+  <script>
+    const emailCodes = [
+      114, 117, 112, 101, 115, 104, 107, 117, 109, 97, 114,
+      52, 55, 55, 53,
+      64, 103, 109, 97, 105, 108, 46, 99, 111, 109
+    ];
+
+    const button = document.getElementById('showEmailBtn');
+    const display = document.getElementById('emailDisplay');
+
+    button?.addEventListener('click', () => {
+      const email = String.fromCharCode(...emailCodes);
+
+      const link = document.createElement('a');
+      link.href = `mailto:${email}`;
+      link.textContent = email;
+      link.className =
+        'text-primary font-semibold hover:text-primary-hover transition-colors duration-150';
+
+      display?.replaceChildren(link);
+
+      if (display) {
+        display.hidden = false;
+      }
+
+      button.textContent = 'Endereço de e-mail';
+      button.setAttribute('aria-expanded', 'true');
+    });
+  </script>
 </BaseLayout>
