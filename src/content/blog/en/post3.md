@@ -11,7 +11,7 @@ categories: ["Guides"]
 
 ## Overview
 
-Every year a few font styles <a href="https://www.w3schools.com/">Visit W3Schools.com!</a> become especially popular on social media. Here's a roundup of what's trending in 2024.
+Every year a few font sty
 
 ## 1. Bold Serif
 
