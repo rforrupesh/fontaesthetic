@@ -1,22 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import sitemap from '@astrojs/sitemap';
-import { existsSync, statSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { lastCommitDate } from './src/lib/gitDate.ts';
-
-const BUILD_DATE = new Date();
-
-// Blog post URL (/blog/<slug>/ or /<lang>/blog/<slug>/) -> its markdown file,
-// so each post gets its real last-modified date. Everything else (home, pages,
-// categories, blog index) uses the build date.
-function postLastmod(url) {
-  const m = new URL(url).pathname.match(/^\/(?:([a-z]{2})\/)?blog\/([^/]+)\/$/);
-  if (!m || ['category', 'tag', 'author'].includes(m[2])) return BUILD_DATE;
-  const file = `src/content/blog/${m[1] ?? 'en'}/${m[2]}.md`;
-  if (!existsSync(fileURLToPath(new URL(file, import.meta.url)))) return BUILD_DATE;
-  return lastCommitDate(file) ?? statSync(fileURLToPath(new URL(file, import.meta.url))).mtime;
-}
+import sitemap from './src/integrations/sitemap.mjs';
 
 // Custom domain on GitHub Pages: https://aestheticfonts.in/
 export default defineConfig({
@@ -25,21 +9,9 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     sitemap({
-      // tag pages are noindex, so keep them out of the sitemap
-      filter: (page) => !page.includes('/blog/tag/'),
-      // styled, human-friendly sitemap (public/sitemap.xsl)
-      xslURL: '/sitemap.xsl',
-      // every URL (posts, pages, categories) gets lastmod + daily + 1.0
-      serialize(item) {
-        item.lastmod = postLastmod(item.url).toISOString();
-        item.changefreq = 'daily';
-        item.priority = 1.0;
-        return item;
-      },
-      i18n: {
-        defaultLocale: 'en',
-        locales: { en: 'en-US', fr: 'fr-FR', ar: 'ar', th: 'th-TH', tr: 'tr-TR', id: 'id-ID', vi: 'vi-VN', pl: 'pl-PL', es: 'es-ES', it: 'it-IT', ja: 'ja-JP', de: 'de-DE', pt: 'pt-BR' },
-      },
+      site: 'https://aestheticfonts.in',
+      defaultLocale: 'en',
+      locales: { en: 'en-US', fr: 'fr-FR', ar: 'ar', th: 'th-TH', tr: 'tr-TR', id: 'id-ID', vi: 'vi-VN', pl: 'pl-PL', es: 'es-ES', it: 'it-IT', ja: 'ja-JP', de: 'de-DE', pt: 'pt-BR' },
     }),
   ],
   build: {
