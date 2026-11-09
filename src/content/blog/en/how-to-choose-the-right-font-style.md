@@ -3,7 +3,7 @@ translationId: "choose-right-font-style"
 slug: "how-to-choose-the-right-font-style"
 title: "How to Choose the Right Font Style for Different Types of Content"
 description: "Learn how to choose the right font style for social media, blogs, business content, invitations, posters, and more."
-date: 2026-11-09
+image: "/images/how-to-choose-the-right-font-style.webp"
 tags: ["font styles", "font guide", "fancy text"]
 categories: ["Typography"]
 ---
