@@ -3,7 +3,7 @@ translationId: "stylish-social-bio-fonts"
 slug: "stylish-social-bio-fonts"
 title: "How to Use AestheticFonts.in to Create Stylish Instagram, Facebook & WhatsApp Bios"
 description: "Learn how to use AestheticFonts.in to create fancy Instagram, Facebook and WhatsApp bios with 500 stylish fonts you can copy and paste."
-image: "/images/aestheticfonts-social-media-bios.webp"
+image: "/images/stylish-social-bio-fonts.webp"
 tags: ["AestheticFonts", "Instagram bio fonts", "Facebook bio fonts", "WhatsApp fonts", "fancy text", "copy and paste fonts"]
 categories: ["Social Media"]
 ---
