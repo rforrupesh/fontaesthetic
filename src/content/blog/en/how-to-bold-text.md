@@ -45,7 +45,9 @@ Instagram does not offer a general bold button for regular captions, comments, a
 4. Copy the generated text.
 5. Open Instagram and paste it into your bio, caption, or comment.
 
-You can also use a bold font generator to create stylish text for your Instagram bio. For more ideas, read our guide on [how to create stylish Instagram, Facebook and WhatsApp bios](https://aestheticfonts.in/blog/stylish-social-bio-fonts/).
+You can also use a bold font generator to create stylish text for your Instagram bio. 
+
+> For more ideas, read our guide on [how to create stylish Instagram, Facebook and WhatsApp bios](https://aestheticfonts.in/blog/stylish-social-bio-fonts/).
 
 ### How to Make Bold Text on Facebook
 
