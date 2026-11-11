@@ -12,7 +12,7 @@ categories: ["Guides"]
 
 Want your name to look cooler, your Instagram bio to feel more creative, or your messages to stand out instantly? Plain text can sometimes look a little boring, especially when you want to express your own style. A few fancy letters can quickly give your words a completely different appearance.
 
-That's exactly where **AestheticFonts** comes in! Instantly transform ordinary text into 500+ eye-catching fancy [font](https://aestheticfonts.in/blog/chatgpt-font/) styles. Explore beautiful cursive letters, bold text, gothic designs, cute bubble fonts, and much more. Simply type, browse, copy, and paste your favourite style wherever you want!
+That's exactly where **[AestheticFonts](https://aestheticfonts.in/blog/stylish-social-bio-fonts/)** comes in! Instantly transform ordinary text into 500+ eye-catching fancy [font](https://aestheticfonts.in/blog/chatgpt-font/) styles. Explore beautiful cursive letters, bold text, gothic designs, cute bubble fonts, and much more. Simply type, browse, copy, and paste your favourite style wherever you want!
 
 ## Create 500+ Cool Fancy Fonts Online
 
