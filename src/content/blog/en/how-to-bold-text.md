@@ -71,7 +71,7 @@ If you want decorative bold letters instead, you can copy Unicode characters fro
 
 ### How to Make Bold Text on Discord
 
-Discord supports built-in Markdown formatting. You don't need a font generator to make ordinary messages bold.
+[Discord supports built-in Markdown formatting](https://aestheticfonts.in/blog/discord-markdown/)  You don't need any generator to make ordinary messages bold.
 
 Simply put two asterisks before and after your text:
 
