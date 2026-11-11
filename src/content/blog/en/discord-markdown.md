@@ -24,6 +24,11 @@ For example, you can type `**Hello**` to make the word appear in bold.
 
 Discord uses Markdown for many common formatting options, so you can make your messages stand out while chatting with friends or posting in servers.
 
+## What Is Markdown?
+
+[Markdown](https://en.wikipedia.org/wiki/Markdown) is a simple text formatting language that uses special characters to change how text looks. Instead of clicking buttons, you type symbols around your text to make it **bold**, *italic*, or ~~strikethrough~~.
+
+it is lightweight markup language created by `John Gruber` in 2004 that lets you format plain text using simple keyboard symbols instead of complex HTML tags or visual editor buttons
 
 ## How to Make Bold Text in Discord
 
