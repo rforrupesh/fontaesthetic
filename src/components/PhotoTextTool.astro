@@ -337,6 +337,8 @@ const presetList = [
   const msg1 = $('ptt-msg'), msg2 = $('ptt-msg2');
 
   const COARSE = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
+  // selection handle sizes in CSS px (bigger on touch screens)
+  const HS = COARSE ? { cr: 17, pt: 14, pl: 42, rr: 24, ro: 48, hit: 30 } : { cr: 13, pt: 11, pl: 34, rr: 20, ro: 42, hit: 22 };
   let src: Src | null = null;
   let baseCanvas: HTMLCanvasElement | null = null; // downscaled copy of the photo used while editing
   let layers: Layer[] = [];
@@ -469,16 +471,16 @@ const presetList = [
       c.fillStyle = '#fff'; c.fill(); c.strokeStyle = '#c9c9d1'; c.lineWidth = 1.5 * k; c.stroke();
     };
     // side pills
-    pill(x, y + h / 2, 8 * k, 22 * k); pill(x + w, y + h / 2, 8 * k, 22 * k);
-    pill(x + w / 2, y, 22 * k, 8 * k); pill(x + w / 2, y + h, 22 * k, 8 * k);
+    pill(x, y + h / 2, HS.pt * k, HS.pl * k); pill(x + w, y + h / 2, HS.pt * k, HS.pl * k);
+    pill(x + w / 2, y, HS.pl * k, HS.pt * k); pill(x + w / 2, y + h, HS.pl * k, HS.pt * k);
     // corner circles
-    const cr = (COARSE ? 11 : 8) * k;
+    const cr = HS.cr * k;
     circle(x, y, cr); circle(x + w, y, cr); circle(x, y + h, cr); circle(x + w, y + h, cr);
     // rotate button (below, like Canva)
-    const ry = y + h + 34 * k;
-    circle(0, ry, 15 * k);
-    c.strokeStyle = '#222'; c.lineWidth = 1.6 * k; c.lineCap = 'round';
-    const ir = 6 * k;
+    const ry = y + h + HS.ro * k;
+    circle(0, ry, HS.rr * k);
+    c.strokeStyle = '#222'; c.lineWidth = 2 * k; c.lineCap = 'round';
+    const ir = HS.rr * 0.42 * k;
     c.beginPath(); c.arc(0, ry, ir, Math.PI * 0.15, Math.PI * 0.95); c.stroke();
     c.beginPath(); c.arc(0, ry, ir, Math.PI * 1.15, Math.PI * 1.95); c.stroke();
     c.beginPath(); c.moveTo(-ir - 2.5 * k, ry - 1 * k); c.lineTo(-ir, ry + 2.5 * k); c.lineTo(-ir + 3 * k, ry - 0.5 * k); c.stroke();
@@ -708,12 +710,12 @@ const presetList = [
   }
   function hitHandle(l: Layer, p: { x: number; y: number; k: number }): 'resize' | 'rotate' | null {
     const b = boxes.get(l.id); if (!b) return null;
-    const q = local(l, p), m = 6 * p.k, r = (COARSE ? 26 : 16) * p.k;
+    const q = local(l, p), m = 6 * p.k, r = HS.hit * p.k;
     const hw = b.w / 2 + m, hh = b.h / 2 + m;
-    if (Math.hypot(q.x, q.y - (hh + 34 * p.k)) < r) return 'rotate';
+    if (Math.hypot(q.x, q.y - (hh + HS.ro * p.k)) < r) return 'rotate';
     for (const sx of [-1, 1]) for (const sy of [-1, 1]) if (Math.hypot(q.x - sx * hw, q.y - sy * hh) < r) return 'resize';
-    for (const sx of [-1, 1]) if (Math.abs(q.x - sx * hw) < (COARSE ? 16 : 8) * p.k && Math.abs(q.y) < (COARSE ? 24 : 14) * p.k) return 'resize';
-    for (const sy of [-1, 1]) if (Math.abs(q.y - sy * hh) < (COARSE ? 16 : 8) * p.k && Math.abs(q.x) < (COARSE ? 24 : 14) * p.k) return 'resize';
+    for (const sx of [-1, 1]) if (Math.abs(q.x - sx * hw) < HS.hit * 0.7 * p.k && Math.abs(q.y) < HS.pl * 0.6 * p.k) return 'resize';
+    for (const sy of [-1, 1]) if (Math.abs(q.y - sy * hh) < HS.hit * 0.7 * p.k && Math.abs(q.x) < HS.pl * 0.6 * p.k) return 'resize';
     return null;
   }
   function hitLayer(p: { x: number; y: number; k: number }): Layer | null {
