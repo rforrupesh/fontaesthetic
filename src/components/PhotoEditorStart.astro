@@ -1,0 +1,109 @@
+---
+import { SIZE_PRESETS } from '../lib/photo-editor/data';
+
+// Landing block for /add-text-to-photo/. The editor itself (Fabric.js) is a separate chunk that
+// is only downloaded when the visitor starts, so this page stays light for search engines.
+const base = import.meta.env.BASE_URL;
+const picks = ['ig-post', 'story', 'yt-thumb', 'fb-post', 'pinterest', 'a4'].map((id) => SIZE_PRESETS.find((p) => p.id === id)!);
+---
+
+<section class="py-8 pb-6">
+  <div class="wrap">
+    <div class="text-center mb-6">
+      <h1 class="text-[clamp(1.6rem,3.4vw,2.2rem)] mb-2">Add Text to Photo</h1>
+      <p class="text-text-muted text-sm max-w-[680px] mx-auto">Add text to any image online for free. Pick from 65 Google Fonts, resize the canvas, style your text and download in full quality. No login, no watermark, and your photo never leaves your device.</p>
+    </div>
+
+    <div id="pes-root" data-base={base} class="max-w-[900px] mx-auto">
+      <div id="pes-resume" class="card flex items-center justify-between gap-3 px-4 py-3 mb-4" hidden>
+        <span class="text-sm font-semibold">You have an unfinished design.</span>
+        <button type="button" id="pes-resume-btn" class="btn">Continue editing</button>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-[1.2fr_1fr]">
+        <div id="pes-drop" class="card pes-drop text-center px-5 py-10 flex flex-col items-center justify-center" tabindex="0" role="button" aria-label="Upload a photo">
+          <svg class="mb-3 text-primary" viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="m21 16-5-5-8 8"/></svg>
+          <p class="font-semibold text-lg mb-1">Drop a photo here</p>
+          <p class="text-text-muted text-sm mb-4">or paste an image (Ctrl+V). JPG, PNG, WebP</p>
+          <button type="button" id="pes-choose" class="btn">Upload a photo</button>
+          <input type="file" id="pes-file" accept="image/*" class="sr-only" tabindex="-1" aria-hidden="true" />
+          <p class="text-text-muted text-xs mt-5 inline-flex items-center gap-1.5">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            Private: your photo stays in your browser
+          </p>
+        </div>
+
+        <div class="card px-5 py-5">
+          <p class="font-semibold mb-1">Or start with a blank canvas</p>
+          <p class="text-text-muted text-xs mb-3">Choose a size. You can change it any time in the editor.</p>
+          <div class="grid grid-cols-2 gap-2">
+            {picks.map((p) => (
+              <button type="button" class="pes-size" data-w={p.w} data-h={p.h}>
+                <strong>{p.label.replace(' / Reel / Status', '')}</strong>
+                <small>{p.w} × {p.h}</small>
+              </button>
+            ))}
+          </div>
+          <p class="text-text-muted text-xs mt-4 mb-2">No photo handy? Try a sample:</p>
+          <div class="flex gap-2.5">
+            <button type="button" class="pes-sample" data-sample="sunset" aria-label="Sunset sample" style="background:linear-gradient(135deg,#ff9a56,#ff4e7e 55%,#5b3cc4)"></button>
+            <button type="button" class="pes-sample" data-sample="ocean" aria-label="Ocean sample" style="background:linear-gradient(135deg,#8be3ff,#1b7fd6 55%,#0b2a6b)"></button>
+            <button type="button" class="pes-sample" data-sample="forest" aria-label="Forest sample" style="background:linear-gradient(135deg,#d4f08a,#37a65a 55%,#0d4a3a)"></button>
+          </div>
+        </div>
+      </div>
+      <p id="pes-msg" class="text-center text-sm mt-3" style="color:#ff6b6b" role="alert" hidden></p>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .pes-drop { border-style: dashed; border-width: 2px; cursor: pointer; transition: border-color .15s, background-color .15s; min-height: 270px; }
+  .pes-drop:hover, .pes-drop:focus-visible, .pes-drop.is-over { border-color: var(--color-primary); background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface)); outline: none; }
+  .pes-size { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 9px 11px; text-align: left; background: var(--color-surface-2); color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-md); cursor: pointer; font-size: .82rem; line-height: 1.25; transition: border-color .15s, color .15s; }
+  .pes-size small { color: var(--color-text-muted); font-size: .72rem; }
+  .pes-size:hover, .pes-size:focus-visible { border-color: var(--color-primary); color: var(--color-primary); outline: none; }
+  .pes-sample { width: 74px; height: 50px; border-radius: .6rem; border: 2px solid var(--color-border); cursor: pointer; transition: transform .15s, border-color .15s; }
+  .pes-sample:hover, .pes-sample:focus-visible { transform: translateY(-2px); border-color: var(--color-primary); outline: none; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+
+<script>
+  const root = document.getElementById('pes-root') as HTMLElement;
+  const base = root.dataset.base || '/';
+  const drop = document.getElementById('pes-drop')!;
+  const fileEl = document.getElementById('pes-file') as HTMLInputElement;
+  const msg = document.getElementById('pes-msg')!;
+  const resume = document.getElementById('pes-resume')!;
+  const loadEditor = () => import('../lib/photo-editor/editor');
+  let editor: Awaited<ReturnType<typeof loadEditor>> | null = null;
+
+  async function start(o: { file?: File; sample?: string; blank?: { w: number; h: number } }) {
+    msg.hidden = true;
+    document.body.style.cursor = 'progress';
+    try {
+      editor = await loadEditor();
+      await editor.openEditor({ base, ...o, onClose: () => { resume.hidden = !editor!.hasSession(); } });
+    } catch {
+      msg.textContent = 'Sorry, the editor could not be loaded. Please check your connection and try again.'; msg.hidden = false;
+    } finally { document.body.style.cursor = ''; }
+  }
+  // warm up the editor chunk as soon as the visitor shows intent
+  ['pointerenter', 'focusin', 'touchstart'].forEach((ev) => root.addEventListener(ev, () => { void loadEditor(); }, { once: true, passive: true }));
+
+  const pick = () => fileEl.click();
+  document.getElementById('pes-choose')!.addEventListener('click', (e) => { e.stopPropagation(); pick(); });
+  drop.addEventListener('click', pick);
+  drop.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+  fileEl.addEventListener('change', () => { const f = fileEl.files?.[0]; fileEl.value = ''; if (f) void start({ file: f }); });
+  drop.addEventListener('dragover', (e) => { e.preventDefault(); drop.classList.add('is-over'); });
+  drop.addEventListener('dragleave', () => drop.classList.remove('is-over'));
+  drop.addEventListener('drop', (e) => { e.preventDefault(); drop.classList.remove('is-over'); const f = (e as DragEvent).dataTransfer?.files?.[0]; if (f) void start({ file: f }); });
+  document.addEventListener('paste', (e) => {
+    if (editor?.hasSession() && !(document.querySelector('.pe') as HTMLElement | null)?.hidden) return;
+    const f = [...(e.clipboardData?.files || [])].find((x) => x.type.startsWith('image/')); if (f) { e.preventDefault(); void start({ file: f }); }
+  });
+  document.querySelectorAll<HTMLElement>('.pes-size').forEach((b) => b.addEventListener('click', () => void start({ blank: { w: Number(b.dataset.w), h: Number(b.dataset.h) } })));
+  document.querySelectorAll<HTMLElement>('.pes-sample').forEach((b) => b.addEventListener('click', () => void start({ sample: b.dataset.sample })));
+  document.getElementById('pes-resume-btn')!.addEventListener('click', () => { editor?.resumeEditor(); });
+</script>

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PhotoTextTool from '../components/PhotoTextTool.astro';
+import PhotoEditorStart from '../components/PhotoEditorStart.astro';
 import FaqSection from '../components/FaqSection.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import BreadcrumbSchema from '../components/schema/BreadcrumbSchema.astro';
@@ -80,7 +80,7 @@ const howTo = {
   availableLangs={['en']}
 >
   <div class="wrap pt-4"><Breadcrumb items={crumbs} /></div>
-  <PhotoTextTool lang={lang} />
+  <PhotoEditorStart />
 
   <article class="prose wrap max-w-[820px] mx-auto py-10">
     <h2>Add Text to Photo Online, Free and Without a Watermark</h2>
