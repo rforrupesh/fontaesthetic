@@ -109,7 +109,7 @@ export async function openEditor(o: OpenOptions) {
     else newBlank(1080, 1080);
   } catch {
     toast('Sorry, that file could not be opened as an image. Try a JPG, PNG or WebP.', true);
-    if (!S.photo && !canvas.getObjects().length) newBlank(1080, 1080);
+    if (!S.photo && !objs().length) newBlank(1080, 1080);
   }
 }
 
@@ -216,11 +216,14 @@ function applyZoom() {
 }
 function setZoom(z: number) { S.zoom = clamp(z, 0.05, 3); S.userZoom = true; applyZoom(); }
 
-function fitPhoto() {
+function fitPhoto(reset = true, tr?: Any) {
   const p = S.photo; if (!p) return;
-  const s = S.fit === 'cover' ? Math.max(S.W / p.w, S.H / p.h) : Math.min(S.W / p.w, S.H / p.h);
-  p.img.set({ originX: 'center', originY: 'center', left: S.W / 2, top: S.H / 2, scaleX: s, scaleY: s });
-  canvas.backgroundImage = p.img; canvas.requestRenderAll();
+  if (canvas.getObjects().includes(p.img)) canvas.remove(p.img);
+  p.img.set({ originX: 'center', originY: 'center' });
+  if (tr) p.img.set(tr);
+  else if (reset) { const s = S.fit === 'cover' ? Math.max(S.W / p.w, S.H / p.h) : Math.min(S.W / p.w, S.H / p.h); p.img.set({ left: S.W / 2, top: S.H / 2, scaleX: s, scaleY: s, angle: 0 }); }
+  (p.img as Any).isPhoto = true; p.img.set({ selectable: true, evented: true }); styleObj(p.img);
+  canvas.insertAt(0, p.img); p.img.setCoords(); canvas.requestRenderAll();
 }
 
 function applyFilters() {
@@ -277,7 +280,7 @@ async function setPhotoFromSample(kind: string, fresh: boolean) { const c = make
 function installPhoto(el: CanvasImageSource, w: number, h: number, fresh: boolean) {
   const t = document.createElement('canvas'); const k = 220 / Math.max(w, h); t.width = Math.round(w * k); t.height = Math.round(h * k);
   t.getContext('2d')!.drawImage(el, 0, 0, t.width, t.height);
-  const img = new FabricImage(el as Any, { selectable: false, evented: false } as Any);
+  const img = new FabricImage(el as Any, { selectable: true, evented: true } as Any); (img as Any).isPhoto = true;
   if (fresh) { resetDoc(); const d = sizeForPhoto(w, h); S.origSize = { w, h }; S.W = d.W; S.H = d.H; }
   S.photo = { img, el, w, h, thumb: t.toDataURL('image/jpeg', 0.7) };
   S.filters = { b: 0, c: 0, s: 0 }; S.fit = 'cover';
@@ -295,6 +298,7 @@ function styleObj(o: Any) {
   if (o instanceof Textbox) o.setControlsVisibility({ mt: false, mb: false });
 }
 const isText = (o: Any) => o instanceof Textbox;
+const objs = (): Any[] => (canvas.getObjects() as Any[]).filter((o) => !o.isPhoto);
 const active = (): Any => canvas?.getActiveObject();
 const activeText = (): Textbox | null => { const a = active(); return a && isText(a) ? a : null; };
 
@@ -313,7 +317,7 @@ async function addText(spec: AddSpec): Promise<Textbox> {
   const fill = st?.fill ?? spec.fill ?? defaultFill();
   const bold = st ? st.bold : (spec.bold ?? (kind !== 'body'));
   const t = new Textbox(text, {
-    left: S.W / 2, top: spec.y ?? S.H / 2 + (canvas.getObjects().length % 6) * S.H * 0.02, originX: 'center', originY: 'center',
+    left: S.W / 2, top: spec.y ?? S.H / 2 + (objs().length % 6) * S.H * 0.02, originX: 'center', originY: 'center',
     width: Math.min(S.W * 0.84, Math.max(S.W * 0.3, fs * text.length * 0.62)), fontFamily: famName(font), fontSize: fs,
     fontWeight: bold ? 700 : 400, fontStyle: st?.italic ? 'italic' : 'normal', fill, textAlign: 'center', lineHeight: 1.15,
     charSpacing: st?.charSpacing ?? spec.charSpacing ?? 0, paintFirst: 'stroke', strokeLineJoin: 'round', strokeMiterLimit: 2,
@@ -366,10 +370,11 @@ function scaleObjectBy(o: Any, s: number) {
 
 // ------------------------------------------------------------------ history
 function snapshot() {
-  return JSON.stringify({ o: canvas.getObjects().map((o: Any) => o.toObject(EXTRA)), W: S.W, H: S.H, bg: S.bgColor, bk: S.bgKey, fit: S.fit, f: S.filters });
+  return JSON.stringify({ o: objs().map((o: Any) => o.toObject(EXTRA)), ph: S.photo ? { left: S.photo.img.left, top: S.photo.img.top, scaleX: S.photo.img.scaleX, scaleY: S.photo.img.scaleY, angle: S.photo.img.angle } : null, W: S.W, H: S.H, bg: S.bgColor, bk: S.bgKey, fit: S.fit, f: S.filters });
 }
 function commit(force = false) {
   clearTimeout(commitTimer);
+  if (S.photo && canvas.getObjects()[0] !== S.photo.img) canvas.sendObjectToBack(S.photo.img);
   if (S.restoring) return;
   const s = snapshot();
   if (!force && hist[histIdx] === s) return;
@@ -386,8 +391,8 @@ async function restore(i: number) {
     canvas.discardActiveObject();
     await canvas.loadFromJSON({ objects: d.o });
     S.fit = d.fit; S.filters = d.f; setBg(d.bg, d.bk);
-    S.W = d.W; S.H = d.H; canvas.setDimensions({ width: S.W, height: S.H }); fitPhoto(); applyFilters(); applyBgFill();
-    canvas.getObjects().forEach(styleObj); fitView(); canvas.requestRenderAll();
+    S.W = d.W; S.H = d.H; canvas.setDimensions({ width: S.W, height: S.H }); fitPhoto(false, d.ph || undefined); applyFilters(); applyBgFill();
+    objs().forEach(styleObj); fitView(); canvas.requestRenderAll();
   } finally { S.restoring = false; }
   updateHistButtons(); renderCtx(); refreshPanel();
 }
@@ -587,7 +592,7 @@ function resizeDesign(w: number, h: number) {
   if (w === S.W && h === S.H) return;
   const sx = w / S.W, sy = h / S.H, s = Math.min(sx, sy);
   canvas.discardActiveObject();
-  for (const o of canvas.getObjects() as Any[]) { o.set({ left: o.left * sx, top: o.top * sy }); scaleObjectBy(o, s); o.setCoords(); }
+  for (const o of objs()) { o.set({ left: o.left * sx, top: o.top * sy }); scaleObjectBy(o, s); o.setCoords(); }
   S.origSize = S.origSize && Math.abs(w / h - S.W / S.H) < 0.001 ? S.origSize : null;
   setDesign(w, h); fitView(true); commit(); renderCtx(); refreshPanel(); toast(`Canvas resized to ${w} × ${h}`);
 }
@@ -603,7 +608,7 @@ function exportScales() {
 }
 async function exportImage() {
   try {
-    await Promise.all((canvas.getObjects().map((o: Any) => FONT_BY_FAMILY.get(o.fontFamily)?.id).filter(Boolean) as string[]).map(ensureFont));
+    await Promise.all((objs().map((o: Any) => FONT_BY_FAMILY.get(o.fontFamily)?.id).filter(Boolean) as string[]).map(ensureFont));
     await document.fonts.ready;
     canvas.discardActiveObject(); canvas.requestRenderAll();
     const sc = exportScales().find((x) => x.id === S.exp.scale && x.ok) ?? exportScales()[1];
@@ -736,6 +741,7 @@ function photoPanelHTML() {
   return `${p ? `<img class="pe-thumb" src="${p.thumb}" alt="Current photo" />` : `<div class="pe-thumbwrap">No photo yet</div>`}
     <div class="pe-grid2" style="margin-top:10px"><button class="pe-btn pe-outline" data-act="replace-photo">${ic('upload', 18)} ${p ? 'Replace' : 'Upload photo'}</button><button class="pe-btn pe-outline" data-act="remove-photo" ${p ? '' : 'disabled'}>${ic('trash', 18)} Remove</button></div>
     ${p ? `<h3>Fit</h3><div class="pe-seg"><button data-fit="cover" aria-pressed="${S.fit === 'cover'}">Fill page</button><button data-fit="contain" aria-pressed="${S.fit === 'contain'}">Fit inside</button></div>
+    <p class="pe-empty">Tip: tap the photo on the canvas to move, resize or rotate it with the corner handles.</p>
     <h3>Adjust</h3>${sl('b', 'Brightness', -60, 60, S.filters.b)}${sl('c', 'Contrast', -60, 60, S.filters.c)}${sl('s', 'Saturation', -80, 80, S.filters.s)}
     <button class="pe-btn pe-outline" style="width:100%" data-act="reset-filters">Reset adjustments</button>` : ''}
     <h3>Add image</h3><button class="pe-btn pe-outline" style="width:100%" data-act="add-image">${ic('image', 18)} Add a logo or sticker</button>
@@ -753,14 +759,14 @@ function bgPanelHTML() {
     <p class="pe-empty">${S.photo ? 'The background shows when the photo is set to "Fit inside" or removed.' : 'Choose a background color or gradient for your page.'}</p>`;
 }
 function layersHTML() {
-  const objs = [...(canvas?.getObjects() ?? [])].reverse() as Any[], cur = active();
-  if (!objs.length) return `<p class="pe-empty">No layers yet. Add some text to get started.</p>`;
-  return objs.map((o, i) => {
+  const layerObjs = [...(canvas ? objs() : [])].reverse() as Any[], cur = active();
+  if (!layerObjs.length) return `<p class="pe-empty">No layers yet. Add some text to get started.</p>`;
+  return layerObjs.map((o, i) => {
     const name = isText(o) ? (o.text || '').replace(/\s+/g, ' ').slice(0, 40) || 'Empty text' : 'Image';
     return `<div class="pe-layer" data-lid="${canvas.getObjects().indexOf(o)}" ${o === cur ? 'aria-current="true"' : ''}>
       ${ic(isText(o) ? 'text' : 'image', 16)}<button class="pe-ltxt" data-lsel>${esc(name)}</button>
       <button class="pe-btn" data-lact="up" aria-label="Move up" ${i === 0 ? 'disabled' : ''}>${ic('up', 15)}</button>
-      <button class="pe-btn" data-lact="down" aria-label="Move down" ${i === objs.length - 1 ? 'disabled' : ''}>${ic('down', 15)}</button>
+      <button class="pe-btn" data-lact="down" aria-label="Move down" ${i === layerObjs.length - 1 ? 'disabled' : ''}>${ic('down', 15)}</button>
       <button class="pe-btn" data-lact="vis" aria-label="Show or hide">${ic(o.visible === false ? 'eyeOff' : 'eye', 15)}</button>
       <button class="pe-btn" data-lact="del" aria-label="Delete">${ic('trash', 15)}</button></div>`;
   }).join('');
@@ -820,7 +826,7 @@ function wireEvents() {
   zoomRange.addEventListener('input', () => setZoom(Number(zoomRange.value) / 100));
 
   // file inputs
-  root.querySelector<HTMLInputElement>('[data-file=replace]')!.addEventListener('change', async (e) => { const i = e.target as HTMLInputElement; const f = i.files?.[0]; i.value = ''; if (f) { try { await setPhotoFromFile(f, !S.photo && !canvas.getObjects().length ? true : false); } catch { toast('Sorry, that file could not be opened as an image.', true); } } });
+  root.querySelector<HTMLInputElement>('[data-file=replace]')!.addEventListener('change', async (e) => { const i = e.target as HTMLInputElement; const f = i.files?.[0]; i.value = ''; if (f) { try { await setPhotoFromFile(f, !S.photo && !objs().length ? true : false); } catch { toast('Sorry, that file could not be opened as an image.', true); } } });
   root.querySelector<HTMLInputElement>('[data-file=add]')!.addEventListener('change', (e) => { const i = e.target as HTMLInputElement; const f = i.files?.[0]; i.value = ''; if (f) void addImageFile(f); });
 
   // drag & drop / paste
@@ -887,11 +893,11 @@ async function doAction(act: string) {
     case 'edit': if (t) { canvas.setActiveObject(t); t.enterEditing(); t.selectAll(); canvas.requestRenderAll(); } return;
     case 'lock': if (a) { const on = !(a as Any).locked; (a as Any).locked = on; a.set({ lockMovementX: on, lockMovementY: on, lockScalingX: on, lockScalingY: on, lockRotation: on, hasControls: !on }); canvas.requestRenderAll(); commit(); positionFloat(); } return;
     case 'dup': if (a && a.type !== 'activeselection') { const c = await (a as Any).clone(EXTRA); c.set({ left: a.left + S.W * 0.03, top: a.top + S.H * 0.03 }); styleObj(c); canvas.add(c); canvas.setActiveObject(c); canvas.requestRenderAll(); commit(); } return;
-    case 'del': if (a) { if ((a as Any).type === 'activeselection') (a as Any).forEachObject((o: Any) => canvas.remove(o)); else canvas.remove(a); canvas.discardActiveObject(); canvas.requestRenderAll(); commit(); syncSelection(); } return;
+    case 'del': if (a && (a as Any).isPhoto) { return doAction('remove-photo'); } if (a) { if ((a as Any).type === 'activeselection') (a as Any).forEachObject((o: Any) => canvas.remove(o)); else canvas.remove(a); canvas.discardActiveObject(); canvas.requestRenderAll(); commit(); syncSelection(); } return;
     case 'flip': if (a) { a.set('flipX', !a.flipX); canvas.requestRenderAll(); commit(); } return;
     case 'replace-photo': root.querySelector<HTMLInputElement>('[data-file=replace]')!.click(); return;
     case 'add-image': root.querySelector<HTMLInputElement>('[data-file=add]')!.click(); return;
-    case 'remove-photo': S.photo = null; canvas.backgroundImage = undefined; S.origSize = null; canvas.requestRenderAll(); commit(); refreshPanel(true); return;
+    case 'remove-photo': if (S.photo) canvas.remove(S.photo.img); S.photo = null; canvas.backgroundImage = undefined; S.origSize = null; canvas.requestRenderAll(); commit(); refreshPanel(true); return;
     case 'reset-filters': S.filters = { b: 0, c: 0, s: 0 }; applyFilters(); commit(); refreshPanel(true); return;
   }
 }
