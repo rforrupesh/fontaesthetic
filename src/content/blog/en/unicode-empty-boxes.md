@@ -10,7 +10,7 @@ categories: ["Typography"]
 
 **Are Unicode characters showing as empty boxes** when you copy and paste fancy text? This problem can happen when you use **special characters, Unicode symbols, stylish letters, or fancy fonts** on websites and apps.
 
-For example, you might copy text like 𝓗𝓮𝓵𝓵𝓸 or 𝔉𝔞𝔫𝔠𝔶 𝔗𝔢𝔵𝔱 from a **font generator**. But after pasting it into another app, you see **empty squares (□)** instead.
+For example, you might copy text like 𝓗𝓮𝓵𝓵𝓸 or 𝔉𝔞𝔫𝔠𝔶 𝔗𝔢𝔵𝔱 from a **[font](https://aestheticfonts.in/) generator**. But after pasting it into another app, you see **empty squares (□)** instead.
 
 This usually happens because your device or application cannot display the selected Unicode characters.
 
