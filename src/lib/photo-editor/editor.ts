@@ -285,7 +285,7 @@ function installPhoto(el: CanvasImageSource, w: number, h: number, fresh: boolea
   else { fitPhoto(); }
   applyFilters();
   if (fresh) { commit(true); renderCtx(); void addText({ kind: 'heading', text: 'Your text here' }); }
-  else { commit(); refreshPanel(); }
+  else { commit(); refreshPanel(true); }
 }
 
 // ------------------------------------------------------------------ objects
@@ -742,7 +742,12 @@ function photoPanelHTML() {
     <p class="pe-empty">You can also drag and drop a photo onto the page, or paste one with Ctrl+V.</p>`;
 }
 function bgPanelHTML() {
-  return `<div class="pe-colorrow"><input type="color" data-bgcolor value="${toHex(S.bgColor)}" aria-label="Pick background color" /><span class="pe-empty" style="padding:0">Custom color</span></div>
+  const p = S.photo;
+  const imgSec = `<h3 style="margin-top:0">Background image</h3>
+    ${p ? `<img class="pe-thumb" src="${p.thumb}" alt="Current background image" />` : ''}
+    <div class="pe-grid2" style="margin-top:${p ? 10 : 0}px"><button class="pe-btn pe-outline" data-act="replace-photo">${ic('upload', 18)} ${p ? 'Replace image' : 'Upload image'}</button><button class="pe-btn pe-outline" data-act="remove-photo" ${p ? '' : 'disabled'}>${ic('trash', 18)} Remove</button></div>
+    ${p ? `<div class="pe-seg" style="margin-top:10px"><button data-fit="cover" aria-pressed="${S.fit === 'cover'}">Fill page</button><button data-fit="contain" aria-pressed="${S.fit === 'contain'}">Fit inside</button></div>` : ''}`;
+  return `${imgSec}<h3>Color</h3><div class="pe-colorrow"><input type="color" data-bgcolor value="${toHex(S.bgColor)}" aria-label="Pick background color" /><span class="pe-empty" style="padding:0">Custom color</span></div>
     <h3>Solid colors</h3>${swatchesHTML('data-bg')}
     <h3>Gradients</h3><div class="pe-grid3">${GRADIENTS.map((g, i) => `<button class="pe-preview" data-bggrad="${i}" style="min-height:56px;background:linear-gradient(${g.angle}deg,${g.stops[0]},${g.stops[1]})" aria-label="${g.name}"></button>`).join('')}</div>
     <p class="pe-empty">${S.photo ? 'The background shows when the photo is set to "Fit inside" or removed.' : 'Choose a background color or gradient for your page.'}</p>`;
