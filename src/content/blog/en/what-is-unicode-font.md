@@ -18,7 +18,7 @@ But how does this actually work? The answer is Unicode! It cleverly represents d
 
 Unicode itself is not a font. It is a universal character standard that gives each character a unique code so computers and mobile devices can recognize it. You can learn more about it in the official [Unicode Standard](https://www.unicode.org/standard/standard.html).
 
-For example, 𝐀, 𝑨, and 𝒜 may look like different versions of the letter A. However, they are separate Unicode characters with their own code points. A compatible font decides how each character looks on your screen.
+For example, 𝐀, 𝑨, and 𝒜 may look like different versions of the letter A. However, they are separate [Unicode characters](https://aestheticfonts.in/blog/unicode-empty-boxes/) with their own code points. A compatible font decides how each character looks on your screen.
 
 ## How Do Unicode Fonts Work?
 
