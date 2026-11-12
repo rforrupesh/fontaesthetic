@@ -372,7 +372,7 @@ const presetList = [
 
   const COARSE = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
   // selection handle sizes in CSS px (bigger on touch screens)
-  const HS = COARSE ? { cr: 17, pt: 14, pl: 42, rr: 24, ro: 48, hit: 30 } : { cr: 13, pt: 11, pl: 34, rr: 20, ro: 42, hit: 22 };
+  const HS = COARSE ? { cr: 20, pt: 14, pl: 42, rr: 26, ro: 54, hit: 32 } : { cr: 15, pt: 11, pl: 34, rr: 21, ro: 46, hit: 24 };
   let src: Src | null = null;
   let baseCanvas: HTMLCanvasElement | null = null; // downscaled copy of the photo used while editing
   let layers: Layer[] = [];
@@ -494,22 +494,18 @@ const presetList = [
     c.translate(l.x * canvas.width, l.y * canvas.height);
     c.rotate((l.rot * Math.PI) / 180);
     const x = -b.w / 2 - m, y = -b.h / 2 - m, w = b.w + m * 2, h = b.h + m * 2;
-    const PURPLE = '#8b3dff';
-    c.strokeStyle = PURPLE; c.lineWidth = 2 * k; c.strokeRect(x, y, w, h);
-    const pill = (cx: number, cy: number, pw: number, ph: number) => {
-      c.beginPath(); c.roundRect(cx - pw / 2, cy - ph / 2, pw, ph, Math.min(pw, ph) / 2);
-      c.fillStyle = '#fff'; c.fill(); c.strokeStyle = '#c9c9d1'; c.lineWidth = 1.5 * k; c.stroke();
-    };
+    const BLUE = '#0a7aff';
+    c.strokeStyle = BLUE; c.lineWidth = 2.5 * k; c.strokeRect(x, y, w, h);
+    // big round handles on all 4 corners + 4 side midpoints (white fill, blue ring)
+    const cr = HS.cr * k;
+    for (const [hx, hy] of [[x, y], [x + w / 2, y], [x + w, y], [x, y + h / 2], [x + w, y + h / 2], [x, y + h], [x + w / 2, y + h], [x + w, y + h]]) {
+      c.beginPath(); c.arc(hx, hy, cr, 0, Math.PI * 2);
+      c.fillStyle = '#fff'; c.fill(); c.strokeStyle = BLUE; c.lineWidth = 3 * k; c.stroke();
+    }
     const circle = (cx: number, cy: number, r: number) => {
       c.beginPath(); c.arc(cx, cy, r, 0, Math.PI * 2);
-      c.fillStyle = '#fff'; c.fill(); c.strokeStyle = '#c9c9d1'; c.lineWidth = 1.5 * k; c.stroke();
+      c.fillStyle = '#fff'; c.fill(); c.strokeStyle = BLUE; c.lineWidth = 3 * k; c.stroke();
     };
-    // side pills
-    pill(x, y + h / 2, HS.pt * k, HS.pl * k); pill(x + w, y + h / 2, HS.pt * k, HS.pl * k);
-    pill(x + w / 2, y, HS.pl * k, HS.pt * k); pill(x + w / 2, y + h, HS.pl * k, HS.pt * k);
-    // corner circles
-    const cr = HS.cr * k;
-    circle(x, y, cr); circle(x + w, y, cr); circle(x, y + h, cr); circle(x + w, y + h, cr);
     // rotate button (below, like Canva)
     const ry = y + h + HS.ro * k;
     circle(0, ry, HS.rr * k);
@@ -761,8 +757,8 @@ const presetList = [
     const hw = b.w / 2 + m, hh = b.h / 2 + m;
     if (Math.hypot(q.x, q.y - (hh + HS.ro * p.k)) < r) return 'rotate';
     for (const sx of [-1, 1]) for (const sy of [-1, 1]) if (Math.hypot(q.x - sx * hw, q.y - sy * hh) < r) return 'resize';
-    for (const sx of [-1, 1]) if (Math.abs(q.x - sx * hw) < HS.hit * 0.7 * p.k && Math.abs(q.y) < HS.pl * 0.6 * p.k) return 'resize';
-    for (const sy of [-1, 1]) if (Math.abs(q.y - sy * hh) < HS.hit * 0.7 * p.k && Math.abs(q.x) < HS.pl * 0.6 * p.k) return 'resize';
+    for (const sx of [-1, 1]) if (Math.hypot(q.x - sx * hw, q.y) < r) return 'resize';
+    for (const sy of [-1, 1]) if (Math.hypot(q.x, q.y - sy * hh) < r) return 'resize';
     return null;
   }
   function hitLayer(p: { x: number; y: number; k: number }): Layer | null {
