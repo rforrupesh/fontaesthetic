@@ -28,6 +28,7 @@ const year = new Date().getFullYear();
     </div>
 
     <nav class="flex flex-col gap-1.5 text-[.85rem]">
+      <a href={getPath('en', '/add-text-to-photo/')} class="hover:text-text transition-colors duration-150">{(strings.footer as any).photo ?? 'Add Text to Photo'}</a>
       <a href={getPath(lang, '/about/')} class="hover:text-text transition-colors duration-150">{strings.footer.about}</a>
       <a href={getPath(lang, '/blog/')} class="hover:text-text transition-colors duration-150">{strings.footer.blog}</a>
       <a href={getPath(lang, '/contact/')} class="hover:text-text transition-colors duration-150">{strings.footer.contact}</a>

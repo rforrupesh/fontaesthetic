@@ -24,7 +24,7 @@ You can also use the Alt code method for certain symbols. Hold the Alt key and e
 
 Character Map is a built-in Windows tool that lets you browse and copy special characters. It is useful when you do not know the keyboard shortcut for a particular symbol.
 
-To open it, press the Windows key, type **Character Map**, and select the application. Choose a font, find the character you want, and select it.
+To open it, press the Windows key, type **Character Map**, and select the application. [Choose a font](https://aestheticfonts.in/blog/stylish-letter-combinations-nicknames/) , find the character you want, and select it.
 
 Click Select, then Copy to place the character on your clipboard. You can paste it into Word, Notepad, a browser, or another application.
 

@@ -1,0 +1,803 @@
+---
+import { t } from '../i18n';
+
+// "Add Text to Photo" tool. Everything runs in the visitor's browser on a <canvas>:
+// the photo is never uploaded, there is no login and nothing is stamped on the export.
+// UI strings default to English; add a `photoTool` object to a language JSON to translate.
+interface Props { lang: string; }
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const defaults = {
+  heading: 'Add Text to Photo',
+  subheading: 'Add text to any image online for free. Pick from 65 Google Fonts, style it, and download in full quality. No login, no watermark, and your photo never leaves your device.',
+  dropTitle: 'Drop a photo here',
+  dropHint: 'or paste an image (Ctrl+V), JPG, PNG, WebP',
+  choose: 'Choose a photo',
+  samples: 'No photo handy? Try a sample:',
+  private: 'Private: your photo stays in your browser',
+  addText: 'Add text',
+  duplicate: 'Duplicate',
+  remove: 'Delete',
+  undo: 'Undo',
+  redo: 'Redo',
+  change: 'Change photo',
+  download: 'Download',
+  format: 'Format',
+  quality: 'Quality',
+  tabText: 'Text',
+  tabFont: 'Font',
+  tabEffects: 'Effects',
+  tabPresets: 'Presets',
+  emptyHint: 'Tap a text on the photo to edit it, or press Add text.',
+  yourText: 'Your text',
+  size: 'Size',
+  color: 'Color',
+  bold: 'Bold',
+  italic: 'Italic',
+  alignLeft: 'Align left',
+  alignCenter: 'Align center',
+  alignRight: 'Align right',
+  searchFont: 'Search fonts…',
+  all: 'All',
+  catSans: 'Sans',
+  catSerif: 'Serif',
+  catDisplay: 'Display',
+  catScript: 'Script',
+  catMono: 'Mono',
+  noFonts: 'No fonts match your search.',
+  opacity: 'Opacity',
+  rotation: 'Rotation',
+  letterSpacing: 'Letter spacing',
+  lineHeight: 'Line height',
+  outline: 'Outline',
+  outlineWidth: 'Width',
+  shadow: 'Shadow',
+  shadowBlur: 'Softness',
+  background: 'Background box',
+  bgOpacity: 'Opacity',
+  bgPadding: 'Padding',
+  front: 'Bring to front',
+  back: 'Send to back',
+  errImage: 'Sorry, that file could not be opened as an image. Try a JPG, PNG or WebP.',
+  errExport: 'Sorry, the image could not be exported. Try a smaller photo or another format.',
+  presetMeme: 'Meme',
+  presetAesthetic: 'Aesthetic',
+  presetNeon: 'Neon',
+  presetQuote: 'Quote',
+  presetTitle: 'Bold title',
+  presetHandwritten: 'Handwritten',
+  presetRetro: 'Retro',
+  presetElegant: 'Elegant',
+};
+const L = { ...defaults, ...(((t(lang) as any).photoTool) ?? {}) } as typeof defaults;
+
+const swatches = ['#ffffff', '#000000', '#ff3b30', '#ff9500', '#ffd60a', '#34c759', '#00c7be', '#0a7aff', '#5e5ce6', '#ff6b9d', '#a2845e', '#8e8e93'];
+const aligns = [
+  { v: 'left', label: L.alignLeft, d: 'M3 6h18M3 12h12M3 18h16' },
+  { v: 'center', label: L.alignCenter, d: 'M3 6h18M6 12h12M4 18h16' },
+  { v: 'right', label: L.alignRight, d: 'M3 6h18M9 12h12M5 18h16' },
+];
+const presetList = [
+  { key: 'meme', label: L.presetMeme },
+  { key: 'aesthetic', label: L.presetAesthetic },
+  { key: 'neon', label: L.presetNeon },
+  { key: 'quote', label: L.presetQuote },
+  { key: 'title', label: L.presetTitle },
+  { key: 'handwritten', label: L.presetHandwritten },
+  { key: 'retro', label: L.presetRetro },
+  { key: 'elegant', label: L.presetElegant },
+];
+---
+
+<section class="py-8 pb-6">
+  <div class="wrap">
+    <div class="text-center mb-6">
+      <h1 class="text-[clamp(1.6rem,3.4vw,2.2rem)] mb-2">{L.heading}</h1>
+      <p class="text-text-muted text-sm max-w-[680px] mx-auto">{L.subheading}</p>
+    </div>
+
+    <div id="ptt-root" data-base={base} data-err-image={L.errImage} data-err-export={L.errExport} data-your-text={L.yourText} data-no-fonts={L.noFonts}>
+
+      <!-- Step 1: choose a photo -->
+      <div id="ptt-start" class="max-w-[640px] mx-auto">
+        <div id="ptt-drop" class="card ptt-drop text-center px-5 py-10" tabindex="0" role="button" aria-label={L.choose}>
+          <svg class="mx-auto mb-3 text-primary" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="m21 16-5-5-8 8"/></svg>
+          <p class="font-semibold text-lg mb-1">{L.dropTitle}</p>
+          <p class="text-text-muted text-sm mb-4">{L.dropHint}</p>
+          <button type="button" id="ptt-choose" class="btn">{L.choose}</button>
+          <input type="file" id="ptt-file" accept="image/*" class="sr-only" tabindex="-1" aria-hidden="true" />
+        </div>
+        <p id="ptt-msg" class="text-center text-sm mt-3" style="color:#ff6b6b" role="alert" hidden></p>
+        <div class="mt-5 text-center">
+          <p class="text-text-muted text-sm mb-2">{L.samples}</p>
+          <div class="flex justify-center gap-2.5 flex-wrap">
+            <button type="button" class="ptt-sample" data-sample="sunset" aria-label="Sunset sample" style="background:linear-gradient(135deg,#ff9a56,#ff4e7e 55%,#5b3cc4)"></button>
+            <button type="button" class="ptt-sample" data-sample="ocean" aria-label="Ocean sample" style="background:linear-gradient(135deg,#8be3ff,#1b7fd6 55%,#0b2a6b)"></button>
+            <button type="button" class="ptt-sample" data-sample="forest" aria-label="Forest sample" style="background:linear-gradient(135deg,#d4f08a,#37a65a 55%,#0d4a3a)"></button>
+          </div>
+        </div>
+        <p class="text-center text-text-muted text-xs mt-5 inline-flex w-full items-center justify-center gap-1.5">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          {L.private}
+        </p>
+      </div>
+
+      <!-- Step 2: editor -->
+      <div id="ptt-editor" hidden>
+        <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_340px] items-start">
+
+          <!-- Canvas side -->
+          <div class="min-w-0">
+            <div class="card p-2 mb-3 flex flex-wrap items-center gap-1.5">
+              <button type="button" id="ptt-add" class="btn"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>{L.addText}</button>
+              <button type="button" id="ptt-dup" class="ptt-icon" aria-label={L.duplicate} title={L.duplicate}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button>
+              <button type="button" id="ptt-del" class="ptt-icon" aria-label={L.remove} title={L.remove}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg></button>
+              <span class="w-px h-6 bg-border mx-1" aria-hidden="true"></span>
+              <button type="button" id="ptt-undo" class="ptt-icon" aria-label={L.undo} title={L.undo}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg></button>
+              <button type="button" id="ptt-redo" class="ptt-icon" aria-label={L.redo} title={L.redo}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 14 5-5-5-5"/><path d="M20 9H10a6 6 0 0 0 0 12h3"/></svg></button>
+              <button type="button" id="ptt-change" class="ptt-ghost ml-auto"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>{L.change}</button>
+            </div>
+
+            <div id="ptt-stage" class="card ptt-stage p-3 flex items-center justify-center">
+              <canvas id="ptt-canvas" role="img" aria-label="Photo editor canvas"></canvas>
+            </div>
+
+            <div class="card p-3 mt-3 flex flex-wrap items-center gap-3">
+              <label class="flex items-center gap-2 text-sm text-text-muted">{L.format}
+                <select id="ptt-format" class="ptt-input !w-auto">
+                  <option value="png">PNG</option>
+                  <option value="jpeg">JPG</option>
+                  <option value="webp">WebP</option>
+                </select>
+              </label>
+              <label id="ptt-q-wrap" class="flex items-center gap-2 text-sm text-text-muted" hidden>{L.quality}
+                <input id="ptt-quality" type="range" min="0.5" max="1" step="0.01" value="0.92" class="ptt-range !w-28" />
+              </label>
+              <button type="button" id="ptt-download" class="btn ml-auto justify-center max-sm:w-full">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg>{L.download}
+              </button>
+            </div>
+            <p id="ptt-msg2" class="text-sm mt-2" style="color:#ff6b6b" role="alert" hidden></p>
+          </div>
+
+          <!-- Controls side -->
+          <div class="card p-3 lg:sticky lg:top-[calc(var(--header-h)+12px)]">
+            <div class="ptt-tabs" role="tablist">
+              <button type="button" role="tab" class="ptt-tab" data-tab="text" aria-selected="true">{L.tabText}</button>
+              <button type="button" role="tab" class="ptt-tab" data-tab="font" aria-selected="false">{L.tabFont}</button>
+              <button type="button" role="tab" class="ptt-tab" data-tab="effects" aria-selected="false">{L.tabEffects}</button>
+              <button type="button" role="tab" class="ptt-tab" data-tab="presets" aria-selected="false">{L.tabPresets}</button>
+            </div>
+
+            <p id="ptt-empty" class="text-text-muted text-sm mt-3" hidden>{L.emptyHint}</p>
+
+            <fieldset id="ptt-controls" class="mt-3 border-0 p-0 m-0 min-w-0" disabled>
+              <!-- TEXT -->
+              <div data-pane="text" class="flex flex-col gap-3">
+                <textarea id="ptt-text" data-prop="text" rows="3" class="ptt-input" placeholder={L.yourText}></textarea>
+                <label class="ptt-row"><span>{L.size}</span><input type="range" data-prop="size" min="0.02" max="0.4" step="0.002" class="ptt-range" /></label>
+                <div>
+                  <div class="ptt-label mb-1.5">{L.color}</div>
+                  <div class="flex flex-wrap items-center gap-1.5">
+                    <input type="color" data-prop="color" class="ptt-color" aria-label={L.color} />
+                    {swatches.map((c) => <button type="button" class="ptt-swatch" data-swatch={c} style={`background:${c}`} aria-label={c}></button>)}
+                  </div>
+                </div>
+                <div class="flex flex-wrap gap-1.5">
+                  <button type="button" class="ptt-icon ptt-tog" data-prop="bold" data-toggle aria-label={L.bold} title={L.bold} aria-pressed="false"><b>B</b></button>
+                  <button type="button" class="ptt-icon ptt-tog" data-prop="italic" data-toggle aria-label={L.italic} title={L.italic} aria-pressed="false"><i style="font-family:serif">I</i></button>
+                  <span class="w-px h-6 bg-border mx-1 self-center" aria-hidden="true"></span>
+                  {aligns.map((a) => (
+                    <button type="button" class="ptt-icon ptt-tog" data-prop="align" data-value={a.v} aria-label={a.label} title={a.label} aria-pressed="false">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d={a.d}/></svg>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <!-- FONT -->
+              <div data-pane="font" hidden>
+                <input id="ptt-font-search" type="search" class="ptt-input mb-2" placeholder={L.searchFont} aria-label={L.searchFont} />
+                <div class="flex flex-wrap gap-1.5 mb-2" id="ptt-cats">
+                  <button type="button" class="ptt-chip" data-cat="all" aria-pressed="true">{L.all}</button>
+                  <button type="button" class="ptt-chip" data-cat="sans" aria-pressed="false">{L.catSans}</button>
+                  <button type="button" class="ptt-chip" data-cat="serif" aria-pressed="false">{L.catSerif}</button>
+                  <button type="button" class="ptt-chip" data-cat="display" aria-pressed="false">{L.catDisplay}</button>
+                  <button type="button" class="ptt-chip" data-cat="script" aria-pressed="false">{L.catScript}</button>
+                  <button type="button" class="ptt-chip" data-cat="mono" aria-pressed="false">{L.catMono}</button>
+                </div>
+                <div id="ptt-font-list" class="ptt-fontlist" role="listbox" aria-label={L.tabFont}></div>
+              </div>
+
+              <!-- EFFECTS -->
+              <div data-pane="effects" class="flex flex-col gap-3" hidden>
+                <label class="ptt-row"><span>{L.opacity}</span><input type="range" data-prop="opacity" min="0.1" max="1" step="0.01" class="ptt-range" /></label>
+                <label class="ptt-row"><span>{L.rotation}</span><input type="range" data-prop="rot" min="-180" max="180" step="1" class="ptt-range" /></label>
+                <label class="ptt-row"><span>{L.letterSpacing}</span><input type="range" data-prop="ls" min="-0.05" max="0.5" step="0.005" class="ptt-range" /></label>
+                <label class="ptt-row"><span>{L.lineHeight}</span><input type="range" data-prop="lh" min="0.8" max="2.2" step="0.05" class="ptt-range" /></label>
+
+                <div class="ptt-group">
+                  <label class="ptt-check"><input type="checkbox" data-prop="stroke.on" /> {L.outline}</label>
+                  <label class="ptt-row"><span>{L.outlineWidth}</span><input type="range" data-prop="stroke.w" min="0.01" max="0.3" step="0.005" class="ptt-range" /></label>
+                  <div class="ptt-row"><span>{L.color}</span><input type="color" data-prop="stroke.color" class="ptt-color" aria-label={`${L.outline} ${L.color}`} /></div>
+                </div>
+                <div class="ptt-group">
+                  <label class="ptt-check"><input type="checkbox" data-prop="shadow.on" /> {L.shadow}</label>
+                  <label class="ptt-row"><span>{L.shadowBlur}</span><input type="range" data-prop="shadow.blur" min="0" max="0.6" step="0.005" class="ptt-range" /></label>
+                  <div class="ptt-row"><span>{L.color}</span><input type="color" data-prop="shadow.color" class="ptt-color" aria-label={`${L.shadow} ${L.color}`} /></div>
+                </div>
+                <div class="ptt-group">
+                  <label class="ptt-check"><input type="checkbox" data-prop="bg.on" /> {L.background}</label>
+                  <label class="ptt-row"><span>{L.bgOpacity}</span><input type="range" data-prop="bg.opacity" min="0.05" max="1" step="0.01" class="ptt-range" /></label>
+                  <label class="ptt-row"><span>{L.bgPadding}</span><input type="range" data-prop="bg.pad" min="0" max="0.8" step="0.01" class="ptt-range" /></label>
+                  <div class="ptt-row"><span>{L.color}</span><input type="color" data-prop="bg.color" class="ptt-color" aria-label={`${L.background} ${L.color}`} /></div>
+                </div>
+                <div class="flex gap-2">
+                  <button type="button" id="ptt-front" class="ptt-ghost flex-1 justify-center">{L.front}</button>
+                  <button type="button" id="ptt-back" class="ptt-ghost flex-1 justify-center">{L.back}</button>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- PRESETS (always usable: creates a text if none is selected) -->
+            <div data-pane="presets" class="grid grid-cols-2 gap-2 mt-3" hidden>
+              {presetList.map((p) => <button type="button" class="ptt-ghost justify-center py-3" data-preset={p.key}>{p.label}</button>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .ptt-drop { border-style: dashed; border-width: 2px; cursor: pointer; transition: border-color .15s, background-color .15s; }
+  .ptt-drop:hover, .ptt-drop:focus-visible, .ptt-drop.is-over { border-color: var(--color-primary); background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface)); outline: none; }
+  .ptt-sample { width: 74px; height: 50px; border-radius: .6rem; border: 2px solid var(--color-border); cursor: pointer; transition: transform .15s, border-color .15s; }
+  .ptt-sample:hover, .ptt-sample:focus-visible { transform: translateY(-2px); border-color: var(--color-primary); outline: none; }
+
+  .ptt-stage { background-color: var(--color-surface-2); background-image: linear-gradient(45deg, rgba(128,128,128,.12) 25%, transparent 25%, transparent 75%, rgba(128,128,128,.12) 75%), linear-gradient(45deg, rgba(128,128,128,.12) 25%, transparent 25%, transparent 75%, rgba(128,128,128,.12) 75%); background-size: 20px 20px; background-position: 0 0, 10px 10px; min-height: 240px; }
+  .ptt-stage.is-over { outline: 2px dashed var(--color-primary); outline-offset: -6px; }
+  #ptt-canvas { display: block; max-width: 100%; max-height: 68vh; width: auto; height: auto; touch-action: none; border-radius: 4px; box-shadow: 0 2px 14px rgba(0,0,0,.35); user-select: none; -webkit-user-select: none; }
+
+  .ptt-icon, .ptt-ghost { display: inline-flex; align-items: center; gap: .4rem; background: var(--color-surface-2); color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-md); cursor: pointer; font-size: .85rem; font-weight: 600; transition: border-color .15s, color .15s, background-color .15s; }
+  .ptt-icon { justify-content: center; width: 2.25rem; height: 2.25rem; }
+  .ptt-ghost { padding: .5rem .8rem; }
+  .ptt-icon:hover:not(:disabled), .ptt-ghost:hover:not(:disabled) { border-color: var(--color-primary); color: var(--color-primary); }
+  .ptt-icon:focus-visible, .ptt-ghost:focus-visible, .ptt-chip:focus-visible, .ptt-tab:focus-visible, .ptt-swatch:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+  .ptt-icon:disabled, .ptt-ghost:disabled { opacity: .45; cursor: not-allowed; }
+  .ptt-tog[aria-pressed="true"] { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+
+  .ptt-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--color-surface-2); padding: 3px; border-radius: var(--radius-md); }
+  .ptt-tab { padding: .45rem .2rem; font-size: .8rem; font-weight: 600; color: var(--color-text-muted); background: transparent; border: 0; border-radius: 6px; cursor: pointer; }
+  .ptt-tab[aria-selected="true"] { background: var(--color-surface); color: var(--color-text); box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+
+  .ptt-input { width: 100%; background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); font: inherit; font-size: .9rem; padding: .5rem .65rem; }
+  .ptt-input:focus { outline: 2px solid var(--color-primary); outline-offset: 0; border-color: transparent; }
+  textarea.ptt-input { resize: vertical; min-height: 4.2rem; }
+
+  .ptt-label, .ptt-row > span { font-size: .78rem; font-weight: 600; color: var(--color-text-muted); }
+  .ptt-row { display: grid; grid-template-columns: 7.5rem 1fr; align-items: center; gap: .6rem; }
+  .ptt-range { width: 100%; accent-color: var(--color-primary); height: 1.4rem; cursor: pointer; }
+  .ptt-color { width: 2.1rem; height: 2.1rem; padding: 0; border: 1px solid var(--color-border); border-radius: 6px; background: none; cursor: pointer; }
+  .ptt-swatch { width: 1.6rem; height: 1.6rem; border-radius: 50%; border: 2px solid var(--color-border); cursor: pointer; padding: 0; }
+  .ptt-swatch:hover { transform: scale(1.12); border-color: var(--color-text); }
+  .ptt-group { display: flex; flex-direction: column; gap: .6rem; padding: .7rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-surface-2) 55%, transparent); }
+  .ptt-check { display: flex; align-items: center; gap: .5rem; font-weight: 600; font-size: .88rem; cursor: pointer; }
+  .ptt-check input { accent-color: var(--color-primary); width: 1rem; height: 1rem; }
+
+  .ptt-chip { font-size: .75rem; font-weight: 600; padding: .25rem .65rem; border-radius: 999px; border: 1px solid var(--color-border); background: var(--color-surface-2); color: var(--color-text-muted); cursor: pointer; }
+  .ptt-chip[aria-pressed="true"] { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+  .ptt-fontlist { max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; padding-right: 2px; }
+  .ptt-fontitem { text-align: left; background: var(--color-surface-2); color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: .5rem .75rem; font-size: 1.15rem; line-height: 1.3; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ptt-fontitem:hover { border-color: var(--color-primary); }
+  .ptt-fontitem[aria-selected="true"] { border-color: var(--color-primary); background: color-mix(in srgb, var(--color-primary) 14%, var(--color-surface-2)); }
+  .ptt-fontitem small { display: block; font: 500 .68rem var(--font-sans); color: var(--color-text-muted); }
+  #ptt-controls:disabled { opacity: .45; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media (max-width: 420px) { .ptt-row { grid-template-columns: 6rem 1fr; } }
+</style>
+
+<script>
+  import { TOOL_FONTS } from '../lib/toolFonts';
+  import type { ToolFont } from '../lib/toolFonts';
+
+  // ---------- types & state ----------
+  interface Layer {
+    id: number; text: string; font: string; size: number; x: number; y: number; rot: number;
+    color: string; bold: boolean; italic: boolean; align: 'left' | 'center' | 'right';
+    ls: number; lh: number; opacity: number;
+    stroke: { on: boolean; w: number; color: string };
+    shadow: { on: boolean; blur: number; color: string };
+    bg: { on: boolean; color: string; opacity: number; pad: number };
+  }
+  type Src = { source: CanvasImageSource; w: number; h: number };
+
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+  const root = $('ptt-root');
+  const BASE = root.dataset.base || '/';
+  const FONT_BY_ID = new Map<string, ToolFont>(TOOL_FONTS.map((f) => [f.id, f]));
+
+  const startEl = $('ptt-start'), editorEl = $('ptt-editor'), dropEl = $('ptt-drop');
+  const fileEl = $<HTMLInputElement>('ptt-file'), canvas = $<HTMLCanvasElement>('ptt-canvas');
+  const stageEl = $('ptt-stage'), ctx = canvas.getContext('2d')!;
+  const controls = $<HTMLFieldSetElement>('ptt-controls'), emptyEl = $('ptt-empty');
+  const msg1 = $('ptt-msg'), msg2 = $('ptt-msg2');
+
+  let src: Src | null = null;
+  let baseCanvas: HTMLCanvasElement | null = null; // downscaled copy of the photo used while editing
+  let layers: Layer[] = [];
+  let selectedId: number | null = null;
+  let nextId = 1;
+  const boxes = new Map<number, { w: number; h: number }>(); // last rendered size (preview px) per layer
+
+  const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
+  const sel = () => layers.find((l) => l.id === selectedId) || null;
+
+  // ---------- fonts (self-hosted woff2, loaded on demand) ----------
+  const fontLoads = new Map<string, Promise<void>>();
+  const cssFamily = (id: string) => `"ptt-${id}"`;
+  function ensureFont(id: string): Promise<void> {
+    const f = FONT_BY_ID.get(id);
+    if (!f) return Promise.resolve();
+    let p = fontLoads.get(id);
+    if (!p) {
+      p = Promise.all(f.weights.map((w) => {
+        const face = new FontFace(`ptt-${id}`, `url(${BASE}fonts/tool/${id}-latin-${w}-normal.woff2) format("woff2")`, { weight: String(w), style: 'normal', display: 'swap' });
+        document.fonts.add(face);
+        return face.load();
+      })).then(() => undefined).catch(() => { fontLoads.delete(id); });
+      fontLoads.set(id, p);
+    }
+    return p;
+  }
+
+  // ---------- layers ----------
+  function newLayer(patch: Partial<Layer> = {}): Layer {
+    const n = layers.length;
+    const base: Layer = {
+      id: nextId++, text: root.dataset.yourText || 'Your text', font: 'poppins', size: 0.09,
+      x: clamp(0.5 + (n % 5) * 0.03, 0, 1), y: clamp(0.5 + (n % 5) * 0.06, 0, 1), rot: 0,
+      color: '#ffffff', bold: true, italic: false, align: 'center', ls: 0, lh: 1.15, opacity: 1,
+      stroke: { on: false, w: 0.08, color: '#000000' },
+      shadow: { on: true, blur: 0.18, color: '#000000' },
+      bg: { on: false, color: '#000000', opacity: 0.6, pad: 0.3 },
+    };
+    return mergeLayer(base, patch);
+  }
+  function mergeLayer(l: any, patch: any) {
+    for (const k of Object.keys(patch)) {
+      if (patch[k] && typeof patch[k] === 'object') l[k] = { ...l[k], ...patch[k] };
+      else l[k] = patch[k];
+    }
+    return l as Layer;
+  }
+
+  // ---------- drawing ----------
+  const rgba = (hex: string, a: number) => {
+    const h = hex.replace('#', '');
+    const n = parseInt(h.length === 3 ? h.split('').map((c) => c + c).join('') : h, 16);
+    return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+  };
+  const measure = (c: CanvasRenderingContext2D, s: string, ls: number) => {
+    if (!ls) return c.measureText(s).width;
+    const ch = Array.from(s);
+    return ch.reduce((a, x) => a + c.measureText(x).width, 0) + ls * Math.max(0, ch.length - 1);
+  };
+  function paint(c: CanvasRenderingContext2D, s: string, x: number, y: number, ls: number, mode: 'fill' | 'stroke') {
+    const f = mode === 'fill' ? c.fillText.bind(c) : c.strokeText.bind(c);
+    if (!ls) { f(s, x, y); return; }
+    let cx = x;
+    for (const ch of Array.from(s)) { f(ch, cx, y); cx += c.measureText(ch).width + ls; }
+  }
+  function roundRect(c: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
+    r = Math.min(r, w / 2, h / 2);
+    c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath();
+  }
+
+  function drawLayer(c: CanvasRenderingContext2D, l: Layer, W: number, H: number, store: boolean) {
+    const px = l.size * W;
+    c.save();
+    c.font = `${l.italic ? 'italic ' : ''}${l.bold ? 700 : 400} ${px}px ${cssFamily(l.font)}, sans-serif`;
+    c.textBaseline = 'middle'; c.textAlign = 'left';
+    const lines = (l.text || '').split('\n');
+    const ls = l.ls * px, lh = px * l.lh;
+    const widths = lines.map((s) => measure(c, s, ls));
+    const hasText = lines.some((s) => s.length);
+    const tw = hasText ? Math.max(...widths) : px * 2.5;
+    const th = lh * lines.length;
+    const pad = l.bg.on ? l.bg.pad * px : 0;
+    const bw = tw + pad * 2, bh = th + pad * 2;
+    if (store) boxes.set(l.id, { w: bw, h: bh });
+    if (!hasText) { c.restore(); return; }
+
+    c.translate(l.x * W, l.y * H);
+    c.rotate((l.rot * Math.PI) / 180);
+    c.globalAlpha = l.opacity;
+    if (l.bg.on) { c.fillStyle = rgba(l.bg.color, l.bg.opacity); roundRect(c, -bw / 2, -bh / 2, bw, bh, px * 0.18); c.fill(); }
+
+    const shadowOn = () => {
+      if (!l.shadow.on) return;
+      c.shadowColor = rgba(l.shadow.color, 0.75); c.shadowBlur = l.shadow.blur * px; c.shadowOffsetY = l.shadow.blur * px * 0.3;
+    };
+    const shadowOff = () => { c.shadowColor = 'transparent'; c.shadowBlur = 0; c.shadowOffsetY = 0; };
+
+    lines.forEach((s, i) => {
+      const y = (i - (lines.length - 1) / 2) * lh;
+      const w = widths[i];
+      const x = l.align === 'left' ? -tw / 2 : l.align === 'right' ? tw / 2 - w : -w / 2;
+      if (l.stroke.on) {
+        c.lineJoin = 'round'; c.miterLimit = 2; c.lineWidth = l.stroke.w * px; c.strokeStyle = l.stroke.color;
+        shadowOn(); paint(c, s, x, y, ls, 'stroke'); shadowOff();
+        c.fillStyle = l.color; paint(c, s, x, y, ls, 'fill');
+      } else {
+        c.fillStyle = l.color; shadowOn(); paint(c, s, x, y, ls, 'fill'); shadowOff();
+      }
+    });
+    c.restore();
+  }
+
+  function drawSelection(c: CanvasRenderingContext2D, l: Layer, k: number) {
+    const b = boxes.get(l.id); if (!b) return;
+    const m = 6 * k, hs = 6 * k;
+    c.save();
+    c.translate(l.x * canvas.width, l.y * canvas.height);
+    c.rotate((l.rot * Math.PI) / 180);
+    const x = -b.w / 2 - m, y = -b.h / 2 - m, w = b.w + m * 2, h = b.h + m * 2;
+    const line = (col: string, lw: number) => { c.strokeStyle = col; c.lineWidth = lw; c.strokeRect(x, y, w, h); };
+    c.setLineDash([6 * k, 4 * k]); line('rgba(255,255,255,.9)', 3 * k); line('#0a7aff', 1.5 * k); c.setLineDash([]);
+    const ry = y - 26 * k;
+    c.strokeStyle = '#0a7aff'; c.lineWidth = 1.5 * k; c.beginPath(); c.moveTo(0, y); c.lineTo(0, ry); c.stroke();
+    const dot = (px: number, py: number, round: boolean) => {
+      c.beginPath();
+      if (round) c.arc(px, py, hs * 1.15, 0, Math.PI * 2); else c.rect(px - hs, py - hs, hs * 2, hs * 2);
+      c.fillStyle = '#fff'; c.fill(); c.strokeStyle = '#0a7aff'; c.lineWidth = 2 * k; c.stroke();
+    };
+    dot(x, y, false); dot(x + w, y, false); dot(x, y + h, false); dot(x + w, y + h, false); dot(0, ry, true);
+    c.restore();
+  }
+
+  function drawScene(c: CanvasRenderingContext2D, W: number, H: number, base: CanvasImageSource, preview: boolean) {
+    c.clearRect(0, 0, W, H);
+    c.drawImage(base, 0, 0, W, H);
+    for (const l of layers) drawLayer(c, l, W, H, preview);
+    if (preview) { const s = sel(); if (s) drawSelection(c, s, canvas.width / canvas.getBoundingClientRect().width || 1); }
+  }
+
+  let raf = 0;
+  function render() {
+    if (raf) return;
+    raf = requestAnimationFrame(() => { raf = 0; if (baseCanvas) drawScene(ctx, canvas.width, canvas.height, baseCanvas, true); });
+  }
+
+  // ---------- loading a photo ----------
+  function setSource(s: Src) {
+    src = s;
+    const k = Math.min(1, 1600 / Math.max(s.w, s.h));
+    canvas.width = Math.max(1, Math.round(s.w * k)); canvas.height = Math.max(1, Math.round(s.h * k));
+    baseCanvas = document.createElement('canvas'); baseCanvas.width = canvas.width; baseCanvas.height = canvas.height;
+    const b = baseCanvas.getContext('2d')!; b.imageSmoothingQuality = 'high'; b.drawImage(s.source, 0, 0, canvas.width, canvas.height);
+    layers = []; boxes.clear(); selectedId = null; hist = []; histIdx = -1;
+    const l = newLayer({ x: 0.5, y: 0.5 }); layers.push(l); selectedId = l.id;
+    ensureFont(l.font).then(render);
+    startEl.hidden = true; editorEl.hidden = false;
+    msg1.hidden = true; msg2.hidden = true;
+    commit(true); syncControls(); render();
+    editorEl.style.scrollMarginTop = 'calc(var(--header-h) + 12px)';
+    editorEl.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  }
+
+  function loadFile(file: File | null | undefined) {
+    if (!file) return;
+    if (!file.type.startsWith('image/')) return showError(root.dataset.errImage || '');
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => { URL.revokeObjectURL(url); setSource({ source: img, w: img.naturalWidth, h: img.naturalHeight }); };
+    img.onerror = () => { URL.revokeObjectURL(url); showError(root.dataset.errImage || ''); };
+    img.src = url;
+  }
+  function showError(t: string) { const m = startEl.hidden ? msg2 : msg1; m.textContent = t; m.hidden = false; }
+
+  function makeSample(kind: string) {
+    const W = 1200, H = 800, c = document.createElement('canvas'); c.width = W; c.height = H;
+    const g = c.getContext('2d')!;
+    const pal: Record<string, string[]> = { sunset: ['#ff9a56', '#ff4e7e', '#5b3cc4'], ocean: ['#8be3ff', '#1b7fd6', '#0b2a6b'], forest: ['#d4f08a', '#37a65a', '#0d4a3a'] };
+    const p = pal[kind] || pal.sunset;
+    const gr = g.createLinearGradient(0, 0, W, H); gr.addColorStop(0, p[0]); gr.addColorStop(0.55, p[1]); gr.addColorStop(1, p[2]);
+    g.fillStyle = gr; g.fillRect(0, 0, W, H);
+    const blob = (x: number, y: number, r: number, a: number) => { const rg = g.createRadialGradient(x, y, 0, x, y, r); rg.addColorStop(0, `rgba(255,255,255,${a})`); rg.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = rg; g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); };
+    blob(W * 0.78, H * 0.28, 260, 0.55); blob(W * 0.2, H * 0.8, 340, 0.22); blob(W * 0.5, H * 0.55, 220, 0.12);
+    setSource({ source: c, w: W, h: H });
+  }
+
+  // ---------- undo / redo ----------
+  let hist: string[] = [], histIdx = -1, commitTimer = 0;
+  const snap = () => JSON.stringify(layers);
+  function commit(force = false) {
+    clearTimeout(commitTimer);
+    const s = snap();
+    if (!force && hist[histIdx] === s) return;
+    hist = hist.slice(0, histIdx + 1); hist.push(s);
+    if (hist.length > 60) hist.shift();
+    histIdx = hist.length - 1; updateHistButtons();
+  }
+  const commitSoon = () => { clearTimeout(commitTimer); commitTimer = window.setTimeout(() => commit(), 400); };
+  function restore(i: number) {
+    if (i < 0 || i >= hist.length) return;
+    histIdx = i; layers = JSON.parse(hist[i]);
+    layers.forEach((l) => ensureFont(l.font).then(render));
+    if (!layers.some((l) => l.id === selectedId)) selectedId = null;
+    updateHistButtons(); syncControls(); render();
+  }
+  function updateHistButtons() { ($('ptt-undo') as HTMLButtonElement).disabled = histIdx <= 0; ($('ptt-redo') as HTMLButtonElement).disabled = histIdx >= hist.length - 1; }
+
+  // ---------- controls <-> layer ----------
+  const getPath = (o: any, p: string) => p.split('.').reduce((a, k) => a?.[k], o);
+  const setPath = (o: any, p: string, v: any) => { const ks = p.split('.'); const last = ks.pop()!; const t = ks.reduce((a, k) => a[k], o); t[last] = v; };
+  const propEls = [...document.querySelectorAll<HTMLElement>('[data-prop]')];
+
+  function syncControls() {
+    const l = sel();
+    controls.disabled = !l; emptyEl.hidden = !!l;
+    ($('ptt-dup') as HTMLButtonElement).disabled = !l; ($('ptt-del') as HTMLButtonElement).disabled = !l;
+    if (!l) return;
+    for (const el of propEls) {
+      const v = getPath(l, el.dataset.prop!);
+      if (el instanceof HTMLInputElement && el.type === 'checkbox') el.checked = !!v;
+      else if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) { if (document.activeElement !== el || el.type === 'range') el.value = String(v); }
+      else if (el.hasAttribute('data-toggle')) el.setAttribute('aria-pressed', String(!!v));
+      else if (el.dataset.value) el.setAttribute('aria-pressed', String(v === el.dataset.value));
+    }
+    markFont(l.font);
+  }
+
+  for (const el of propEls) {
+    const prop = el.dataset.prop!;
+    if (el instanceof HTMLButtonElement) {
+      el.addEventListener('click', () => {
+        const l = sel(); if (!l) return;
+        if (el.hasAttribute('data-toggle')) setPath(l, prop, !getPath(l, prop)); else setPath(l, prop, el.dataset.value);
+        syncControls(); render(); commit();
+      });
+    } else {
+      el.addEventListener('input', () => {
+        const l = sel(); if (!l) return; const i = el as HTMLInputElement;
+        const v = i.type === 'checkbox' ? i.checked : i.type === 'range' ? parseFloat(i.value) : i.value;
+        setPath(l, prop, v);
+        if (i.type === 'color' && prop === 'color') { /* keep swatches simple */ }
+        render(); commitSoon();
+      });
+    }
+  }
+  document.querySelectorAll<HTMLButtonElement>('[data-swatch]').forEach((b) => b.addEventListener('click', () => {
+    const l = sel(); if (!l) return; l.color = b.dataset.swatch!; syncControls(); render(); commit();
+  }));
+
+  // tabs
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('.ptt-tab')];
+  const panes = [...document.querySelectorAll<HTMLElement>('[data-pane]')];
+  function showTab(name: string) {
+    tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === name)));
+    panes.forEach((p) => { p.hidden = p.dataset.pane !== name; });
+    if (name === 'font') requestAnimationFrame(() => { observeFonts(); scrollToSelectedFont(); });
+  }
+  tabs.forEach((t) => t.addEventListener('click', () => showTab(t.dataset.tab!)));
+
+  // ---------- font picker ----------
+  const listEl = $('ptt-font-list'), searchEl = $<HTMLInputElement>('ptt-font-search');
+  let cat = 'all';
+  const catLabel: Record<string, string> = { sans: 'Sans', serif: 'Serif', display: 'Display', script: 'Script', mono: 'Mono' };
+  let io: IntersectionObserver | null = null;
+  function renderFontList() {
+    const q = searchEl.value.trim().toLowerCase();
+    const items = TOOL_FONTS.filter((f) => (cat === 'all' || f.category === cat) && (!q || f.family.toLowerCase().includes(q)));
+    listEl.innerHTML = '';
+    if (!items.length) { const p = document.createElement('p'); p.className = 'text-text-muted text-sm p-2'; p.textContent = root.dataset.noFonts || ''; listEl.appendChild(p); return; }
+    for (const f of items) {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'ptt-fontitem'; b.dataset.id = f.id; b.setAttribute('role', 'option');
+      b.setAttribute('aria-selected', String(sel()?.font === f.id));
+      b.innerHTML = '';
+      b.append(document.createTextNode(f.family));
+      const sm = document.createElement('small'); sm.textContent = catLabel[f.category]; b.appendChild(sm);
+      b.addEventListener('click', () => {
+        const l = sel(); if (!l) return;
+        l.font = f.id; markFont(f.id);
+        ensureFont(f.id).then(() => { render(); commit(); }); render();
+      });
+      listEl.appendChild(b);
+    }
+    observeFonts();
+  }
+  function observeFonts() {
+    io?.disconnect();
+    io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) {
+        const b = e.target as HTMLElement; io!.unobserve(b);
+        const f = FONT_BY_ID.get(b.dataset.id!); if (!f) continue;
+        ensureFont(f.id).then(() => { b.style.fontFamily = `${cssFamily(f.id)}, sans-serif`; });
+      }
+    }, { root: listEl, rootMargin: '120px' });
+    listEl.querySelectorAll<HTMLElement>('.ptt-fontitem').forEach((b) => io!.observe(b));
+  }
+  function markFont(id: string) { listEl.querySelectorAll('.ptt-fontitem').forEach((b) => b.setAttribute('aria-selected', String((b as HTMLElement).dataset.id === id))); }
+  function scrollToSelectedFont() { listEl.querySelector('[aria-selected="true"]')?.scrollIntoView({ block: 'nearest' }); }
+  searchEl.addEventListener('input', renderFontList);
+  document.querySelectorAll<HTMLButtonElement>('.ptt-chip').forEach((c) => c.addEventListener('click', () => {
+    cat = c.dataset.cat!;
+    document.querySelectorAll('.ptt-chip').forEach((x) => x.setAttribute('aria-pressed', String(x === c)));
+    renderFontList();
+  }));
+  renderFontList();
+
+  // ---------- presets ----------
+  const PRESETS: Record<string, Partial<Layer>> = {
+    meme: { font: 'anton', size: 0.12, bold: false, italic: false, color: '#ffffff', ls: 0.01, lh: 1.05, stroke: { on: true, w: 0.1, color: '#000000' }, shadow: { on: false }, bg: { on: false } } as any,
+    aesthetic: { font: 'cormorant-garamond', size: 0.1, bold: false, italic: true, color: '#ffffff', ls: 0.06, stroke: { on: false }, shadow: { on: true, blur: 0.3, color: '#000000' }, bg: { on: false } } as any,
+    neon: { font: 'righteous', size: 0.1, bold: false, italic: false, color: '#ffffff', ls: 0.04, stroke: { on: false }, shadow: { on: true, blur: 0.5, color: '#ff2bd6' }, bg: { on: false } } as any,
+    quote: { font: 'playfair-display', size: 0.065, bold: false, italic: true, color: '#ffffff', ls: 0, lh: 1.3, stroke: { on: false }, shadow: { on: false }, bg: { on: true, color: '#000000', opacity: 0.55, pad: 0.45 } } as any,
+    title: { font: 'montserrat', size: 0.11, bold: true, italic: false, color: '#ffd60a', ls: 0, stroke: { on: true, w: 0.06, color: '#111111' }, shadow: { on: true, blur: 0.12, color: '#000000' }, bg: { on: false } } as any,
+    handwritten: { font: 'caveat', size: 0.12, bold: true, italic: false, color: '#ffffff', ls: 0.01, stroke: { on: false }, shadow: { on: true, blur: 0.2, color: '#000000' }, bg: { on: false } } as any,
+    retro: { font: 'alfa-slab-one', size: 0.1, bold: false, italic: false, color: '#ffe8b0', ls: 0.02, stroke: { on: true, w: 0.09, color: '#c4441a' }, shadow: { on: true, blur: 0.0, color: '#000000' }, bg: { on: false } } as any,
+    elegant: { font: 'great-vibes', size: 0.14, bold: false, italic: false, color: '#fff4d6', ls: 0, stroke: { on: false }, shadow: { on: true, blur: 0.25, color: '#000000' }, bg: { on: false } } as any,
+  };
+  document.querySelectorAll<HTMLButtonElement>('[data-preset]').forEach((b) => b.addEventListener('click', () => {
+    if (!src) return;
+    let l = sel();
+    if (!l) { l = newLayer(); layers.push(l); selectedId = l.id; }
+    mergeLayer(l, PRESETS[b.dataset.preset!]);
+    ensureFont(l.font).then(render);
+    syncControls(); render(); commit();
+  }));
+
+  // ---------- toolbar ----------
+  $('ptt-add').addEventListener('click', () => {
+    const l = newLayer(); layers.push(l); selectedId = l.id;
+    ensureFont(l.font).then(render); syncControls(); render(); commit(); showTab('text');
+    requestAnimationFrame(() => $<HTMLTextAreaElement>('ptt-text').select());
+  });
+  function duplicate() { const l = sel(); if (!l) return; const c: Layer = JSON.parse(JSON.stringify(l)); c.id = nextId++; c.x = clamp(c.x + 0.03, 0, 1); c.y = clamp(c.y + 0.05, 0, 1); layers.push(c); selectedId = c.id; syncControls(); render(); commit(); }
+  function remove() { const l = sel(); if (!l) return; layers = layers.filter((x) => x.id !== l.id); selectedId = null; syncControls(); render(); commit(); }
+  $('ptt-dup').addEventListener('click', duplicate);
+  $('ptt-del').addEventListener('click', remove);
+  $('ptt-undo').addEventListener('click', () => restore(histIdx - 1));
+  $('ptt-redo').addEventListener('click', () => restore(histIdx + 1));
+  $('ptt-front').addEventListener('click', () => { const l = sel(); if (!l) return; layers = [...layers.filter((x) => x !== l), l]; render(); commit(); });
+  $('ptt-back').addEventListener('click', () => { const l = sel(); if (!l) return; layers = [l, ...layers.filter((x) => x !== l)]; render(); commit(); });
+  $('ptt-change').addEventListener('click', () => { editorEl.hidden = true; startEl.hidden = false; msg1.hidden = true; });
+
+  // ---------- pointer interaction ----------
+  type Drag = { kind: 'move' | 'resize' | 'rotate'; id: number; dx: number; dy: number; d0: number; size0: number };
+  let drag: Drag | null = null;
+  function pt(e: PointerEvent) {
+    const r = canvas.getBoundingClientRect();
+    return { x: ((e.clientX - r.left) / r.width) * canvas.width, y: ((e.clientY - r.top) / r.height) * canvas.height, k: canvas.width / r.width };
+  }
+  function local(l: Layer, p: { x: number; y: number }) {
+    const a = (l.rot * Math.PI) / 180, dx = p.x - l.x * canvas.width, dy = p.y - l.y * canvas.height;
+    return { x: dx * Math.cos(a) + dy * Math.sin(a), y: -dx * Math.sin(a) + dy * Math.cos(a) };
+  }
+  function hitHandle(l: Layer, p: { x: number; y: number; k: number }): 'resize' | 'rotate' | null {
+    const b = boxes.get(l.id); if (!b) return null;
+    const q = local(l, p), m = 6 * p.k, r = 16 * p.k;
+    const hw = b.w / 2 + m, hh = b.h / 2 + m;
+    if (Math.hypot(q.x, q.y + hh + 26 * p.k) < r) return 'rotate';
+    for (const sx of [-1, 1]) for (const sy of [-1, 1]) if (Math.hypot(q.x - sx * hw, q.y - sy * hh) < r) return 'resize';
+    return null;
+  }
+  function hitLayer(p: { x: number; y: number; k: number }): Layer | null {
+    for (let i = layers.length - 1; i >= 0; i--) {
+      const l = layers[i], b = boxes.get(l.id); if (!b) continue;
+      const q = local(l, p), m = 8 * p.k;
+      if (Math.abs(q.x) <= b.w / 2 + m && Math.abs(q.y) <= b.h / 2 + m) return l;
+    }
+    return null;
+  }
+  canvas.addEventListener('pointerdown', (e) => {
+    if (e.button > 0) return;
+    const p = pt(e); const cur = sel();
+    let d: Drag | null = null;
+    if (cur) {
+      const h = hitHandle(cur, p);
+      if (h) d = { kind: h, id: cur.id, dx: 0, dy: 0, d0: Math.hypot(p.x - cur.x * canvas.width, p.y - cur.y * canvas.height) || 1, size0: cur.size };
+    }
+    if (!d) {
+      const hit = hitLayer(p);
+      if (hit) { selectedId = hit.id; d = { kind: 'move', id: hit.id, dx: p.x - hit.x * canvas.width, dy: p.y - hit.y * canvas.height, d0: 1, size0: hit.size }; syncControls(); }
+      else if (selectedId !== null) { selectedId = null; syncControls(); }
+    }
+    drag = d; if (d) canvas.setPointerCapture(e.pointerId);
+    render();
+  });
+  canvas.addEventListener('pointermove', (e) => {
+    const p = pt(e);
+    if (!drag) {
+      const cur = sel(); const h = cur ? hitHandle(cur, p) : null;
+      canvas.style.cursor = h === 'rotate' ? 'grab' : h === 'resize' ? 'nwse-resize' : hitLayer(p) ? 'move' : 'default';
+      return;
+    }
+    const l = layers.find((x) => x.id === drag!.id); if (!l) return;
+    if (drag.kind === 'move') { l.x = clamp((p.x - drag.dx) / canvas.width, 0, 1); l.y = clamp((p.y - drag.dy) / canvas.height, 0, 1); }
+    else if (drag.kind === 'resize') { l.size = clamp(drag.size0 * (Math.hypot(p.x - l.x * canvas.width, p.y - l.y * canvas.height) / drag.d0), 0.01, 0.6); }
+    else {
+      let a = (Math.atan2(p.y - l.y * canvas.height, p.x - l.x * canvas.width) * 180) / Math.PI + 90;
+      a = ((a + 540) % 360) - 180;
+      const snapTo = Math.round(a / 45) * 45; if (Math.abs(a - snapTo) < 3) a = snapTo;
+      l.rot = Math.round(a * 10) / 10;
+    }
+    syncControls(); render();
+  });
+  const endDrag = () => { if (drag) { drag = null; commit(); } };
+  canvas.addEventListener('pointerup', endDrag);
+  canvas.addEventListener('pointercancel', endDrag);
+  canvas.addEventListener('dblclick', () => { if (sel()) { showTab('text'); $<HTMLTextAreaElement>('ptt-text').focus(); } });
+
+  // ---------- keyboard ----------
+  document.addEventListener('keydown', (e) => {
+    if (editorEl.hidden) return;
+    const t = e.target as HTMLElement;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
+    const mod = e.ctrlKey || e.metaKey;
+    if (mod && e.key.toLowerCase() === 'z') { e.preventDefault(); restore(e.shiftKey ? histIdx + 1 : histIdx - 1); return; }
+    if (mod && e.key.toLowerCase() === 'y') { e.preventDefault(); restore(histIdx + 1); return; }
+    if (mod && e.key.toLowerCase() === 'd') { e.preventDefault(); duplicate(); return; }
+    const l = sel(); if (!l) return;
+    if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); remove(); return; }
+    const step = e.shiftKey ? 0.02 : 0.004;
+    const mv: Record<string, [number, number]> = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] };
+    if (mv[e.key]) { e.preventDefault(); l.x = clamp(l.x + mv[e.key][0], 0, 1); l.y = clamp(l.y + mv[e.key][1], 0, 1); render(); commitSoon(); }
+    if (e.key === 'Escape') { selectedId = null; syncControls(); render(); }
+  });
+
+  // ---------- upload inputs ----------
+  $('ptt-choose').addEventListener('click', (e) => { e.stopPropagation(); fileEl.click(); });
+  dropEl.addEventListener('click', () => fileEl.click());
+  dropEl.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileEl.click(); } });
+  fileEl.addEventListener('change', () => { loadFile(fileEl.files?.[0]); fileEl.value = ''; });
+  const over = (el: HTMLElement, on: boolean) => el.classList.toggle('is-over', on);
+  for (const el of [dropEl, stageEl]) {
+    el.addEventListener('dragover', (e) => { e.preventDefault(); over(el, true); });
+    el.addEventListener('dragleave', () => over(el, false));
+    el.addEventListener('drop', (e) => { e.preventDefault(); over(el, false); loadFile((e as DragEvent).dataTransfer?.files?.[0]); });
+  }
+  document.addEventListener('paste', (e) => {
+    const f = [...(e.clipboardData?.files || [])].find((x) => x.type.startsWith('image/'));
+    if (f) { e.preventDefault(); loadFile(f); }
+  });
+  document.querySelectorAll<HTMLButtonElement>('[data-sample]').forEach((b) => b.addEventListener('click', () => makeSample(b.dataset.sample!)));
+
+  // ---------- export ----------
+  const fmtEl = $<HTMLSelectElement>('ptt-format'), qWrap = $('ptt-q-wrap'), qEl = $<HTMLInputElement>('ptt-quality');
+  fmtEl.addEventListener('change', () => { qWrap.hidden = fmtEl.value === 'png'; });
+  $('ptt-download').addEventListener('click', async () => {
+    if (!src) return;
+    msg2.hidden = true;
+    const btn = $('ptt-download') as HTMLButtonElement; btn.disabled = true;
+    try {
+      await Promise.all(layers.map((l) => ensureFont(l.font)));
+      await document.fonts.ready;
+      let k = 1; const area = src.w * src.h, side = Math.max(src.w, src.h);
+      if (area > 16_000_000) k = Math.sqrt(16_000_000 / area);
+      if (side * k > 8192) k = 8192 / side;
+      const W = Math.round(src.w * k), H = Math.round(src.h * k);
+      const c = document.createElement('canvas'); c.width = W; c.height = H;
+      const g = c.getContext('2d')!; g.imageSmoothingQuality = 'high';
+      const type = fmtEl.value; const mime = `image/${type}`;
+      if (type === 'jpeg') { g.fillStyle = '#ffffff'; g.fillRect(0, 0, W, H); }
+      drawScene(g, W, H, src.source, false);
+      const blob: Blob | null = await new Promise((res) => c.toBlob(res, mime, parseFloat(qEl.value)));
+      if (!blob) throw new Error('export');
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+      a.download = `text-on-photo.${type === 'jpeg' ? 'jpg' : type}`;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    } catch {
+      msg2.textContent = root.dataset.errExport || ''; msg2.hidden = false;
+    } finally { btn.disabled = false; }
+  });
+
+  // keep the selection handles crisp when the layout (and so the canvas CSS size) changes
+  window.addEventListener('resize', render);
+</script>

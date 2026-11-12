@@ -1,14 +1,16 @@
 ---
 import { t } from '../i18n';
-interface Props { lang: string; }
-const { lang } = Astro.props;
+interface Props { lang: string; heading?: string; items?: { question: string; answer: string }[]; }
+const { lang, heading, items } = Astro.props;
 const strings = t(lang);
+const faqHeading = heading ?? strings.faq.heading;
+const faqItems = items ?? strings.faq.items;
 ---
 
 <section class="wrap py-10">
-  <h2 class="text-2xl mb-5 text-center">{strings.faq.heading}</h2>
+  <h2 class="text-2xl mb-5 text-center">{faqHeading}</h2>
   <div class="max-w-[720px] mx-auto flex flex-col gap-3">
-    {strings.faq.items.map((item) => (
+    {faqItems.map((item) => (
       <details class="card px-5 py-4 group">
         <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
           {item.question}

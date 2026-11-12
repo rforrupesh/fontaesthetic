@@ -9,6 +9,7 @@ const strings = t(lang);
 
 const navItems = [
   { href: getPath(lang, '/'), label: strings.nav.home },
+  { href: getPath('en', '/add-text-to-photo/'), label: (strings.nav as any).photo ?? 'Add Text to Photo' },
   { href: getPath(lang, '/blog/'), label: strings.nav.blog },
   { href: getPath(lang, '/about/'), label: strings.nav.about },
   { href: getPath(lang, '/contact/'), label: strings.nav.contact },

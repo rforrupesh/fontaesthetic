@@ -16,11 +16,24 @@ const logoUrl = `${siteUrl}${base}logo.svg`;
 
 <BaseLayout
   lang={lang}
-  title="𝓕𝓪𝓷𝓬𝔂 𝓣𝓮𝔁𝓽/Font Generator - Copy & Paste 500 Free Styles | AestheticFonts"
-  description="Change your text into 500+ eye-catching font styles like 𝔣𝔞𝔫𝔠𝔶 with AestheticFonts. Generate stylish text, copy your favorite font, and paste it wherever you need."
+  title="Font Generator (𝔽𝕒𝕟𝕔𝕪 𝕿𝖊𝖝𝖙) Copy & Paste Font Styles"
+  description="Font Generator 500+ font styles convert instantly. Copy and paste fancy text, cool, bold, cursive, aesthetic for Instagram, TikTok, Twitch, and Discord. FREE."
   path="/"
 >
   <FontTool lang={lang} />
+
+  <section class="wrap">
+    <a href={getPath(lang, '/add-text-to-photo/')} class="card max-w-[640px] mx-auto flex items-center gap-4 p-4 hover:border-primary transition-colors duration-150">
+      <span class="shrink-0 grid place-items-center w-12 h-12 rounded-lg bg-primary/15 text-primary">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 15h8M12 9v6M9.5 9h5"/></svg>
+      </span>
+      <span class="flex-1 text-left">
+        <strong class="block text-text">Add Text to Photo</strong>
+        <span class="text-text-muted text-sm">Write on any image with 65 Google Fonts. Free, no login, no watermark.</span>
+      </span>
+      <span class="text-primary font-semibold text-sm shrink-0" aria-hidden="true">Try it &rarr;</span>
+    </a>
+  </section>
 
 <article class="prose wrap max-w-[820px] mx-auto py-10">
 

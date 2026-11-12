@@ -14,7 +14,7 @@ The best way to choose a font is to think about your content, audience, and purp
 
 ## Understand Different Font Styles Before Choosing
 
-Before choosing a font, it helps to understand the main types of font styles. Each one has a different appearance and works better for certain types of content.
+Before choosing a font, it helps to understand the main types of [font styles](https://aestheticfonts.in/blog/stylish-social-bio-fonts/) . Each one has a different appearance and works better for certain types of content.
 
 - **Serif Fonts:** These fonts have small decorative strokes at the ends of letters. They give text a traditional, classic, and professional look.
 - **Sans Serif Fonts:** These fonts have clean and simple letter shapes. They are popular for websites, blogs, and digital content.

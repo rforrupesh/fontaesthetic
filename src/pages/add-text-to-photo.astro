@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PhotoTextTool from '../components/PhotoTextTool.astro';
+import FaqSection from '../components/FaqSection.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import BreadcrumbSchema from '../components/schema/BreadcrumbSchema.astro';
+import { getPath } from '../i18n';
+
+const lang = 'en';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const pagePath = '/add-text-to-photo/';
+const pageUrl = siteUrl + getPath(lang, pagePath);
+
+const title = 'Add Text to Photo Online Free: No Login, No Watermark';
+const description = 'Add text to a photo online for free. Choose from 65 Google Fonts, add outline, shadow and colors, then download in full quality. No login, no watermark, no upload.';
+
+const crumbs = [
+  { name: 'Home', url: siteUrl + getPath(lang, '/') },
+  { name: 'Add Text to Photo', url: pageUrl },
+];
+
+const faqs = [
+  { question: 'Is this add text to photo tool really free?', answer: 'Yes. It is 100% free with no hidden limits. You can add as many text layers as you like and download as many images as you need. There is no premium plan, no trial and no credit card.' },
+  { question: 'Will my image have a watermark?', answer: 'No. The image you download contains only your photo and your text. We never add a logo, a watermark or any branding to your export.' },
+  { question: 'Do I need to create an account or log in?', answer: 'No. Open the page, choose a photo and start typing. There is nothing to sign up for.' },
+  { question: 'Is my photo uploaded to your server?', answer: 'No. The editor runs entirely in your browser. Your photo is drawn on a canvas on your own device and is never sent to our servers, so your pictures stay private.' },
+  { question: 'Which fonts can I use?', answer: 'You can choose from 65 popular Google Fonts, including sans-serif, serif, display, script and monospace styles such as Poppins, Montserrat, Playfair Display, Anton, Pacifico and Great Vibes. Search by name or filter by category.' },
+  { question: 'What image formats can I upload and download?', answer: 'You can open JPG, PNG and WebP photos (and other formats your browser supports). You can download the result as PNG, JPG or WebP. PNG gives the best quality, while JPG and WebP give smaller files.' },
+  { question: 'Does it work on my phone?', answer: 'Yes. The tool is built for mobile as well as desktop. Tap a text to select it, drag to move it, and use the corner handles to resize and rotate it with your finger.' },
+  { question: 'Will the download be lower quality than my original photo?', answer: 'No. You edit on a fast preview, but the download is rendered at the original size of your photo. Very large images above about 16 megapixels are scaled down slightly so that all browsers can export them.' },
+  { question: 'Can I add more than one piece of text?', answer: 'Yes. Press Add text as many times as you like. Each text has its own font, size, color, effects and position, and you can duplicate, reorder, undo and redo them.' },
+];
+
+const webApp = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Add Text to Photo',
+  url: pageUrl,
+  description,
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Any (runs in a web browser)',
+  browserRequirements: 'Requires JavaScript and an HTML5 canvas capable browser',
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  featureList: [
+    '65 Google Fonts',
+    'Multiple text layers',
+    'Outline, shadow and background box',
+    'Drag, resize and rotate',
+    'Download as PNG, JPG or WebP',
+    'No login and no watermark',
+    'Photos never leave your device',
+  ],
+  publisher: { '@type': 'Organization', name: 'AestheticFonts', url: siteUrl },
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+};
+const howTo = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to add text to a photo online',
+  step: [
+    { '@type': 'HowToStep', name: 'Upload your photo', text: 'Drop an image onto the page, click Choose a photo, or paste it with Ctrl+V.' },
+    { '@type': 'HowToStep', name: 'Type your text', text: 'Edit the default text in the Text tab, then drag it to the place you want on the photo.' },
+    { '@type': 'HowToStep', name: 'Choose a font and color', text: 'Open the Font tab to pick from 65 Google Fonts and set the size and color in the Text tab.' },
+    { '@type': 'HowToStep', name: 'Add effects', text: 'Use the Effects tab for outline, shadow, background box, opacity, rotation and spacing, or try a preset.' },
+    { '@type': 'HowToStep', name: 'Download the image', text: 'Choose PNG, JPG or WebP and press Download. The file has no watermark.' },
+  ],
+};
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  path={pagePath}
+  availableLangs={['en']}
+>
+  <div class="wrap pt-4"><Breadcrumb items={crumbs} /></div>
+  <PhotoTextTool lang={lang} />
+
+  <article class="prose wrap max-w-[820px] mx-auto py-10">
+    <h2>Add Text to Photo Online, Free and Without a Watermark</h2>
+    <p>Our <strong>add text to photo</strong> tool lets you write on any picture straight in your browser. Upload an image, type your words, pick a font from <strong>65 Google Fonts</strong>, adjust the color and effects, and download the finished image. There is <strong>no login</strong>, <strong>no watermark</strong> and nothing to install.</p>
+    <p>Because everything runs on your own device, your photo is <strong>never uploaded to a server</strong>. That makes it fast, and it keeps personal pictures private. It works for quotes on photos, captions, memes, thumbnails, invitations, name tags, product labels and anything else where you need text on an image.</p>
+
+    <h2>How to Add Text to a Photo in 5 Steps</h2>
+    <ol>
+      <li><strong>Upload a photo.</strong> Drag an image onto the page, press <em>Choose a photo</em>, or paste one with <code>Ctrl+V</code>. You can also try one of the sample backgrounds.</li>
+      <li><strong>Type your text.</strong> Edit the text in the <em>Text</em> tab. Use a new line for multiple lines, then drag the text to the right spot on the photo.</li>
+      <li><strong>Pick a font and color.</strong> Open the <em>Font</em> tab to search or filter fonts by category, then choose a size, color, bold, italic and alignment.</li>
+      <li><strong>Add effects.</strong> In <em>Effects</em>, turn on an outline, a soft shadow or a background box. Adjust opacity, rotation, letter spacing and line height. Or tap a ready-made look in <em>Presets</em>.</li>
+      <li><strong>Download.</strong> Choose PNG, JPG or WebP and press <em>Download</em>. Your image is saved at full quality with no watermark.</li>
+    </ol>
+
+    <h2>What You Can Do With This Photo Text Editor</h2>
+    <ul>
+      <li><strong>Multiple text layers:</strong> add as many texts as you like, each with its own font and style.</li>
+      <li><strong>Drag, resize and rotate:</strong> move text with your mouse or finger, scale it from the corner handles and rotate it with the round handle.</li>
+      <li><strong>65 Google Fonts:</strong> sans-serif, serif, display, handwriting and monospace fonts, loaded only when you need them.</li>
+      <li><strong>Outline, shadow and background:</strong> keep text readable on busy photos.</li>
+      <li><strong>Presets:</strong> one-tap styles such as Meme, Aesthetic, Neon, Quote, Retro and Elegant.</li>
+      <li><strong>Undo and redo:</strong> experiment freely. Shortcuts: <code>Ctrl+Z</code>, <code>Ctrl+Y</code>, <code>Ctrl+D</code> to duplicate and <code>Delete</code> to remove.</li>
+      <li><strong>Full-quality export:</strong> PNG, JPG or WebP at your photo's original resolution.</li>
+    </ul>
+
+    <h2>Best Fonts to Put on a Photo</h2>
+    <p>The right font changes the mood of a picture completely. Here are some reliable choices from the font list, and when to use them:</p>
+    <div class="not-prose overflow-x-auto my-6">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-surface-2">
+            <th class="text-left py-3 px-4 font-semibold text-text">Font</th>
+            <th class="text-left py-3 px-4 font-semibold text-text">Style</th>
+            <th class="text-left py-3 px-4 font-semibold text-text">Best for</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          <tr class="odd:bg-surface even:bg-surface-2"><td class="py-2.5 px-4 font-medium text-text">Anton</td><td class="py-2.5 px-4 text-text-muted">Bold display</td><td class="py-2.5 px-4 text-text-muted">Memes, thumbnails, big headlines</td></tr>
+          <tr class="odd:bg-surface even:bg-surface-2"><td class="py-2.5 px-4 font-medium text-text">Montserrat</td><td class="py-2.5 px-4 text-text-muted">Clean sans-serif</td><td class="py-2.5 px-4 text-text-muted">Modern captions, posters, titles</td></tr>
+          <tr class="odd:bg-surface even:bg-surface-2"><td class="py-2.5 px-4 font-medium text-text">Playfair Display</td><td class="py-2.5 px-4 text-text-muted">Elegant serif</td><td class="py-2.5 px-4 text-text-muted">Quotes, wedding and travel photos</td></tr>
+          <tr class="odd:bg-surface even:bg-surface-2"><td class="py-2.5 px-4 font-medium text-text">Pacifico</td><td class="py-2.5 px-4 text-text-muted">Friendly script</td><td class="py-2.5 px-4 text-text-muted">Summer, food and lifestyle posts</td></tr>
+          <tr class="odd:bg-surface even:bg-surface-2"><td class="py-2.5 px-4 font-medium text-text">Great Vibes</td><td class="py-2.5 px-4 text-text-muted">Formal calligraphy</td><td class="py-2.5 px-4 text-text-muted">Invitations, names, greetings</td></tr>
+          <tr class="odd:bg-surface even:bg-surface-2"><td class="py-2.5 px-4 font-medium text-text">Caveat</td><td class="py-2.5 px-4 text-text-muted">Handwriting</td><td class="py-2.5 px-4 text-text-muted">Personal notes and diary-style captions</td></tr>
+          <tr class="odd:bg-surface even:bg-surface-2"><td class="py-2.5 px-4 font-medium text-text">Space Mono</td><td class="py-2.5 px-4 text-text-muted">Monospace</td><td class="py-2.5 px-4 text-text-muted">Tech, code and retro looks</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Want more ideas? Our <a href={getPath('en', '/blog/how-to-choose-the-right-font-style/')}>guide to choosing the right font style</a> explains how to match a font to your message.</p>
+
+    <h2>Tips for Text That Is Easy to Read</h2>
+    <ul>
+      <li><strong>Use contrast.</strong> White text on a dark area, or dark text on a light area, is easiest to read. If the photo is busy, add an outline, a shadow or a semi-transparent background box.</li>
+      <li><strong>Place text on calm areas.</strong> Sky, walls, water and blurred backgrounds work better than faces and detailed patterns.</li>
+      <li><strong>Limit your fonts.</strong> Two fonts at most (for example, one bold and one script) look neat. More than that looks messy.</li>
+      <li><strong>Keep it short.</strong> A few strong words beat a paragraph. Make the main word bigger and the rest smaller.</li>
+      <li><strong>Mind the edges.</strong> Leave a little margin so text is not cut off when the photo is cropped by Instagram, WhatsApp or YouTube.</li>
+      <li><strong>Try letter spacing.</strong> Wide spacing on a small uppercase line looks stylish, while tight spacing suits heavy display fonts.</li>
+    </ul>
+
+    <h2>Popular Uses for Text on Photos</h2>
+    <ul>
+      <li><strong>Social media posts and stories:</strong> quotes, captions and announcements for Instagram, Facebook, Pinterest and WhatsApp status.</li>
+      <li><strong>Memes:</strong> use the Meme preset for bold white text with a black outline.</li>
+      <li><strong>YouTube thumbnails and blog images:</strong> large, punchy titles that stand out.</li>
+      <li><strong>Greetings and invitations:</strong> birthdays, weddings, festivals and thank-you cards.</li>
+      <li><strong>Business and school:</strong> product labels, simple posters, certificates and class projects.</li>
+      <li><strong>Personal:</strong> add a date, a place or a caption to a memory.</li>
+    </ul>
+    <p>If you want stylish text you can copy and paste into a bio or a comment instead, try our <a href={getPath('en', '/')}>font generator</a> with 500+ fancy text styles.</p>
+
+    <h2>Why Use This Tool Instead of an Account-Based Editor?</h2>
+    <p>Many online editors ask you to sign up, limit free downloads, or stamp their logo on the result. This tool does the opposite: it opens instantly, works without an account, and gives you a clean file. Your photo stays on your device the whole time, so there is nothing to delete afterwards and no privacy risk.</p>
+  </article>
+
+  <FaqSection lang={lang} heading="Add Text to Photo FAQ" items={faqs} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(webApp)} />
+  <script type="application/ld+json" set:html={JSON.stringify(howTo)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <BreadcrumbSchema items={crumbs} />
+</BaseLayout>

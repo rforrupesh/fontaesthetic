@@ -14,7 +14,7 @@ You can create many styles using Unicode characters, including bold, cursive, go
 
 ## Stylish Letter Combinations for Nicknames
 
-Different letter combinations can give your nickname a unique look. You can use fancy alphabets, special characters, and decorative symbols to create a style that matches your personality.
+Different letter combinations can give your [nicknames](https://aestheticfonts.in/blog/welcome-to-aestheticfonts/) unique look. You can use fancy alphabets, special characters, and decorative symbols to create a style that matches your personality.
 
 ### Bold and Fancy Letter Combinations
 
