@@ -128,8 +128,8 @@ const presetList = [
         <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_340px] items-start">
 
           <!-- Canvas side -->
-          <div class="min-w-0">
-            <div class="card p-2 mb-3 flex flex-wrap items-center gap-1.5">
+          <div class="min-w-0 max-lg:contents">
+            <div class="card p-2 mb-3 order-1 flex flex-wrap items-center gap-1.5">
               <button type="button" id="ptt-add" class="btn"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>{L.addText}</button>
               <button type="button" id="ptt-dup" class="ptt-icon" aria-label={L.duplicate} title={L.duplicate}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button>
               <button type="button" id="ptt-del" class="ptt-icon" aria-label={L.remove} title={L.remove}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg></button>
@@ -139,11 +139,11 @@ const presetList = [
               <button type="button" id="ptt-change" class="ptt-ghost ml-auto"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>{L.change}</button>
             </div>
 
-            <div id="ptt-stage" class="card ptt-stage p-3 flex items-center justify-center">
+            <div id="ptt-stage" class="card ptt-stage p-3 order-2 flex items-center justify-center">
               <canvas id="ptt-canvas" role="img" aria-label="Photo editor canvas"></canvas>
             </div>
 
-            <div class="card p-3 mt-3 flex flex-wrap items-center gap-3">
+            <div class="card p-3 mt-3 order-4 flex flex-wrap items-center gap-3">
               <label class="flex items-center gap-2 text-sm text-text-muted">{L.format}
                 <select id="ptt-format" class="ptt-input !w-auto">
                   <option value="png">PNG</option>
@@ -158,11 +158,11 @@ const presetList = [
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg>{L.download}
               </button>
             </div>
-            <p id="ptt-msg2" class="text-sm mt-2" style="color:#ff6b6b" role="alert" hidden></p>
+            <p id="ptt-msg2" class="text-sm mt-2 order-5" style="color:#ff6b6b" role="alert" hidden></p>
           </div>
 
           <!-- Controls side -->
-          <div class="card p-3 lg:sticky lg:top-[calc(var(--header-h)+12px)]">
+          <div class="card p-3 order-3 min-w-0 lg:sticky lg:top-[calc(var(--header-h)+12px)]">
             <div class="ptt-tabs" role="tablist">
               <button type="button" role="tab" class="ptt-tab" data-tab="text" aria-selected="true">{L.tabText}</button>
               <button type="button" role="tab" class="ptt-tab" data-tab="font" aria-selected="false">{L.tabFont}</button>
@@ -270,7 +270,7 @@ const presetList = [
   .ptt-tog[aria-pressed="true"] { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
 
   .ptt-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--color-surface-2); padding: 3px; border-radius: var(--radius-md); }
-  .ptt-tab { padding: .45rem .2rem; font-size: .8rem; font-weight: 600; color: var(--color-text-muted); background: transparent; border: 0; border-radius: 6px; cursor: pointer; }
+  .ptt-tab { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: .45rem .2rem; font-size: .8rem; font-weight: 600; color: var(--color-text-muted); background: transparent; border: 0; border-radius: 6px; cursor: pointer; }
   .ptt-tab[aria-selected="true"] { background: var(--color-surface); color: var(--color-text); box-shadow: 0 1px 3px rgba(0,0,0,.3); }
 
   .ptt-input { width: 100%; background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); font: inherit; font-size: .9rem; padding: .5rem .65rem; }
@@ -278,7 +278,7 @@ const presetList = [
   textarea.ptt-input { resize: vertical; min-height: 4.2rem; }
 
   .ptt-label, .ptt-row > span { font-size: .78rem; font-weight: 600; color: var(--color-text-muted); }
-  .ptt-row { display: grid; grid-template-columns: 7.5rem 1fr; align-items: center; gap: .6rem; }
+  .ptt-row { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); align-items: center; gap: .6rem; }
   .ptt-range { width: 100%; accent-color: var(--color-primary); height: 1.4rem; cursor: pointer; }
   .ptt-color { width: 2.1rem; height: 2.1rem; padding: 0; border: 1px solid var(--color-border); border-radius: 6px; background: none; cursor: pointer; }
   .ptt-swatch { width: 1.6rem; height: 1.6rem; border-radius: 50%; border: 2px solid var(--color-border); cursor: pointer; padding: 0; }
@@ -296,7 +296,18 @@ const presetList = [
   .ptt-fontitem small { display: block; font: 500 .68rem var(--font-sans); color: var(--color-text-muted); }
   #ptt-controls:disabled { opacity: .45; }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  @media (max-width: 420px) { .ptt-row { grid-template-columns: 6rem 1fr; } }
+  @media (max-width: 420px) { .ptt-row { grid-template-columns: 5.5rem minmax(0, 1fr); } .ptt-tab { font-size: .72rem; } }
+  @media (max-width: 1023px) {
+    /* canvas stays pinned at the top while the controls scroll underneath */
+    #ptt-stage { position: sticky; top: calc(var(--header-h, 0px) + 4px); z-index: 5; min-height: 160px; padding: .4rem; margin: 0 !important; }
+    #ptt-canvas { max-height: 38vh; }
+    #ptt-editor .card.order-1, #ptt-editor .card.order-4, #ptt-msg2 { margin: 0 !important; }
+    .ptt-fontlist { max-height: 240px; }
+    .ptt-icon { width: 2.5rem; height: 2.5rem; }
+    .ptt-swatch { width: 1.9rem; height: 1.9rem; }
+    .ptt-chip { padding: .35rem .75rem; }
+    .ptt-range { height: 1.9rem; }
+  }
 </style>
 
 <script>
@@ -325,6 +336,7 @@ const presetList = [
   const controls = $<HTMLFieldSetElement>('ptt-controls'), emptyEl = $('ptt-empty');
   const msg1 = $('ptt-msg'), msg2 = $('ptt-msg2');
 
+  const COARSE = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
   let src: Src | null = null;
   let baseCanvas: HTMLCanvasElement | null = null; // downscaled copy of the photo used while editing
   let layers: Layer[] = [];
@@ -460,7 +472,7 @@ const presetList = [
     pill(x, y + h / 2, 8 * k, 22 * k); pill(x + w, y + h / 2, 8 * k, 22 * k);
     pill(x + w / 2, y, 22 * k, 8 * k); pill(x + w / 2, y + h, 22 * k, 8 * k);
     // corner circles
-    const cr = 8 * k;
+    const cr = (COARSE ? 11 : 8) * k;
     circle(x, y, cr); circle(x + w, y, cr); circle(x, y + h, cr); circle(x + w, y + h, cr);
     // rotate button (below, like Canva)
     const ry = y + h + 34 * k;
@@ -696,12 +708,12 @@ const presetList = [
   }
   function hitHandle(l: Layer, p: { x: number; y: number; k: number }): 'resize' | 'rotate' | null {
     const b = boxes.get(l.id); if (!b) return null;
-    const q = local(l, p), m = 6 * p.k, r = 16 * p.k;
+    const q = local(l, p), m = 6 * p.k, r = (COARSE ? 26 : 16) * p.k;
     const hw = b.w / 2 + m, hh = b.h / 2 + m;
     if (Math.hypot(q.x, q.y - (hh + 34 * p.k)) < r) return 'rotate';
     for (const sx of [-1, 1]) for (const sy of [-1, 1]) if (Math.hypot(q.x - sx * hw, q.y - sy * hh) < r) return 'resize';
-    for (const sx of [-1, 1]) if (Math.abs(q.x - sx * hw) < 8 * p.k && Math.abs(q.y) < 14 * p.k) return 'resize';
-    for (const sy of [-1, 1]) if (Math.abs(q.y - sy * hh) < 8 * p.k && Math.abs(q.x) < 14 * p.k) return 'resize';
+    for (const sx of [-1, 1]) if (Math.abs(q.x - sx * hw) < (COARSE ? 16 : 8) * p.k && Math.abs(q.y) < (COARSE ? 24 : 14) * p.k) return 'resize';
+    for (const sy of [-1, 1]) if (Math.abs(q.y - sy * hh) < (COARSE ? 16 : 8) * p.k && Math.abs(q.x) < (COARSE ? 24 : 14) * p.k) return 'resize';
     return null;
   }
   function hitLayer(p: { x: number; y: number; k: number }): Layer | null {
