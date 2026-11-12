@@ -73,7 +73,7 @@ Yes, Unicode characters are free to use. You do not need to purchase a Unicode l
 
 You can copy and paste Unicode text into personal messages, social media profiles, and other supported places. Online tools let you create stylish text without paying or downloading software.
 
-However, Unicode characters and font files are two different things. If you want to use a particular font file in a commercial design, check its individual licence first. You can find more information in the official [Unicode FAQ about fonts and keyboards](https://www.unicode.org/faq/font_keyboard.html).
+However, Unicode characters and [font](https://aestheticfonts.in/blog/chatgpt-font/) files are two different things. If you want to use a particular font file in a commercial design, check its individual licence first. You can find more information in the official [Unicode FAQ about fonts and keyboards](https://www.unicode.org/faq/font_keyboard.html).
 
 ## Why Do Some Unicode Characters Not Display Properly?
 
