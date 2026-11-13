@@ -54,7 +54,7 @@
 .pe-colorbtn b { display: block; width: 18px; height: 4px; border-radius: 2px; border: 1px solid rgba(128,128,128,.5); }
 .pe-colorbtn span { font-weight: 800; font-size: 17px; line-height: 1; }
 
-.pe-stage { flex: 1; min-height: 0; display: flex; overflow: auto; padding: 36px; background-color: var(--color-surface-2); background-image: radial-gradient(rgba(128,128,128,.22) 1px, transparent 1px); background-size: 18px 18px; }
+.pe-stage { flex: 1; min-height: 0; display: flex; overflow: auto; touch-action: none; overscroll-behavior: contain; padding: 36px; background-color: var(--color-surface-2); background-image: radial-gradient(rgba(128,128,128,.22) 1px, transparent 1px); background-size: 18px 18px; }
 .pe-stage.is-over { outline: 3px dashed var(--color-primary); outline-offset: -10px; }
 .pe-holder { margin: auto; flex: none; position: relative; }
 .pe-holder .canvas-container { box-shadow: 0 4px 24px rgba(0,0,0,.35); }

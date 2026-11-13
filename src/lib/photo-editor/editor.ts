@@ -216,6 +216,53 @@ function applyZoom() {
   canvas.calcOffset(); positionFloat();
 }
 function setZoom(z: number) { S.zoom = clamp(z, 0.05, 3); S.userZoom = true; applyZoom(); }
+// zoom so that canvas point (u, v) ends up under screen point (cx, cy): keeps the pinch/cursor spot steady and pans with two fingers
+function zoomAround(z: number, cx: number, cy: number, u: number, v: number) {
+  setZoom(z);
+  const r = holderEl.getBoundingClientRect();
+  stageEl.scrollLeft += r.left + u * S.zoom - cx;
+  stageEl.scrollTop += r.top + v * S.zoom - cy;
+  canvas.calcOffset();
+}
+const canvasPoint = (cx: number, cy: number) => { const r = holderEl.getBoundingClientRect(); return { u: (cx - r.left) / S.zoom, v: (cy - r.top) / S.zoom }; };
+function wireZoomGestures() {
+  // two fingers on a touch screen: pinch to zoom, drag to pan
+  const ptr = new Map<number, { x: number; y: number }>();
+  let g: null | { d: number; z: number; u: number; v: number } = null;
+  const mid = () => { const [a, b] = [...ptr.values()]; return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, d: Math.max(1, Math.hypot(a.x - b.x, a.y - b.y)) }; };
+  stageEl.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'touch') return;
+    ptr.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (ptr.size === 2) {
+      (canvas as Any)._currentTransform = null; // cancel the drag the first finger started
+      const m = mid(); g = { d: m.d, z: S.zoom, ...canvasPoint(m.x, m.y) };
+    }
+    if (ptr.size >= 2) e.stopPropagation();
+  }, true);
+  stageEl.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'touch' || !ptr.has(e.pointerId)) return;
+    ptr.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (g && ptr.size >= 2) { e.stopPropagation(); const m = mid(); zoomAround(g.z * (m.d / g.d), m.x, m.y, g.u, g.v); }
+    else if (g) e.stopPropagation();
+  }, true);
+  const up = (e: PointerEvent) => { ptr.delete(e.pointerId); if (!ptr.size) { g = null; positionFloat(); } };
+  stageEl.addEventListener('pointerup', up, true); stageEl.addEventListener('pointercancel', up, true);
+
+  // trackpad pinch (browsers send it as Ctrl + wheel) and Ctrl/Cmd + mouse wheel
+  stageEl.addEventListener('wheel', (e) => {
+    if (!(e.ctrlKey || e.metaKey)) return;
+    e.preventDefault();
+    const dy = clamp(e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY, -40, 40);
+    const { u, v } = canvasPoint(e.clientX, e.clientY);
+    zoomAround(S.zoom * Math.exp(-dy * 0.012), e.clientX, e.clientY, u, v);
+  }, { passive: false });
+
+  // Safari: trackpad / touch pinch arrives as gesture events
+  let gz = 1, gp = { u: 0, v: 0 };
+  stageEl.addEventListener('gesturestart', (e: Any) => { e.preventDefault(); gz = S.zoom; gp = canvasPoint(e.clientX, e.clientY); });
+  stageEl.addEventListener('gesturechange', (e: Any) => { e.preventDefault(); zoomAround(gz * e.scale, e.clientX, e.clientY, gp.u, gp.v); });
+  stageEl.addEventListener('gestureend', (e: Any) => e.preventDefault());
+}
 
 function fitPhoto(reset = true, tr?: Any) {
   const p = S.photo; if (!p) return;
@@ -814,6 +861,7 @@ function layersHTML() {
 let dragging = false;
 function wireEvents() {
   wirePopEvents();
+  wireZoomGestures();
 
   // clicks anywhere in the editor
   root.addEventListener('click', async (e) => {
