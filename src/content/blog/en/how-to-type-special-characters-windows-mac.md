@@ -82,7 +82,7 @@ Here are some commonly used special characters you can copy:
 
 If you want more than ordinary symbols, you can use Unicode characters to create stylish text. These characters include bold, italic, cursive, gothic, circled, and other decorative letter styles.
 
-A fancy text generator makes this process easier. Enter your normal text, explore the available styles, and copy the version you like.
+A [aesthetic text generator](https://aestheticfonts.in/blog/what-is-aesthetic-font/) makes this process easier. Enter your normal text, explore the available styles, and copy the version you like.
 
 You can paste the generated text into Instagram bios, Facebook posts, WhatsApp messages, Discord usernames, gaming profiles, and other platforms that support those Unicode characters.
 

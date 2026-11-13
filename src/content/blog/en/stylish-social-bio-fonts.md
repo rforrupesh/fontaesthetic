@@ -14,7 +14,7 @@ AestheticFonts.in makes this easy with its free font generator. You can type you
 
 ## How to Use AestheticFonts.in for Stylish Social Media Bios
 
-Using AestheticFonts.in does not require an app or any special installation. You can create fancy text directly in your browser and use it wherever you want.
+Using [Aesthetic Fonts](https://aestheticfonts.in/blog/what-is-aesthetic-font/) does not require an app or any special installation. You can create fancy text directly in your browser and use it wherever you want.
 
 First, visit [AestheticFonts.in](https://aestheticfonts.in/) and type your name, nickname, or bio text into the generator. You will see different styles of your text, including bold, cursive, italic, gothic, small caps, and other fancy letters.
 

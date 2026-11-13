@@ -49,6 +49,8 @@ const P: Record<string, string> = {
   alignHCenter: '<path d="M12 4v16M5 8h14M8 16h8"/>',
   alignHRight: '<path d="M20 4v16M4 8h12M9 16h7"/>',
   flip: '<path d="M12 3v18M8 7 3 12l5 5zM16 7l5 5-5 5z"/>',
+  toFront: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 14V6a2 2 0 0 1 2-2h8" stroke-dasharray="2 3"/>',
+  toBack: '<rect x="4" y="4" width="12" height="12" rx="2" stroke-dasharray="2 3"/><path d="M10 20h8a2 2 0 0 0 2-2v-8"/>',
 };
 export const ic = (name: string, size = 20) =>
   `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[name] || ''}</svg>`;

@@ -87,4 +87,5 @@ To avoid this problem, choose commonly supported Unicode styles and test your co
 
 Unicode makes it easier for computers, websites, and mobile devices to work with text from different languages and writing systems. It also gives people access to special characters and stylish letter combinations that can make ordinary text look more interesting.
 
-> If you want to try different styles, visit [AestheticFonts.in](https://aestheticfonts.in/) and create your own fancy text. Just type, choose a style, copy, and paste wherever [Unicode characters](https://en.wikipedia.org/wiki/Unicode) are supported.
+> If you want to try different styles, [Aesthetic Fonts](https://aestheticfonts.in/blog/what-is-aesthetic-font/
+) and create your own fancy text. Just type, choose a style, copy, and paste wherever [Unicode characters](https://en.wikipedia.org/wiki/Unicode) are supported.
