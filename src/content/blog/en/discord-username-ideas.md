@@ -5,7 +5,7 @@ title: "300+ Best Discord Username & Stylish Display Names Ideas (2026)"
 description: "Explore 300+ cool, cute, funny, aesthetic, and stylish Discord username and display name ideas for boys, girls, gamers, and anime lovers. Copy and create your perfect Discord name."
 image: "/images/discord-username-ideas.webp"
 tags: ["Discord usernames", "Discord names", "stylish display names", "cool Discord names", "Discord name ideas", "gaming usernames"]
-categories: ["Username Ideas"]
+categories: ["Ideas"]
 ---
 
 Do you want to find some [Discord usernames](https://aestheticfonts.in/blog/discord-markdown/) which suit your character? Your username is not only about being easily recognizable by your friends. In addition, your username can reveal something about your passions, favorite games, humor or even your story. There are those who love short and straightforward names, as well as those who prefer cute, humorous or aesthetic display names.
