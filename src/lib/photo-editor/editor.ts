@@ -213,6 +213,7 @@ function applyZoom() {
   canvas.setDimensions({ width: `${cw}px`, height: `${ch}px` }, { cssOnly: true } as Any);
   holderEl.style.width = `${cw}px`; holderEl.style.height = `${ch}px`;
   zoomRange.value = String(Math.round(z * 100)); zoomOut.textContent = `${Math.round(z * 100)}%`;
+  canvas.getObjects().forEach(sizeHandles); canvas.requestRenderAll();
   canvas.calcOffset(); positionFloat();
 }
 function setZoom(z: number) { S.zoom = clamp(z, 0.05, 3); S.userZoom = true; applyZoom(); }
@@ -341,9 +342,48 @@ function installPhoto(el: CanvasImageSource, w: number, h: number, fresh: boolea
 
 // ------------------------------------------------------------------ objects
 const EXTRA = ['locked', 'lockMovementX', 'lockMovementY', 'lockScalingX', 'lockScalingY', 'lockRotation'];
+// ---- selection handles: big, zoom-independent (screen px), purple frame + white handles
+const HANDLE = { fill: '#ffffff', ring: '#b9bcc6', line: '#8b3dff' };
+const handlePx = () => Math.round(clamp(window.innerWidth / 13, 24, 30)); // ~28px on phones, 30px on PC; never below 24
+const ROT_ICON = typeof Path2D !== 'undefined' ? new Path2D('M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5') : null;
+function paintHandle(kind: 'dot' | 'pillV' | 'pillH' | 'rot') {
+  return (ctx: CanvasRenderingContext2D, left: number, top: number, _so: Any, o: Any) => {
+    const z = S.zoom, s = handlePx() / z;
+    ctx.save(); ctx.translate(left, top);
+    if (kind !== 'rot') ctx.rotate(((o.angle || 0) * Math.PI) / 180);
+    ctx.fillStyle = HANDLE.fill; ctx.strokeStyle = HANDLE.ring; ctx.lineWidth = 1.5 / z;
+    ctx.shadowColor = 'rgba(0,0,0,.28)'; ctx.shadowBlur = 4 / z; ctx.shadowOffsetY = 1 / z;
+    ctx.beginPath();
+    if (kind === 'dot' || kind === 'rot') ctx.arc(0, 0, s / 2, 0, Math.PI * 2);
+    else {
+      if (kind === 'pillV') ctx.rotate(Math.PI / 2); // draw a horizontal pill, turned for the left/right sides
+      const w = s * 1.0, h = s * 0.46, r = h / 2;
+      ctx.moveTo(-w / 2 + r, -h / 2); ctx.lineTo(w / 2 - r, -h / 2); ctx.arc(w / 2 - r, 0, r, -Math.PI / 2, Math.PI / 2);
+      ctx.lineTo(-w / 2 + r, h / 2); ctx.arc(-w / 2 + r, 0, r, Math.PI / 2, (Math.PI * 3) / 2); ctx.closePath();
+    }
+    ctx.fill(); ctx.shadowColor = 'transparent'; ctx.stroke();
+    if (kind === 'rot' && ROT_ICON) {
+      const k = (s * 0.58) / 24; ctx.scale(k, k); ctx.translate(-12, -12);
+      ctx.strokeStyle = '#111'; ctx.lineWidth = 2.2; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.stroke(ROT_ICON);
+    }
+    ctx.restore();
+  };
+}
+// canvas is shown scaled by the zoom, so handle sizes are divided by it to stay constant on screen
+function sizeHandles(o: Any) {
+  const z = S.zoom, px = handlePx();
+  o.set({ cornerSize: px / z, touchCornerSize: (px + 22) / z, padding: 6 / z, borderScaleFactor: 2 / z });
+  if (o.controls?.mtr) o.controls.mtr.offsetY = -(px + 22) / z;
+}
 function styleObj(o: Any) {
-  o.set({ cornerStyle: 'circle', cornerColor: '#ffffff', cornerStrokeColor: '#0a7aff', transparentCorners: false, cornerSize: isTouchUI() ? 16 : 12, touchCornerSize: 34, borderColor: '#0a7aff', borderScaleFactor: 1.8, padding: 6, lockScalingFlip: true, hasControls: !o.locked });
+  o.set({ cornerStyle: 'circle', cornerColor: HANDLE.fill, cornerStrokeColor: HANDLE.ring, transparentCorners: false, borderColor: HANDLE.line, lockScalingFlip: true, hasControls: !o.locked });
+  const c = o.controls || {};
+  (['tl', 'tr', 'bl', 'br'] as const).forEach((k) => { if (c[k]) c[k].render = paintHandle('dot'); });
+  (['ml', 'mr'] as const).forEach((k) => { if (c[k]) c[k].render = paintHandle('pillV'); });
+  (['mt', 'mb'] as const).forEach((k) => { if (c[k]) c[k].render = paintHandle('pillH'); });
+  if (c.mtr) c.mtr.render = paintHandle('rot');
   if (o instanceof Textbox) o.setControlsVisibility({ mt: false, mb: false });
+  sizeHandles(o);
 }
 const isText = (o: Any) => o instanceof Textbox;
 const objs = (): Any[] => (canvas.getObjects() as Any[]).filter((o) => !o.isPhoto);
@@ -752,7 +792,7 @@ function positionFloat() {
     <button class="pe-btn" data-act="del" aria-label="Delete" title="Delete">${ic('trash', 17)}</button>`;
   floatEl.hidden = false;
   const fw = floatEl.offsetWidth, fh = floatEl.offsetHeight, hw = holderEl.offsetWidth;
-  let top = r.top * z - fh - 30; if (top < -50) top = (r.top + r.height) * z + 30;
+  const hp = handlePx(); let top = r.top * z - fh - (hp + 58); if (top < -50) top = (r.top + r.height) * z + hp + 20;
   const cx = clamp((r.left + r.width / 2) * z, fw / 2 - 40, hw + 40 - fw / 2);
   floatEl.style.left = `${cx}px`; floatEl.style.top = `${top}px`;
 }
