@@ -34,7 +34,7 @@ You don't need any special software to write in aesthetic fonts. You can use an 
 
 Follow these simple steps:
 
-1. **Open a font generator:** Visit our [Font Generator](https://fontaesthetic.in/).
+1. **Open a font generator:** Visit our [Font Generator](https://aestheticfonts.in/).
 2. **Enter your text:** Type your name, favourite word, Instagram bio, or any sentence.
 3. **Choose a style:** Explore different options like cursive, bold, Gothic, and fancy text.
 4. **Copy your text:** Find the style you like and click the Copy option.
@@ -153,4 +153,4 @@ Decorative Unicode text can also be difficult for some screen readers to read. S
 
 Aesthetic fonts are a simple way to give normal text a new look. You can try cursive, bold, Gothic, small caps, and many other styles to find the one you like.
 
-> You don't need to download a font or install any software. Just open our [Aesthetic Font Generator](https://fontaesthetic.in/), enter your text, and explore different styles. Copy your favourite design and paste it wherever you want.
+> You don't need to download a font or install any software. Just open our [Aesthetic Font Generator](https://aestheticfonts.in/), enter your text, and explore different styles. Copy your favourite design and paste it wherever you want.
