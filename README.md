@@ -42,7 +42,7 @@ No other code changes are needed -- all internal links use `import.meta.env.BASE
 1. `src/i18n/es.json` -- copy `en.json` and translate every value.
 2. Register it in `src/i18n/index.ts` -> `languages` object.
 3. `src/pages/es/` -- copy `index.astro`, `about.astro`, `contact.astro`,
-   `privacy-policy.astro`, `blog/index.astro`, `blog/[slug].astro` from
+   `privacy-policy.astro`, `blog/[...page].astro`, `blog/[slug].astro` from
    `fr/` and change `lang = 'fr'` to `lang = 'es'` (and `startsWith('fr/')`
    to `startsWith('es/')`).
 4. `src/content/blog/es/` -- add translated articles (see below).
