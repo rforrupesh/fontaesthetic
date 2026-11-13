@@ -510,7 +510,8 @@ For example, if you enter `Shadow`, you can get different results:
 
 ## How to Change Your Discord Username and Display Name
 
-![Discord Profile Names Explained]([https://example.com](https://aestheticfonts.in/images/discord-profile-names-explained.webp))
+
+![Discord Profile Names Explained](https://aestheticfonts.in/images/discord-profile-names-explained.webp)
 
 
 You can change both names from your Discord account settings. The steps are slightly different for usernames and display names.
