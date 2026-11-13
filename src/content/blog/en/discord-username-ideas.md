@@ -185,7 +185,7 @@ Here are Discord name ideas for different styles and personalities. You can choo
 119. 乂 PixelKing 乂
 120. 〆 NoScope
 
-> Also Raed: [50+ Snapchat Ideas: What to Snap When You Think You're Boring](https://aestheticfonts.in/blog/snapchat-ideas-when-bored/)
+> Also Read: [50+ Snapchat Ideas: What to Snap When You Think You're Boring](https://aestheticfonts.in/blog/snapchat-ideas-when-bored/)
 
 ### 7. Anime Discord Names
 
