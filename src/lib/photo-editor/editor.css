@@ -188,5 +188,9 @@
   .pe-stage { padding: 14px; }
   .pe-zoom { right: 8px; bottom: 8px; padding: 2px 6px; }
   .pe-zoom input[type=range] { width: 70px; }
+  /* while a sheet is open, shrink the stage so the canvas refits in the space above it */
+  .pe-main:has(.pe-panel[data-open]) .pe-stage-wrap { padding-bottom: 48vh; padding-bottom: 48dvh; }
+  .pe-main:has(.pe-panel[data-open]) .pe-zoom { bottom: calc(48vh + 8px); bottom: calc(48dvh + 8px); }
+  .pe-stage { overscroll-behavior: contain; }
   .pe-toast { bottom: calc(var(--pe-rail-h) + 76px + env(safe-area-inset-bottom)); }
 }
