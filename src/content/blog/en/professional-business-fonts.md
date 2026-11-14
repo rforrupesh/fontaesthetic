@@ -18,17 +18,26 @@ There are many professional business fonts available, but not every typeface sui
 
 ### 1. Helvetica
 
+![Helvetica comes in a wide range of weights and styles, from Ultra Light to Black, showcasing its uniform stroke widths and crisp letterforms](https://aestheticfonts.in/images/Helvetica.webp)
+
+
 Helvetica is one of the most recognised professional fonts. It has a clean and neutral design that works well for different types of businesses.
 
 It is suitable for corporate logos, business cards, websites, presentations, and company documents. Its simple appearance makes it a popular choice for professional branding.
 
 ### 2. Arial
 
+![Arial is a popular sans-serif typeface in the neo-grotesque style](https://aestheticfonts.in/images/Arial.webp)
+
+
 Arial is a widely available font used in offices and workplaces. Its simple letters make it easy to read.
 
 It works well for business emails, reports, official letters, presentations, and everyday office documents. It is also a practical option when sharing files with other people.
 
 ### 3. Inter
+
+![Inter is used primarily because it maximizes readability on digital screens and simplifies UI design across all device sizes](https://aestheticfonts.in/images/Inter.webp)
+
 
 Inter is a modern sans-serif font designed for computer screens. Its clear letter shapes make it suitable for websites, dashboards, and digital business tools.
 
