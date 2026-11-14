@@ -58,7 +58,7 @@ Using fancy fonts everywhere can make your bio difficult to read. It is better t
 
 Remember that these are Unicode characters, not traditional font files. Some older phones, apps, or devices may not display every character correctly. Always check your updated bio from another device to see how it looks.
 
-Also, some screen readers may not read decorative Unicode letters correctly. Keep important information, such as your name or business details, in regular text when possible.
+Also, some screen readers may not read decorative Unicode letters correctly. Keep important information, [such as your name or business details](https://aestheticfonts.in/blog/professional-business-fonts/), in regular text when possible.
 
 ## Give Your Social Media Bio a Fresh Look with AestheticFonts.in
 
