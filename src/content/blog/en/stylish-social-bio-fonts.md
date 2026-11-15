@@ -22,7 +22,7 @@ Choose a style that you like and click its Copy button. Your stylish text is now
 
 ## How to Use Fancy Fonts in Your Instagram Bio
 
-Instagram does not provide a built-in font changer for its bio section. However, you can use an Instagram font generator to create stylish letters and add them to your profile.
+Instagram does not provide a built-in font changer for its bio section. However, you can use an [instagram bio style](https://aestheticfonts.in/blog/instagram-bio-for-boys/) to create stylish letters and add them to your profile.
 
 Open Instagram and visit your profile. Tap **Edit Profile**, select the **Bio** field, and paste the fancy text you copied from AestheticFonts.in. Once you are happy with the result, save your changes.
 
