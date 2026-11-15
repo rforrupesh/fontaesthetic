@@ -10,9 +10,9 @@ categories: ["Social Media", "Ideas"]
 
 Hello friends! If you are a boy looking to make your Instagram profile more attractive and show off your attitude, this post is for you. A great Instagram bio should fit within the 150-character limit and clearly show who you are, your swag vibe or attitude, and what you do or love. Whether you are a gamer, student, shy boy, or someone who loves an aesthetic look, you will find plenty of Instagram bio ideas here to match your personality.
 
-  
 
-We also provide an VIP Instagram Bio to help you create stylish Instagram bios for boys. You can add love emojis, Symbols , cool fonts, attitude, fitness, passions, and other things to make your bio more personal and attractive Aesthetic bio.
+
+We also provide an VIP Instagram Bio to help you create [stylish Instagram bios for boys](https://aestheticfonts.in/blog/stylish-social-bio-fonts/). You can add love emojis, Symbols , cool fonts, [Bold](https://aestheticfonts.in/blog/how-to-bold-text/) attitude, fitness, passions, and other things to make your bio more personal and attractive Aesthetic bio.
 
   
   
