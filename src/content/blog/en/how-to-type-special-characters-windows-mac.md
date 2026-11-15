@@ -84,7 +84,7 @@ If you want more than ordinary symbols, you can use Unicode characters to create
 
 A [aesthetic text generator](https://aestheticfonts.in/blog/what-is-aesthetic-font/) makes this process easier. Enter your normal text, explore the available styles, and copy the version you like.
 
-You can paste the generated text into Instagram bios, Facebook posts, WhatsApp messages, Discord usernames, gaming profiles, and other platforms that support those Unicode characters.
+You can paste the generated text into [instagram bio for boys](https://aestheticfonts.in/blog/instagram-bio-for-boys/), Facebook posts, WhatsApp messages, Discord usernames, gaming profiles, and other platforms that support those Unicode characters.
 
 ## Why Some Special Characters Do Not Display Correctly
 
