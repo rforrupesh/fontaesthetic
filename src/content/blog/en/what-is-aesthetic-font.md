@@ -38,7 +38,7 @@ Follow these simple steps:
 2. **Enter your text:** Type your name, favourite word, Instagram bio, or any sentence.
 3. **Choose a style:** Explore different options like cursive, bold, Gothic, and fancy text.
 4. **Copy your text:** Find the style you like and click the Copy option.
-5. **Paste it anywhere:** Use your stylish text in your Instagram bio, TikTok profile, WhatsApp messages, or other apps.
+5. **Paste it anywhere:** Use your stylish text in your instagram bio for boys stylish, TikTok profile, WhatsApp messages, or other apps.
 
 That's it! You can try different styles until you find one that looks right.
 
@@ -76,7 +76,7 @@ Small caps make lowercase letters look like smaller capital letters. They give y
 
 Example: ᴀᴇꜱᴛʜᴇᴛɪᴄ
 
-You can use small caps for Instagram bios, usernames, and short captions.
+You can use small caps for [instagram bio for boys stylish](https://aestheticfonts.in/blog/instagram-bio-for-boys/), usernames, and short captions.
 
 ### 5. Fullwidth Aesthetic Fonts
 
