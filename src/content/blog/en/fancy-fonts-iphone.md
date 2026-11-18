@@ -44,7 +44,7 @@ You can also try different combinations of letters, symbols, and emojis to creat
 
 Once you copy a fancy text style, you can use it in many places. There is no need to generate the same words again if you have already copied them.
 
-**Instagram Bio and Captions:** Give your Instagram profile a different appearance with stylish names, bold headings, and cursive letters. You can also mix fancy text with emojis to make your bio more interesting.
+**Instagram Bio and Captions:** Give your Instagram profile a different appearance with stylish names, [bold fonts](https://aestheticfonts.in/blog/how-to-bold-text/), and cursive letters. You can also mix fancy text with emojis to make your bio more interesting.
 
 **WhatsApp Messages and Status:** Use decorative letters in your WhatsApp About section, status updates, and personal chats. You can copy a birthday wish or greeting and send it to your friends without typing everything again.
 
@@ -88,6 +88,6 @@ For more details, read Apple's guide on [making text easier to read on iPhone](h
 
 ## Start Creating Fancy Text on Your iPhone
 
-You don't need a new keyboard, font installation, or complicated iOS settings to use stylish letters. An online font generator can turn your regular words into different Unicode text styles in just a few steps.
+> You don't need a new keyboard, [font](https://aestheticfonts.in/blog/professional-business-fonts/) installation, or complicated iOS settings to use stylish letters. An online font generator can turn your regular words into different Unicode text styles in just a few steps.
 
 Open the generator in Safari, try different designs, and copy the one that suits your needs. You can paste and send the same fancy text in your Instagram bio, WhatsApp status, iMessage, and other apps that support those characters.
