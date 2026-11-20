@@ -1,17 +1,29 @@
 ---
+---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SymbolsPage from "../../components/SymbolsPage.astro";
-import { t, getPath } from '../i18n';
+import FaqSection from '../components/FaqSection.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import BreadcrumbSchema from '../components/schema/BreadcrumbSchema.astro';
+import { getPath } from '../i18n';
 
 const lang = 'en';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const pagePath = '/symbols/';
+const pageUrl = siteUrl + getPath(lang, pagePath);
+
+const title = 'Symbols';
+const description = 'Add text to a photo online for free. Choose from 65 Google Fonts, add outline, shadow and colors, then download in full quality. No login, no watermark, no upload.';
+
 
 ---
 
 <BaseLayout
   lang={lang}
-  title="Font Generator Fancy Text ℂ𝕠𝕡𝕪 & 𝖕𝖆𝖘𝖙𝖊 "
-  description="Font Generator 132+ font styles convert instantly. Copy and paste fancy text, cool, bold, cursive, aesthetic for Instagram, TikTok, Twitch, and Discord. FREE."
-  path="/symbols/"
+  title={title}
+  description={description}
+  path={pagePath}
+  availableLangs={['en']}
 >
 
 <SymbolsPage lang="en" />
