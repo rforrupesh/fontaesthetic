@@ -3,6 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SymbolsPage from "../components/SymbolsPage.astro";
 import SchemaOrg from '../components/SchemaOrg.astro';
 
+import { t, getPath } from '../i18n';
+
+const lang = 'en';
+const strings = t(lang);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const pagePath = '/symbols/';
+const pageUrl = siteUrl + getPath(lang, pagePath);
 ---
 
 <BaseLayout
