@@ -271,7 +271,7 @@ A few things worth checking before you choose:
 - **Your own style:** Use words that match your hobbies, interests, or personality.
 - **Mix and match:** Try adding words like Moon, Star, Vibes, Dream, or King to your nickname.
 - **Keep private details out:** Don't use your phone number, home address, or other personal information.
-- **Check if it's available:** Your favourite name might already belong to another Snapchat user. You can check Snapchat's [username requirements](https://help.snapchat.com/hc/en-us/articles/7012345515796-How-do-I-change-my-Snapchat-username) before choosing one.
+- **Check if it's available:** Your favourite name might already belong to another Snapchat user. You can check Snapchat's [username requirements](https://help.snapchat.com/hc/en-us/sections/5685857190804-Name-and-Username) before choosing one.
 
 > If the name you like is already taken, don't give up on it straight away. Try changing the second word, using your initials, or adding a small number that means something to you. A little change can make the name feel more personal without making it difficult to type.
 
