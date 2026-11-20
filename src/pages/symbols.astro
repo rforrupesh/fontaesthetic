@@ -1,25 +1,6 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SymbolsPage from "../components/SymbolsPage.astro";
-import Breadcrumb from '../components/Breadcrumb.astro';
-import BreadcrumbSchema from '../components/schema/BreadcrumbSchema.astro';
-
-import { t, getPath } from '../i18n';
-
-const lang = 'en';
-const strings = t(lang);
-
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
-const pagePath = '/symbols/';
-const pageUrl = siteUrl + getPath(lang, pagePath);
+import SymbolsPage from "../../components/SymbolsPage.astro";
 ---
-
-<BaseLayout
-  lang={lang}
-  title="Copy & Paste  Symbols "
-  description="A symbol is a mark, sign, object, or character that represents an idea, concept, relationship, or value beyond its literal form"
-  path="/"
->
 
 <SymbolsPage lang="en" />
 
