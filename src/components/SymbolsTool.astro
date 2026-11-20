@@ -7,7 +7,7 @@ const T = symbolsText(Astro.props.lang);
 const name = (id: string) => T.categories[id];
 ---
 
-<div class="symbols-tool wrap py-6 md:py-8">
+<div class="symbols-tool wrap py-6 md:py-8" data-copy-label={T.copy} data-copied-label={T.copied}>
   <!-- Phone: sticky horizontal category bar -->
   <nav
     id="sym-chips"
@@ -142,25 +142,51 @@ const name = (id: string) => T.categories[id];
   );
 
   // Copy symbol and show the confirmation directly inside that card's Copy button.
-  const copy = async (text: string) => {
+  // Labels are passed through HTML data attributes because Astro component variables
+  // are not available inside the browser-side script scope.
+  const tool = document.querySelector<HTMLElement>('.symbols-tool');
+  const copyLabel = tool?.dataset.copyLabel ?? 'Copy';
+  const copiedLabel = tool?.dataset.copiedLabel ?? 'Copied!';
+
+  const copy = async (text: string): Promise<boolean> => {
     try {
-      await navigator.clipboard.writeText(text);
+      if (navigator.clipboard?.writeText && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
     } catch {
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.cssText = 'position:fixed;opacity:0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      ta.remove();
+      // Try the legacy copy method below when Clipboard API is unavailable/blocked.
     }
+
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    textarea.style.pointerEvents = 'none';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+
+    let copied = false;
+    try {
+      copied = document.execCommand('copy');
+    } catch {
+      copied = false;
+    }
+    textarea.remove();
+    return copied;
   };
 
   const resetTimers = new WeakMap<HTMLButtonElement, number>();
   document.querySelectorAll<HTMLButtonElement>('[data-symbol]').forEach((btn) =>
     btn.addEventListener('click', async () => {
-      const symbol = btn.dataset.symbol!;
-      await copy(symbol);
+      const symbol = btn.dataset.symbol;
+      if (!symbol) return;
+
+      const didCopy = await copy(symbol);
+      if (!didCopy) return;
 
       const card = btn.closest('.sym-card');
       const copyButton = card?.querySelector<HTMLButtonElement>('.sym-copy-btn');
@@ -169,10 +195,10 @@ const name = (id: string) => T.categories[id];
 
       const previousTimer = resetTimers.get(copyButton);
       if (previousTimer) window.clearTimeout(previousTimer);
-      label.textContent = T.copied;
+      label.textContent = copiedLabel;
       copyButton.classList.add('is-copied');
       const timer = window.setTimeout(() => {
-        label.textContent = T.copy;
+        label.textContent = copyLabel;
         copyButton.classList.remove('is-copied');
         resetTimers.delete(copyButton);
       }, 1600);
