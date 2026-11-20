@@ -1,7 +1,7 @@
 ---
 translationId: "snapchat-usernames"
 slug: "snapchat-username-ideas"
-title: "Username Ideas for Snapchat: 150+ Cool, Cute & Unique Names for 2026"
+title: "Usernames Ideas for Snapchat: 150+ Cool, Cute & Unique Nickname IDs for 2026 "
 description: "Need a Snapchat name that feels like you? Explore 150+ cool, cute, funny, aesthetic, and unique username ideas for boys and girls."
 image: "/images/snapchat-username-ideas.webp"
 tags: ["Best Snapchat Names", "Usernames for snap", "cool usernames", "cute usernames", "aesthetic names", "Snapchat nicknames"]
