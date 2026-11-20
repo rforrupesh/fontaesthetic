@@ -42,10 +42,10 @@ const name = (id: string) => T.categories[id];
           <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
             <span aria-hidden="true">{c.icon}</span>{name(c.id)}
           </h2>
-          <div class="grid grid-cols-[repeat(auto-fill,minmax(88px,1fr))] gap-2.5">
+          <div class="sym-masonry">
             {c.items.map((s) => (
               <div class="sym-card flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-2">
-                <button type="button" data-symbol={s} aria-label={`${T.copy} ${s}`} class="sym-btn flex h-14 w-full items-center justify-center rounded-md text-3xl">
+                <button type="button" data-symbol={s} aria-label={`${T.copy} ${s}`} class="sym-btn flex min-h-14 w-full items-center justify-center rounded-md px-1 py-2 text-3xl">
                   {s}
                 </button>
                 <button type="button" data-symbol={s} class="sym-copy-btn inline-flex w-full items-center justify-center gap-1.5 rounded-md border border-border px-2 py-1.5 text-xs font-medium text-text-muted" aria-label={`${T.copy} ${s}`}>
@@ -74,7 +74,34 @@ const name = (id: string) => T.categories[id];
   .sym-chips::-webkit-scrollbar { display: none; }
   .sym-section { scroll-margin-top: calc(var(--header-h) + 4rem); }
   @media (min-width: 768px) { .sym-section { scroll-margin-top: calc(var(--header-h) + 1.5rem); } }
-  .sym-card { min-width: 0; transition: border-color .15s, background-color .15s; }
+  /* Pinterest-style masonry: cards flow into columns and grow to fit their symbols. */
+  .sym-masonry {
+    columns: 2;
+    column-gap: .625rem;
+  }
+  .sym-card {
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 .625rem;
+    display: inline-flex;
+    vertical-align: top;
+    break-inside: avoid;
+    overflow: hidden;
+    transition: border-color .15s, background-color .15s;
+  }
+  .sym-btn {
+    min-height: 3.5rem;
+    height: auto;
+    line-height: 1.35;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+  }
+  .sym-copy-btn { flex: 0 0 auto; }
+  @media (min-width: 480px) { .sym-masonry { columns: 3; } }
+  @media (min-width: 768px) { .sym-masonry { columns: 4; } }
+  @media (min-width: 1100px) { .sym-masonry { columns: 5; } }
   .sym-card:hover { border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-border)); }
   .sym-btn, .sym-copy-btn { cursor: pointer; transition: transform .12s, border-color .12s, background-color .12s, color .12s; }
   .sym-btn:hover { background: var(--color-surface-2); transform: translateY(-1px); }
