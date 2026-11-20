@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BioMaker from '../components/BioMaker.astro';
+import FaqSection from '../components/FaqSection.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import BreadcrumbSchema from '../components/schema/BreadcrumbSchema.astro';
+import { getPath } from '../i18n';
+
+const lang = 'en';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const pagePath = '/aesthetic-bio-maker/';
+const pageUrl = siteUrl + getPath(lang, pagePath);
+
+const title = 'Aesthetic Bio Maker: Copy and Paste Fancy Bios (Free)';
+const description = 'Type your name and get copy-ready aesthetic bios in fancy fonts with cute, dark and minimal templates. Free, no sign-up.';
+
+const crumbs = [
+  { name: 'Home', url: siteUrl + getPath(lang, '/') },
+  { name: 'Aesthetic Bio Maker', url: pageUrl },
+];
+
+const faqs = [
+  { question: 'Is the aesthetic bio maker free?', answer: 'Yes. It is free to use, with no sign-up, no limits and no watermark. Type your text, pick a font and a mood, and copy as many bios as you like.' },
+  { question: 'Where can I use these bios?', answer: 'Paste them into your Instagram, TikTok, Discord, Snapchat or X profile, or anywhere else that accepts text. The bios are plain Unicode text, so there is nothing to install.' },
+  { question: 'Why does a bio show boxes or question marks?', answer: 'Some phones and apps cannot display every Unicode character. Try another font or mood, and check how the bio looks in your profile before you save it.' },
+  { question: 'Can I style only some words in a bio?', answer: 'Yes. Select the words you want to change inside a bio and a small toolbar appears. Pick bold, italic, cursive, underline and more, or choose Normal to remove the style.' },
+  { question: 'Is my text sent to a server?', answer: 'No. Everything runs in your browser. The text you type stays on your device.' },
+];
+
+const webApp = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Aesthetic Bio Maker',
+  url: pageUrl,
+  description,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any (runs in a web browser)',
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  publisher: { '@type': 'Organization', name: 'AestheticFonts', url: siteUrl },
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+};
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  path={pagePath}
+  availableLangs={['en']}
+>
+  <div class="wrap pt-4"><Breadcrumb items={crumbs} /></div>
+  <BioMaker />
+
+  <article class="prose wrap max-w-[820px] mx-auto py-10">
+    <h2>How it works</h2>
+    <p>Your text is turned into Unicode fonts and placed inside decorative templates. Tap <strong>Copy</strong> on a bio and paste it into your Instagram, TikTok or Discord profile. To style only some words, select them inside a bio and pick a style from the toolbar. Nothing is uploaded: everything runs in your browser.</p>
+    <h2>If a bio looks like boxes</h2>
+    <p>Some phones and apps cannot show every Unicode character. Try another font or mood, and check how it looks in your profile before you save it. Want to know why this happens? Read our guide on <a href={getPath('en', '/blog/unicode-empty-boxes/')}>Unicode empty boxes</a>.</p>
+    <p>For plain fancy text without templates, try the <a href={getPath('en', '/')}>font generator</a>.</p>
+  </article>
+
+  <FaqSection lang={lang} heading="Aesthetic Bio Maker FAQ" items={faqs} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(webApp)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <BreadcrumbSchema items={crumbs} />
+</BaseLayout>
