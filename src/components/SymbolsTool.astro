@@ -50,7 +50,7 @@ const name = (id: string) => T.categories[id];
                 </button>
                 <button type="button" data-symbol={s} class="sym-copy-btn inline-flex w-full items-center justify-center gap-1.5 rounded-md border border-border px-2 py-1.5 text-xs font-medium text-text-muted" aria-label={`${T.copy} ${s}`}>
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
-                  {T.copy}
+                  <span class="sym-copy-label">{T.copy}</span>
                 </button>
               </div>
             ))}
@@ -60,11 +60,6 @@ const name = (id: string) => T.categories[id];
     </div>
   </div>
 
-  <!-- Copied bar (bottom) -->
-  <div id="sym-toast" role="status" aria-live="polite" class="sym-toast fixed left-1/2 bottom-5 z-[60] -translate-x-1/2 flex items-center gap-3 px-4 py-2.5 rounded-full bg-surface-2 border border-border shadow-lg">
-    <span id="sym-toast-char" class="text-2xl leading-none"></span>
-    <span class="text-sm font-medium">{T.copied}</span>
-  </div>
 </div>
 
 <style>
@@ -105,11 +100,9 @@ const name = (id: string) => T.categories[id];
   .sym-card:hover { border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-border)); }
   .sym-btn, .sym-copy-btn { cursor: pointer; transition: transform .12s, border-color .12s, background-color .12s, color .12s; }
   .sym-btn:hover { background: var(--color-surface-2); transform: translateY(-1px); }
-  .sym-copy-btn:hover { border-color: var(--color-primary); color: var(--color-primary); background: var(--color-surface-2); }
+  .sym-copy-btn:hover, .sym-copy-btn.is-copied { border-color: var(--color-primary); color: var(--color-primary); background: var(--color-surface-2); }
   .sym-btn:active, .sym-copy-btn:active { transform: scale(.96); }
   .sym-btn:focus-visible, .sym-copy-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
-  .sym-toast { opacity: 0; pointer-events: none; transform: translate(-50%, 12px); transition: opacity .2s, transform .2s; }
-  .sym-toast.is-show { opacity: 1; transform: translate(-50%, 0); }
   html { scroll-behavior: smooth; }
 </style>
 
@@ -148,11 +141,7 @@ const name = (id: string) => T.categories[id];
     })
   );
 
-  // Symbol ya uske neeche Copy button click = same symbol auto-copy + "Copied" bar
-  const toast = document.getElementById('sym-toast')!;
-  const toastChar = document.getElementById('sym-toast-char')!;
-  let timer: number;
-
+  // Copy symbol and show the confirmation directly inside that card's Copy button.
   const copy = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -167,14 +156,27 @@ const name = (id: string) => T.categories[id];
     }
   };
 
+  const resetTimers = new WeakMap<HTMLButtonElement, number>();
   document.querySelectorAll<HTMLButtonElement>('[data-symbol]').forEach((btn) =>
     btn.addEventListener('click', async () => {
-      const s = btn.dataset.symbol!;
-      await copy(s);
-      toastChar.textContent = s;
-      toast.classList.add('is-show');
-      clearTimeout(timer);
-      timer = window.setTimeout(() => toast.classList.remove('is-show'), 1600);
+      const symbol = btn.dataset.symbol!;
+      await copy(symbol);
+
+      const card = btn.closest('.sym-card');
+      const copyButton = card?.querySelector<HTMLButtonElement>('.sym-copy-btn');
+      const label = copyButton?.querySelector<HTMLElement>('.sym-copy-label');
+      if (!copyButton || !label) return;
+
+      const previousTimer = resetTimers.get(copyButton);
+      if (previousTimer) window.clearTimeout(previousTimer);
+      label.textContent = T.copied;
+      copyButton.classList.add('is-copied');
+      const timer = window.setTimeout(() => {
+        label.textContent = T.copy;
+        copyButton.classList.remove('is-copied');
+        resetTimers.delete(copyButton);
+      }, 1600);
+      resetTimers.set(copyButton, timer);
     })
   );
 </script>
