@@ -24,4 +24,7 @@ const crumbs = [
   <div class="wrap pt-4"><Breadcrumb items={crumbs} /></div>
   <PageHero title={T.h1} subtitle={T.subtitle} />
   <SymbolsTool lang={lang} />
+
+  <!-- Page-specific article content is supplied by each language route. -->
+  <slot />
 </BaseLayout>
