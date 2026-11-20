@@ -47,6 +47,22 @@ function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+// Schema style: bold-Fraktur uppercase + double-struck lowercase,
+// each character wrapped with 〖 〗 and the combining double-vertical-stroke mark.
+const SCHEMA_UPPER = toChars('𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅');
+const SCHEMA_LOWER = toChars('𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫');
+function schemaTransform(s: string): string {
+  const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const lower = 'abcdefghijklmnopqrstuvwxyz';
+  return toChars(s).map((ch) => {
+    const upperIndex = upper.indexOf(ch);
+    if (upperIndex !== -1) return `〖${SCHEMA_UPPER[upperIndex]}\u20E6〗`;
+    const lowerIndex = lower.indexOf(ch);
+    if (lowerIndex !== -1) return `〖${SCHEMA_LOWER[lowerIndex]}\u20E6〗`;
+    return ch;
+  }).join('');
+}
+
 const RAW: Omit<FontStyle, 'slug'>[] = [
   { name: 'Bold', map: makeMap('𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙', '𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳', '𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗') },
   { name: 'Italic', map: makeMap('𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍', '𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧') },
@@ -71,6 +87,7 @@ const RAW: Omit<FontStyle, 'slug'>[] = [
   // render reliably everywhere, same as Bold/Italic/Script above) ---
   { name: 'Cursive Bold', map: makeMap('𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩', '𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃') },
   { name: 'Fraktur Bold', map: makeMap('𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅', '𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟') },
+  { name: 'Schema', transform: schemaTransform },
   { name: 'Sans Serif', map: makeMap('𝖠𝖡𝖢𝖣𝖤𝖥𝖦𝖧𝖨𝖩𝖪𝖫𝖬𝖭𝖮𝖯𝖰𝖱𝖲𝖳𝖴𝖵𝖶𝖷𝖸𝖹', '𝖺𝖻𝖼𝖽𝖾𝖿𝗀𝗁𝗂𝗃𝗄𝗅𝗆𝗇𝗈𝗉𝗊𝗋𝗌𝗍𝗎𝗏𝗐𝗑𝗒𝗓') },
   { name: 'Sans Bold', map: makeMap('𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭', '𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇', '𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵') },
   { name: 'Sans Italic', map: makeMap('𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡', '𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻') },
@@ -246,14 +263,81 @@ const DECORATIONS: [string, string, string][] = [
   ['Sakura', '🌸 ', ' 🌸'], ['Gems', '💎 ', ' 💎'], ['Butterflies', '🦋 ', ' 🦋'],
 ];
 
-// Alternates alphabets letter by letter (spaces don't count): B𝘰𝓵𝔡 -> mixed look.
+// Select a different Unicode alphabet for each adjacent letter. A seeded
+// pseudo-random sequence keeps the same input stable between renders.
+function hashText(text: string): number {
+  let hash = 2166136261;
+  for (const ch of toChars(text)) {
+    hash ^= ch.codePointAt(0) || 0;
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
 function mixer(names: string[]) {
-  const styles = names.map((n) => BY_NAME.get(n)!).filter(Boolean);
+  const styles = names.map((n) => BY_NAME.get(n)).filter((st): st is FontStyle => Boolean(st));
   return (text: string) => {
-    let i = 0;
-    return toChars(text).map((ch) => (/\s/.test(ch) ? ch : convert(ch, styles[i++ % styles.length]))).join('');
+    // Keep the same output for the same input, but choose a genuinely different
+    // Unicode alphabet for every character. Some decorative alphabets do not
+    // contain every Latin letter, so only use a style when it changes this char.
+    let seed = hashText(text) || 1;
+    let previous = -1;
+    const used = new Set<number>();
+    const nextRandom = () => {
+      seed ^= seed << 13;
+      seed ^= seed >>> 17;
+      seed ^= seed << 5;
+      return seed >>> 0;
+    };
+    const pick = (choices: number[]) => {
+      const shuffled = [...choices];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = nextRandom() % (i + 1);
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled[0];
+    };
+
+    return toChars(text).map((ch) => {
+      if (/\s/.test(ch)) return ch;
+
+      // Exclude styles that would leave this character unchanged. This avoids
+      // plain Latin letters appearing in the middle of a supposedly mixed word.
+      const available = styles
+        .map((style, index) => ({ style, index, output: convert(ch, style) }))
+        .filter(({ output }) => output !== ch);
+
+      if (!available.length) return ch;
+
+      let choices = available
+        .filter(({ index }) => !used.has(index) && index !== previous)
+        .map(({ index }) => index);
+
+      // Use every available alphabet once before starting another cycle.
+      if (!choices.length) {
+        used.clear();
+        choices = available
+          .filter(({ index }) => index !== previous)
+          .map(({ index }) => index);
+      }
+      if (!choices.length) choices = available.map(({ index }) => index);
+
+      const index = pick(choices);
+      used.add(index);
+      previous = index;
+      return convert(ch, styles[index]);
+    }).join('');
   };
 }
+
+// Random Mix draws from many unrelated alphabets, rather than only two.
+const RANDOM_MIX_ALPHABETS = [
+  'Bold', 'Italic', 'Bold Italic', 'Cursive', 'Cursive Bold',
+  'Double Struck', 'Fraktur', 'Fraktur Bold', 'Monospace',
+  'Sans Bold', 'Sans Italic', 'Sans Bold Italic', 'Small Caps',
+  'Bubbles', 'Dark Squares', 'Squiggle', 'Squiggle 2',
+  'Squiggle 3', 'Squiggle 4', 'Crazy', 'Crazy 2', 'Tribal', 'Asian',
+];
 
 function altCase(name: string) {
   const st = BY_NAME.get(name)!;
@@ -263,7 +347,9 @@ function altCase(name: string) {
   };
 }
 
-const mixes: Omit<FontStyle, 'slug'>[] = [];
+const mixes: Omit<FontStyle, 'slug'>[] = [
+  { name: 'Random Mix', transform: mixer(RANDOM_MIX_ALPHABETS) },
+];
 for (let a = 0; a < MIX_ALPHABETS.length; a++) {
   for (let b = a + 1; b < MIX_ALPHABETS.length; b++) {
     const names = [MIX_ALPHABETS[a], MIX_ALPHABETS[b]];
@@ -308,7 +394,7 @@ function interleave<T>(a: T[], b: T[]): T[] {
 }
 
 // The headline styles come first, in this order; everything else follows.
-const PRIORITY = ['Fraktur', 'Fraktur Bold', 'Double Struck', 'Cursive', 'Cursive Bold', 'Bubbles', 'Dark Bubbles', 'Squares', 'Dark Squares',
+const PRIORITY = ['Fraktur', 'Fraktur Bold', 'Schema', 'Double Struck', 'Cursive', 'Cursive Bold', 'Bubbles', 'Dark Bubbles', 'Squares', 'Dark Squares',
   'Bold', 'Sans Bold', 'Italic', 'Bold Italic', 'Squiggle', 'Squiggle 2', 'Squiggle 3', 'Squiggle 4', 'Strikethrough', 'Tilde Strikethrough',
   'Slash Through', 'Underline', 'Seagull', 'Arrow Below', 'Upside Down', 'Upside Down 2', 'Crazy', 'Crazy 2', 'Tribal', 'Asian',
   'Kirby Hug', 'Cool Emoticon', 'Lenny Emoticon', 'Emojis', 'Emojis & Fancy Symbols'];
