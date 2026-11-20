@@ -37,7 +37,7 @@ Not every Snapchat name needs to be fancy or complicated. Sometimes, two simple 
 19. @StarryNight
 20. @OnlyGoodVibes
 
-## **Cool Names for Snapchat**
+### **Cool Names for Snapchat**
 
 Want something modern, confident, and easy to remember? These cool name ideas have a bold personality without making your profile look too complicated.
 
@@ -57,7 +57,7 @@ Want something modern, confident, and easy to remember? These cool name ideas ha
 14. @StormChaser
 15. @MrUnknown
 
-## **Cute Names for Snapchat**
+### **Cute Names for Snapchat**
 
 Cute names often combine sweet words, favourite things, and playful nicknames. If you like a soft and friendly profile style, these suggestions might suit you.
 
@@ -77,7 +77,7 @@ Cute names often combine sweet words, favourite things, and playful nicknames. I
 14. @RosyHeart
 15. @LovelyPeach
 
-## **Aesthetic Name Ideas for Snapchat**
+### **Aesthetic Name Ideas for Snapchat**
 
 Aesthetic names are inspired by dreamy words, nature, soft colours, and minimal styles. These options can give your profile a calm and creative feel.
 
@@ -97,7 +97,7 @@ Aesthetic names are inspired by dreamy words, nature, soft colours, and minimal 
 14. @BlueHorizon
 15. @FairyDust
 
-## **Baddie Snapchat Name Ideas**
+### **Baddie Snapchat Name Ideas**
 
 Looking for a [bold name](https://aestheticfonts.in/blog/how-to-bold-text/) with a confident vibe? These baddie-inspired suggestions are influenced by fashion, attitude, and stylish online personalities.
 
@@ -117,7 +117,7 @@ Looking for a [bold name](https://aestheticfonts.in/blog/how-to-bold-text/) with
 14. @NoRulesQueen
 15. @SassySoul
 
-## **Funny Names for Snapchat**
+### **Funny Names for Snapchat**
 
 If memes, jokes, and funny conversations are part of your personality, try a name that makes your friends smile. These funny nicknames are perfect for a playful profile.
 
@@ -137,7 +137,7 @@ If memes, jokes, and funny conversations are part of your personality, try a nam
 14. @CrazyPickle
 15. @JustOneMore
 
-## **Creative and Cute Username Ideas**
+### **Creative and Cute Username Ideas**
 
 Sometimes, the most interesting names come from combining two unrelated words. Try these creative combinations if you want something different from common nicknames.
 
@@ -157,7 +157,7 @@ Sometimes, the most interesting names come from combining two unrelated words. T
 14. @BubbleBloom
 15. @MarshmallowSky
 
-## **Short Snapchat ID Ideas**
+### **Short Snapchat ID Ideas**
 
 Short names are easy to type, remember, and share with friends. If you prefer a simple profile ID, these four- and five-letter suggestions are worth exploring.
 
@@ -177,7 +177,7 @@ Short names are easy to type, remember, and share with friends. If you prefer a 
 14. @Kiki
 15. @Vexo
 
-## **Snapchat Names for Girls**
+### **Snapchat Names for Girls**
 
 From pretty and cute nicknames to modern and aesthetic names, these ideas cover different styles. Pick one that matches your personality or the kind of profile you want to create.
 
@@ -197,7 +197,7 @@ From pretty and cute nicknames to modern and aesthetic names, these ideas cover 
 14. @StarryGirl
 15. @PrettySoul
 
-## **Snapchat Names for Boys**
+### **Snapchat Names for Boys**
 
 Want something cool without using a complicated combination? These suggestions mix confidence, adventure, humour, and modern nickname styles.
 
@@ -217,7 +217,7 @@ Want something cool without using a complicated combination? These suggestions m
 14. @BossMode
 15. @CaptainCool
 
-## **Stylish Snapchat Display Name Ideas**
+### **Stylish Snapchat Display Name Ideas**
 
 A display name is a good place to experiment with decorative characters, fancy text, and symbols. If you like stylish typography, these options can give your profile a different look.
 
