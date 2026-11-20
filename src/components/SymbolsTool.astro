@@ -42,11 +42,17 @@ const name = (id: string) => T.categories[id];
           <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
             <span aria-hidden="true">{c.icon}</span>{name(c.id)}
           </h2>
-          <div class="grid grid-cols-[repeat(auto-fill,minmax(64px,1fr))] gap-2.5">
+          <div class="grid grid-cols-[repeat(auto-fill,minmax(88px,1fr))] gap-2.5">
             {c.items.map((s) => (
-              <button type="button" data-symbol={s} aria-label={`${T.copy} ${s}`} class="sym-btn aspect-square flex items-center justify-center rounded-lg border border-border bg-surface text-3xl">
-                {s}
-              </button>
+              <div class="sym-card flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-2">
+                <button type="button" data-symbol={s} aria-label={`${T.copy} ${s}`} class="sym-btn flex h-14 w-full items-center justify-center rounded-md text-3xl">
+                  {s}
+                </button>
+                <button type="button" data-symbol={s} class="sym-copy-btn inline-flex w-full items-center justify-center gap-1.5 rounded-md border border-border px-2 py-1.5 text-xs font-medium text-text-muted" aria-label={`${T.copy} ${s}`}>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+                  {T.copy}
+                </button>
+              </div>
             ))}
           </div>
         </section>
@@ -68,9 +74,13 @@ const name = (id: string) => T.categories[id];
   .sym-chips::-webkit-scrollbar { display: none; }
   .sym-section { scroll-margin-top: calc(var(--header-h) + 4rem); }
   @media (min-width: 768px) { .sym-section { scroll-margin-top: calc(var(--header-h) + 1.5rem); } }
-  .sym-btn { cursor: pointer; transition: transform .12s, border-color .12s, background-color .12s; }
-  .sym-btn:hover { border-color: var(--color-primary); background: var(--color-surface-2); transform: translateY(-2px); }
-  .sym-btn:active { transform: scale(.94); }
+  .sym-card { min-width: 0; transition: border-color .15s, background-color .15s; }
+  .sym-card:hover { border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-border)); }
+  .sym-btn, .sym-copy-btn { cursor: pointer; transition: transform .12s, border-color .12s, background-color .12s, color .12s; }
+  .sym-btn:hover { background: var(--color-surface-2); transform: translateY(-1px); }
+  .sym-copy-btn:hover { border-color: var(--color-primary); color: var(--color-primary); background: var(--color-surface-2); }
+  .sym-btn:active, .sym-copy-btn:active { transform: scale(.96); }
+  .sym-btn:focus-visible, .sym-copy-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
   .sym-toast { opacity: 0; pointer-events: none; transform: translate(-50%, 12px); transition: opacity .2s, transform .2s; }
   .sym-toast.is-show { opacity: 1; transform: translate(-50%, 0); }
   html { scroll-behavior: smooth; }
@@ -111,7 +121,7 @@ const name = (id: string) => T.categories[id];
     })
   );
 
-  // Click = auto copy + niche "Copied" bar
+  // Symbol ya uske neeche Copy button click = same symbol auto-copy + "Copied" bar
   const toast = document.getElementById('sym-toast')!;
   const toastChar = document.getElementById('sym-toast-char')!;
   let timer: number;
