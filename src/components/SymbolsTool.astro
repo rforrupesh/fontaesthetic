@@ -1,0 +1,143 @@
+---
+import { symbolCategories } from '../data/symbols';
+import { symbolsText } from '../lib/symbolsText';
+
+interface Props { lang: string; }
+const T = symbolsText(Astro.props.lang);
+const name = (id: string) => T.categories[id];
+---
+
+<div class="symbols-tool wrap py-6 md:py-8">
+  <!-- Phone: sticky horizontal category bar -->
+  <nav
+    id="sym-chips"
+    aria-label={T.h1}
+    class="sym-chips md:hidden sticky z-40 -mx-5 px-5 py-2 flex gap-2 overflow-x-auto bg-bg/95 backdrop-blur-sm border-b border-border"
+  >
+    {symbolCategories.map((c) => (
+      <a href={`#${c.id}`} data-cat={c.id} class="sym-cat shrink-0 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium border border-border bg-surface text-text-muted">
+        <span aria-hidden="true">{c.icon}</span>{name(c.id)}
+      </a>
+    ))}
+  </nav>
+
+  <div class="md:grid md:grid-cols-[220px_1fr] md:gap-8 mt-4 md:mt-0">
+    <!-- Desktop: left category list -->
+    <aside class="hidden md:block">
+      <nav id="sym-side" aria-label={T.h1} class="sticky flex flex-col gap-1" style="top: calc(var(--header-h) + 1.5rem)">
+        {symbolCategories.map((c) => (
+          <a href={`#${c.id}`} data-cat={c.id} class="sym-cat flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[0.95rem] font-medium text-text-muted border border-transparent">
+            <span aria-hidden="true" class="w-6 text-center text-lg">{c.icon}</span>
+            <span>{name(c.id)}</span>
+            <span class="ms-auto text-xs opacity-60">{c.items.length}</span>
+          </a>
+        ))}
+      </nav>
+    </aside>
+
+    <!-- Right: all symbols -->
+    <div class="min-w-0 flex flex-col gap-10">
+      {symbolCategories.map((c) => (
+        <section id={c.id} data-section class="sym-section">
+          <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+            <span aria-hidden="true">{c.icon}</span>{name(c.id)}
+          </h2>
+          <div class="grid grid-cols-[repeat(auto-fill,minmax(64px,1fr))] gap-2.5">
+            {c.items.map((s) => (
+              <button type="button" data-symbol={s} aria-label={`${T.copy} ${s}`} class="sym-btn aspect-square flex items-center justify-center rounded-lg border border-border bg-surface text-3xl">
+                {s}
+              </button>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+
+  <!-- Copied bar (bottom) -->
+  <div id="sym-toast" role="status" aria-live="polite" class="sym-toast fixed left-1/2 bottom-5 z-[60] -translate-x-1/2 flex items-center gap-3 px-4 py-2.5 rounded-full bg-surface-2 border border-border shadow-lg">
+    <span id="sym-toast-char" class="text-2xl leading-none"></span>
+    <span class="text-sm font-medium">{T.copied}</span>
+  </div>
+</div>
+
+<style>
+  .sym-cat { transition: background-color .15s, color .15s, border-color .15s; }
+  .sym-cat.is-active { background: color-mix(in srgb, var(--color-primary) 15%, transparent); color: var(--color-primary); border-color: color-mix(in srgb, var(--color-primary) 40%, transparent); }
+  .sym-chips { top: var(--header-h); scrollbar-width: none; }
+  .sym-chips::-webkit-scrollbar { display: none; }
+  .sym-section { scroll-margin-top: calc(var(--header-h) + 4rem); }
+  @media (min-width: 768px) { .sym-section { scroll-margin-top: calc(var(--header-h) + 1.5rem); } }
+  .sym-btn { cursor: pointer; transition: transform .12s, border-color .12s, background-color .12s; }
+  .sym-btn:hover { border-color: var(--color-primary); background: var(--color-surface-2); transform: translateY(-2px); }
+  .sym-btn:active { transform: scale(.94); }
+  .sym-toast { opacity: 0; pointer-events: none; transform: translate(-50%, 12px); transition: opacity .2s, transform .2s; }
+  .sym-toast.is-show { opacity: 1; transform: translate(-50%, 0); }
+  html { scroll-behavior: smooth; }
+</style>
+
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.sym-cat')];
+  const sections = [...document.querySelectorAll<HTMLElement>('[data-section]')];
+  const chips = document.getElementById('sym-chips');
+  let lock = false;
+
+  const setActive = (id: string) => {
+    links.forEach((a) => {
+      const on = a.dataset.cat === id;
+      a.classList.toggle('is-active', on);
+      if (on && chips && chips.contains(a)) {
+        chips.scrollTo({ left: a.offsetLeft - chips.clientWidth / 2 + a.clientWidth / 2, behavior: 'smooth' });
+      }
+    });
+  };
+  setActive(sections[0]?.id);
+
+  // Scroll-spy: jo section screen ke upar hissay me hai wahi highlight
+  const io = new IntersectionObserver(
+    (entries) => {
+      if (lock) return;
+      entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
+    },
+    { rootMargin: '-25% 0px -65% 0px' }
+  );
+  sections.forEach((s) => io.observe(s));
+
+  links.forEach((a) =>
+    a.addEventListener('click', () => {
+      setActive(a.dataset.cat!);
+      lock = true;
+      setTimeout(() => (lock = false), 800);
+    })
+  );
+
+  // Click = auto copy + niche "Copied" bar
+  const toast = document.getElementById('sym-toast')!;
+  const toastChar = document.getElementById('sym-toast-char')!;
+  let timer: number;
+
+  const copy = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+  };
+
+  document.querySelectorAll<HTMLButtonElement>('[data-symbol]').forEach((btn) =>
+    btn.addEventListener('click', async () => {
+      const s = btn.dataset.symbol!;
+      await copy(s);
+      toastChar.textContent = s;
+      toast.classList.add('is-show');
+      clearTimeout(timer);
+      timer = window.setTimeout(() => toast.classList.remove('is-show'), 1600);
+    })
+  );
+</script>
