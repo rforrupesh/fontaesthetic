@@ -24,7 +24,7 @@
     "recent": "Recent Posts"
   },
   "tool": {
-    "placeholder": "Your Text",
+    "placeholder": "",
     "copy": "Copy",
     "copied": "Copied!",
     "favorite": "Add to favorites",
