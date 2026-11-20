@@ -36,11 +36,21 @@ const { Content, headings } = await render(post);
 const slug = post.data.slug ?? post.id.split('/').slice(1).join('/');
 
 const allPosts = await getCollection('blog', (e) => e.id.startsWith('en/'));
+// Prefer articles that share tags or categories. If there are not enough
+// matches, fill the remaining slots with the newest posts in this language.
+// This keeps the section useful for newly published articles with unique tags.
+const currentTags = new Set(post.data.tags.map((tag) => tag.trim().toLowerCase()));
+const currentCategories = new Set(post.data.categories.map((category) => category.trim().toLowerCase()));
 const related = allPosts
   .filter((p) => p.id !== post.id)
-  .filter((p) => p.data.tags.some((tag) => post.data.tags.includes(tag)))
+  .map((p) => {
+    const sharedTags = p.data.tags.filter((tag) => currentTags.has(tag.trim().toLowerCase())).length;
+    const sharedCategories = p.data.categories.filter((category) => currentCategories.has(category.trim().toLowerCase())).length;
+    return { post: p, score: sharedTags * 2 + sharedCategories };
+  })
+  .sort((a, b) => b.score - a.score || b.post.data.date.getTime() - a.post.data.date.getTime())
   .slice(0, 3)
-  .map((p) => ({
+  .map(({ post: p }) => ({
     title: p.data.title,
     description: p.data.description,
     image: p.data.image,
