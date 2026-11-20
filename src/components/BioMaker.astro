@@ -112,14 +112,14 @@ const i18n = {
   .bm-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
   /* Selection toolbar (style selected words inside a bio) */
-  .bm-tip{position:fixed;left:0;top:0;z-index:100;display:flex;flex-wrap:wrap;gap:4px;width:max-content;max-width:min(380px,calc(100vw - 16px));max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);overflow-y:auto;overscroll-behavior:contain;padding:6px;background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border);border-radius:14px;box-shadow:0 14px 34px -10px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.12);-webkit-user-select:none;user-select:none;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(12px) scale(.86);transform-origin:var(--ox,50%) 100%;transition:opacity .15s ease,transform .15s ease,visibility 0s linear .15s}
-  .bm-tip[data-pos=bottom]{transform:translateY(-12px) scale(.86);transform-origin:var(--ox,50%) 0}
-  .bm-tip.show{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:opacity .2s ease,transform .42s cubic-bezier(.34,1.56,.64,1),visibility 0s}
-  .bm-tip button{flex:1 0 40px;min-width:40px;min-height:40px;padding:0 6px;border:0;border-radius:9px;background:transparent;color:var(--color-text);font-size:17px;line-height:1;cursor:pointer;touch-action:manipulation;opacity:0;transform:translateY(8px) scale(.8)}
-  .bm-tip.show button{opacity:1;transform:none;transition:opacity .25s ease calc(var(--i,0) * 16ms + 70ms),transform .4s cubic-bezier(.34,1.56,.64,1) calc(var(--i,0) * 16ms + 70ms),background-color .12s ease,color .12s ease}
-  @media(hover:hover){.bm-tip.show button:hover{background:color-mix(in srgb,var(--color-text) 10%,transparent);transform:translateY(-2px) scale(1.14);transition-delay:0s}}
-  .bm-tip.show button:active{background:color-mix(in srgb,var(--color-primary) 22%,transparent);color:var(--color-primary);transform:scale(.9);transition-delay:0s}
-  .bm-tip button.bm-hit{animation:bm-hit .4s cubic-bezier(.34,1.56,.64,1)}
+  /* Toolbar motion: only transform + opacity (GPU friendly), short ease-out, no overshoot. */
+  .bm-tip{position:fixed;left:0;top:0;z-index:100;display:flex;flex-wrap:wrap;gap:4px;width:max-content;max-width:min(380px,calc(100vw - 16px));max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);overflow-y:auto;overscroll-behavior:contain;padding:6px;background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border);border-radius:14px;box-shadow:0 14px 34px -10px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.12);-webkit-user-select:none;user-select:none;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px) scale(.95);transform-origin:var(--ox,50%) 100%;transition:opacity .12s ease-in,transform .12s ease-in,visibility 0s linear .12s}
+  .bm-tip[data-pos=bottom]{transform:translateY(-8px) scale(.95);transform-origin:var(--ox,50%) 0}
+  .bm-tip.show{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:opacity .18s ease-out,transform .18s cubic-bezier(.2,.8,.2,1),visibility 0s}
+  .bm-tip button{flex:1 0 40px;min-width:40px;min-height:40px;padding:0 6px;border:0;border-radius:9px;background:transparent;color:var(--color-text);font-size:17px;line-height:1;cursor:pointer;touch-action:manipulation;transition:transform .12s ease-out,background-color .12s ease-out,color .12s ease-out}
+  @media(hover:hover){.bm-tip button:hover{background:color-mix(in srgb,var(--color-text) 10%,transparent);transform:scale(1.06)}}
+  .bm-tip button:active{background:color-mix(in srgb,var(--color-primary) 22%,transparent);color:var(--color-primary);transform:scale(.94)}
+  .bm-tip button.bm-hit{animation:bm-hit .22s ease-out both}
   .bm-tip button:focus-visible{outline:2px solid var(--color-primary);outline-offset:-2px}
   .bm-tip .bm-sep{flex:0 0 100%;height:1px;margin:2px 0;background:var(--color-border)}
   @media(pointer:coarse){.bm-tip button{min-height:44px;flex-basis:44px}}
@@ -167,16 +167,18 @@ const i18n = {
     .bm-fl.is-open .bm-scrim{animation:bm-fade .22s ease-out}
     @media(min-width:560px) and (max-width:860px){.bm-fl.is-open .bm-fbody{animation-name:bm-sheet-c}}
   }
+  /* Reduced motion = less movement, not zero feedback: keep a quick fade, drop the scale/slide. */
   @media(prefers-reduced-motion:reduce){
-    .bm-tip,.bm-tip.show,.bm-tip button,.bm-tip.show button{transition:none!important}
-    .bm-tip button{opacity:1;transform:none}
+    .bm-tip,.bm-tip[data-pos=bottom]{transform:none;transition:opacity .1s linear,visibility 0s linear .1s}
+    .bm-tip.show{transition:opacity .1s linear,visibility 0s}
+    .bm-tip button,.bm-tip button:hover,.bm-tip button:active{transform:none}
     .bm-tip button.bm-hit{animation:none}
     .bm-ftoggle:active,.bm-chip:active,.bm-copy:active{transform:none}
   }
   @keyframes bm-sheet{from{transform:translateY(100%)}to{transform:none}}
   @keyframes bm-sheet-c{from{transform:translate(-50%,100%)}to{transform:translateX(-50%)}}
   @keyframes bm-fade{from{opacity:0}to{opacity:1}}
-  @keyframes bm-hit{0%{transform:scale(.7)}55%{transform:scale(1.22);background:color-mix(in srgb,var(--color-primary) 28%,transparent)}100%{transform:scale(1)}}
+  @keyframes bm-hit{0%{transform:scale(.88)}100%{transform:scale(1)}}
 </style>
 
 <script>
@@ -437,11 +439,10 @@ const TIPS=[["bold","Bold"],["italic","Italic"],["bolditalic","Bold italic"],["u
 const tipLabel=k=>k==="underline"?"U\u0332":k==="strike"?"S\u0336":k==="normal"?"Aa":convert("Ab",k);
 const tip=document.createElement("div");
 tip.className="bm-tip";tip.setAttribute("role","toolbar");tip.setAttribute("aria-label",I.toolbar);
-let tipIdx=0;
 TIPS.forEach(t=>{
  if(!t){const sp=document.createElement("span");sp.className="bm-sep";sp.setAttribute("aria-hidden","true");tip.append(sp);return}
  const b=document.createElement("button");
- b.style.setProperty("--i",tipIdx++);b.type="button";b.dataset.k=t[0];b.title=t[1];b.setAttribute("aria-label",t[1]);b.textContent=tipLabel(t[0]);
+ b.type="button";b.dataset.k=t[0];b.title=t[1];b.setAttribute("aria-label",t[1]);b.textContent=tipLabel(t[0]);
  tip.append(b);
 });
 document.body.append(tip);
