@@ -1,37 +1,47 @@
 ---
 // Aesthetic Bio Maker: type a name, get copy-ready bios in Unicode fonts + decorative templates.
 // Runs fully in the browser. Styles use the site's theme tokens (--color-*), so light/dark just work.
+import { bioText } from '../lib/bioMakerText';
+interface Props { lang?: string; }
+const { lang = 'en' } = Astro.props;
+const T = bioText(lang);
+// Only what the script needs (moods + dynamic messages) is passed to the browser.
+const i18n = {
+  moods: T.moods, showBios: T.showBios, done: T.done, showMore: T.showMore, numBios: T.numBios,
+  copy: T.copy, copied: T.copied, copiedLive: T.copiedLive, tooLong: T.tooLong, copyAria: T.copyAria,
+  toolbar: T.toolbar, applied: T.applied,
+};
 ---
 
-<section class="bm-root py-8 pb-6">
+<section class="bm-root py-8 pb-6" data-i18n={JSON.stringify(i18n)}>
   <div class="wrap">
     <div class="text-center mb-6">
-      <h1 class="text-[clamp(1.6rem,3.4vw,2.2rem)] mb-2">Aesthetic Bio Maker</h1>
-      <p class="text-text-muted text-sm max-w-[680px] mx-auto">Type your name or a few words. Pick a font and a mood, then copy any bio you like. Free, no sign-up, and nothing leaves your browser.</p>
+      <h1 class="text-[clamp(1.6rem,3.4vw,2.2rem)] mb-2">{T.h1}</h1>
+      <p class="text-text-muted text-sm max-w-[680px] mx-auto">{T.lead}</p>
     </div>
 
     <div class="bm-app">
       <section class="bm-in card p-3">
-        <label for="bm-txt">Your name or a few words</label>
-        <textarea id="bm-txt" rows="2" maxlength="150" placeholder="For example: mina, soft little life">mina, soft little life</textarea>
+        <label for="bm-txt">{T.label}</label>
+        <textarea id="bm-txt" rows="2" maxlength="150" dir="auto" placeholder={T.placeholder}>mina, soft little life</textarea>
       </section>
 
-      <aside class="bm-fl" id="bm-fl" aria-label="Filters">
-        <button class="bm-ftoggle" id="bm-ftoggle" type="button" aria-expanded="false" aria-controls="bm-fbody"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><b>Filters</b><span class="bm-fsum" id="bm-fsum"></span><span class="bm-chev" aria-hidden="true">▾</span></button>
+      <aside class="bm-fl" id="bm-fl" aria-label={T.filters}>
+        <button class="bm-ftoggle" id="bm-ftoggle" type="button" aria-expanded="false" aria-controls="bm-fbody"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><b>{T.filters}</b><span class="bm-fsum" id="bm-fsum"></span><span class="bm-chev" aria-hidden="true">▾</span></button>
         <div class="bm-scrim" id="bm-scrim"></div>
         <div class="bm-fbody" id="bm-fbody">
-          <div class="bm-fh"><h2>Filters</h2><button class="bm-link" id="bm-reset" type="button">Reset</button></div>
-          <div class="bm-grp" role="group" aria-labelledby="bm-g1"><div class="bm-gl" id="bm-g1">Font</div><div class="bm-chips" id="bm-fonts"></div></div>
-          <div class="bm-grp" role="group" aria-labelledby="bm-g2"><div class="bm-gl" id="bm-g2">Mood</div><div class="bm-chips" id="bm-moods"></div></div>
-          <button class="btn bm-apply" id="bm-done" type="button">Show bios</button>
+          <div class="bm-fh"><h2>{T.filters}</h2><button class="bm-link" id="bm-reset" type="button">{T.reset}</button></div>
+          <div class="bm-grp" role="group" aria-labelledby="bm-g1"><div class="bm-gl" id="bm-g1">{T.font}</div><div class="bm-chips" id="bm-fonts"></div></div>
+          <div class="bm-grp" role="group" aria-labelledby="bm-g2"><div class="bm-gl" id="bm-g2">{T.mood}</div><div class="bm-chips" id="bm-moods"></div></div>
+          <button class="btn bm-apply" id="bm-done" type="button">{T.done}</button>
         </div>
       </aside>
 
       <section class="bm-rs" aria-labelledby="bm-rh">
-        <div class="bm-rs-head"><h2 id="bm-rh">Your bios</h2><span id="bm-num"></span></div>
-        <p class="bm-empty" id="bm-empty" hidden>Type your name above and your bios will show up here.</p>
+        <div class="bm-rs-head"><h2 id="bm-rh">{T.yourBios}</h2><span id="bm-num"></span></div>
+        <p class="bm-empty" id="bm-empty" hidden>{T.empty}</p>
         <ul class="bm-list" id="bm-list"></ul>
-        <button class="btn bm-more" id="bm-more" type="button" hidden>Show more bios</button>
+        <button class="btn bm-more" id="bm-more" type="button" hidden>{T.showMore.replace("{n}", "")}</button>
       </section>
     </div>
   </div>
@@ -44,16 +54,16 @@
   .bm-root button,.bm-root textarea{touch-action:manipulation}
   .bm-root :focus-visible,.bm-tip :focus-visible{outline:3px solid var(--color-primary);outline-offset:2px}
 
-  .bm-app{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"in fl" "rs rs";max-width:1000px;margin:0 auto;text-align:left}
-  .bm-in{grid-area:in;min-width:0}.bm-fl{grid-area:fl}.bm-rs{grid-area:rs;min-width:0}
-  .bm-in label{display:block;font-weight:600;font-size:.9rem;margin-bottom:8px}
-  .bm-in textarea{display:block;width:100%;min-height:84px;padding:12px 14px;font-size:18px;line-height:1.5;border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface-2);color:var(--color-text);resize:vertical}
+  .bm-app{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"lb lb" "tx fl" "rs rs";align-items:stretch;gap:10px 10px;max-width:1000px;margin:0 auto;text-align:left}
+  .bm-in{display:contents}.bm-in label{grid-area:lb}.bm-in textarea{grid-area:tx}.bm-fl{grid-area:fl}.bm-rs{grid-area:rs;min-width:0}
+  .bm-in label{display:block;font-weight:600;font-size:.9rem}
+  .bm-in textarea{display:block;width:100%;min-width:0;height:52px;min-height:52px;padding:12px 14px;font-size:18px;line-height:1.5;border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface-2);color:var(--color-text);resize:vertical}
   .bm-in textarea:hover{border-color:var(--color-text-muted)}
   .bm-in textarea:focus{border-color:var(--color-primary)}
 
   /* Filter button (phone / tablet) */
-  .bm-fl{align-self:end}
-  .bm-ftoggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:68px;min-height:84px;padding:0 8px;text-align:center;color:var(--color-text);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:13px;cursor:pointer;transition:background .12s,border-color .12s,transform .08s}
+  .bm-fl{display:flex}
+  .bm-ftoggle{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:6px;min-height:52px;padding:0 14px;white-space:nowrap;text-align:center;color:var(--color-text);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:13px;cursor:pointer;transition:background .12s,border-color .12s,transform .08s}
   .bm-ftoggle b{font-weight:600}
   .bm-ftoggle:active{background:var(--bm-soft);border-color:var(--color-primary);transform:scale(.97)}
   .bm-fsum,.bm-chev{display:none}
@@ -75,11 +85,11 @@
   #bm-fonts{grid-template-columns:repeat(2,minmax(0,1fr))}
   #bm-moods{grid-template-columns:repeat(3,minmax(0,1fr))}
   .bm-chip{position:relative;min-height:44px;padding:0 12px;font-size:15px;line-height:1.3;color:var(--color-text);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);cursor:pointer;transition:background .12s,border-color .12s,transform .08s}
-  .bm-chip.bm-l{text-align:left;padding-right:28px}
+  .bm-chip.bm-l{text-align:start;padding-inline-end:28px}
   .bm-chip.bm-wide{grid-column:1/-1}
   .bm-chip:active{background:var(--bm-soft);border-color:var(--color-primary);transform:scale(.97)}
   .bm-chip[aria-pressed=true]{background:var(--bm-soft);border-color:var(--color-primary);box-shadow:inset 0 0 0 1px var(--color-primary);color:var(--color-text);font-weight:600}
-  .bm-chip.bm-ck[aria-pressed=true]::after{content:"✓";position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:700;color:var(--color-primary)}
+  .bm-chip.bm-ck[aria-pressed=true]::after{content:"✓";position:absolute;inset-inline-end:10px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:700;color:var(--color-primary)}
 
   /* Results */
   .bm-rs-head{display:flex;justify-content:space-between;align-items:baseline;margin:4px 0 10px}
@@ -88,8 +98,8 @@
   .bm-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
   .bm-row{display:flex;align-items:center;gap:12px;padding:12px 14px}
   .bm-txt{flex:1;min-width:0}
-  .bm-bio{margin:0;font-size:19px;line-height:1.5;overflow-wrap:anywhere;white-space:pre-wrap}
-  .bm-nm{margin:0 0 2px;font-size:.72rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--color-text-muted)}
+  .bm-bio{margin:0;font-size:19px;line-height:1.5;overflow-wrap:anywhere;white-space:pre-wrap;direction:ltr;text-align:start}
+  .bm-nm{direction:ltr;text-align:start;margin:0 0 2px;font-size:.72rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--color-text-muted)}
   .bm-warn{margin:2px 0 0;font-size:12px;color:var(--bm-err)}
   .bm-copy{flex:0 0 auto;justify-content:center;min-width:84px;min-height:44px;padding:0 16px}
   .bm-copy:active{transform:scale(.97)}
@@ -128,14 +138,17 @@
     .bm-row{flex-wrap:wrap}.bm-copy{width:100%}
   }
   @media(max-width:360px){
-    .bm-app{gap:12px}.bm-ftoggle{width:60px}
+    .bm-app{gap:8px}.bm-ftoggle{padding:0 10px}
     .bm-bio{font-size:18px}
     #bm-moods{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
   /* Desktop: filters become a sticky sidebar card */
   @media(min-width:861px){
     .bm-app{grid-template-columns:300px minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"fl in" "fl rs";gap:20px 28px;align-items:start}
-    .bm-fl{align-self:start;position:sticky;top:calc(var(--header-h) + 12px);max-height:calc(100vh - var(--header-h) - 24px);max-height:calc(100dvh - var(--header-h) - 24px);overflow-y:auto;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:12px 14px;box-shadow:rgba(50,50,93,.25) 0 2px 5px -1px,rgba(0,0,0,.3) 0 1px 3px -1px}
+    .bm-in{display:block;grid-area:in;min-width:0}
+    .bm-in label{margin-bottom:8px}
+    .bm-in textarea{height:auto;min-height:84px}
+    .bm-fl{display:block;align-self:start;position:sticky;top:calc(var(--header-h) + 12px);max-height:calc(100vh - var(--header-h) - 24px);max-height:calc(100dvh - var(--header-h) - 24px);overflow-y:auto;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:12px 14px;box-shadow:rgba(50,50,93,.25) 0 2px 5px -1px,rgba(0,0,0,.3) 0 1px 3px -1px}
     .bm-chips{gap:6px}
     .bm-chip{min-height:36px;font-size:14px}
     #bm-fonts .bm-chip.bm-wide{grid-column:auto}
@@ -186,7 +199,9 @@ const MAPS={
 const CURVY="ᗩᗷᑕᗪEᖴGᕼIᒍKᒪᗰᑎOᑭᑫᖇᔕTᑌᐯᗯ᙭Yᘔ";
 const SMALL="ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡxʏᴢ";
 const FONTS=[["normal","Normal"],["script","Cursive"],["bold","Bold"],["italic","Italic"],["gothic","Gothic"],["double","Double struck"],["sans","Sans serif"],["mono","Monospace"],["bubble","Bubble"],["full","Fullwidth"],["small","Small caps"]];
-const MOODS=[["all","All"],["cute","Cute"],["love","Love"],["dark","Dark"],["minimal","Minimal"],["nature","Nature"],["styles","Styles"],["aesthetic","Aesthetic"]];
+const I=JSON.parse(document.querySelector(".bm-root").dataset.i18n);
+const fmt=(s,n)=>s.replace("{n}",n);
+const MOODS=["all","cute","love","dark","minimal","nature","styles","aesthetic"].map((k,i)=>[k,I.moods[i]]);
 const TEMPLATES=[
  ["cute","୨୧ {text} ୨୧"],["cute","🎀 {text} ♡"],["cute","꒰ა {text} ໒꒱"],["cute","˚₊‧ {text} ‧₊˚"],["cute","♡₊˚ {text} ˚₊♡"],
  ["love","♡ {text} ♡"],["love","♥ {text} ♥"],["love","{text} · made with love ♡"],["love","꒰ ♡ {text} ♡ ꒱"],
@@ -345,37 +360,37 @@ function results(keep){
  hideTip();
  const text=txt.value.trim(),list=$("list");
  list.replaceChildren();
- $("empty").hidden=!!text;$("rh").hidden=!text;$("num").textContent="";$("done").textContent="Done";$("more").hidden=true;
+ $("empty").hidden=!!text;$("rh").hidden=!text;$("num").textContent="";$("done").textContent=I.done;$("more").hidden=true;
  const sum=[FONTS.find(f=>f[0]===st.font)[1],st.mood!=="all"&&MOODS.find(m=>m[0]===st.mood)[1]].filter(Boolean);
  $("fsum").textContent=sum.join(", ");
  if(!text)return;
  const rows=ALL.filter(r=>st.mood==="all"||r.m===st.mood);
- $("num").textContent=rows.length+" bios";
- $("done").textContent="Show "+rows.length+" bios";
+ $("num").textContent=fmt(I.numBios,rows.length);
+ $("done").textContent=fmt(I.showBios,rows.length);
  rows.slice(0,shown).forEach(r=>{
   const bio=edits.has(r.t)?edits.get(r.t):r.t.replace(/\{text\}/g,()=>convert(text,r.f||st.font)).trimEnd();
   const li=document.createElement("li"),box=document.createElement("div"),p=document.createElement("p"),b=document.createElement("button");
   box.className="bm-txt";
   if(r.n){const n=document.createElement("p");n.className="bm-nm";n.textContent=r.n;box.append(n)}
   p.className="bm-bio";p.textContent=bio;box.append(p);
-  if(Array.from(bio).length>150){const w=document.createElement("p");w.className="bm-warn";w.textContent="Too long for an Instagram bio (150 characters).";box.append(w)}
-  b.type="button";b.className="btn bm-copy";b.textContent="Copy";
-  b.setAttribute("aria-label","Copy bio: "+bio);
+  if(Array.from(bio).length>150){const w=document.createElement("p");w.className="bm-warn";w.textContent=I.tooLong;box.append(w)}
+  b.type="button";b.className="btn bm-copy";b.textContent=I.copy;
+  b.setAttribute("aria-label",I.copyAria+" "+bio);
   b.onclick=()=>copy(p.textContent,b);
   li.className="card bm-row";li.dataset.k=r.t;
   li.append(box,b);list.append(li);
  });
  const left=rows.length-shown;
  $("more").hidden=left<=0;
- $("more").textContent="Show "+Math.min(PAGE,left)+" more bios";
+ $("more").textContent=fmt(I.showMore,Math.min(PAGE,left));
 }
 async function copy(t,b){
  try{await navigator.clipboard.writeText(t)}catch{
   const x=document.createElement("textarea");x.value=t;document.body.append(x);x.select();document.execCommand("copy");x.remove();
  }
- document.querySelectorAll(".bm-copy.bm-done").forEach(d=>{d.textContent="Copy";d.classList.remove("bm-done")});
- b.textContent="Copied";b.classList.add("bm-done");$("live").textContent="Bio copied";
- setTimeout(()=>{b.textContent="Copy";b.classList.remove("bm-done")},1800);
+ document.querySelectorAll(".bm-copy.bm-done").forEach(d=>{d.textContent=I.copy;d.classList.remove("bm-done")});
+ b.textContent=I.copied;b.classList.add("bm-done");$("live").textContent=I.copiedLive;
+ setTimeout(()=>{b.textContent=I.copy;b.classList.remove("bm-done")},1800);
 }
 
 // Filter sheet open/close (mobile)
@@ -416,7 +431,7 @@ const TIPS=[["bold","Bold"],["italic","Italic"],["bolditalic","Bold italic"],["u
  ["normal","Normal (remove style)"]];
 const tipLabel=k=>k==="underline"?"U\u0332":k==="strike"?"S\u0336":k==="normal"?"Aa":convert("Ab",k);
 const tip=document.createElement("div");
-tip.className="bm-tip";tip.setAttribute("role","toolbar");tip.setAttribute("aria-label","Style selected words");
+tip.className="bm-tip";tip.setAttribute("role","toolbar");tip.setAttribute("aria-label",I.toolbar);
 TIPS.forEach(t=>{
  if(!t){const sp=document.createElement("span");sp.className="bm-sep";sp.setAttribute("aria-hidden","true");tip.append(sp);return}
  const b=document.createElement("button");
@@ -461,10 +476,10 @@ function checkSel(){
 }
 function refreshBio(li){
  const p=li.querySelector(".bm-bio"),t=p.textContent;
- li.querySelector(".bm-copy").setAttribute("aria-label","Copy bio: "+t);
+ li.querySelector(".bm-copy").setAttribute("aria-label",I.copyAria+" "+t);
  let w=li.querySelector(".bm-warn");
  const over=Array.from(t).length>150;
- if(over&&!w){w=document.createElement("p");w.className="bm-warn";w.textContent="Too long for an Instagram bio (150 characters).";li.querySelector(".bm-txt").append(w)}
+ if(over&&!w){w=document.createElement("p");w.className="bm-warn";w.textContent=I.tooLong;li.querySelector(".bm-txt").append(w)}
  else if(!over&&w)w.remove();
 }
 function applyStyle(k,name){
@@ -480,7 +495,7 @@ function applyStyle(k,name){
  edits.set(li.dataset.k,p.textContent);
  refreshBio(li);
  placeTip();
- $("live").textContent="Applied "+name;
+ $("live").textContent=I.applied;
 }
 tip.addEventListener("mousedown",e=>e.preventDefault());
 tip.addEventListener("pointerdown",()=>{pressing=true});
