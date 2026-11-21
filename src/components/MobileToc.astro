@@ -22,7 +22,10 @@ const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
       aria-controls="mobile-toc-panel"
       class="w-full card flex items-center justify-between gap-2 px-4 py-2.5 text-sm font-medium"
     >
-      {strings.sidebar.toc}
+      <span class="flex flex-col items-start min-w-0 text-left leading-tight">
+        <span>{strings.sidebar.toc}</span>
+        <span id="mobile-toc-current" class="text-[.75rem] font-normal text-primary truncate max-w-full empty:hidden"></span>
+      </span>
       <svg id="mobile-toc-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 shrink-0">
         <path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
@@ -33,9 +36,10 @@ const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
         {tocHeadings.map((h) => (
           <a
             href={`#${h.slug}`}
+            data-toc-link={h.slug}
             class:list={[
-              'py-1.5 text-text-muted hover:text-primary transition-colors duration-150',
-              h.depth === 3 ? 'pl-4 text-[.85rem]' : 'text-[.9rem]',
+              'toc-link border-l-2 border-transparent py-1.5 text-text-muted hover:text-primary transition-colors duration-150',
+              h.depth === 3 ? 'pl-6 text-[.85rem]' : 'pl-3 text-[.9rem]',
             ]}
           >
             {h.text}
@@ -56,6 +60,10 @@ const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
     panel?.classList.toggle('hidden');
     toggle.setAttribute('aria-expanded', String(!!willOpen));
     chevron?.classList.toggle('rotate-180');
+    if (willOpen) {
+      const a = panel?.querySelector<HTMLElement>('[data-active="true"]');
+      if (panel && a) panel.scrollTop = a.offsetTop - panel.clientHeight / 2;
+    }
   });
 
   panel?.querySelectorAll('a').forEach((link) => {
