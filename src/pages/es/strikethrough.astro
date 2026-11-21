@@ -1,0 +1,109 @@
+---
+import StrikethroughPage from '../../components/StrikethroughPage.astro';
+
+const why = [
+  { title: 'Opción de copiar y pegar texto tachado', body: 'La opción de copiar y pegar te permite generar texto tachado y usarlo al instante en tu aplicación favorita. Escribe tu texto, luego copia el resultado y pégalo donde quieras.' },
+  { title: 'Varios estilos de texto tachado', body: 'Puedes crear varios tipos de texto tachado. Elige el que mejor se adapte a tu conversación, perfil o publicación. Texto con una sola línea, Texto con doble línea, Letras tachadas Texto tachado con estilo Varios tipos de Unicode' },
+  { title: 'Herramienta 100 % gratis', body: 'El generador de texto tachado es totalmente gratuito. Puedes usarlo tantas veces como quieras sin pagar ni registrarte. Sin registro Sin suscripción Sin costos adicionales Conversiones ilimitadas Totalmente gratis' },
+  { title: 'Compatible con todos los dispositivos', body: 'Puedes usar esta herramienta en todos los dispositivos que tengan navegador. Funciona perfectamente en teléfonos móviles, tabletas y pantallas de computadora. Teléfonos Android iPhone y iPad PC con Windows Mac No hace falta instalar ninguna aplicación' },
+];
+const extra = [
+  { title: 'Fácil de usar', body: 'La herramienta está hecha para que todos la usen con facilidad. Los botones bien visibles y la interfaz sencilla te permiten convertir tu texto a formato tachado sin esfuerzo. Interfaz clara Acceso rápido a la opción de copiar Instrucciones fáciles de seguir Perfecta para principiantes' },
+  { title: 'Vista previa en vivo', body: 'Tienes la oportunidad de ver cómo se ve tu texto antes de copiarlo. La función de vista previa en vivo te muestra cómo quedará tu texto después de la conversión. Vista previa inmediata Cambia tu texto cuando quieras Mira la versión final Cópialo solo cuando el resultado te guste' },
+  { title: 'Varios idiomas', body: 'Escribas en inglés, alemán, indonesio, español o portugués, puedes convertir y copiar tu texto.' },
+];
+const where = [
+  { title: 'Chats y mensajes', body: 'Usa texto tachado en los chats para corregir una palabra, hacer una broma o mostrar que un mensaje ya no es válido. Mensajes de WhatsApp Chats de Telegram Respuestas de Messenger Mensajes directos de Instagram Mensajes de Snapchat' },
+  { title: 'Perfiles de videojuegos', body: 'Algunos juegos y plataformas de videojuegos permiten caracteres tachados en nombres de usuario, nombres de clan y texto de perfil. Apodo de Discord Nombre de Free Fire Nombre de BGMI Nombre de PUBG Nombre de usuario de Roblox' },
+  { title: 'Notas y listas', body: 'Usa texto tachado para marcar tareas completadas, recordatorios antiguos o planes cancelados en tus notas. Listas de tareas Apuntes de estudio Listas de compras Recordatorios antiguos Planes cancelados' },
+];
+const tools = ['Generador de texto subrayado', 'Generador de texto en cursiva', 'Generador de texto al revés'];
+const faqs = [
+  { question: '¿Es seguro usar texto tachado?', answer: 'Sí. El texto tachado en Unicode suele ser seguro para copiar y pegar. Está formado por caracteres de texto, no por código ejecutable ni software. Aun así, su apariencia puede variar entre aplicaciones y dispositivos.' },
+  { question: '¿Cómo escribir una letra con una línea encima?', answer: 'Puedes crear una letra tachada añadiendo un carácter combinable de Unicode, como U+0336, después de la letra. Por ejemplo, una a seguida de la marca combinable se convierte en a̶. Un generador de texto tachado puede automatizar este proceso para palabras y frases completas.' },
+  { question: '¿Por qué no funciona mi texto tachado?', answer: 'Algunas aplicaciones no muestran los caracteres combinables de Unicode de forma uniforme. La línea puede verse desalineada, cortada o no aparecer, por diferencias en el renderizado de fuentes y en la compatibilidad con Unicode. Prueba con otra aplicación o con un estilo de tachado diferente.' },
+  { question: '¿Puedo usar letras tachadas en el móvil?', answer: 'Sí. Puedes copiar las letras tachadas del generador y pegarlas en aplicaciones móviles compatibles. El resultado depende de la aplicación, el teclado y la compatibilidad con el renderizado de fuentes.' },
+];
+---
+
+<StrikethroughPage lang="es">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Texto Tachado para Copiar y Pegar</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">El texto tachado, también conocido como texto con una línea encima, muestra una línea horizontal que atraviesa las letras y las palabras. Se usa habitualmente para mostrar ediciones, correcciones o contenido eliminado. Nuestro generador de texto tachado convierte texto normal en texto tachado en Unicode que puedes copiar y pegar en mensajes, publicaciones de redes sociales, biografías y otras plataformas.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">¿Qué es el texto tachado?</h2>
+      <p class="text-text-muted leading-[1.8]">El tachado es un efecto tipográfico que coloca una línea en medio de cada carácter. Se usa habitualmente en documentos para marcar palabras eliminadas o mostrar cambios sin borrar el contenido original. Los caracteres combinables de Unicode, como la superposición de trazo largo (U+0336), pueden crear este aspecto añadiendo una línea a las letras existentes.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">¿Por qué usar nuestro generador de texto tachado?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Crear texto tachado resulta fácil con nuestro generador, sin tener que introducir manualmente caracteres especiales para cada letra.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Funciones adicionales del texto tachado</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">El generador incluye funciones prácticas que facilitan la conversión del texto:</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">¿Dónde usar la fuente tachada?</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Otras herramientas</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Preguntas frecuentes</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</StrikethroughPage>
