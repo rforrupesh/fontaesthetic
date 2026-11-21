@@ -330,8 +330,7 @@ function mixer(names: string[]) {
   };
 }
 
-// Random Mix / Creative Mix: blend letter-level alphabets with restrained
-// symbols, emoji and combining marks. Each invocation gets a fresh combination.
+// Random Mix draws from many unrelated alphabets, rather than only two.
 const RANDOM_MIX_ALPHABETS = [
   'Bold', 'Italic', 'Bold Italic', 'Cursive', 'Cursive Bold',
   'Double Struck', 'Fraktur', 'Fraktur Bold', 'Monospace',
@@ -339,52 +338,6 @@ const RANDOM_MIX_ALPHABETS = [
   'Bubbles', 'Dark Squares', 'Squiggle', 'Squiggle 2',
   'Squiggle 3', 'Squiggle 4', 'Crazy', 'Crazy 2', 'Tribal', 'Asian',
 ];
-const MIX_EMOJIS = ['🖤', '✨', '🌸', '💫', '🦋', '♡', '🌙', '🍀', '💎', '🔥'];
-const MIX_SYMBOLS = ['𖹭', '୨୧', '꙳', '✧', '☆', '⋆', '❀', 'ღ', '༄', '⟡'];
-const MIX_MARKS = ['̼', '͜', '꜍', '̇', '̃', '̴', '̲'];
-function creativeMixer(names: string[]) {
-  const styles = names.map((n) => BY_NAME.get(n)).filter((st): st is FontStyle => Boolean(st));
-  return (text: string) => {
-    const chars = toChars(text);
-    const usedEmojis = new Set<string>();
-    const usedSymbols = new Set<string>();
-    const pickUnique = (pool: string[], used: Set<string>) => {
-      const available = pool.filter((item) => !used.has(item));
-      if (!available.length) return '';
-      const item = available[Math.floor(Math.random() * available.length)];
-      used.add(item);
-      return item;
-    };
-    const letterOutput = chars.map((ch) => {
-      if (/\s/.test(ch)) return ch;
-      const available = styles.filter((style) => convert(ch, style) !== ch);
-      const chosen = available.length ? available[Math.floor(Math.random() * available.length)] : undefined;
-      let out = chosen ? convert(ch, chosen) : ch;
-      // About 1 in 10 letters gets a subtle combining mark.
-      if (/[\p{L}\p{N}]/u.test(ch) && Math.random() < 0.10) {
-        out += MIX_MARKS[Math.floor(Math.random() * MIX_MARKS.length)];
-      }
-      return out;
-    });
-    // Add a few accents at word boundaries/near letters, not after every character.
-    let out = '';
-    for (let i = 0; i < letterOutput.length; i++) {
-      out += letterOutput[i];
-      const ch = chars[i];
-      if (!ch || /\s/.test(ch) || i === letterOutput.length - 1) continue;
-      const roll = Math.random();
-      if (roll < 0.10) out += pickUnique(MIX_EMOJIS, usedEmojis);
-      else if (roll < 0.28) out += pickUnique(MIX_SYMBOLS, usedSymbols);
-    }
-    // Occasionally frame the whole phrase with a small decorative pair.
-    if (Math.random() < 0.18) {
-      const frames = [['꙳ ', ' ꙳'], ['୨୧ ', ' ୨୧'], ['✧ ', ' ✧'], ['𖹭 ', ' 𖹭']];
-      const frame = frames[Math.floor(Math.random() * frames.length)];
-      out = frame[0] + out + frame[1];
-    }
-    return out;
-  };
-}
 
 function altCase(name: string) {
   const st = BY_NAME.get(name)!;
@@ -395,7 +348,7 @@ function altCase(name: string) {
 }
 
 const mixes: Omit<FontStyle, 'slug'>[] = [
-  { name: 'Creative Mix', transform: creativeMixer(RANDOM_MIX_ALPHABETS) },
+  { name: 'Random Mix', transform: mixer(RANDOM_MIX_ALPHABETS) },
 ];
 for (let a = 0; a < MIX_ALPHABETS.length; a++) {
   for (let b = a + 1; b < MIX_ALPHABETS.length; b++) {
