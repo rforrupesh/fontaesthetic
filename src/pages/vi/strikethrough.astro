@@ -1,0 +1,109 @@
+---
+import StrikethroughPage from '../../components/StrikethroughPage.astro';
+
+const why = [
+  { title: 'Tùy chọn sao chép và dán chữ gạch ngang', body: 'Tùy chọn sao chép và dán giúp bạn tạo chữ gạch ngang và dùng ngay trong ứng dụng bạn thích. Nhập văn bản của bạn, rồi sao chép và dán kết quả vào bất cứ đâu.' },
+  { title: 'Nhiều kiểu chữ gạch ngang', body: 'Bạn có thể tạo nhiều kiểu chữ gạch ngang khác nhau. Chọn kiểu phù hợp với cuộc trò chuyện, trang cá nhân hoặc bài đăng của bạn. Chữ gạch một đường, Chữ gạch đôi, Chữ bị gạch Chữ gạch ngang phong cách Nhiều kiểu Unicode' },
+  { title: 'Công cụ miễn phí 100%', body: 'Công cụ tạo chữ gạch ngang hoàn toàn miễn phí. Bạn có thể dùng bao nhiêu lần tùy thích mà không cần trả tiền hay đăng ký. Không cần đăng ký Không cần thuê bao Không phát sinh chi phí Chuyển đổi không giới hạn Hoàn toàn miễn phí' },
+  { title: 'Tương thích với mọi thiết bị', body: 'Bạn có thể dùng công cụ này trên mọi thiết bị có trình duyệt. Công cụ chạy mượt trên điện thoại, máy tính bảng và màn hình máy tính. Điện thoại Android iPhone & iPad PC Windows Mac Không cần cài ứng dụng' },
+];
+const extra = [
+  { title: 'Dễ sử dụng', body: 'Công cụ được làm sao cho ai cũng dùng được dễ dàng. Các nút hiển thị rõ ràng và giao diện thân thiện giúp bạn chuyển văn bản sang dạng chữ bị gạch ngang một cách dễ dàng. Giao diện rõ ràng Truy cập nhanh nút sao chép Hướng dẫn dễ làm theo Phù hợp cho người mới' },
+  { title: 'Xem trước trực tiếp', body: 'Bạn có thể xem văn bản của mình trông thế nào trước khi sao chép. Tính năng xem trước trực tiếp cho bạn thấy văn bản sẽ ra sao sau khi chuyển đổi. Xem trước tức thì Đổi văn bản bất cứ lúc nào Xem phiên bản cuối cùng Chỉ sao chép khi hài lòng với kết quả' },
+  { title: 'Nhiều ngôn ngữ', body: 'Dù bạn viết bằng tiếng Anh, tiếng Đức, tiếng Indonesia, tiếng Tây Ban Nha hay tiếng Bồ Đào Nha, bạn đều có thể chuyển đổi và sao chép văn bản của mình.' },
+];
+const where = [
+  { title: 'Trò chuyện và tin nhắn', body: 'Dùng chữ bị gạch trong trò chuyện để sửa một từ, đùa vui hoặc cho biết một tin nhắn không còn hiệu lực. Tin nhắn WhatsApp Cuộc trò chuyện Telegram Trả lời trên Messenger Tin nhắn riêng Instagram Tin nhắn Snapchat' },
+  { title: 'Hồ sơ game', body: 'Một số trò chơi và nền tảng game cho phép dùng ký tự bị gạch trong tên người dùng, tên clan và văn bản hồ sơ. Biệt danh Discord Tên Free Fire Tên BGMI Tên PUBG Tên người dùng Roblox' },
+  { title: 'Ghi chú và danh sách', body: 'Dùng chữ gạch ngang để đánh dấu việc đã xong, lời nhắc cũ hoặc kế hoạch đã hủy trong ghi chú của bạn. Danh sách việc cần làm Ghi chú học tập Danh sách mua sắm Lời nhắc cũ Kế hoạch đã hủy' },
+];
+const tools = ['Công cụ tạo chữ gạch chân', 'Công cụ tạo chữ in nghiêng', 'Công cụ tạo chữ lộn ngược'];
+const faqs = [
+  { question: 'Chữ gạch ngang có an toàn để dùng không?', answer: 'Có. Chữ gạch ngang Unicode nhìn chung an toàn để sao chép và dán. Nó chỉ gồm các ký tự văn bản chứ không phải mã thực thi hay phần mềm. Tuy nhiên, hình thức hiển thị có thể khác nhau giữa các ứng dụng và thiết bị.' },
+  { question: 'Làm sao để gõ chữ có gạch ngang?', answer: 'Bạn có thể tạo chữ có gạch ngang bằng cách thêm ký tự kết hợp Unicode, chẳng hạn U+0336, sau chữ cái. Ví dụ, chữ a theo sau là dấu kết hợp sẽ thành a̶. Công cụ tạo chữ gạch ngang có thể tự động hóa quy trình này cho cả từ và câu.' },
+  { question: 'Vì sao chữ gạch ngang của tôi không hoạt động?', answer: 'Một số ứng dụng không hiển thị ký tự kết hợp Unicode nhất quán. Đường gạch có thể bị lệch, đứt đoạn hoặc biến mất do khác biệt về hiển thị phông chữ và hỗ trợ Unicode. Hãy thử ứng dụng khác hoặc một kiểu gạch ngang khác.' },
+  { question: 'Tôi có thể dùng chữ gạch ngang trên điện thoại không?', answer: 'Có. Bạn có thể sao chép chữ gạch ngang từ công cụ và dán vào các ứng dụng di động được hỗ trợ. Kết quả phụ thuộc vào ứng dụng, bàn phím và khả năng hiển thị phông chữ.' },
+];
+---
+
+<StrikethroughPage lang="vi">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Chữ Gạch Ngang Sao Chép và Dán</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Chữ gạch ngang, còn gọi là chữ bị gạch, hiển thị một đường ngang xuyên qua các chữ cái và từ. Nó thường dùng để thể hiện chỉnh sửa, hiệu đính hoặc nội dung đã xóa. Công cụ tạo chữ gạch ngang của chúng tôi chuyển văn bản thường thành chữ gạch ngang Unicode để bạn sao chép và dán vào tin nhắn, bài đăng mạng xã hội, tiểu sử và các nền tảng khác.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Chữ gạch ngang là gì?</h2>
+      <p class="text-text-muted leading-[1.8]">Gạch ngang là hiệu ứng chữ in đặt một đường ngang qua giữa từng ký tự. Nó thường dùng trong tài liệu để đánh dấu từ bị xóa hoặc thể hiện thay đổi mà không xóa nội dung gốc. Các ký tự kết hợp Unicode, như Combining Long Stroke Overlay (U+0336), có thể tạo ra hiệu ứng này bằng cách thêm một đường gạch vào các chữ cái có sẵn.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Vì sao nên dùng công cụ tạo chữ gạch ngang của chúng tôi?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Việc tạo chữ gạch ngang trở nên dễ dàng với công cụ của chúng tôi, không cần nhập thủ công các ký tự đặc biệt cho từng chữ cái.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Tính năng bổ sung của chữ gạch ngang</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Công cụ có các tính năng thiết thực giúp việc chuyển đổi văn bản dễ hơn:</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Dùng phông chữ gạch ngang ở đâu?</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Công cụ khác</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Câu hỏi thường gặp</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</StrikethroughPage>
