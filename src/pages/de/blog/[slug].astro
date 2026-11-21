@@ -130,7 +130,7 @@ const breadcrumbItems = [
 
     <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr_280px] gap-8 lg:gap-10 items-start lg:mt-4">
       <!-- Left: share buttons + TOC (desktop sticky column) -->
-      <div class="hidden lg:flex lg:flex-col lg:gap-6 lg:sticky lg:top-[calc(var(--header-h)+20px)]">
+      <div class="hidden lg:flex lg:flex-col lg:gap-6 lg:sticky lg:top-[calc(var(--header-h)+20px)] lg:max-h-[calc(100vh-var(--header-h)-40px)]">
         <ShareButtons lang={lang} url={pageUrl} title={post.data.title} variant="sticky" />
         <Sidebar lang={lang} headings={headings} />
       </div>
