@@ -1,21 +1,99 @@
 ---
 import StrikethroughPage from '../components/StrikethroughPage.astro';
+import FaqSection from '../components/FaqSection.astro';
+
+const why = [
+  { title: 'line thru text Copy and Paste Option', body: 'The copy and paste option enables you to generate line through text and use it instantly in your preferred application. Type your text, then copy and paste your result anywhere you like.' },
+  { title: 'Multiple strike out text', body: 'You can create multiple types of strike out text. Pick the type that suits your conversation, profile or posting. Single line through text, Double text, Crossed out letters Stylish strike text Various Unicode types' },
+  { title: '100% Free Tool', body: 'The Strikethrough Text Generator tool is entirely free. You can use it as many times as you please without having to pay or sign up. No registration No subscription No additional costs Unlimited conversions Absolutely free' },
+  { title: 'Compatible With All Devices', body: 'You can use this tool on all devices that have browsers. It runs perfectly on both mobile phones, tablets and computer screens. Android phones iPhones & iPads Windows PC Mac PC No application installation required' },
+];
+const extra = [
+  { title: 'Easy to use', body: 'The tool is made easy for everyone. Clearly visible buttons and user-friendly interface allow you to transform your text into crossed out format effortlessly. Clear interface Quick access to copy option Easy-to-follow instructions Perfect for beginners' },
+  { title: 'Live preview', body: 'You have an opportunity to see how your text looks before copying it. The live preview feature allows you to see how your text will look after transformation. Immediate preview Change your text whenever you want View the final version Copy it only when satisfied with the outcome' },
+  { title: 'Multiple Languages', body: 'No matter whether you write in English, German, Indonesian, Spanish, or Portuguese, you can transform and copy your text.' },
+];
+const where = [
+  { title: 'Chats and messages', body: 'Use crossed-out text in chats to correct a word, make a joke, or show that a message is no longer valid. WhatsApp messages Telegram chats Messenger replies Instagram DMs Snapchat messages' },
+  { title: 'Gaming Profiles', body: 'Some games and gaming platforms allow crossed-out characters in usernames, clan names, and profile text. Discord nickname Free Fire name BGMI name PUBG name Roblox username' },
+  { title: 'Notes and lists', body: 'Use line-through text to mark completed tasks, old reminders, or cancelled plans in your notes. To-do lists Study notes Shopping lists Old reminders Cancelled plans' },
+];
+const tools = ['Underline generator', 'Italic text generator', 'upside down text generator'];
+const faqs = [
+  { question: 'Is line through text safe to use?', answer: 'Yes. Unicode strikethrough text is generally safe to copy and paste. It consists of text characters rather than executable code or software. However, the appearance may vary between applications and devices.' },
+  { question: 'How to type a letter with a line through it?', answer: 'You can create a letter with a line through it by adding a Unicode combining character, such as U+0336, after the letter. For example, a followed by the combining mark becomes a̶. A strikethrough text generator can automate this process for entire words and sentences.' },
+  { question: 'Why is my strike out text not working?', answer: 'Some applications do not display Unicode combining characters consistently. The line may appear misaligned, disconnected, or missing because of differences in font rendering and Unicode support. Try another application or a different strikethrough style.' },
+  { question: 'Can I use Strikethrough letters on mobile?', answer: 'Yes. You can copy strikethrough letters from the generator and paste them into supported mobile applications. The result depends on the app, keyboard, and font rendering support.' },
+];
+
 ---
 
 <StrikethroughPage lang="en">
-  <!-- Add / edit the English article content here. -->
-  <article class="prose wrap max-w-[820px] mx-auto py-10">
-    <h2>What is strikethrough text?</h2>
-    <p>
-      Strikethrough text has a line drawn through the middle of every letter, like this: s̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶. It is used to show something is cancelled, corrected, joked about or no longer true.
-    </p>
-    <h2>How to use the strikethrough text generator</h2>
-    <p>
-      Type your text in the box, tap any style to see it in the live preview, then press Copy and paste it into your bio, caption, chat or comment. No app and no sign-up are needed.
-    </p>
-    <h2>Where can I paste it?</h2>
-    <p>
-      The result is made of Unicode characters, so it works on Instagram, WhatsApp, Discord, TikTok, Snapchat, X and most other places that accept text.
-    </p>
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Cross Out Text Copy and Paste</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Strikethrough text, also known as crossed-out text, displays a horizontal line through letters and words. It is commonly used to show edits, corrections, or deleted content. Our Strikethrough Text Generator converts regular text into Unicode strikethrough text that you can copy and paste into messages, social media posts, bios, and other platforms.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">What is a Strikethrough Text?</h2>
+      <p class="text-text-muted leading-[1.8]">Strikethrough is a typographic effect that places a line across the middle of individual characters. It is commonly used in documents to mark removed words or show changes without deleting the original content. Unicode combining characters, such as the Combining Long Stroke Overlay (U+0336), can create this appearance by adding a line to existing letters.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Why Use Our Strikethrough Text Generator Tool?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">It becomes easy to create strikethrough text using our generator without having to manually enter special characters for every letter.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Extra Features of Strikethrough Text</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">The generator includes practical features that make text conversion easier:</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Where to Use Strikethrough Font?</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Other Tools</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
   </article>
+
+  <FaqSection lang="en" heading="Frequently asked questions" items={faqs} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </StrikethroughPage>
