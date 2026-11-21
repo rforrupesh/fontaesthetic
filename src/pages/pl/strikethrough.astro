@@ -1,0 +1,109 @@
+---
+import StrikethroughPage from '../../components/StrikethroughPage.astro';
+
+const why = [
+  { title: 'Opcja kopiuj i wklej przekreślony tekst', body: 'Opcja kopiuj i wklej pozwala wygenerować przekreślony tekst i od razu użyć go w ulubionej aplikacji. Wpisz tekst, a następnie skopiuj wynik i wklej go, gdzie chcesz.' },
+  { title: 'Wiele stylów przekreślonego tekstu', body: 'Możesz tworzyć różne rodzaje przekreślonego tekstu. Wybierz ten, który pasuje do rozmowy, profilu lub posta. Tekst z pojedynczą linią, Tekst z podwójną linią, Przekreślone litery Stylowy przekreślony tekst Różne rodzaje Unicode' },
+  { title: 'W 100% darmowe narzędzie', body: 'Generator przekreślonego tekstu jest całkowicie darmowy. Możesz z niego korzystać, ile razy chcesz, bez płacenia i zakładania konta. Bez rejestracji Bez subskrypcji Bez dodatkowych kosztów Nieograniczone konwersje Całkowicie za darmo' },
+  { title: 'Działa na wszystkich urządzeniach', body: 'Narzędzia możesz używać na każdym urządzeniu z przeglądarką. Działa świetnie na telefonach, tabletach i ekranach komputerów. Telefony z Androidem iPhone i iPad Komputery z Windows Komputery Mac Nie trzeba instalować aplikacji' },
+];
+const extra = [
+  { title: 'Łatwa obsługa', body: 'Narzędzie stworzono tak, by każdy mógł z niego łatwo korzystać. Wyraźnie widoczne przyciski i przyjazny interfejs pozwalają bez wysiłku zamienić tekst na przekreślony. Przejrzysty interfejs Szybki dostęp do opcji kopiowania Łatwe do zrozumienia instrukcje Idealne dla początkujących' },
+  { title: 'Podgląd na żywo', body: 'Możesz zobaczyć, jak wygląda Twój tekst, zanim go skopiujesz. Funkcja podglądu na żywo pokazuje, jak tekst będzie wyglądał po przekształceniu. Natychmiastowy podgląd Zmieniaj tekst, kiedy chcesz Zobacz wersję końcową Skopiuj dopiero wtedy, gdy wynik Ci odpowiada' },
+  { title: 'Wiele języków', body: 'Niezależnie od tego, czy piszesz po angielsku, niemiecku, indonezyjsku, hiszpańsku czy portugalsku, możesz przekształcić i skopiować swój tekst.' },
+];
+const where = [
+  { title: 'Czaty i wiadomości', body: 'Użyj przekreślonego tekstu w rozmowach, aby poprawić słowo, zażartować lub pokazać, że wiadomość jest już nieaktualna. Wiadomości WhatsApp Czaty Telegram Odpowiedzi w Messengerze Wiadomości prywatne na Instagramie Wiadomości Snapchat' },
+  { title: 'Profile graczy', body: 'Niektóre gry i platformy dla graczy pozwalają na przekreślone znaki w nazwach użytkowników, nazwach klanów i tekście profilu. Pseudonim na Discordzie Nazwa Free Fire Nazwa BGMI Nazwa PUBG Nazwa użytkownika Roblox' },
+  { title: 'Notatki i listy', body: 'Użyj przekreślenia, aby oznaczyć ukończone zadania, stare przypomnienia lub odwołane plany w notatkach. Listy rzeczy do zrobienia Notatki do nauki Listy zakupów Stare przypomnienia Odwołane plany' },
+];
+const tools = ['Generator podkreślonego tekstu', 'Generator tekstu kursywą', 'Generator tekstu do góry nogami'];
+const faqs = [
+  { question: 'Czy przekreślony tekst jest bezpieczny?', answer: 'Tak. Przekreślony tekst Unicode jest zazwyczaj bezpieczny do kopiowania i wklejania. Składa się ze znaków tekstowych, a nie z kodu wykonywalnego czy oprogramowania. Jego wygląd może się jednak różnić w zależności od aplikacji i urządzenia.' },
+  { question: 'Jak napisać literę z przekreśleniem?', answer: 'Literę z przekreśleniem możesz utworzyć, dodając po niej znak łączący Unicode, taki jak U+0336. Na przykład litera a z następującym po niej znakiem łączącym zamienia się w a̶. Generator przekreślonego tekstu może zautomatyzować ten proces dla całych słów i zdań.' },
+  { question: 'Dlaczego mój przekreślony tekst nie działa?', answer: 'Niektóre aplikacje nie wyświetlają znaków łączących Unicode w spójny sposób. Linia może być przesunięta, przerwana lub niewidoczna z powodu różnic w renderowaniu czcionek i obsłudze Unicode. Spróbuj użyć innej aplikacji lub innego stylu przekreślenia.' },
+  { question: 'Czy mogę używać przekreślonych liter na telefonie?', answer: 'Tak. Możesz skopiować przekreślone litery z generatora i wkleić je do obsługiwanych aplikacji mobilnych. Wynik zależy od aplikacji, klawiatury i obsługi renderowania czcionek.' },
+];
+---
+
+<StrikethroughPage lang="pl">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Przekreślony tekst – kopiuj i wklej</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Przekreślony tekst, nazywany też tekstem skreślonym, wyświetla poziomą linię przechodzącą przez litery i słowa. Zwykle służy do pokazania edycji, poprawek lub usuniętej treści. Nasz generator przekreślonego tekstu zamienia zwykły tekst w przekreślony tekst Unicode, który możesz skopiować i wkleić do wiadomości, postów w mediach społecznościowych, bio i innych platform.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Czym jest przekreślony tekst?</h2>
+      <p class="text-text-muted leading-[1.8]">Przekreślenie to efekt typograficzny, który umieszcza linię w połowie wysokości pojedynczych znaków. Często stosuje się go w dokumentach do oznaczania usuniętych słów lub pokazywania zmian bez kasowania oryginalnej treści. Znaki łączące Unicode, takie jak długa kreska nakładana (U+0336), potrafią uzyskać ten wygląd, dodając linię do istniejących liter.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Dlaczego warto używać naszego generatora przekreślonego tekstu?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Dzięki naszemu generatorowi łatwo stworzysz przekreślony tekst, bez ręcznego wpisywania znaków specjalnych przy każdej literze.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Dodatkowe funkcje przekreślonego tekstu</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Generator ma praktyczne funkcje, które ułatwiają przekształcanie tekstu:</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Gdzie używać przekreślonej czcionki?</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Inne narzędzia</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Najczęściej zadawane pytania</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</StrikethroughPage>
