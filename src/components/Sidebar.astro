@@ -13,17 +13,18 @@ const strings = t(lang);
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
-<aside class="flex flex-col gap-5">
+<aside class="flex flex-col gap-5 min-h-0 flex-1">
   {tocHeadings.length > 0 && (
-    <div class="card p-5">
-      <p class="text-[.85rem] uppercase tracking-wide text-text-muted mb-3">{strings.sidebar.toc}</p>
-      <nav class="flex flex-col gap-2">
+    <div class="card p-5 flex flex-col min-h-0">
+      <p class="text-[.85rem] uppercase tracking-wide text-text-muted mb-3 shrink-0">{strings.sidebar.toc}</p>
+      <nav id="desktop-toc" class="toc-scroll flex flex-col gap-1 min-h-0 overflow-y-auto overscroll-contain -mr-2 pr-2">
         {tocHeadings.map((h) => (
           <a
             href={`#${h.slug}`}
+            data-toc-link={h.slug}
             class:list={[
-              'text-text-muted hover:text-primary transition-colors duration-150 leading-tight',
-              h.depth === 3 ? 'pl-3.5 text-[.82rem]' : 'text-[.88rem]',
+              'toc-link border-l-2 border-transparent -ml-px py-1 text-text-muted hover:text-primary transition-colors duration-150 leading-tight',
+              h.depth === 3 ? 'pl-5 text-[.82rem]' : 'pl-3 text-[.88rem]',
             ]}
           >
             {h.text}
@@ -33,3 +34,76 @@ const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
     </div>
   )}
 </aside>
+
+<style is:global>
+  .toc-link[data-active='true'] {
+    color: var(--color-primary);
+    border-left-color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    font-weight: 600;
+  }
+  .toc-scroll { scrollbar-width: thin; }
+</style>
+
+<script>
+  // Scroll-spy: highlight the TOC entry for the section being read (desktop + mobile lists).
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
+  if (links.length) {
+    const slugs = Array.from(new Set(links.map((l) => l.dataset.tocLink!)));
+    const targets = slugs
+      .map((s) => document.getElementById(s))
+      .filter((el): el is HTMLElement => !!el);
+    const header = () =>
+      parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 58;
+    const mobileBar = document.getElementById('mobile-toc-toggle')?.parentElement;
+    const offset = () => {
+      const bar = mobileBar && mobileBar.offsetParent !== null ? mobileBar.offsetHeight : 0;
+      return header() + bar + 24;
+    };
+
+    let current = '';
+    const setActive = (slug: string) => {
+      if (slug === current) return;
+      current = slug;
+      links.forEach((l) => {
+        const on = l.dataset.tocLink === slug;
+        if (on) l.setAttribute('data-active', 'true'); else l.removeAttribute('data-active');
+        if (on) l.setAttribute('aria-current', 'location'); else l.removeAttribute('aria-current');
+      });
+      // keep the active item visible inside the scrollable desktop TOC
+      const nav = document.getElementById('desktop-toc');
+      const el = nav?.querySelector<HTMLElement>('[data-active="true"]');
+      if (nav && el) {
+        const top = el.offsetTop - nav.offsetTop;
+        if (top < nav.scrollTop + 8 || top + el.offsetHeight > nav.scrollTop + nav.clientHeight - 8) {
+          nav.scrollTo({ top: top - nav.clientHeight / 2 + el.offsetHeight / 2, behavior: 'smooth' });
+        }
+      }
+      const label = document.getElementById('mobile-toc-current');
+      const txt = links.find((l) => l.dataset.tocLink === slug)?.textContent?.trim();
+      if (label) label.textContent = txt || '';
+    };
+
+    const update = () => {
+      const line = offset();
+      let active = '';
+      for (const el of targets) {
+        if (el.getBoundingClientRect().top - line <= 0) active = el.id; else break;
+      }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4 && targets.length) {
+        active = targets[targets.length - 1].id;
+      }
+      setActive(active);
+    };
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { update(); ticking = false; });
+    }, { passive: true });
+    window.addEventListener('resize', update);
+    window.addEventListener('hashchange', update);
+    update();
+  }
+</script>
