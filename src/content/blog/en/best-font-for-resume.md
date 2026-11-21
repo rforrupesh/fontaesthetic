@@ -8,7 +8,7 @@ tags: ["best font for resume", "resume fonts", "professional fonts", "CV fonts",
 categories: ["Typography"]
 ---
 
-You've finished your resume. Your education, skills, and work experience are all in place. But the document still doesn't look right. Maybe the text feels crowded, or the font looks too casual. You want your resume to look professional without spending hours fixing its design.
+You've finished [your resume](https://careerservices.fas.harvard.edu/resources/create-a-strong-resume/). Your education, skills, and work experience are all in place. But the document still doesn't look right. Maybe the text feels crowded, or the font looks too casual. You want your resume to look professional without spending hours fixing its design.
 
 The good news is that you don't need a fancy font. **Arial, Calibri, and Aptos** are reliable choices for most job applications. They look clean and are easy to read. Here are 10 professional options to help you choose the right one.
 
@@ -125,7 +125,7 @@ Arial, Calibri, Aptos, and Times New Roman are practical choices. Follow these f
 
 A simple document structure helps both software and recruiters find your information.
 
-Your resume doesn't need an unusual font to stand out. Choose a readable option, use consistent sizes, and give your qualifications the attention they deserve.
+Your resume doesn't need an unusual [font to stand out](https://aestheticfonts.in/blog/how-to-choose-the-right-font-style/). Choose a readable option, use consistent sizes, and give your qualifications the attention they deserve.
 
 > **For most job applications, Arial at 11 pt is a reliable starting point.**
 
@@ -133,3 +133,4 @@ Your resume doesn't need an unusual font to stand out. Choose a readable option,
 
 Comic Sans MS, Papyrus, Curlz MT, and Brush Script may look creative, but they can make your resume appear less professional. Their decorative letters can distract from your skills and work experience. Avoid handwriting fonts, unusual symbols, and overly stylized text in your CV, especially when applying for corporate or office jobs. Stick to a clean font that makes your qualifications easy to read.
 
+> If you're looking for more suitable typefaces for professional documents, explore our guide to [professional business fonts](https://aestheticfonts.in/blog/professional-business-fonts/).
