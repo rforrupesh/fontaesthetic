@@ -11,7 +11,7 @@ categories: ["Typography"]
 
 HTML font family refers to the typeface used to display text in a web document. In modern HTML, font selection is controlled through the CSS `font-family` property. Common font families include Arial, Helvetica, Times New Roman, Georgia, Verdana and Courier New. CSS also supports generic font categories such as serif, sans-serif, monospace, cursive and fantasy.
 
-The `font-family` property can be applied to headings, paragraphs, lists, forms and other HTML elements. It also supports multiple font names, allowing browsers to select an available typeface when the preferred font is not installed on a device.
+The `font-family` property can be applied to headings, paragraphs, lists, forms and other [HTML elements](https://web.dev/learn/html). It also supports multiple font names, allowing browsers to select an available typeface when the preferred font is not installed on a device.
 
 ## List HTML Font Family 
 
@@ -35,7 +35,7 @@ The following table contains commonly used font families and their corresponding
 | Brush Script MT | Brush Script MT | Cursive |
 | Impact | Impact | Sans-serif |
 
-Font availability depends on the operating system, installed software and browser environment. A typeface available on one computer may not be installed on another.
+[Font](https://aestheticfonts.in/blog/free-fonts/) availability depends on the operating system, installed software and browser environment. A typeface available on one computer may not be installed on another.
 
 ## Font Family in HTML
 
@@ -160,7 +160,7 @@ body {
 
 ### Monospace
 
-Monospace typefaces allocate the same horizontal character space to each glyph. They are commonly used for programming code and terminal text.
+Monospace typefaces allocate the same horizontal [character](https://aestheticfonts.in/blog/how-to-type-special-characters-windows-mac/) space to each glyph. They are commonly used for programming code and terminal text.
 
 Courier New, Consolas and Lucida Console are examples.
 
