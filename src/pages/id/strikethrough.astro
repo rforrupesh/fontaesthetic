@@ -1,0 +1,109 @@
+---
+import StrikethroughPage from '../../components/StrikethroughPage.astro';
+
+const why = [
+  { title: 'Opsi salin dan tempel teks coret', body: 'Opsi salin dan tempel memungkinkan kamu membuat teks coret dan langsung memakainya di aplikasi favoritmu. Ketik teksmu, lalu salin dan tempel hasilnya ke mana saja.' },
+  { title: 'Beragam gaya tulisan coret', body: 'Kamu bisa membuat berbagai jenis tulisan coret. Pilih yang cocok untuk obrolan, profil, atau postinganmu. Teks coret satu garis, Teks dua garis, Huruf dicoret Teks coret bergaya Berbagai jenis Unicode' },
+  { title: 'Alat 100% gratis', body: 'Generator teks coret ini sepenuhnya gratis. Kamu bisa memakainya sebanyak yang kamu mau tanpa membayar atau mendaftar. Tanpa registrasi Tanpa langganan Tanpa biaya tambahan Konversi tanpa batas Benar-benar gratis' },
+  { title: 'Kompatibel dengan semua perangkat', body: 'Kamu bisa memakai alat ini di semua perangkat yang punya browser. Berjalan lancar di ponsel, tablet, maupun layar komputer. Ponsel Android iPhone & iPad PC Windows PC Mac Tidak perlu memasang aplikasi' },
+];
+const extra = [
+  { title: 'Mudah digunakan', body: 'Alat ini dibuat mudah untuk semua orang. Tombol yang jelas dan antarmuka yang ramah pengguna membuatmu bisa mengubah teks menjadi teks dicoret dengan mudah. Antarmuka jelas Akses cepat ke opsi salin Petunjuk mudah diikuti Cocok untuk pemula' },
+  { title: 'Pratinjau langsung', body: 'Kamu bisa melihat tampilan teksmu sebelum menyalinnya. Fitur pratinjau langsung menunjukkan bagaimana teksmu akan terlihat setelah diubah. Pratinjau instan Ubah teksmu kapan saja Lihat versi akhirnya Salin hanya saat kamu puas dengan hasilnya' },
+  { title: 'Banyak bahasa', body: 'Entah kamu menulis dalam bahasa Inggris, Jerman, Indonesia, Spanyol, atau Portugis, kamu bisa mengubah dan menyalin teksmu.' },
+];
+const where = [
+  { title: 'Obrolan dan pesan', body: 'Pakai teks coret di obrolan untuk mengoreksi kata, bercanda, atau menunjukkan bahwa sebuah pesan sudah tidak berlaku. Pesan WhatsApp Obrolan Telegram Balasan Messenger DM Instagram Pesan Snapchat' },
+  { title: 'Profil gaming', body: 'Beberapa game dan platform gaming mengizinkan karakter coret di username, nama clan, dan teks profil. Nickname Discord Nama Free Fire Nama BGMI Nama PUBG Username Roblox' },
+  { title: 'Catatan dan daftar', body: 'Pakai teks coret untuk menandai tugas yang sudah selesai, pengingat lama, atau rencana yang dibatalkan di catatanmu. Daftar tugas Catatan belajar Daftar belanja Pengingat lama Rencana yang dibatalkan' },
+];
+const tools = ['Generator teks garis bawah', 'Generator teks miring', 'Generator teks terbalik'];
+const faqs = [
+  { question: 'Apakah teks coret aman digunakan?', answer: 'Ya. Teks coret Unicode umumnya aman untuk disalin dan ditempel. Isinya berupa karakter teks, bukan kode yang bisa dijalankan atau perangkat lunak. Namun, tampilannya bisa berbeda di tiap aplikasi dan perangkat.' },
+  { question: 'Bagaimana cara mengetik huruf yang dicoret?', answer: 'Kamu bisa membuat huruf yang dicoret dengan menambahkan karakter gabungan Unicode, seperti U+0336, setelah huruf. Misalnya, huruf a diikuti tanda gabungan menjadi a̶. Generator teks coret bisa mengotomatiskan proses ini untuk seluruh kata dan kalimat.' },
+  { question: 'Kenapa teks coretku tidak berfungsi?', answer: 'Beberapa aplikasi tidak menampilkan karakter gabungan Unicode secara konsisten. Garisnya bisa tampak bergeser, terputus, atau hilang karena perbedaan penampilan font dan dukungan Unicode. Coba aplikasi lain atau gaya coret yang berbeda.' },
+  { question: 'Bisakah saya memakai huruf coret di ponsel?', answer: 'Bisa. Kamu bisa menyalin huruf coret dari generator dan menempelkannya di aplikasi seluler yang didukung. Hasilnya bergantung pada aplikasi, keyboard, dan dukungan tampilan font.' },
+];
+---
+
+<StrikethroughPage lang="id">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Teks Coret Salin dan Tempel</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Teks coret, juga dikenal sebagai tulisan dicoret, menampilkan garis horizontal yang melintasi huruf dan kata. Biasanya dipakai untuk menunjukkan suntingan, koreksi, atau konten yang dihapus. Generator Teks Coret kami mengubah teks biasa menjadi teks coret Unicode yang bisa kamu salin dan tempel ke pesan, postingan media sosial, bio, dan platform lainnya.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Apa itu teks coret?</h2>
+      <p class="text-text-muted leading-[1.8]">Coretan adalah efek tipografi yang menempatkan garis di tengah setiap karakter. Efek ini biasa dipakai di dokumen untuk menandai kata yang dihapus atau menunjukkan perubahan tanpa menghapus konten aslinya. Karakter gabungan Unicode, seperti Combining Long Stroke Overlay (U+0336), dapat menciptakan tampilan ini dengan menambahkan garis pada huruf yang ada.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Mengapa memakai generator teks coret kami?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Membuat teks coret jadi mudah dengan generator kami, tanpa perlu memasukkan karakter khusus secara manual untuk setiap huruf.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Fitur tambahan teks coret</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Generator ini punya fitur praktis yang membuat konversi teks lebih mudah:</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Di mana font coret bisa dipakai?</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Alat lainnya</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Pertanyaan yang sering diajukan</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</StrikethroughPage>
