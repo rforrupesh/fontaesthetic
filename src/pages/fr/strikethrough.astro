@@ -1,0 +1,109 @@
+---
+import StrikethroughPage from '../../components/StrikethroughPage.astro';
+
+const why = [
+  { title: 'Option copier-coller du texte barré', body: 'L’option copier-coller vous permet de générer du texte barré et de l’utiliser instantanément dans l’application de votre choix. Tapez votre texte, puis copiez et collez le résultat où vous voulez.' },
+  { title: 'Plusieurs types de texte barré', body: 'Vous pouvez créer plusieurs types de texte barré. Choisissez celui qui convient à votre conversation, votre profil ou votre publication. Texte à simple trait, Texte à double trait, Lettres rayées Texte barré stylé Divers types Unicode' },
+  { title: 'Outil 100 % gratuit', body: 'Le générateur de texte barré est entièrement gratuit. Vous pouvez l’utiliser autant de fois que vous le souhaitez, sans payer ni vous inscrire. Sans inscription Sans abonnement Sans frais supplémentaires Conversions illimitées Totalement gratuit' },
+  { title: 'Compatible avec tous les appareils', body: 'Vous pouvez utiliser cet outil sur tous les appareils dotés d’un navigateur. Il fonctionne parfaitement sur les téléphones mobiles, les tablettes et les ordinateurs. Téléphones Android iPhone et iPad PC Windows Mac Aucune application à installer' },
+];
+const extra = [
+  { title: 'Facile à utiliser', body: 'L’outil est conçu pour être simple pour tout le monde. Des boutons bien visibles et une interface conviviale vous permettent de transformer votre texte en texte barré sans effort. Interface claire Accès rapide à la copie Instructions faciles à suivre Idéal pour les débutants' },
+  { title: 'Aperçu en direct', body: 'Vous pouvez voir le rendu de votre texte avant de le copier. La fonction d’aperçu en direct vous montre à quoi ressemblera votre texte après la transformation. Aperçu immédiat Modifiez votre texte quand vous voulez Voyez la version finale Copiez uniquement quand le résultat vous plaît' },
+  { title: 'Plusieurs langues', body: 'Que vous écriviez en anglais, en allemand, en indonésien, en espagnol ou en portugais, vous pouvez transformer et copier votre texte.' },
+];
+const where = [
+  { title: 'Chats et messages', body: 'Utilisez le texte barré dans vos discussions pour corriger un mot, faire une blague ou indiquer qu’un message n’est plus valable. Messages WhatsApp Discussions Telegram Réponses Messenger Messages privés Instagram Messages Snapchat' },
+  { title: 'Profils de jeux', body: 'Certains jeux et plateformes de jeux acceptent les caractères barrés dans les pseudos, les noms de clan et les textes de profil. Pseudo Discord Nom Free Fire Nom BGMI Nom PUBG Pseudo Roblox' },
+  { title: 'Notes et listes', body: 'Utilisez le texte barré pour marquer les tâches terminées, les anciens rappels ou les projets annulés dans vos notes. Listes de tâches Notes de cours Listes de courses Anciens rappels Projets annulés' },
+];
+const tools = ['Générateur de texte souligné', 'Générateur de texte en italique', 'Générateur de texte à l’envers'];
+const faqs = [
+  { question: 'Le texte barré est-il sûr à utiliser ?', answer: 'Oui. Le texte barré Unicode peut généralement être copié et collé sans risque. Il se compose de caractères de texte, et non de code exécutable ou de logiciel. Cependant, son apparence peut varier selon les applications et les appareils.' },
+  { question: 'Comment taper une lettre avec un trait au milieu ?', answer: 'Vous pouvez créer une lettre barrée en ajoutant un caractère combinant Unicode, comme U+0336, après la lettre. Par exemple, un a suivi du signe combinant devient a̶. Un générateur de texte barré peut automatiser ce processus pour des mots et des phrases entières.' },
+  { question: 'Pourquoi mon texte barré ne fonctionne-t-il pas ?', answer: 'Certaines applications n’affichent pas les caractères combinants Unicode de façon uniforme. Le trait peut apparaître décalé, coupé ou absent à cause des différences de rendu des polices et de prise en charge d’Unicode. Essayez une autre application ou un autre style de texte barré.' },
+  { question: 'Puis-je utiliser des lettres barrées sur mobile ?', answer: 'Oui. Vous pouvez copier des lettres barrées depuis le générateur et les coller dans les applications mobiles compatibles. Le résultat dépend de l’application, du clavier et de la prise en charge du rendu des polices.' },
+];
+---
+
+<StrikethroughPage lang="fr">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Texte barré à copier-coller</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Le texte barré, aussi appelé texte rayé, affiche un trait horizontal au milieu des lettres et des mots. Il sert souvent à montrer des modifications, des corrections ou du contenu supprimé. Notre générateur de texte barré transforme du texte normal en texte barré Unicode que vous pouvez copier et coller dans vos messages, publications sur les réseaux sociaux, bios et autres plateformes.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Qu’est-ce que le texte barré ?</h2>
+      <p class="text-text-muted leading-[1.8]">Le barré est un effet typographique qui place un trait au milieu de chaque caractère. Il est souvent utilisé dans les documents pour marquer des mots supprimés ou montrer des changements sans effacer le contenu d’origine. Les caractères combinants Unicode, comme la superposition de trait long (U+0336), peuvent créer cet effet en ajoutant un trait aux lettres existantes.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Pourquoi utiliser notre générateur de texte barré ?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Notre générateur vous permet de créer du texte barré facilement, sans avoir à saisir manuellement des caractères spéciaux pour chaque lettre.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Fonctionnalités supplémentaires du texte barré</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Le générateur propose des fonctions pratiques qui facilitent la conversion du texte :</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Où utiliser la police barrée ?</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Autres outils</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Questions fréquentes</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</StrikethroughPage>
