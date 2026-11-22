@@ -311,3 +311,14 @@ html[data-theme="light"] {
 @media (prefers-reduced-motion: reduce) {
   .email-reveal-btn, .email-revealed { animation: none; }
 }
+
+[data-role="output"] {
+  font-family: 'Segoe UI Symbol', 'Segoe UI', 'Apple Symbols', 'Noto Sans Symbols',
+    'Noto Sans Symbols 2', 'Noto Sans Math', 'Cambria Math', 'DejaVu Sans',
+    'Arial Unicode MS', 'Helvetica Neue', Arial, sans-serif;
+  font-variant-ligatures: none;
+  font-kerning: none;
+  line-height: 1.9;
+  word-spacing: .15em;
+  overflow-wrap: anywhere;
+}
