@@ -1,0 +1,187 @@
+---
+import ItalicPage from '../../components/ItalicPage.astro';
+
+const features = [
+  {
+    "label": "تحويل رموز يونيكود:",
+    "body": "يحوّل الحروف العادية المدعومة إلى حروف مائلة رياضية."
+  },
+  {
+    "label": "نسخ ولصق سريع:",
+    "body": "انسخ النص الناتج واستخدمه في تطبيقات أخرى."
+  },
+  {
+    "label": "دون تثبيت خطوط:",
+    "body": "أنشئ حروفًا بنمط مائل دون تنزيل ملفات خطوط."
+  },
+  {
+    "label": "إدخال نص بسيط:",
+    "body": "أدخل كلمات أو أسماء أو جملًا لإنشاء نص مائل."
+  },
+  {
+    "label": "أداة تعمل في المتصفح:",
+    "body": "استخدم المولّد مباشرة من متصفح الويب."
+  },
+  {
+    "label": "مجاني الاستخدام:",
+    "body": "أنشئ نصًا مائلًا دون تسجيل أو دفع."
+  }
+];
+const where = [
+  {
+    "label": "Instagram:",
+    "body": "استخدم حروفًا مائلة في السيرة الذاتية والتعليقات."
+  },
+  {
+    "label": "Facebook:",
+    "body": "أضف نصًا مائلًا إلى المنشورات والتعليقات ووصف الملف الشخصي."
+  },
+  {
+    "label": "WhatsApp:",
+    "body": "شارك نص يونيكود بنمط مائل في الرسائل."
+  },
+  {
+    "label": "TikTok:",
+    "body": "أنشئ أنماط نصوص مختلفة لوصف الملف الشخصي."
+  },
+  {
+    "label": "Discord:",
+    "body": "استخدم رموزًا مائلة خاصة في الرسائل وحقول الملف الشخصي المدعومة."
+  },
+  {
+    "label": "YouTube:",
+    "body": "أضف حروفًا زخرفية إلى التعليقات ووصف القناة."
+  },
+  {
+    "label": "ملفات الألعاب الشخصية:",
+    "body": "أنشئ أسماء عرض مميزة باستخدام رموز يونيكود المدعومة."
+  }
+];
+const steps = [
+  "افتح أداة مولّد الخط المائل.",
+  "اكتب نصك العادي أو الصقه في مربع الإدخال.",
+  "شاهد النص المحوّل بنمط مائل.",
+  "انقر على خيار النسخ لنسخ النتيجة.",
+  "الصقه في التطبيق أو الموقع الذي تفضله."
+];
+const tools = [
+  {
+    "name": "زخرفة انجليزي",
+    "url": "https://aestheticfonts.in/ar/"
+  },
+  {
+    "name": "مولّد النص المسطّر",
+    "url": "https://aestheticfonts.in/ar/underline/"
+  },
+  {
+    "name": "مولّد النص المشطوب",
+    "url": "https://aestheticfonts.in/ar/strikethrough/"
+  }
+];
+const faqs = [
+  {
+    "question": "هل يمكنني استخدام حروف أبجدية مائلة دون تنسيق؟",
+    "answer": "نعم. يمكن نسخ ولصق الحروف المائلة بيونيكود دون تطبيق تنسيق النص التقليدي. فهي رموز يونيكود مستقلة، لذا لا يعتمد مظهرها على اختيار الخيار المائل في محرر النصوص."
+  },
+  {
+    "question": "هل صانع النص المائل مجاني؟",
+    "answer": "نعم. صانع النص المائل مجاني. يمكنك تحويل الحروف العادية إلى نص بنمط مائل ونسخ النتيجة دون دفع أو تثبيت برامج إضافية."
+  },
+  {
+    "question": "هل يمكنني استخدام النص المائل في اسم المستخدم على وسائل التواصل؟",
+    "answer": "يمكنك استخدام رموز يونيكود المائلة في أسماء العرض ووصف الملف الشخصي على وسائل التواصل إذا كانت المنصة تدعمها. لكن بعض المواقع تقيّد الرموز الخاصة في أسماء مستخدمي الحسابات. تحقق من قواعد المنصة قبل استخدام الحروف المائلة في اسم المستخدم."
+  },
+  {
+    "question": "هل تعمل الحروف المائلة على جميع الأجهزة؟",
+    "answer": "تعمل الحروف المائلة بيونيكود على الأجهزة والتطبيقات التي تدعم الرموز المقابلة. لكن مظهرها قد يختلف حسب نظام التشغيل والمتصفح والخط. وقد لا تظهر بعض الرموز بشكل صحيح على الأجهزة القديمة أو التطبيقات غير المدعومة."
+  }
+];
+---
+
+<ItalicPage lang="ar">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">نسخ ولصق النص المائل</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">يستخدم النص المائل حروفًا مائلة لإعطاء الكلمات مظهرًا مختلفًا. ويُستخدم عادةً للتأكيد والعناوين والتعليقات التوضيحية والكتابة الزخرفية. يحوّل مولّد النص المائل الحروف العادية إلى رموز يونيكود خاصة يمكن نسخها ولصقها في ملفات التواصل الاجتماعي والرسائل والتطبيقات الأخرى.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">ما هو النص المائل بيونيكود؟</h2>
+      <p class="text-text-muted leading-[1.8]">يستخدم النص المائل بيونيكود رموزًا خاصة من كتلة الرموز الأبجدية الرقمية الرياضية (من U+1D400 إلى U+1D7FF). تحتوي هذه الكتلة على أنماط حروف مختلفة، منها المائل الرياضي والمائل الغامق وحروف الخط اليدوي. لهذه الحروف نقاط ترميز يونيكود مستقلة، ويمكن نسخها ولصقها دون تطبيق تنسيق الخط المائل التقليدي.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">لماذا تستخدم أداة مولّد الخط المائل لدينا؟</h2>
+      <p class="text-text-muted leading-[1.8]">يحوّل مولّد الخط المائل لدينا النص العادي إلى أنماط نصوص يونيكود مختلفة. يمكنك إنشاء نص بأنماط Italic وCursive وScript وItalic Bold (Serif) وItalic Bold (Sans) بعملية تحويل بسيطة. أدخل نصك، وشاهد النتيجة المحوّلة، وانسخها لاستخدامها في السير الذاتية والتعليقات والرسائل على وسائل التواصل الاجتماعي. تعمل الأداة مباشرة في متصفحك دون الحاجة إلى تثبيت خطوط أو برامج إضافية.</p>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">ميزات إضافية للنص المائل</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">يوفر مولّد النص المائل طريقة بسيطة لإنشاء ونسخ أنماط نصوص مختلفة. ومن أهم ميزاته:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">أين تُستخدم أنماط الخط المائل؟</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">يمكن استخدام رموز يونيكود المائلة في مواقع وتطبيقات مختلفة تدعم هذه الرموز. وتُستخدم عادةً لتغيير مظهر النصوص القصيرة ومعلومات الملف الشخصي.</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {where.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- How to -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">كيف تجعل النص مائلًا؟</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">يمكنك جعل النص مائلًا باستخدام محرر نصوص أو مولّد نص مائل عبر الإنترنت. في تطبيقات مثل Microsoft Word وGoogle Docs، حدد النص وطبّق خيار التنسيق المائل.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">لإنشاء نص مائل يمكنك نسخه ولصقه، اتبع الخطوات التالية:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">أدوات أخرى</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">الأسئلة الشائعة</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</ItalicPage>

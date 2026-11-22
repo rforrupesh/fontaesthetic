@@ -1,0 +1,187 @@
+---
+import ItalicPage from '../../components/ItalicPage.astro';
+
+const features = [
+  {
+    "label": "การแปลงอักขระ Unicode:",
+    "body": "แปลงตัวอักษรปกติที่รองรับเป็นอักขระตัวเอียงทางคณิตศาสตร์"
+  },
+  {
+    "label": "คัดลอกและวางได้รวดเร็ว:",
+    "body": "คัดลอกข้อความที่สร้างขึ้นและนำไปใช้ในแอปอื่น"
+  },
+  {
+    "label": "ไม่ต้องติดตั้งฟอนต์:",
+    "body": "สร้างตัวอักษรสไตล์ตัวเอียงโดยไม่ต้องดาวน์โหลดไฟล์ฟอนต์"
+  },
+  {
+    "label": "ป้อนข้อความง่ายๆ:",
+    "body": "พิมพ์คำ ชื่อ หรือประโยคเพื่อสร้างข้อความตัวเอน"
+  },
+  {
+    "label": "เครื่องมือบนเบราว์เซอร์:",
+    "body": "ใช้ตัวสร้างได้โดยตรงจากเว็บเบราว์เซอร์"
+  },
+  {
+    "label": "ใช้ฟรี:",
+    "body": "สร้างข้อความตัวเอียงโดยไม่ต้องสมัครสมาชิกหรือชำระเงิน"
+  }
+];
+const where = [
+  {
+    "label": "Instagram:",
+    "body": "ใช้ตัวอักษรเอียงในไบโอ คำบรรยาย และคอมเมนต์"
+  },
+  {
+    "label": "Facebook:",
+    "body": "เพิ่มข้อความตัวเอนในโพสต์ คอมเมนต์ และคำอธิบายโปรไฟล์"
+  },
+  {
+    "label": "WhatsApp:",
+    "body": "ส่งข้อความ Unicode สไตล์ตัวเอียงในแชต"
+  },
+  {
+    "label": "TikTok:",
+    "body": "สร้างสไตล์ข้อความที่แตกต่างสำหรับคำอธิบายโปรไฟล์"
+  },
+  {
+    "label": "Discord:",
+    "body": "ใช้อักขระตัวเอียงพิเศษในข้อความและช่องโปรไฟล์ที่รองรับ"
+  },
+  {
+    "label": "YouTube:",
+    "body": "เพิ่มตัวอักษรตกแต่งในคอมเมนต์และคำอธิบายช่อง"
+  },
+  {
+    "label": "โปรไฟล์เกม:",
+    "body": "สร้างชื่อที่แสดงให้โดดเด่นด้วยอักขระ Unicode ที่รองรับ"
+  }
+];
+const steps = [
+  "เปิดเครื่องมือตัวสร้างตัวเอียง",
+  "พิมพ์หรือวางข้อความปกติลงในช่องป้อนข้อมูล",
+  "ดูข้อความสไตล์ตัวเอียงที่แปลงแล้ว",
+  "คลิกตัวเลือกคัดลอกเพื่อคัดลอกผลลัพธ์",
+  "วางลงในแอปหรือเว็บไซต์ที่ต้องการ"
+];
+const tools = [
+  {
+    "name": "ตัวอักษรพิเศษ",
+    "url": "https://aestheticfonts.in/th/"
+  },
+  {
+    "name": "ตัวสร้างข้อความขีดเส้นใต้",
+    "url": "https://aestheticfonts.in/th/underline/"
+  },
+  {
+    "name": "ตัวสร้างข้อความขีดฆ่า",
+    "url": "https://aestheticfonts.in/th/strikethrough/"
+  }
+];
+const faqs = [
+  {
+    "question": "ฉันใช้ตัวอักษรเอียงโดยไม่ต้องจัดรูปแบบได้ไหม?",
+    "answer": "ได้ ตัวอักษรเอียง Unicode คัดลอกและวางได้โดยไม่ต้องใช้การจัดรูปแบบข้อความแบบดั้งเดิม เป็นอักขระ Unicode แยกต่างหาก จึงไม่ขึ้นอยู่กับการเลือกตัวเลือกตัวเอียงในโปรแกรมแก้ไขข้อความ"
+  },
+  {
+    "question": "ตัวสร้างข้อความตัวเอียงใช้ฟรีหรือไม่?",
+    "answer": "ได้ ตัวสร้างข้อความตัวเอียงใช้ฟรี คุณแปลงตัวอักษรปกติเป็นข้อความสไตล์ตัวเอียงและคัดลอกผลลัพธ์ได้โดยไม่ต้องจ่ายเงินหรือติดตั้งซอฟต์แวร์เพิ่มเติม"
+  },
+  {
+    "question": "ฉันใช้ข้อความตัวเอนในชื่อผู้ใช้โซเชียลมีเดียได้ไหม?",
+    "answer": "คุณใช้อักขระ Unicode ตัวเอนในชื่อที่แสดงและคำอธิบายโปรไฟล์บนโซเชียลมีเดียได้หากแพลตฟอร์มรองรับ อย่างไรก็ตาม บางเว็บไซต์จำกัดอักขระพิเศษในชื่อผู้ใช้ของบัญชี โปรดตรวจสอบกฎของแพลตฟอร์มก่อนใช้ตัวอักษรเอียงในชื่อผู้ใช้"
+  },
+  {
+    "question": "ตัวอักษรเอียงใช้ได้กับทุกอุปกรณ์หรือไม่?",
+    "answer": "ตัวอักษรเอียง Unicode ใช้ได้กับอุปกรณ์และแอปที่รองรับอักขระที่เกี่ยวข้อง อย่างไรก็ตาม รูปลักษณ์อาจแตกต่างกันไปตามระบบปฏิบัติการ เบราว์เซอร์ และฟอนต์ อักขระบางตัวอาจแสดงผลไม่ถูกต้องบนอุปกรณ์รุ่นเก่าหรือแอปที่ไม่รองรับ"
+  }
+];
+---
+
+<ItalicPage lang="th">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">คัดลอกและวางข้อความตัวเอียง</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">ข้อความตัวเอียงใช้ตัวอักษรเอนเพื่อให้คำดูแตกต่างออกไป มักใช้เพื่อเน้นข้อความ ตั้งชื่อเรื่อง เขียนคำบรรยาย และตกแต่งงานเขียน ตัวสร้างข้อความตัวเอียงจะแปลงตัวอักษรปกติเป็นอักขระ Unicode พิเศษ ที่คัดลอกและวางลงในโปรไฟล์โซเชียลมีเดีย ข้อความ และแอปอื่นๆ ได้</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">ข้อความตัวเอียง Unicode คืออะไร?</h2>
+      <p class="text-text-muted leading-[1.8]">ข้อความตัวเอียง Unicode ใช้อักขระพิเศษจากบล็อกสัญลักษณ์ตัวอักษรและตัวเลขทางคณิตศาสตร์ (U+1D400 ถึง U+1D7FF) บล็อก Unicode นี้มีสไตล์ตัวอักษรหลายแบบ เช่น ตัวเอียงทางคณิตศาสตร์ ตัวเอียงหนา และอักขระสคริปต์ ตัวอักษรเหล่านี้มีรหัส Unicode แยกต่างหาก และคัดลอกวางได้โดยไม่ต้องใช้การจัดรูปแบบตัวเอียงแบบดั้งเดิม</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">ทำไมต้องใช้ตัวสร้างตัวเอียงของเรา?</h2>
+      <p class="text-text-muted leading-[1.8]">ตัวสร้างตัวเอียงของเราแปลงข้อความปกติเป็นข้อความสไตล์ Unicode ต่างๆ คุณสร้างข้อความแบบ Italic, Cursive, Script, Italic Bold (Serif) และ Italic Bold (Sans) ได้ด้วยขั้นตอนการแปลงง่ายๆ ใส่ข้อความ ดูผลลัพธ์ที่แปลงแล้ว และคัดลอกไปใช้ในไบโอ คำบรรยาย คอมเมนต์ และข้อความบนโซเชียลมีเดีย เครื่องมือทำงานบนเบราว์เซอร์โดยตรง ไม่ต้องติดตั้งฟอนต์หรือซอฟต์แวร์เพิ่มเติม</p>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">ฟีเจอร์เสริมของข้อความตัวเอน</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">ตัวสร้างข้อความตัวเอียงช่วยให้สร้างและคัดลอกข้อความสไตล์ต่างๆ ได้ง่าย ฟีเจอร์หลัก ได้แก่:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">ใช้สไตล์ฟอนต์ตัวเอียงได้ที่ไหน?</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">อักขระ Unicode ตัวเอียงใช้ได้ในเว็บไซต์และแอปต่างๆ ที่รองรับอักขระเหล่านี้ มักใช้เปลี่ยนลักษณะของข้อความสั้นๆ และข้อมูลโปรไฟล์</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {where.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- How to -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">ทำข้อความให้เป็นตัวเอียงได้อย่างไร?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">คุณทำข้อความให้เป็นตัวเอียงได้ด้วยโปรแกรมแก้ไขข้อความหรือตัวสร้างข้อความตัวเอียงออนไลน์ ในแอปอย่าง Microsoft Word และ Google Docs ให้เลือกข้อความแล้วใช้ตัวเลือกการจัดรูปแบบตัวเอียง</p>
+      <p class="text-text-muted leading-[1.8] mb-5">หากต้องการสร้างข้อความตัวเอียงที่คัดลอกและวางได้ ให้ทำตามขั้นตอนต่อไปนี้:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">เครื่องมืออื่นๆ</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">คำถามที่พบบ่อย</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</ItalicPage>

@@ -1,0 +1,187 @@
+---
+import ItalicPage from '../../components/ItalicPage.astro';
+
+const features = [
+  {
+    "label": "Chuyển đổi ký tự Unicode:",
+    "body": "Chuyển các chữ cái thông thường được hỗ trợ thành ký tự nghiêng toán học."
+  },
+  {
+    "label": "Sao chép và dán nhanh:",
+    "body": "Sao chép văn bản đã tạo và dùng trong các ứng dụng khác."
+  },
+  {
+    "label": "Không cần cài phông chữ:",
+    "body": "Tạo chữ kiểu in nghiêng mà không cần tải tệp phông chữ."
+  },
+  {
+    "label": "Nhập văn bản đơn giản:",
+    "body": "Nhập từ, tên hoặc câu để tạo chữ nghiêng."
+  },
+  {
+    "label": "Công cụ chạy trên trình duyệt:",
+    "body": "Dùng công cụ trực tiếp từ trình duyệt web của bạn."
+  },
+  {
+    "label": "Miễn phí sử dụng:",
+    "body": "Tạo chữ in nghiêng không cần đăng ký hay thanh toán."
+  }
+];
+const where = [
+  {
+    "label": "Instagram:",
+    "body": "Dùng chữ in nghiêng trong tiểu sử, chú thích và bình luận."
+  },
+  {
+    "label": "Facebook:",
+    "body": "Thêm chữ nghiêng vào bài đăng, bình luận và phần mô tả hồ sơ."
+  },
+  {
+    "label": "WhatsApp:",
+    "body": "Chia sẻ văn bản Unicode kiểu in nghiêng trong tin nhắn."
+  },
+  {
+    "label": "TikTok:",
+    "body": "Tạo các kiểu chữ khác nhau cho phần mô tả hồ sơ."
+  },
+  {
+    "label": "Discord:",
+    "body": "Dùng ký tự in nghiêng đặc biệt trong tin nhắn và các trường hồ sơ được hỗ trợ."
+  },
+  {
+    "label": "YouTube:",
+    "body": "Thêm chữ trang trí vào bình luận và phần mô tả kênh."
+  },
+  {
+    "label": "Hồ sơ game:",
+    "body": "Tạo tên hiển thị nổi bật bằng các ký tự Unicode được hỗ trợ."
+  }
+];
+const steps = [
+  "Mở công cụ tạo chữ in nghiêng.",
+  "Nhập hoặc dán văn bản thông thường vào ô nhập liệu.",
+  "Xem văn bản đã chuyển sang kiểu in nghiêng.",
+  "Nhấp vào tùy chọn sao chép để sao chép kết quả.",
+  "Dán vào ứng dụng hoặc trang web bạn muốn."
+];
+const tools = [
+  {
+    "name": "Tạo Tên Kí Tự Đặc Biệt",
+    "url": "https://aestheticfonts.in/vi/"
+  },
+  {
+    "name": "Tạo chữ gạch chân",
+    "url": "https://aestheticfonts.in/vi/underline/"
+  },
+  {
+    "name": "Tạo chữ gạch ngang",
+    "url": "https://aestheticfonts.in/vi/strikethrough/"
+  }
+];
+const faqs = [
+  {
+    "question": "Tôi có thể dùng chữ cái in nghiêng mà không cần định dạng không?",
+    "answer": "Có. Chữ cái in nghiêng Unicode có thể sao chép và dán mà không cần áp dụng định dạng văn bản truyền thống. Đây là các ký tự Unicode riêng biệt nên diện mạo của chúng không phụ thuộc vào việc chọn tùy chọn in nghiêng trong trình soạn thảo."
+  },
+  {
+    "question": "Công cụ tạo chữ in nghiêng có miễn phí không?",
+    "answer": "Có. Công cụ tạo chữ in nghiêng hoàn toàn miễn phí. Bạn có thể chuyển các chữ cái thông thường thành văn bản kiểu in nghiêng và sao chép kết quả mà không cần trả phí hay cài thêm phần mềm."
+  },
+  {
+    "question": "Tôi có thể dùng chữ nghiêng trong tên người dùng mạng xã hội không?",
+    "answer": "Bạn có thể dùng ký tự Unicode nghiêng trong tên hiển thị và phần mô tả hồ sơ trên mạng xã hội nếu nền tảng hỗ trợ. Tuy nhiên, một số trang web hạn chế ký tự đặc biệt trong tên người dùng của tài khoản. Hãy kiểm tra quy định của nền tảng trước khi dùng chữ in nghiêng trong tên người dùng."
+  },
+  {
+    "question": "Chữ in nghiêng có hoạt động trên mọi thiết bị không?",
+    "answer": "Chữ in nghiêng Unicode hoạt động trên các thiết bị và ứng dụng hỗ trợ ký tự tương ứng. Tuy nhiên, diện mạo có thể khác nhau tùy hệ điều hành, trình duyệt và phông chữ. Một số ký tự có thể không hiển thị đúng trên thiết bị cũ hoặc ứng dụng không được hỗ trợ."
+  }
+];
+---
+
+<ItalicPage lang="vi">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Sao chép và dán chữ in nghiêng</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Chữ in nghiêng dùng các chữ cái nghiêng để mang lại vẻ ngoài khác biệt cho từ ngữ. Nó thường được dùng để nhấn mạnh, đặt tiêu đề, viết chú thích và trang trí văn bản. Công cụ tạo chữ in nghiêng chuyển các chữ cái thông thường thành ký tự Unicode đặc biệt, có thể sao chép và dán vào hồ sơ mạng xã hội, tin nhắn và các ứng dụng khác.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Chữ in nghiêng Unicode là gì?</h2>
+      <p class="text-text-muted leading-[1.8]">Chữ in nghiêng Unicode dùng các ký tự đặc biệt thuộc khối Ký hiệu chữ-số toán học (U+1D400 đến U+1D7FF). Khối Unicode này chứa nhiều kiểu chữ khác nhau, gồm chữ nghiêng toán học, chữ nghiêng đậm và chữ viết tay. Các chữ cái này có mã Unicode riêng và có thể sao chép, dán mà không cần áp dụng định dạng in nghiêng truyền thống.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Vì sao nên dùng công cụ tạo chữ in nghiêng của chúng tôi?</h2>
+      <p class="text-text-muted leading-[1.8]">Công cụ tạo chữ in nghiêng của chúng tôi chuyển văn bản thông thường thành nhiều kiểu chữ Unicode khác nhau. Bạn có thể tạo chữ Italic, Cursive, Script, Italic Bold (Serif) và Italic Bold (Sans) chỉ với một bước chuyển đổi đơn giản. Nhập văn bản, xem kết quả đã chuyển đổi và sao chép để dùng trong tiểu sử, chú thích, bình luận và tin nhắn trên mạng xã hội. Công cụ hoạt động ngay trên trình duyệt, không cần cài phông chữ hay phần mềm bổ sung.</p>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Tính năng bổ sung của chữ nghiêng</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">Công cụ tạo chữ in nghiêng cung cấp cách đơn giản để tạo và sao chép các kiểu chữ khác nhau. Các tính năng chính gồm:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Dùng kiểu chữ in nghiêng ở đâu?</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">Ký tự Unicode in nghiêng có thể dùng trên nhiều trang web và ứng dụng hỗ trợ các ký tự này. Chúng thường được dùng để thay đổi diện mạo của văn bản ngắn và thông tin hồ sơ.</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {where.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- How to -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Làm thế nào để tạo chữ in nghiêng?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Bạn có thể in nghiêng văn bản bằng trình soạn thảo hoặc công cụ tạo chữ in nghiêng trực tuyến. Trong các ứng dụng như Microsoft Word và Google Docs, hãy chọn văn bản và áp dụng tùy chọn định dạng in nghiêng.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">Để tạo chữ in nghiêng có thể sao chép và dán, hãy làm theo các bước sau:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Công cụ khác</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Câu hỏi thường gặp</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</ItalicPage>

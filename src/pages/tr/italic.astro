@@ -1,0 +1,187 @@
+---
+import ItalicPage from '../../components/ItalicPage.astro';
+
+const features = [
+  {
+    "label": "Unicode Karakter Dönüştürme:",
+    "body": "Desteklenen normal harfleri matematiksel italik karakterlere dönüştürür."
+  },
+  {
+    "label": "Hızlı Kopyala ve Yapıştır:",
+    "body": "Oluşturulan metni kopyalayın ve diğer uygulamalarda kullanın."
+  },
+  {
+    "label": "Yazı Tipi Yüklemeye Gerek Yok:",
+    "body": "Yazı tipi dosyası indirmeden italik tarzı harfler oluşturun."
+  },
+  {
+    "label": "Basit Metin Girişi:",
+    "body": "Eğik yazı oluşturmak için kelime, isim veya cümle girin."
+  },
+  {
+    "label": "Tarayıcı Tabanlı Araç:",
+    "body": "Oluşturucuyu doğrudan web tarayıcınızdan kullanın."
+  },
+  {
+    "label": "Ücretsiz Kullanım:",
+    "body": "Kayıt veya ödeme olmadan italik yazı oluşturun."
+  }
+];
+const where = [
+  {
+    "label": "Instagram:",
+    "body": "Biyografilerde, alt yazılarda ve yorumlarda italik harfler kullanın."
+  },
+  {
+    "label": "Facebook:",
+    "body": "Gönderilere, yorumlara ve profil açıklamalarına eğik yazı ekleyin."
+  },
+  {
+    "label": "WhatsApp:",
+    "body": "Mesajlarda italik tarzı Unicode yazı paylaşın."
+  },
+  {
+    "label": "TikTok:",
+    "body": "Profil açıklamaları için farklı yazı stilleri oluşturun."
+  },
+  {
+    "label": "Discord:",
+    "body": "Mesajlarda ve desteklenen profil alanlarında özel italik karakterler kullanın."
+  },
+  {
+    "label": "YouTube:",
+    "body": "Yorumlara ve kanal açıklamalarına süslü harfler ekleyin."
+  },
+  {
+    "label": "Oyun Profilleri:",
+    "body": "Desteklenen Unicode karakterleriyle özgün görünen adlar oluşturun."
+  }
+];
+const steps = [
+  "İtalik Oluşturucu aracını açın.",
+  "Normal metninizi giriş kutusuna yazın veya yapıştırın.",
+  "Dönüştürülen italik tarzı metni görün.",
+  "Sonucu kopyalamak için kopyala seçeneğine tıklayın.",
+  "Tercih ettiğiniz uygulamaya veya web sitesine yapıştırın."
+];
+const tools = [
+  {
+    "name": "Şekilli Nick - Şekilli yazı ve isim oluşturucu",
+    "url": "https://aestheticfonts.in/tr/"
+  },
+  {
+    "name": "Altı Çizili Yazı Oluşturucu",
+    "url": "https://aestheticfonts.in/tr/underline/"
+  },
+  {
+    "name": "Üstü Çizili Yazı Oluşturucu",
+    "url": "https://aestheticfonts.in/tr/strikethrough/"
+  }
+];
+const faqs = [
+  {
+    "question": "İtalik Alfabe Harflerini Biçimlendirme Olmadan Kullanabilir miyim?",
+    "answer": "Evet. Unicode italik alfabe harfleri, geleneksel metin biçimlendirmesi uygulanmadan kopyalanıp yapıştırılabilir. Bunlar ayrı Unicode karakterleridir; bu nedenle görünümleri bir metin düzenleyicide italik seçeneğinin seçilmesine bağlı değildir."
+  },
+  {
+    "question": "İtalik Yazı Oluşturucu Ücretsiz mi?",
+    "answer": "Evet. İtalik yazı oluşturucu ücretsizdir. Normal harfleri italik tarzı metne dönüştürebilir ve sonucu ödeme yapmadan veya ek yazılım yüklemeden kopyalayabilirsiniz."
+  },
+  {
+    "question": "Sosyal Medya Kullanıcı Adımda Eğik Yazı Kullanabilir miyim?",
+    "answer": "Platform destekliyorsa eğik Unicode karakterleri sosyal medya görünen adlarında ve profil açıklamalarında kullanabilirsiniz. Ancak bazı web siteleri hesap kullanıcı adlarında özel karakterleri kısıtlar. Kullanıcı adınızda italik harf kullanmadan önce platformun kurallarını kontrol edin."
+  },
+  {
+    "question": "İtalik Harfler Tüm Cihazlarda Çalışır mı?",
+    "answer": "Unicode italik harfler, ilgili karakterleri destekleyen cihazlarda ve uygulamalarda çalışır. Ancak görünümleri işletim sistemine, tarayıcıya ve yazı tipine göre değişebilir. Bazı karakterler eski cihazlarda veya desteklenmeyen uygulamalarda doğru görüntülenmeyebilir."
+  }
+];
+---
+
+<ItalicPage lang="tr">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">İtalik Yazı Kopyala Yapıştır</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">İtalik yazı, kelimelere farklı bir görünüm kazandırmak için eğik harfler kullanır. Genellikle vurgu, başlık, alt yazı ve süslü yazılar için kullanılır. İtalik yazı oluşturucu, normal harfleri sosyal medya profillerine, mesajlara ve diğer uygulamalara kopyalayıp yapıştırabileceğiniz özel Unicode karakterlerine dönüştürür.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Unicode İtalik Yazı Nedir?</h2>
+      <p class="text-text-muted leading-[1.8]">Unicode italik yazı, Matematiksel Alfasayısal Semboller bloğundaki (U+1D400 – U+1D7FF) özel karakterleri kullanır. Bu Unicode bloğu matematiksel italik, kalın italik ve el yazısı karakterleri gibi farklı harf stillerini içerir. Bu harflerin ayrı Unicode kod noktaları vardır ve geleneksel italik biçimlendirme uygulanmadan kopyalanıp yapıştırılabilir.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">İtalik Yazı Oluşturucumuzu Neden Kullanmalısınız?</h2>
+      <p class="text-text-muted leading-[1.8]">İtalik Oluşturucumuz normal metni farklı Unicode yazı stillerine dönüştürür. Basit bir dönüştürme işlemiyle Italic, Cursive, Script, Italic Bold (Serif) ve Italic Bold (Sans) yazılar oluşturabilirsiniz. Metninizi girin, dönüştürülen sonucu görün ve sosyal medya biyografilerinde, alt yazılarda, yorumlarda ve mesajlarda kullanmak için kopyalayın. Araç doğrudan tarayıcınızda çalışır; yazı tipi veya ek yazılım yüklemeniz gerekmez.</p>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Eğik Yazının Ek Özellikleri</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">İtalik yazı oluşturucu, farklı yazı stillerini oluşturmanın ve kopyalamanın basit bir yolunu sunar. Başlıca özellikleri şunlardır:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">İtalik Yazı Stilleri Nerede Kullanılır?</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">Unicode italik karakterler, bu karakterleri destekleyen farklı web sitelerinde ve uygulamalarda kullanılabilir. Genellikle kısa metinlerin ve profil bilgilerinin görünümünü değiştirmek için kullanılırlar.</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {where.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- How to -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Yazı İtalik Nasıl Yapılır?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Metni bir metin düzenleyici veya çevrimiçi italik yazı oluşturucu ile italik yapabilirsiniz. Microsoft Word ve Google Docs gibi uygulamalarda metni seçin ve italik biçimlendirme seçeneğini uygulayın.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">Kopyalayıp yapıştırabileceğiniz italik yazı oluşturmak için şu adımları izleyin:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Diğer Araçlar</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Sıkça Sorulan Sorular</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</ItalicPage>

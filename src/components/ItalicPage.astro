@@ -1,0 +1,54 @@
+---
+// Shared body of the Italic page, used by /italic/ and /{lang}/italic/.
+// The tool text is translated from src/lib/italicText.ts. The article is written by hand in
+// each page file and passed in through the default slot.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ItalicTool from './ItalicTool.astro';
+import Breadcrumb from './Breadcrumb.astro';
+import BreadcrumbSchema from './schema/BreadcrumbSchema.astro';
+import { getPath, t } from '../i18n';
+import { italicText } from '../lib/italicText';
+
+interface Props { lang: string; }
+const { lang } = Astro.props;
+const T = italicText(lang);
+const strings = t(lang);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const pagePath = '/italic/';
+const pageUrl = siteUrl + getPath(lang, pagePath);
+
+const crumbs = [
+  { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
+  { name: T.nav, url: pageUrl },
+];
+
+const webApp = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: T.h1,
+  url: pageUrl,
+  inLanguage: lang,
+  description: T.description,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any (runs in a web browser)',
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  publisher: { '@type': 'Organization', name: 'AestheticFonts', url: siteUrl },
+};
+---
+
+<BaseLayout lang={lang} title={T.title} description={T.description} path={pagePath}>
+  <div class="wrap pt-4"><Breadcrumb items={crumbs} /></div>
+  <div class="text-center pt-6 px-5">
+    <h1 class="text-[clamp(1.6rem,3.4vw,2.2rem)] mb-2">{T.h1}</h1>
+    <p class="text-text-muted text-sm max-w-[680px] mx-auto">{T.subtitle}</p>
+  </div>
+  <ItalicTool lang={lang} />
+
+  <!-- Article content is added manually in each language's italic.astro. -->
+  <slot />
+
+  <script type="application/ld+json" set:html={JSON.stringify(webApp)} />
+  <BreadcrumbSchema items={crumbs} />
+</BaseLayout>

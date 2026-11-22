@@ -1,0 +1,187 @@
+---
+import ItalicPage from '../../components/ItalicPage.astro';
+
+const features = [
+  {
+    "label": "Conversione in caratteri Unicode:",
+    "body": "Converte le lettere normali supportate in caratteri corsivi matematici."
+  },
+  {
+    "label": "Copia e incolla rapido:",
+    "body": "Copia il testo generato e usalo in altre applicazioni."
+  },
+  {
+    "label": "Nessuna installazione di font:",
+    "body": "Crea lettere in stile corsivo senza scaricare file di font."
+  },
+  {
+    "label": "Inserimento semplice del testo:",
+    "body": "Inserisci parole, nomi o frasi per generare testo inclinato."
+  },
+  {
+    "label": "Strumento nel browser:",
+    "body": "Usa il generatore direttamente dal tuo browser."
+  },
+  {
+    "label": "Uso gratuito:",
+    "body": "Genera testo in corsivo senza registrazione né pagamento."
+  }
+];
+const where = [
+  {
+    "label": "Instagram:",
+    "body": "Usa lettere in corsivo in bio, didascalie e commenti."
+  },
+  {
+    "label": "Facebook:",
+    "body": "Aggiungi testo inclinato a post, commenti e descrizioni del profilo."
+  },
+  {
+    "label": "WhatsApp:",
+    "body": "Condividi testo Unicode in stile corsivo nei messaggi."
+  },
+  {
+    "label": "TikTok:",
+    "body": "Crea diversi stili di testo per le descrizioni del profilo."
+  },
+  {
+    "label": "Discord:",
+    "body": "Usa caratteri corsivi speciali nei messaggi e nei campi del profilo supportati."
+  },
+  {
+    "label": "YouTube:",
+    "body": "Aggiungi lettere decorative a commenti e descrizioni del canale."
+  },
+  {
+    "label": "Profili di gioco:",
+    "body": "Crea nomi visualizzati distintivi usando caratteri Unicode supportati."
+  }
+];
+const steps = [
+  "Apri lo strumento generatore di corsivo.",
+  "Scrivi o incolla il testo normale nella casella di input.",
+  "Guarda il testo convertito in stile corsivo.",
+  "Clicca sull’opzione di copia per copiare il risultato.",
+  "Incollalo nell’applicazione o nel sito che preferisci."
+];
+const tools = [
+  {
+    "name": "Generatore di font",
+    "url": "https://aestheticfonts.in/it/"
+  },
+  {
+    "name": "Generatore di testo sottolineato",
+    "url": "https://aestheticfonts.in/it/underline/"
+  },
+  {
+    "name": "Generatore di testo barrato",
+    "url": "https://aestheticfonts.in/it/strikethrough/"
+  }
+];
+const faqs = [
+  {
+    "question": "Posso usare lettere dell’alfabeto in corsivo senza formattazione?",
+    "answer": "Sì. Le lettere corsive Unicode possono essere copiate e incollate senza applicare la formattazione tradizionale del testo. Sono caratteri Unicode separati, quindi il loro aspetto non dipende dall’opzione corsivo di un editor di testo."
+  },
+  {
+    "question": "Il creatore di testo in corsivo è gratuito?",
+    "answer": "Sì. Il creatore di testo in corsivo è gratuito. Puoi convertire le lettere normali in testo in stile corsivo e copiare il risultato senza pagare né installare software aggiuntivo."
+  },
+  {
+    "question": "Posso usare testo inclinato nel mio nome utente sui social?",
+    "answer": "Puoi usare caratteri Unicode inclinati nei nomi visualizzati e nelle descrizioni del profilo se la piattaforma li supporta. Tuttavia, alcuni siti limitano i caratteri speciali nei nomi utente degli account. Controlla le regole della piattaforma prima di usare lettere in corsivo nel tuo nome utente."
+  },
+  {
+    "question": "Le lettere in corsivo funzionano su tutti i dispositivi?",
+    "answer": "Le lettere corsive Unicode funzionano sui dispositivi e nelle applicazioni che supportano i caratteri corrispondenti. Tuttavia, il loro aspetto può variare in base al sistema operativo, al browser e al font. Alcuni caratteri potrebbero non essere visualizzati correttamente su dispositivi datati o applicazioni non supportate."
+  }
+];
+---
+
+<ItalicPage lang="it">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Testo in corsivo: copia e incolla</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Il testo in corsivo usa lettere inclinate per dare alle parole un aspetto diverso. È usato comunemente per enfasi, titoli, didascalie e scrittura decorativa. Un generatore di testo in corsivo converte le lettere normali in speciali caratteri Unicode che si possono copiare e incollare in profili social, messaggi e altre applicazioni.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Che cos’è il testo corsivo Unicode?</h2>
+      <p class="text-text-muted leading-[1.8]">Il testo corsivo Unicode usa caratteri speciali del blocco Simboli alfanumerici matematici (da U+1D400 a U+1D7FF). Questo blocco Unicode contiene diversi stili di lettere, tra cui corsivo matematico, grassetto corsivo e caratteri script. Queste lettere hanno punti di codice Unicode distinti e possono essere copiate e incollate senza applicare la formattazione corsiva tradizionale.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Perché usare il nostro generatore di corsivo?</h2>
+      <p class="text-text-muted leading-[1.8]">Il nostro generatore di corsivo converte il testo normale in diversi stili di testo Unicode. Puoi creare testo Italic, Cursive, Script, Italic Bold (Serif) e Italic Bold (Sans) con una semplice conversione. Inserisci il testo, guarda il risultato convertito e copialo per usarlo in bio, didascalie, commenti e messaggi sui social. Lo strumento funziona direttamente nel browser, senza installare font o altro software.</p>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Funzioni extra del testo inclinato</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">Il generatore di testo in corsivo offre un modo semplice per creare e copiare diversi stili di testo. Le sue funzioni principali sono:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Dove usare gli stili di carattere corsivo?</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">I caratteri Unicode in corsivo possono essere usati su diversi siti web e applicazioni che li supportano. Sono usati comunemente per cambiare l’aspetto di testi brevi e informazioni del profilo.</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {where.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- How to -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Come mettere il testo in corsivo?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Puoi mettere il testo in corsivo con un editor di testo o con un generatore di testo in corsivo online. In applicazioni come Microsoft Word e Google Docs, seleziona il testo e applica l’opzione di formattazione corsivo.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">Per creare testo in corsivo che puoi copiare e incollare, segui questi passaggi:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Altri strumenti</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Domande frequenti</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</ItalicPage>

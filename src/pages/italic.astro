@@ -1,0 +1,127 @@
+---
+import ItalicPage from '../components/ItalicPage.astro';
+
+const features = [
+  { label: 'Unicode Character Conversion:', body: 'Converts supported regular letters into mathematical italic characters.' },
+  { label: 'Quick Copy and Paste:', body: 'Copy the generated text and use it in other applications.' },
+  { label: 'No Font Installation:', body: 'Create italic-style letters without downloading font files.' },
+  { label: 'Simple Text Input:', body: 'Enter words, names, or sentences to generate slanted text.' },
+  { label: 'Browser-Based Tool:', body: 'Use the generator directly from your web browser.' },
+  { label: 'Free to Use:', body: 'Generate italic text without registration or payment.' },
+];
+const where = [
+  { label: 'Instagram:', body: 'Use italic letters in bios, captions, and comments.' },
+  { label: 'Facebook:', body: 'Add slanted text to posts, comments, and profile descriptions.' },
+  { label: 'WhatsApp:', body: 'Share italic-style Unicode text in messages.' },
+  { label: 'TikTok:', body: 'Create different text styles for profile descriptions.' },
+  { label: 'Discord:', body: 'Use special italic characters in messages and supported profile fields.' },
+  { label: 'YouTube:', body: 'Add decorative letters to comments and channel descriptions.' },
+  { label: 'Gaming Profiles:', body: 'Create distinctive display names using supported Unicode characters.' },
+];
+const steps = [
+  'Open the Italics Generator tool.',
+  'Type or paste your regular text into the input box.',
+  'View the converted italic-style text.',
+  'Click the copy option to copy the result.',
+  'Paste it into your preferred application or website.',
+];
+const tools = [
+  { name: 'Font Generator', url: 'https://aestheticfonts.in/' },
+  { name: 'Underline Generator', url: 'https://aestheticfonts.in/underline/' },
+  { name: 'Strikethrough Generator', url: 'https://aestheticfonts.in/strikethrough/' },
+];
+const faqs = [
+  { question: 'Can I Use Italic Alphabet Letters Without Formatting?', answer: 'Yes. Unicode italic alphabet letters can be copied and pasted without applying traditional text formatting. These are separate Unicode characters, so their appearance does not depend on selecting the italic option in a text editor.' },
+  { question: 'Is Italic Text Maker Free to Use?', answer: 'Yes. The italic text maker is free to use. You can convert regular letters into italic-style text and copy the result without paying or installing additional software.' },
+  { question: 'Can I Use Slanted Text in My Social Media Username?', answer: 'You can use slanted Unicode characters in social media display names and profile descriptions if the platform supports them. However, some websites have restrictions on special characters in account usernames. Check the platform\'s rules before using italic letters in your username.' },
+  { question: 'Do Italic Letters Work on All Devices?', answer: 'Unicode italic letters work on devices and applications that support the corresponding characters. However, their appearance may vary depending on the operating system, browser, and font. Some characters may not display correctly on older devices or unsupported applications.' },
+];
+---
+
+<ItalicPage lang="en">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Italicized Text Copy and Paste</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Italicized text uses slanted letters to give words a different appearance. It is commonly used for emphasis, titles, captions, and decorative writing. An italic text generator converts regular letters into special Unicode characters that can be copied and pasted into social media profiles, messages, and other applications.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">What Is Unicode Italic Text?</h2>
+      <p class="text-text-muted leading-[1.8]">Unicode italic text uses special characters from the Mathematical Alphanumeric Symbols block (U+1D400 to U+1D7FF). This Unicode block contains different letter styles, including mathematical italic, bold italic, and script characters. These letters have separate Unicode code points and can be copied and pasted without applying traditional italic formatting.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Why Use Our Italics Generator Tool?</h2>
+      <p class="text-text-muted leading-[1.8]">Our Italic Generator converts regular text into different Unicode text styles. You can create Italic, Cursive, Script, Italic Bold (Serif), and Italic Bold (Sans) text with a simple conversion process. Enter your text, view the converted result, and copy it for use in social media bios, captions, comments, and messages. The tool works directly in your browser without requiring font installation or additional software.</p>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Extra Features of Slanted Text</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">The italic text generator provides a simple way to create and copy different text styles. Its main features include:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Where to Use Italic Font Styles</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">Italic Unicode characters can be used on different websites and applications that support these characters. They are commonly used to change the appearance of short text and profile information.</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {where.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- How to -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">How to Make Text Italic Style?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">You can make text italic using a text editor or an online italic text generator. In applications such as Microsoft Word and Google Docs, select the text and apply the italic formatting option.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">To create italic text that you can copy and paste, follow these steps:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Other Tools</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Frequently Asked Questions</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</ItalicPage>

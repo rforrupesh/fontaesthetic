@@ -1,0 +1,187 @@
+---
+import ItalicPage from '../../components/ItalicPage.astro';
+
+const features = [
+  {
+    "label": "Unicode-Zeichenumwandlung:",
+    "body": "Wandelt unterstützte normale Buchstaben in mathematisch kursive Zeichen um."
+  },
+  {
+    "label": "Schnelles Kopieren und Einfügen:",
+    "body": "Kopiere den erzeugten Text und nutze ihn in anderen Anwendungen."
+  },
+  {
+    "label": "Keine Schriftinstallation:",
+    "body": "Erstelle Buchstaben im Kursiv-Stil, ohne Schriftdateien herunterzuladen."
+  },
+  {
+    "label": "Einfache Texteingabe:",
+    "body": "Gib Wörter, Namen oder Sätze ein, um schräg gestellten Text zu erzeugen."
+  },
+  {
+    "label": "Browserbasiertes Tool:",
+    "body": "Nutze den Generator direkt in deinem Webbrowser."
+  },
+  {
+    "label": "Kostenlos nutzbar:",
+    "body": "Erzeuge kursiven Text ohne Registrierung oder Zahlung."
+  }
+];
+const where = [
+  {
+    "label": "Instagram:",
+    "body": "Nutze kursive Buchstaben in Bios, Bildunterschriften und Kommentaren."
+  },
+  {
+    "label": "Facebook:",
+    "body": "Füge schräg gestellten Text in Beiträge, Kommentare und Profilbeschreibungen ein."
+  },
+  {
+    "label": "WhatsApp:",
+    "body": "Teile Unicode-Text im Kursiv-Stil in Nachrichten."
+  },
+  {
+    "label": "TikTok:",
+    "body": "Erstelle verschiedene Textstile für Profilbeschreibungen."
+  },
+  {
+    "label": "Discord:",
+    "body": "Nutze spezielle kursive Zeichen in Nachrichten und unterstützten Profilfeldern."
+  },
+  {
+    "label": "YouTube:",
+    "body": "Füge Kommentaren und Kanalbeschreibungen dekorative Buchstaben hinzu."
+  },
+  {
+    "label": "Gaming-Profile:",
+    "body": "Erstelle auffällige Anzeigenamen mit unterstützten Unicode-Zeichen."
+  }
+];
+const steps = [
+  "Öffne das Kursiv-Generator-Tool.",
+  "Gib deinen normalen Text in das Eingabefeld ein oder füge ihn dort ein.",
+  "Sieh dir den umgewandelten Text im Kursiv-Stil an.",
+  "Klicke auf die Kopieren-Option, um das Ergebnis zu kopieren.",
+  "Füge es in deine gewünschte Anwendung oder Website ein."
+];
+const tools = [
+  {
+    "name": "Schriftgenerator",
+    "url": "https://aestheticfonts.in/de/"
+  },
+  {
+    "name": "Unterstrichener Text Generator",
+    "url": "https://aestheticfonts.in/de/underline/"
+  },
+  {
+    "name": "Durchgestrichener Text Generator",
+    "url": "https://aestheticfonts.in/de/strikethrough/"
+  }
+];
+const faqs = [
+  {
+    "question": "Kann ich kursive Buchstaben ohne Formatierung verwenden?",
+    "answer": "Ja. Kursive Unicode-Buchstaben können ohne klassische Textformatierung kopiert und eingefügt werden. Es sind eigene Unicode-Zeichen, daher hängt ihr Aussehen nicht von der Kursiv-Option eines Texteditors ab."
+  },
+  {
+    "question": "Ist der Kursiv-Text-Maker kostenlos?",
+    "answer": "Ja. Der Kursiv-Text-Maker ist kostenlos. Du kannst normale Buchstaben in Text im Kursiv-Stil umwandeln und das Ergebnis kopieren, ohne zu bezahlen oder zusätzliche Software zu installieren."
+  },
+  {
+    "question": "Kann ich schräg gestellten Text in meinem Social-Media-Benutzernamen verwenden?",
+    "answer": "Du kannst schräg gestellte Unicode-Zeichen in Anzeigenamen und Profilbeschreibungen verwenden, wenn die Plattform sie unterstützt. Einige Websites schränken jedoch Sonderzeichen in Benutzernamen ein. Prüfe die Regeln der Plattform, bevor du kursive Buchstaben in deinem Benutzernamen verwendest."
+  },
+  {
+    "question": "Funktionieren kursive Buchstaben auf allen Geräten?",
+    "answer": "Kursive Unicode-Buchstaben funktionieren auf Geräten und in Anwendungen, die die entsprechenden Zeichen unterstützen. Ihr Aussehen kann jedoch je nach Betriebssystem, Browser und Schrift variieren. Auf älteren Geräten oder in nicht unterstützten Anwendungen werden manche Zeichen eventuell nicht korrekt angezeigt."
+  }
+];
+---
+
+<ItalicPage lang="de">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Kursiven Text kopieren und einfügen</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Kursiver Text verwendet schräg gestellte Buchstaben, damit Wörter anders aussehen. Er wird häufig zur Hervorhebung, für Titel, Bildunterschriften und dekorative Texte genutzt. Ein Generator für kursiven Text wandelt normale Buchstaben in spezielle Unicode-Zeichen um, die du in Social-Media-Profile, Nachrichten und andere Anwendungen kopieren und einfügen kannst.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Was ist kursiver Unicode-Text?</h2>
+      <p class="text-text-muted leading-[1.8]">Kursiver Unicode-Text nutzt spezielle Zeichen aus dem Block „Mathematische alphanumerische Symbole“ (U+1D400 bis U+1D7FF). Dieser Unicode-Block enthält verschiedene Buchstabenstile, darunter mathematisch kursiv, fett kursiv und Schreibschrift. Diese Buchstaben haben eigene Unicode-Codepunkte und lassen sich kopieren und einfügen, ohne die klassische Kursiv-Formatierung anzuwenden.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Warum unseren Kursiv-Generator verwenden?</h2>
+      <p class="text-text-muted leading-[1.8]">Unser Kursiv-Generator wandelt normalen Text in verschiedene Unicode-Textstile um. Du kannst Italic, Cursive, Script, Italic Bold (Serif) und Italic Bold (Sans) mit einem einfachen Umwandlungsprozess erstellen. Gib deinen Text ein, sieh dir das Ergebnis an und kopiere es für Social-Media-Bios, Bildunterschriften, Kommentare und Nachrichten. Das Tool läuft direkt im Browser, ohne dass Schriften oder zusätzliche Software installiert werden müssen.</p>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Zusätzliche Funktionen für schräg gestellten Text</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">Der Generator für kursiven Text bietet eine einfache Möglichkeit, verschiedene Textstile zu erstellen und zu kopieren. Die wichtigsten Funktionen:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Wo kann man kursive Schriftstile verwenden?</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">Kursive Unicode-Zeichen können auf vielen Websites und in vielen Anwendungen verwendet werden, die diese Zeichen unterstützen. Sie werden häufig genutzt, um das Aussehen kurzer Texte und Profilangaben zu verändern.</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {where.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- How to -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Wie macht man Text kursiv?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Du kannst Text mit einem Texteditor oder einem Online-Generator für kursiven Text kursiv machen. In Anwendungen wie Microsoft Word und Google Docs markierst du den Text und wendest die Kursiv-Formatierung an.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">So erstellst du kursiven Text zum Kopieren und Einfügen:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Weitere Tools</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Häufig gestellte Fragen</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</ItalicPage>

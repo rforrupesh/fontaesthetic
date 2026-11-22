@@ -1,0 +1,187 @@
+---
+import ItalicPage from '../../components/ItalicPage.astro';
+
+const features = [
+  {
+    "label": "Konwersja znaków Unicode:",
+    "body": "Zamienia obsługiwane zwykłe litery na matematyczne znaki kursywy."
+  },
+  {
+    "label": "Szybkie kopiowanie i wklejanie:",
+    "body": "Skopiuj wygenerowany tekst i użyj go w innych aplikacjach."
+  },
+  {
+    "label": "Bez instalacji czcionek:",
+    "body": "Twórz litery w stylu kursywy bez pobierania plików czcionek."
+  },
+  {
+    "label": "Proste wprowadzanie tekstu:",
+    "body": "Wpisz słowa, imiona lub zdania, aby wygenerować pochylony tekst."
+  },
+  {
+    "label": "Narzędzie w przeglądarce:",
+    "body": "Korzystaj z generatora bezpośrednio w przeglądarce."
+  },
+  {
+    "label": "Bezpłatne użycie:",
+    "body": "Generuj tekst kursywą bez rejestracji i opłat."
+  }
+];
+const where = [
+  {
+    "label": "Instagram:",
+    "body": "Używaj liter kursywą w bio, podpisach i komentarzach."
+  },
+  {
+    "label": "Facebook:",
+    "body": "Dodawaj pochylony tekst do postów, komentarzy i opisów profilu."
+  },
+  {
+    "label": "WhatsApp:",
+    "body": "Wysyłaj w wiadomościach tekst Unicode w stylu kursywy."
+  },
+  {
+    "label": "TikTok:",
+    "body": "Twórz różne style tekstu do opisów profilu."
+  },
+  {
+    "label": "Discord:",
+    "body": "Używaj specjalnych znaków kursywy w wiadomościach i obsługiwanych polach profilu."
+  },
+  {
+    "label": "YouTube:",
+    "body": "Dodawaj dekoracyjne litery do komentarzy i opisów kanału."
+  },
+  {
+    "label": "Profile w grach:",
+    "body": "Twórz wyróżniające się nazwy wyświetlane z użyciem obsługiwanych znaków Unicode."
+  }
+];
+const steps = [
+  "Otwórz narzędzie generatora kursywy.",
+  "Wpisz lub wklej zwykły tekst w polu wprowadzania.",
+  "Zobacz przekonwertowany tekst w stylu kursywy.",
+  "Kliknij opcję kopiowania, aby skopiować wynik.",
+  "Wklej go w wybranej aplikacji lub na stronie."
+];
+const tools = [
+  {
+    "name": "Generator czcionek",
+    "url": "https://aestheticfonts.in/pl/"
+  },
+  {
+    "name": "Generator podkreślonego tekstu",
+    "url": "https://aestheticfonts.in/pl/underline/"
+  },
+  {
+    "name": "Generator przekreślonego tekstu",
+    "url": "https://aestheticfonts.in/pl/strikethrough/"
+  }
+];
+const faqs = [
+  {
+    "question": "Czy mogę używać liter kursywą bez formatowania?",
+    "answer": "Tak. Litery kursywą w Unicode można kopiować i wklejać bez tradycyjnego formatowania tekstu. To oddzielne znaki Unicode, więc ich wygląd nie zależy od wybrania opcji kursywy w edytorze tekstu."
+  },
+  {
+    "question": "Czy kreator tekstu kursywą jest darmowy?",
+    "answer": "Tak. Kreator tekstu kursywą jest darmowy. Możesz zamienić zwykłe litery na tekst w stylu kursywy i skopiować wynik bez płacenia i instalowania dodatkowego oprogramowania."
+  },
+  {
+    "question": "Czy mogę użyć pochylonego tekstu w nazwie użytkownika w mediach społecznościowych?",
+    "answer": "Możesz używać pochylonych znaków Unicode w nazwach wyświetlanych i opisach profilu w mediach społecznościowych, jeśli platforma je obsługuje. Niektóre serwisy ograniczają jednak znaki specjalne w nazwach użytkowników kont. Przed użyciem liter kursywą w nazwie użytkownika sprawdź zasady platformy."
+  },
+  {
+    "question": "Czy litery kursywą działają na wszystkich urządzeniach?",
+    "answer": "Litery kursywą w Unicode działają na urządzeniach i w aplikacjach, które obsługują odpowiednie znaki. Ich wygląd może się jednak różnić w zależności od systemu operacyjnego, przeglądarki i czcionki. Niektóre znaki mogą wyświetlać się nieprawidłowo na starszych urządzeniach lub w nieobsługiwanych aplikacjach."
+  }
+];
+---
+
+<ItalicPage lang="pl">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Tekst kursywą: kopiuj i wklej</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Tekst kursywą wykorzystuje pochylone litery, aby nadać słowom inny wygląd. Jest powszechnie używany do wyróżnień, tytułów, podpisów i dekoracyjnego pisma. Generator tekstu kursywą zamienia zwykłe litery na specjalne znaki Unicode, które można kopiować i wklejać do profili w mediach społecznościowych, wiadomości i innych aplikacji.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Czym jest tekst kursywą w Unicode?</h2>
+      <p class="text-text-muted leading-[1.8]">Tekst kursywą w Unicode korzysta ze specjalnych znaków z bloku Matematyczne symbole alfanumeryczne (U+1D400 do U+1D7FF). Ten blok Unicode zawiera różne style liter, w tym kursywę matematyczną, pogrubioną kursywę i znaki w stylu pisma odręcznego. Te litery mają własne punkty kodowe Unicode i można je kopiować i wklejać bez stosowania tradycyjnego formatowania kursywą.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Dlaczego warto używać naszego generatora kursywy?</h2>
+      <p class="text-text-muted leading-[1.8]">Nasz generator kursywy zamienia zwykły tekst na różne style tekstu Unicode. Możesz tworzyć tekst w stylach Italic, Cursive, Script, Italic Bold (Serif) i Italic Bold (Sans) prostą konwersją. Wpisz tekst, zobacz wynik i skopiuj go do bio, podpisów, komentarzy i wiadomości w mediach społecznościowych. Narzędzie działa bezpośrednio w przeglądarce, bez instalowania czcionek ani dodatkowego oprogramowania.</p>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Dodatkowe funkcje tekstu pochylonego</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">Generator tekstu kursywą to prosty sposób na tworzenie i kopiowanie różnych stylów tekstu. Jego główne funkcje:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Gdzie używać stylów czcionki kursywą?</h2>
+      <p class="text-text-muted leading-[1.8] mb-5">Znaki Unicode w kursywie można stosować na różnych stronach i w aplikacjach, które je obsługują. Zwykle służą do zmiany wyglądu krótkich tekstów i informacji w profilu.</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {where.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">{w.label}</strong> <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- How to -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Jak zrobić tekst kursywą?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Tekst kursywą możesz zrobić w edytorze tekstu lub w internetowym generatorze tekstu kursywą. W aplikacjach takich jak Microsoft Word i Google Docs zaznacz tekst i użyj opcji formatowania kursywą.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">Aby utworzyć tekst kursywą, który możesz kopiować i wklejać, wykonaj te kroki:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Inne narzędzia</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Najczęściej zadawane pytania</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</ItalicPage>
