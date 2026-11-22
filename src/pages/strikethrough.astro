@@ -95,14 +95,23 @@ const faqs = [
     </section>
 
     <!-- Other tools -->
-    <section>
-      <h2 class="text-2xl font-bold mb-4">Other Tools</h2>
-      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
-        {tools.map((name) => (
-          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
-        ))}
-      </ul>
-    </section>
+ <!-- Other tools -->
+  <section>
+  <h2 class="text-2xl font-bold mb-4">Other Tools</h2>
+  <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+    {tools.map((tool) => (
+      <li>
+        <a
+          href={tool.url}
+          class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+        >
+          {tool.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+  </section>
+  
   </article>
 
   <section class="wrap max-w-[900px] mx-auto pb-12">
