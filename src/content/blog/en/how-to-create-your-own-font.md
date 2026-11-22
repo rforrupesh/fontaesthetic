@@ -86,7 +86,7 @@ After completing the template, upload it to the tool. The software converts the 
 
 Online font editors allow you to create digital typefaces through a web browser. Glyphr Studio is one option for drawing vector-based letterforms and editing individual glyphs without installing desktop software.
 
-Choose a font style, create the required characters, and adjust their outlines and spacing. Once the design is ready, use the available export option to generate a font file. Free tools may have restrictions on character limits, file formats, or advanced editing features.
+Choose a font style, create the required characters, and adjust their outlines and spacing. Once the design is ready, use the available export option to generate a font file. [Free Fonts](https://aestheticfonts.in/blog/free-fonts/) tools may have restrictions on character limits, file formats, or advanced editing features.
 
 ## How to Install and Use Your Custom Font
 
