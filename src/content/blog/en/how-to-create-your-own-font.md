@@ -15,7 +15,7 @@ A custom font can have its own letter shapes, stroke weight, width, and visual s
 
 ## What Is a Custom Font?
 
-A custom font is a digital typeface designed with a particular set of letter shapes and [typographic](https://m2.material.io/design/typography/understanding-typography.html) features. It contains glyphs representing letters, numbers, punctuation marks, and special characters. Each glyph has its own outline and position within the font.
+A custom font is a digital typeface designed with a particular set of letter shapes and [typographic](https://m3.material.io/styles/typography/overview) features. It contains glyphs representing letters, numbers, punctuation marks, and special characters. Each glyph has its own outline and position within the font.
 
 Font design also involves choosing character proportions, stroke thickness, spacing, and font weight. These elements determine how the typeface looks when used in words, sentences, and larger blocks of text.
 
