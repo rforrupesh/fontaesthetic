@@ -93,8 +93,8 @@ Choose a font style, create the required characters, and adjust their outlines a
 After creating your typeface, install the exported TTF or [OTF file](https://support.microsoft.com/en-us/word/add-a-font) on your computer. The installation process depends on the operating system, but the basic steps are straightforward.
 
 - **Windows:** Right-click the font file and select Install.
-- **macOS:** Open the file in Font Book and click Install.
-- **Linux:** Copy the font file into the `~/.local/share/fonts/` directory and refresh the font cache.
+- **[macOS](https://support.apple.com/en-gb/guide/font-book/fntbk1000/mac):** Open the file in Font Book and click Install.
+- **[Linux](https://askubuntu.com/questions/3697/how-do-i-install-fonts):** Copy the font file into the `~/.local/share/fonts/` directory and refresh the font cache.
 
 Once installed, the font should appear in the font selection menu of compatible applications. You can use it in word processors, presentation software, image editors, and graphic design programs.
 
