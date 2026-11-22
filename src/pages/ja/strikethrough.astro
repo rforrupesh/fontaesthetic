@@ -1,0 +1,109 @@
+---
+import StrikethroughPage from '../../components/StrikethroughPage.astro';
+
+const why = [
+  { title: '取り消し線テキストのコピー＆ペースト', body: 'コピー＆ペースト機能を使えば、取り消し線テキストを作ってすぐにお好みのアプリで使えます。文字を入力して、結果をコピーし、好きな場所に貼り付けましょう。' },
+  { title: '複数の取り消し線スタイル', body: '取り消し線の文字は複数の種類から作れます。会話、プロフィール、投稿に合うタイプを選んでください。一重線のテキスト、二重線のテキスト、打ち消し文字 おしゃれな取り消し線 さまざまなUnicodeタイプ' },
+  { title: '100%無料のツール', body: '取り消し線テキストジェネレーターは完全無料です。支払いも登録も不要で、何度でも使えます。登録なし 購読なし 追加費用なし 変換は無制限 完全無料' },
+  { title: 'すべてのデバイスに対応', body: 'ブラウザがあるデバイスならどれでも使えます。スマートフォン、タブレット、パソコンの画面でも快適に動作します。Androidスマートフォン iPhoneとiPad Windows PC Mac アプリのインストール不要' },
+];
+const extra = [
+  { title: '使いやすい', body: '誰でも簡単に使えるように作られています。見やすいボタンと使いやすい画面で、テキストを取り消し線の形式に手軽に変換できます。分かりやすい画面 コピーにすばやくアクセス 手順が分かりやすい 初心者に最適' },
+  { title: 'ライブプレビュー', body: 'コピーする前に、テキストがどう見えるかを確認できます。ライブプレビュー機能で、変換後のテキストの見た目が分かります。即時プレビュー いつでもテキストを変更 最終版を確認 仕上がりに満足してからコピー' },
+  { title: '多言語対応', body: '英語、ドイツ語、インドネシア語、スペイン語、ポルトガル語など、どの言語で書いても、テキストを変換してコピーできます。' },
+];
+const where = [
+  { title: 'チャットとメッセージ', body: 'チャットで言葉を訂正したり、冗談を言ったり、メッセージがもう有効でないことを示したりするときに取り消し線を使いましょう。WhatsAppのメッセージ Telegramのチャット Messengerの返信 InstagramのDM Snapchatのメッセージ' },
+  { title: 'ゲームのプロフィール', body: '一部のゲームやゲームプラットフォームでは、ユーザー名、クラン名、プロフィール文に取り消し線の文字を使えます。Discordのニックネーム Free Fireの名前 BGMIの名前 PUBGの名前 Robloxのユーザー名' },
+  { title: 'メモとリスト', body: 'メモの中で、完了したタスク、古いリマインダー、キャンセルした予定に印をつけるときに取り消し線を使いましょう。ToDoリスト 勉強ノート 買い物リスト 古いリマインダー キャンセルした予定' },
+];
+const tools = ['下線ジェネレーター', 'イタリック体テキストジェネレーター', '上下反転テキストジェネレーター'];
+const faqs = [
+  { question: '取り消し線テキストは安全に使えますか？', answer: 'はい。Unicodeの取り消し線テキストは、一般にコピー＆ペーストしても安全です。実行可能なコードやソフトウェアではなく、テキスト文字でできています。ただし、見え方はアプリやデバイスによって異なる場合があります。' },
+  { question: '線が引かれた文字はどう入力しますか？', answer: '文字の後ろにU+0336などのUnicode結合文字を付けると、線が引かれた文字を作れます。たとえば、aの後ろに結合記号を付けるとa̶になります。取り消し線テキストジェネレーターを使えば、単語や文章全体でこの作業を自動化できます。' },
+  { question: '取り消し線がうまく表示されないのはなぜですか？', answer: 'アプリによっては、Unicodeの結合文字を一貫して表示できません。フォントの表示方法やUnicodeへの対応の違いにより、線がずれたり、途切れたり、表示されなかったりすることがあります。別のアプリや別の取り消し線スタイルをお試しください。' },
+  { question: 'スマートフォンで取り消し線の文字を使えますか？', answer: 'はい。ジェネレーターから取り消し線の文字をコピーして、対応するスマートフォンアプリに貼り付けられます。結果は、アプリ、キーボード、フォント表示への対応によって異なります。' },
+];
+---
+
+<StrikethroughPage lang="ja">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">取り消し線テキストのコピペ</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">取り消し線テキスト（打ち消し線テキスト）は、文字や単語の中央に横線を引いて表示します。編集、訂正、削除した内容を示すためによく使われます。当サイトの取り消し線テキストジェネレーターは、通常のテキストをUnicodeの取り消し線テキストに変換し、メッセージ、SNSの投稿、プロフィールなどにコピー＆ペーストして使えるようにします。</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">取り消し線テキストとは？</h2>
+      <p class="text-text-muted leading-[1.8]">取り消し線は、一文字ずつの中央に線を引く文字装飾です。文書では、元の内容を消さずに、削除した語句を示したり変更点を見せたりするためによく使われます。結合長ストロークオーバーレイ（U+0336）などのUnicode結合文字は、既存の文字に線を加えることでこの見た目を作れます。</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">取り消し線テキストジェネレーターを使う理由</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">当ジェネレーターなら、一文字ずつ特殊文字を手入力しなくても、取り消し線テキストを簡単に作れます。</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">取り消し線テキストの追加機能</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">ジェネレーターには、テキスト変換をより簡単にする便利な機能があります。</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">取り消し線フォントはどこで使える？</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">その他のツール</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">よくある質問</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</StrikethroughPage>

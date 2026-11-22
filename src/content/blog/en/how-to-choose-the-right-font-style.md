@@ -8,7 +8,7 @@ tags: ["font styles", "font guide", "fancy text"]
 categories: ["Typography"]
 ---
 
-Choosing the right font style can make your text look more attractive and easier to read. Whether you are creating an Instagram bio, writing a blog post, designing an invitation, or making a poster, the font you choose can change how people see your message.
+Choosing the right font style can make your text look more attractive and easier to read. Whether you are creating an [Instagram bio](https://aestheticfonts.in/blog/instagram-bio-for-boys/), writing a blog post, designing an invitation, or making a poster, the font you choose can change how people see your message.
 
 The best way to choose a font is to think about your content, audience, and purpose. Simple fonts work well for everyday reading, bold styles help important words stand out, and decorative or fancy text adds personality to short messages. Here is how to choose the right font style for different types of content.
 
@@ -57,7 +57,7 @@ Business content needs to look clear and trustworthy. Whether you are preparing 
 
 Sans-serif fonts such as Arial, Calibri, and Helvetica are useful for professional documents and presentations. They have a clean appearance and make information easy to scan.
 
-For a business logo or brand name, you can experiment with bold, modern, or elegant serif styles. Keep the design consistent so people can recognise your brand across different platforms.
+For a [business logo or brand name](https://aestheticfonts.in/blog/professional-business-fonts/), you can experiment with bold, modern, or elegant serif styles. Keep the design consistent so people can recognise your brand across different platforms.
 
 ## Use Bold and Decorative Fonts for Posters and Headlines
 

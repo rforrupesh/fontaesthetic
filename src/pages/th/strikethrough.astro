@@ -1,0 +1,109 @@
+---
+import StrikethroughPage from '../../components/StrikethroughPage.astro';
+
+const why = [
+  { title: 'ตัวเลือกคัดลอกและวางข้อความขีดฆ่า', body: 'ตัวเลือกคัดลอกและวางช่วยให้คุณสร้างข้อความขีดทับและนำไปใช้ในแอปที่ต้องการได้ทันที พิมพ์ข้อความของคุณ แล้วคัดลอกผลลัพธ์ไปวางที่ไหนก็ได้' },
+  { title: 'ข้อความขีดฆ่าหลายแบบ', body: 'คุณสร้างข้อความขีดฆ่าได้หลายแบบ เลือกแบบที่เหมาะกับการสนทนา โปรไฟล์ หรือโพสต์ของคุณ ข้อความขีดเส้นเดียว ข้อความขีดสองเส้น ตัวอักษรที่ถูกขีดทับ ข้อความขีดฆ่าสุดเก๋ Unicode หลากหลายแบบ' },
+  { title: 'เครื่องมือฟรี 100%', body: 'เครื่องมือสร้างข้อความขีดฆ่านี้ฟรีทั้งหมด คุณใช้ได้กี่ครั้งก็ได้โดยไม่ต้องจ่ายเงินหรือสมัครสมาชิก ไม่ต้องลงทะเบียน ไม่ต้องสมัครสมาชิก ไม่มีค่าใช้จ่ายเพิ่มเติม แปลงได้ไม่จำกัด ฟรีอย่างแท้จริง' },
+  { title: 'ใช้ได้กับทุกอุปกรณ์', body: 'คุณใช้เครื่องมือนี้ได้บนทุกอุปกรณ์ที่มีเบราว์เซอร์ ใช้งานได้ดีทั้งบนมือถือ แท็บเล็ต และหน้าจอคอมพิวเตอร์ มือถือ Android, iPhone และ iPad, PC Windows, Mac ไม่ต้องติดตั้งแอป' },
+];
+const extra = [
+  { title: 'ใช้งานง่าย', body: 'เครื่องมือนี้ออกแบบมาให้ทุกคนใช้ได้ง่าย ปุ่มที่มองเห็นชัดเจนและหน้าตาที่เป็นมิตรช่วยให้คุณเปลี่ยนข้อความเป็นแบบขีดฆ่าได้อย่างสบาย หน้าตาชัดเจน เข้าถึงปุ่มคัดลอกได้รวดเร็ว คำแนะนำเข้าใจง่าย เหมาะสำหรับมือใหม่' },
+  { title: 'ตัวอย่างแบบสด', body: 'คุณมีโอกาสดูว่าข้อความของคุณหน้าตาเป็นอย่างไรก่อนคัดลอก ฟีเจอร์ตัวอย่างแบบสดช่วยให้คุณเห็นว่าข้อความจะออกมาเป็นแบบไหนหลังแปลง ดูตัวอย่างทันที เปลี่ยนข้อความได้ทุกเมื่อ ดูเวอร์ชันสุดท้าย คัดลอกเมื่อพอใจกับผลลัพธ์เท่านั้น' },
+  { title: 'หลายภาษา', body: 'ไม่ว่าคุณจะเขียนเป็นภาษาอังกฤษ เยอรมัน อินโดนีเซีย สเปน หรือโปรตุเกส คุณก็แปลงและคัดลอกข้อความของคุณได้' },
+];
+const where = [
+  { title: 'แชทและข้อความ', body: 'ใช้ข้อความขีดฆ่าในแชทเพื่อแก้คำ เล่นมุก หรือบอกว่าข้อความนั้นใช้ไม่ได้แล้ว ข้อความ WhatsApp แชท Telegram ข้อความตอบกลับใน Messenger DM Instagram ข้อความ Snapchat' },
+  { title: 'โปรไฟล์เกม', body: 'เกมและแพลตฟอร์มเกมบางแห่งอนุญาตให้ใช้ตัวอักษรขีดฆ่าในชื่อผู้ใช้ ชื่อแคลน และข้อความในโปรไฟล์ ชื่อเล่นใน Discord ชื่อ Free Fire ชื่อ BGMI ชื่อ PUBG ชื่อผู้ใช้ Roblox' },
+  { title: 'โน้ตและรายการ', body: 'ใช้ข้อความขีดทับเพื่อทำเครื่องหมายงานที่เสร็จแล้ว ข้อความเตือนเก่า หรือแผนที่ยกเลิกในโน้ตของคุณ รายการสิ่งที่ต้องทำ โน้ตเรียน รายการซื้อของ ข้อความเตือนเก่า แผนที่ยกเลิก' },
+];
+const tools = ['เครื่องมือสร้างข้อความขีดเส้นใต้', 'เครื่องมือสร้างข้อความตัวเอียง', 'เครื่องมือสร้างข้อความกลับหัว'];
+const faqs = [
+  { question: 'ข้อความขีดทับปลอดภัยไหม?', answer: 'ปลอดภัย โดยทั่วไปการคัดลอกและวางข้อความขีดฆ่า Unicode ไม่มีอันตราย เพราะประกอบด้วยอักขระข้อความ ไม่ใช่โค้ดที่รันได้หรือซอฟต์แวร์ อย่างไรก็ตาม หน้าตาอาจแตกต่างกันไปตามแอปและอุปกรณ์' },
+  { question: 'พิมพ์ตัวอักษรที่มีเส้นขีดทับได้อย่างไร?', answer: 'คุณสร้างตัวอักษรที่มีเส้นขีดทับได้โดยเพิ่มอักขระผสม Unicode เช่น U+0336 ต่อท้ายตัวอักษร เช่น a ตามด้วยเครื่องหมายผสมจะกลายเป็น a̶ ตัวสร้างข้อความขีดฆ่าสามารถทำขั้นตอนนี้ให้อัตโนมัติกับทั้งคำและประโยคได้' },
+  { question: 'ทำไมข้อความขีดฆ่าของฉันไม่ทำงาน?', answer: 'บางแอปแสดงอักขระผสม Unicode ไม่สม่ำเสมอ เส้นอาจเยื้อง ขาดตอน หรือหายไป เพราะการแสดงผลฟอนต์และการรองรับ Unicode ที่ต่างกัน ลองใช้แอปอื่นหรือสไตล์ขีดฆ่าแบบอื่น' },
+  { question: 'ใช้ตัวอักษรขีดฆ่าบนมือถือได้ไหม?', answer: 'ได้ คุณคัดลอกตัวอักษรขีดฆ่าจากเครื่องมือแล้ววางลงในแอปมือถือที่รองรับได้ ผลลัพธ์ขึ้นอยู่กับแอป คีย์บอร์ด และการรองรับการแสดงผลฟอนต์' },
+];
+---
+
+<StrikethroughPage lang="th">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">คัดลอกและวางข้อความขีดฆ่า</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">ข้อความขีดฆ่า หรือที่เรียกว่าข้อความที่ถูกขีดทับ จะแสดงเส้นแนวนอนพาดผ่านตัวอักษรและคำ นิยมใช้เพื่อแสดงการแก้ไข การปรับปรุง หรือเนื้อหาที่ถูกลบ ตัวสร้างข้อความขีดฆ่าของเราแปลงข้อความธรรมดาเป็นข้อความขีดฆ่า Unicode ที่คุณคัดลอกและวางลงในข้อความ โพสต์โซเชียลมีเดีย ไบโอ และแพลตฟอร์มอื่นๆ ได้</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">ข้อความขีดฆ่าคืออะไร?</h2>
+      <p class="text-text-muted leading-[1.8]">การขีดฆ่าเป็นเอฟเฟกต์ทางการพิมพ์ที่วางเส้นพาดกลางตัวอักษรแต่ละตัว นิยมใช้ในเอกสารเพื่อทำเครื่องหมายคำที่ถูกลบหรือแสดงการเปลี่ยนแปลงโดยไม่ลบเนื้อหาเดิม อักขระผสม Unicode เช่น Combining Long Stroke Overlay (U+0336) สร้างลักษณะนี้ได้โดยเพิ่มเส้นให้กับตัวอักษรที่มีอยู่</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">ทำไมต้องใช้เครื่องมือสร้างข้อความขีดฆ่าของเรา?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">การสร้างข้อความขีดฆ่าด้วยเครื่องมือของเราเป็นเรื่องง่าย โดยไม่ต้องพิมพ์อักขระพิเศษเองทีละตัวอักษร</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">ฟีเจอร์เพิ่มเติมของข้อความขีดฆ่า</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">เครื่องมือมีฟีเจอร์ที่ใช้งานได้จริงซึ่งช่วยให้แปลงข้อความง่ายขึ้น:</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">ใช้ฟอนต์ขีดฆ่าได้ที่ไหน?</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">เครื่องมืออื่นๆ</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">คำถามที่พบบ่อย</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</StrikethroughPage>

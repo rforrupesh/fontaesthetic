@@ -1,0 +1,109 @@
+---
+import StrikethroughPage from '../../components/StrikethroughPage.astro';
+
+const why = [
+  { title: 'Opzione copia e incolla del testo barrato', body: 'L’opzione copia e incolla ti permette di generare testo barrato e usarlo subito nell’app che preferisci. Scrivi il tuo testo, poi copia il risultato e incollalo dove vuoi.' },
+  { title: 'Tanti stili di testo barrato', body: 'Puoi creare diversi tipi di testo barrato. Scegli quello più adatto alla tua conversazione, al tuo profilo o al tuo post. Testo con linea singola, Testo con doppia linea, Lettere barrate Testo barrato di stile Vari tipi Unicode' },
+  { title: 'Strumento gratuito al 100%', body: 'Il generatore di testo barrato è completamente gratuito. Puoi usarlo quante volte vuoi senza pagare né registrarti. Nessuna registrazione Nessun abbonamento Nessun costo aggiuntivo Conversioni illimitate Assolutamente gratis' },
+  { title: 'Compatibile con tutti i dispositivi', body: 'Puoi usare questo strumento su tutti i dispositivi dotati di browser. Funziona perfettamente su telefoni, tablet e schermi di computer. Telefoni Android iPhone e iPad PC Windows Mac Nessuna app da installare' },
+];
+const extra = [
+  { title: 'Facile da usare', body: 'Lo strumento è pensato per essere semplice per tutti. Pulsanti ben visibili e un’interfaccia intuitiva ti permettono di trasformare il testo in formato barrato senza fatica. Interfaccia chiara Accesso rapido alla copia Istruzioni facili da seguire Perfetto per i principianti' },
+  { title: 'Anteprima dal vivo', body: 'Hai la possibilità di vedere come appare il tuo testo prima di copiarlo. La funzione di anteprima dal vivo ti mostra come sarà il testo dopo la trasformazione. Anteprima immediata Cambia il testo quando vuoi Guarda la versione finale Copia solo quando il risultato ti convince' },
+  { title: 'Più lingue', body: 'Che tu scriva in inglese, tedesco, indonesiano, spagnolo o portoghese, puoi trasformare e copiare il tuo testo.' },
+];
+const where = [
+  { title: 'Chat e messaggi', body: 'Usa il testo barrato nelle chat per correggere una parola, fare una battuta o mostrare che un messaggio non è più valido. Messaggi WhatsApp Chat di Telegram Risposte su Messenger DM di Instagram Messaggi Snapchat' },
+  { title: 'Profili di gioco', body: 'Alcuni giochi e piattaforme di gioco consentono caratteri barrati in nomi utente, nomi di clan e testo del profilo. Nickname Discord Nome Free Fire Nome BGMI Nome PUBG Nome utente Roblox' },
+  { title: 'Note ed elenchi', body: 'Usa il testo barrato per segnare le attività completate, i vecchi promemoria o i piani annullati nelle tue note. Liste di cose da fare Appunti di studio Liste della spesa Vecchi promemoria Piani annullati' },
+];
+const tools = ['Generatore di testo sottolineato', 'Generatore di testo corsivo', 'Generatore di testo capovolto'];
+const faqs = [
+  { question: 'Il testo barrato è sicuro da usare?', answer: 'Sì. Il testo barrato Unicode è generalmente sicuro da copiare e incollare. È composto da caratteri di testo e non da codice eseguibile o software. Tuttavia, l’aspetto può variare tra applicazioni e dispositivi.' },
+  { question: 'Come scrivere una lettera con una linea sopra?', answer: 'Puoi creare una lettera barrata aggiungendo dopo la lettera un carattere combinato Unicode, come U+0336. Per esempio, una a seguita dal segno combinato diventa a̶. Un generatore di testo barrato può automatizzare questo processo per intere parole e frasi.' },
+  { question: 'Perché il mio testo barrato non funziona?', answer: 'Alcune applicazioni non mostrano in modo coerente i caratteri combinati Unicode. La linea può apparire spostata, interrotta o assente a causa di differenze nel rendering dei font e nel supporto Unicode. Prova un’altra applicazione o uno stile di barrato diverso.' },
+  { question: 'Posso usare le lettere barrate su cellulare?', answer: 'Sì. Puoi copiare le lettere barrate dal generatore e incollarle nelle app per cellulare compatibili. Il risultato dipende dall’app, dalla tastiera e dal supporto al rendering dei font.' },
+];
+---
+
+<StrikethroughPage lang="it">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Testo Barrato da Copiare e Incollare</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Il testo barrato, noto anche come testo cancellato, mostra una linea orizzontale che attraversa lettere e parole. Si usa comunemente per mostrare modifiche, correzioni o contenuti eliminati. Il nostro generatore di testo barrato trasforma il testo normale in testo barrato Unicode che puoi copiare e incollare in messaggi, post sui social, bio e altre piattaforme.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Che cos’è il testo barrato?</h2>
+      <p class="text-text-muted leading-[1.8]">Il barrato è un effetto tipografico che inserisce una linea al centro dei singoli caratteri. Si usa comunemente nei documenti per segnare parole rimosse o mostrare modifiche senza cancellare il contenuto originale. I caratteri combinati Unicode, come la sovrapposizione di tratto lungo (U+0336), possono creare questo aspetto aggiungendo una linea alle lettere esistenti.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Perché usare il nostro generatore di testo barrato?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Creare testo barrato è facile con il nostro generatore, senza dover inserire a mano caratteri speciali per ogni lettera.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Funzioni aggiuntive del testo barrato</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Il generatore include funzioni pratiche che rendono più semplice la conversione del testo:</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Dove usare il carattere barrato?</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Altri strumenti</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Domande frequenti</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</StrikethroughPage>

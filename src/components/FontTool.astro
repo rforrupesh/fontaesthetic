@@ -13,11 +13,13 @@ const strings = t(lang);
 
 // Only the first INITIAL_COUNT styles are pre-rendered (crawlers + no-JS see real
 // converted text). The rest are created by the script on "Load more".
-const sampleText = strings.tool.placeholder;
+const sampleText = strings.tool.placeholder?.trim() || '';
+const defaultTextFor = (style: (typeof FONT_STYLES)[number]) =>
+  sampleText || (style.slug === 'bold' ? 'bold' : style.name);
 const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
   slug: style.slug,
   name: style.name,
-  sample: convert(sampleText, style),
+  sample: convert(defaultTextFor(style), style),
 }));
 ---
 
@@ -30,7 +32,7 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
       <textarea
         id="font-input"
         rows="2"
-        placeholder={strings.tool.placeholder}
+        placeholder="Type your text here"
         class="w-full bg-surface-2 border border-border rounded-md text-text text-[1rem] p-2.5 resize-y font-sans"
       ></textarea>
     </div>
@@ -116,7 +118,6 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
   const rowsBySlug = new Map<string, HTMLElement>(); // every row element created so far
   results.querySelectorAll<HTMLElement>('[data-style-slug]').forEach((r) => rowsBySlug.set(r.dataset.styleSlug!, r));
 
-  let currentText: string = sampleText; // what the rows currently show
   let shown: number = Number(results.dataset.initial) || 51; // how many NON-favorite styles are visible
 
   // Favorites are stored by style slug (language independent) in localStorage.
@@ -134,7 +135,8 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
       row = rowTpl.cloneNode(true) as HTMLElement;
       row.dataset.styleSlug = style.slug;
       row.querySelector('[data-role="name"]')!.textContent = style.name;
-      row.querySelector('[data-role="output"]')!.textContent = convert(currentText, style);
+      const defaultText = sampleText || (style.slug === 'bold' ? 'bold' : style.name);
+      row.querySelector('[data-role="output"]')!.textContent = convert(defaultText, style);
       row.dataset.isNew = '1';
       rowsBySlug.set(style.slug, row);
     }
@@ -252,9 +254,11 @@ const rows = FONT_STYLES.slice(0, INITIAL_COUNT).map((style) => ({
   });
 
   input.addEventListener('input', () => {
-    currentText = input.value.trim() || sampleText; // empty box -> back to the sample text
+    const typedText = input.value.trim();
     rowsBySlug.forEach((row, slug) => {
-      row.querySelector('[data-role="output"]')!.textContent = convert(currentText, styleBySlug.get(slug)!);
+      const style = styleBySlug.get(slug)!;
+      const previewText = typedText || sampleText || (style.slug === 'bold' ? 'bold' : style.name);
+      row.querySelector('[data-role="output"]')!.textContent = convert(previewText, style);
     });
   });
 

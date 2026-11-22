@@ -9,7 +9,7 @@ categories: ["Social Media"]
 ---
 
 
-Running out of things to share on Snapchat can happen to anyone. You open the camera, look around, and still cannot think of anything worth sending. But a good snap does not always need an exciting plan or a special moment. Even your daily routine can give you something to share.
+Running out of things to share on [Snapchat](https://aestheticfonts.in/blog/snapchat-username-ideas/) can happen to anyone. You open the camera, look around, and still cannot think of anything worth sending. But a good snap does not always need an exciting plan or a special moment. Even your daily routine can give you something to share.
 
 From random selfies and funny filters to food pictures and conversation starters, there are plenty of ways to make your snaps more interesting. If you are wondering what to snap when you think you are boring, these ideas can help you get started.
 

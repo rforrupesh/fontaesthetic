@@ -1,0 +1,109 @@
+---
+import StrikethroughPage from '../../components/StrikethroughPage.astro';
+
+const why = [
+  { title: 'Durchgestrichenen Text kopieren und einfügen', body: 'Mit der Kopieren-und-Einfügen-Option erzeugst du durchgestrichenen Text und nutzt ihn sofort in deiner Lieblings-App. Gib deinen Text ein, kopiere das Ergebnis und füge es überall ein.' },
+  { title: 'Viele Stile für durchgestrichenen Text', body: 'Du kannst verschiedene Arten von durchgestrichenem Text erstellen. Wähle den Stil, der zu deiner Unterhaltung, deinem Profil oder deinem Beitrag passt. Text mit einfacher Linie, Text mit Doppellinie, Durchgestrichene Buchstaben Stilvoller durchgestrichener Text Verschiedene Unicode-Arten' },
+  { title: '100 % kostenloses Tool', body: 'Der Generator für durchgestrichenen Text ist völlig kostenlos. Du kannst ihn so oft nutzen, wie du willst, ohne zu bezahlen oder dich anzumelden. Keine Registrierung Kein Abo Keine zusätzlichen Kosten Unbegrenzte Umwandlungen Absolut kostenlos' },
+  { title: 'Mit allen Geräten kompatibel', body: 'Du kannst dieses Tool auf allen Geräten mit Browser nutzen. Es läuft einwandfrei auf Smartphones, Tablets und Computerbildschirmen. Android-Smartphones iPhones und iPads Windows-PCs Macs Keine App-Installation nötig' },
+];
+const extra = [
+  { title: 'Einfach zu bedienen', body: 'Das Tool ist für alle leicht zu bedienen. Gut sichtbare Schaltflächen und eine benutzerfreundliche Oberfläche helfen dir, deinen Text mühelos in durchgestrichenes Format umzuwandeln. Klare Oberfläche Schneller Zugriff auf die Kopierfunktion Leicht verständliche Anleitung Perfekt für Einsteiger' },
+  { title: 'Live-Vorschau', body: 'Du kannst sehen, wie dein Text aussieht, bevor du ihn kopierst. Die Live-Vorschau zeigt dir, wie dein Text nach der Umwandlung aussehen wird. Sofortige Vorschau Ändere deinen Text jederzeit Sieh dir die endgültige Version an Kopiere erst, wenn du mit dem Ergebnis zufrieden bist' },
+  { title: 'Mehrere Sprachen', body: 'Egal ob du auf Englisch, Deutsch, Indonesisch, Spanisch oder Portugiesisch schreibst, du kannst deinen Text umwandeln und kopieren.' },
+];
+const where = [
+  { title: 'Chats und Nachrichten', body: 'Nutze durchgestrichenen Text im Chat, um ein Wort zu korrigieren, einen Witz zu machen oder zu zeigen, dass eine Nachricht nicht mehr gilt. WhatsApp-Nachrichten Telegram-Chats Messenger-Antworten Instagram-DMs Snapchat-Nachrichten' },
+  { title: 'Gaming-Profile', body: 'Einige Spiele und Gaming-Plattformen erlauben durchgestrichene Zeichen in Benutzernamen, Clan-Namen und Profiltexten. Discord-Nickname Free-Fire-Name BGMI-Name PUBG-Name Roblox-Benutzername' },
+  { title: 'Notizen und Listen', body: 'Nutze durchgestrichenen Text, um erledigte Aufgaben, alte Erinnerungen oder abgesagte Pläne in deinen Notizen zu markieren. To-do-Listen Lernnotizen Einkaufslisten Alte Erinnerungen Abgesagte Pläne' },
+];
+const tools = ['Generator für unterstrichenen Text', 'Generator für kursiven Text', 'Generator für Text auf dem Kopf'];
+const faqs = [
+  { question: 'Ist durchgestrichener Text sicher?', answer: 'Ja. Durchgestrichener Unicode-Text lässt sich in der Regel bedenkenlos kopieren und einfügen. Er besteht aus Textzeichen und nicht aus ausführbarem Code oder Software. Das Aussehen kann sich jedoch je nach App und Gerät unterscheiden.' },
+  { question: 'Wie tippe ich einen Buchstaben mit Strich durch?', answer: 'Du kannst einen durchgestrichenen Buchstaben erzeugen, indem du nach dem Buchstaben ein Unicode-Kombinationszeichen wie U+0336 einfügst. Zum Beispiel wird ein a gefolgt vom Kombinationszeichen zu a̶. Ein Generator für durchgestrichenen Text kann diesen Vorgang für ganze Wörter und Sätze automatisieren.' },
+  { question: 'Warum funktioniert mein durchgestrichener Text nicht?', answer: 'Manche Anwendungen stellen Unicode-Kombinationszeichen nicht einheitlich dar. Die Linie kann verschoben, unterbrochen oder gar nicht sichtbar sein, weil Schriftdarstellung und Unicode-Unterstützung unterschiedlich sind. Probiere eine andere Anwendung oder einen anderen Durchstreich-Stil aus.' },
+  { question: 'Kann ich durchgestrichene Buchstaben auf dem Handy verwenden?', answer: 'Ja. Du kannst durchgestrichene Buchstaben aus dem Generator kopieren und in unterstützte Handy-Apps einfügen. Das Ergebnis hängt von der App, der Tastatur und der Unterstützung der Schriftdarstellung ab.' },
+];
+---
+
+<StrikethroughPage lang="de">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Durchgestrichener Text zum Kopieren und Einfügen</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Durchgestrichener Text, auch bekannt als gestrichener Text, zeigt eine waagerechte Linie durch Buchstaben und Wörter. Er wird häufig verwendet, um Änderungen, Korrekturen oder gelöschte Inhalte zu zeigen. Unser Generator für durchgestrichenen Text wandelt normalen Text in Unicode-Text mit Durchstreichung um, den du in Nachrichten, Social-Media-Beiträge, Bios und andere Plattformen kopieren und einfügen kannst.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Was ist durchgestrichener Text?</h2>
+      <p class="text-text-muted leading-[1.8]">Durchstreichen ist ein typografischer Effekt, der eine Linie durch die Mitte einzelner Zeichen legt. Er wird in Dokumenten häufig genutzt, um entfernte Wörter zu markieren oder Änderungen zu zeigen, ohne den ursprünglichen Inhalt zu löschen. Unicode-Kombinationszeichen wie die lange Überlagerung (U+0336) können dieses Aussehen erzeugen, indem sie bestehenden Buchstaben eine Linie hinzufügen.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Warum unseren Generator für durchgestrichenen Text nutzen?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Mit unserem Generator ist durchgestrichener Text leicht erstellt, ohne dass du für jeden Buchstaben Sonderzeichen von Hand eingeben musst.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Zusätzliche Funktionen für durchgestrichenen Text</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Der Generator bietet praktische Funktionen, die die Textumwandlung erleichtern:</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Wo kann man die durchgestrichene Schrift verwenden?</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Weitere Tools</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Häufig gestellte Fragen</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</StrikethroughPage>

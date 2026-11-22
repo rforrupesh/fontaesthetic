@@ -1,0 +1,87 @@
+---
+// Strikethrough tool: type text -> every style below updates live, each with a Copy button.
+// Runs fully in the browser. UI text comes from src/lib/strikethroughText.ts.
+import { STRIKE_STYLES } from '../lib/strikethrough';
+import { strikeText } from '../lib/strikethroughText';
+
+interface Props { lang: string; }
+const T = strikeText(Astro.props.lang);
+const rows = STRIKE_STYLES.map((s) => ({ slug: s.slug, name: s.name, out: s.convert(T.sample) }));
+const i18n = { copied: T.copied, copy: T.copy, sample: T.sample };
+---
+
+<section class="st-root py-8 pb-6" data-i18n={JSON.stringify(i18n)}>
+  <div class="wrap">
+    <div class="max-w-[700px] mx-auto">
+      <div class="card p-3">
+        <label for="st-input" class="block text-sm font-semibold mb-2">{T.label}</label>
+        <textarea
+          id="st-input"
+          rows="2"
+          dir="auto"
+          maxlength="500"
+          placeholder={T.placeholder}
+          class="w-full bg-surface-2 border border-border rounded-md text-text text-[1rem] p-2.5 resize-y font-sans"
+        ></textarea>
+      </div>
+
+      <h2 class="text-lg font-semibold mt-6 mb-3">{T.styles}</h2>
+      <ul id="st-list" class="list-none m-0 p-0 flex flex-col gap-2.5" aria-live="polite">
+        {rows.map((r) => (
+          <li class="card flex items-center justify-between gap-4 px-3.5 py-3" data-slug={r.slug}>
+            <div class="min-w-0">
+              <div class="text-[.72rem] uppercase tracking-wide text-text-muted mb-1">{r.name}</div>
+              <div class="break-words text-[1.15rem] leading-[1.5] whitespace-pre-wrap" dir="ltr" data-role="out">{r.out}</div>
+            </div>
+            <button type="button" class="btn shrink-0 min-w-[84px] min-h-[44px] justify-center" data-role="copy" aria-label={T.copyAria.replace('{style}', r.name)}>{T.copy}</button>
+          </li>
+        ))}
+      </ul>
+      <p class="text-text-muted text-xs mt-4">{T.note}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { STRIKE_STYLES } from '../lib/strikethrough';
+
+  const root = document.querySelector<HTMLElement>('.st-root')!;
+  const i18n = JSON.parse(root.dataset.i18n || '{}');
+  const input = document.getElementById('st-input') as HTMLTextAreaElement;
+  const list = document.getElementById('st-list')!;
+  const styleBySlug = new Map(STRIKE_STYLES.map((s) => [s.slug, s]));
+
+  // Every row is the live preview: it re-renders on each keystroke.
+  function render(): void {
+    const text = input.value.trim() || i18n.sample;
+    list.querySelectorAll<HTMLElement>('[data-slug]').forEach((row) => {
+      row.querySelector('[data-role="out"]')!.textContent = styleBySlug.get(row.dataset.slug!)!.convert(text);
+    });
+  }
+
+  async function copy(text: string): Promise<boolean> {
+    try {
+      if (navigator.clipboard?.writeText && window.isSecureContext) { await navigator.clipboard.writeText(text); return true; }
+    } catch (e) {}
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;opacity:0;left:-9999px';
+    document.body.appendChild(ta); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    ta.remove();
+    return ok;
+  }
+
+  list.addEventListener('click', async (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-role="copy"]');
+    if (!btn) return;
+    const out = btn.closest('[data-slug]')!.querySelector('[data-role="out"]')!.textContent || '';
+    if (!(await copy(out))) return;
+    btn.textContent = i18n.copied;
+    setTimeout(() => (btn.textContent = i18n.copy), 1500);
+  });
+
+  input.addEventListener('input', render);
+  render();
+</script>

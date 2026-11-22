@@ -169,7 +169,7 @@ You can also combine different letter styles and symbols to create a nickname th
 
 Stylish nicknames are used on many websites, games, and social media platforms. You can try them in places where Unicode characters are supported.
 
-- **Instagram:** Use fancy letters in your display name and bio.
+- **[instagram bio for boys stylish font](https://aestheticfonts.in/blog/instagram-bio-for-boys/)**
 - **Free Fire:** Create a decorative gaming name with symbols.
 - **PUBG and BGMI:** Try bold, small caps, or gaming-style nicknames.
 - **WhatsApp:** Add stylish text to your profile name and messages.

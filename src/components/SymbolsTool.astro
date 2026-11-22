@@ -1,0 +1,208 @@
+---
+import { symbolCategories } from '../data/symbols';
+import { symbolsText } from '../lib/symbolsText';
+
+interface Props { lang: string; }
+const T = symbolsText(Astro.props.lang);
+const name = (id: string) => T.categories[id];
+---
+
+<div class="symbols-tool wrap py-6 md:py-8" data-copy-label={T.copy} data-copied-label={T.copied}>
+  <!-- Phone: sticky horizontal category bar -->
+  <nav
+    id="sym-chips"
+    aria-label={T.h1}
+    class="sym-chips md:hidden sticky z-40 -mx-5 px-5 py-2 flex gap-2 overflow-x-auto bg-bg/95 backdrop-blur-sm border-b border-border"
+  >
+    {symbolCategories.map((c) => (
+      <a href={`#${c.id}`} data-cat={c.id} class="sym-cat shrink-0 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium border border-border bg-surface text-text-muted">
+        <span aria-hidden="true">{c.icon}</span>{name(c.id)}
+      </a>
+    ))}
+  </nav>
+
+  <div class="md:grid md:grid-cols-[220px_1fr] md:gap-8 mt-4 md:mt-0">
+    <!-- Desktop: left category list -->
+    <aside class="hidden md:block">
+      <nav id="sym-side" aria-label={T.h1} class="sticky flex flex-col gap-1" style="top: calc(var(--header-h) + 1.5rem)">
+        {symbolCategories.map((c) => (
+          <a href={`#${c.id}`} data-cat={c.id} class="sym-cat flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[0.95rem] font-medium text-text-muted border border-transparent">
+            <span aria-hidden="true" class="w-6 text-center text-lg">{c.icon}</span>
+            <span>{name(c.id)}</span>
+            <span class="ms-auto text-xs opacity-60">{c.items.length}</span>
+          </a>
+        ))}
+      </nav>
+    </aside>
+
+    <!-- Right: all symbols -->
+    <div class="min-w-0 flex flex-col gap-10">
+      {symbolCategories.map((c) => (
+        <section id={c.id} data-section class="sym-section">
+          <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+            <span aria-hidden="true">{c.icon}</span>{name(c.id)}
+          </h2>
+          <div class="sym-masonry">
+            {c.items.map((s) => (
+              <div class="sym-card flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-2">
+                <button type="button" data-symbol={s} aria-label={`${T.copy} ${s}`} class="sym-btn flex min-h-14 w-full items-center justify-center rounded-md px-1 py-2 text-3xl">
+                  {s}
+                </button>
+                <button type="button" data-symbol={s} class="sym-copy-btn inline-flex w-full items-center justify-center gap-1.5 rounded-md border border-border px-2 py-1.5 text-xs font-medium text-text-muted" aria-label={`${T.copy} ${s}`}>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+                  <span class="sym-copy-label">{T.copy}</span>
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .sym-cat { transition: background-color .15s, color .15s, border-color .15s; }
+  .sym-cat.is-active { background: color-mix(in srgb, var(--color-primary) 15%, transparent); color: var(--color-primary); border-color: color-mix(in srgb, var(--color-primary) 40%, transparent); }
+  .sym-chips { top: var(--header-h); scrollbar-width: none; }
+  .sym-chips::-webkit-scrollbar { display: none; }
+  .sym-section { scroll-margin-top: calc(var(--header-h) + 4rem); }
+  @media (min-width: 768px) { .sym-section { scroll-margin-top: calc(var(--header-h) + 1.5rem); } }
+  /* Pinterest-style masonry: cards flow into columns and grow to fit their symbols. */
+  .sym-masonry {
+    columns: 2;
+    column-gap: .625rem;
+  }
+  .sym-card {
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 .625rem;
+    display: inline-flex;
+    vertical-align: top;
+    break-inside: avoid;
+    overflow: hidden;
+    transition: border-color .15s, background-color .15s;
+  }
+  .sym-btn {
+    min-height: 3.5rem;
+    height: auto;
+    line-height: 1.35;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+  }
+  .sym-copy-btn { flex: 0 0 auto; }
+  @media (min-width: 480px) { .sym-masonry { columns: 3; } }
+  @media (min-width: 768px) { .sym-masonry { columns: 4; } }
+  @media (min-width: 1100px) { .sym-masonry { columns: 5; } }
+  .sym-card:hover { border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-border)); }
+  .sym-btn, .sym-copy-btn { cursor: pointer; transition: transform .12s, border-color .12s, background-color .12s, color .12s; }
+  .sym-btn:hover { background: var(--color-surface-2); transform: translateY(-1px); }
+  .sym-copy-btn:hover, .sym-copy-btn.is-copied { border-color: var(--color-primary); color: var(--color-primary); background: var(--color-surface-2); }
+  .sym-btn:active, .sym-copy-btn:active { transform: scale(.96); }
+  .sym-btn:focus-visible, .sym-copy-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+  html { scroll-behavior: smooth; }
+</style>
+
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.sym-cat')];
+  const sections = [...document.querySelectorAll<HTMLElement>('[data-section]')];
+  const chips = document.getElementById('sym-chips');
+  let lock = false;
+
+  const setActive = (id: string) => {
+    links.forEach((a) => {
+      const on = a.dataset.cat === id;
+      a.classList.toggle('is-active', on);
+      if (on && chips && chips.contains(a)) {
+        chips.scrollTo({ left: a.offsetLeft - chips.clientWidth / 2 + a.clientWidth / 2, behavior: 'smooth' });
+      }
+    });
+  };
+  setActive(sections[0]?.id);
+
+  // Scroll-spy: jo section screen ke upar hissay me hai wahi highlight
+  const io = new IntersectionObserver(
+    (entries) => {
+      if (lock) return;
+      entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
+    },
+    { rootMargin: '-25% 0px -65% 0px' }
+  );
+  sections.forEach((s) => io.observe(s));
+
+  links.forEach((a) =>
+    a.addEventListener('click', () => {
+      setActive(a.dataset.cat!);
+      lock = true;
+      setTimeout(() => (lock = false), 800);
+    })
+  );
+
+  // Copy symbol and show the confirmation directly inside that card's Copy button.
+  // Labels are passed through HTML data attributes because Astro component variables
+  // are not available inside the browser-side script scope.
+  const tool = document.querySelector<HTMLElement>('.symbols-tool');
+  const copyLabel = tool?.dataset.copyLabel ?? 'Copy';
+  const copiedLabel = tool?.dataset.copiedLabel ?? 'Copied!';
+
+  const copy = async (text: string): Promise<boolean> => {
+    try {
+      if (navigator.clipboard?.writeText && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+    } catch {
+      // Try the legacy copy method below when Clipboard API is unavailable/blocked.
+    }
+
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    textarea.style.pointerEvents = 'none';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+
+    let copied = false;
+    try {
+      copied = document.execCommand('copy');
+    } catch {
+      copied = false;
+    }
+    textarea.remove();
+    return copied;
+  };
+
+  const resetTimers = new WeakMap<HTMLButtonElement, number>();
+  document.querySelectorAll<HTMLButtonElement>('[data-symbol]').forEach((btn) =>
+    btn.addEventListener('click', async () => {
+      const symbol = btn.dataset.symbol;
+      if (!symbol) return;
+
+      const didCopy = await copy(symbol);
+      if (!didCopy) return;
+
+      const card = btn.closest('.sym-card');
+      const copyButton = card?.querySelector<HTMLButtonElement>('.sym-copy-btn');
+      const label = copyButton?.querySelector<HTMLElement>('.sym-copy-label');
+      if (!copyButton || !label) return;
+
+      const previousTimer = resetTimers.get(copyButton);
+      if (previousTimer) window.clearTimeout(previousTimer);
+      label.textContent = copiedLabel;
+      copyButton.classList.add('is-copied');
+      const timer = window.setTimeout(() => {
+        label.textContent = copyLabel;
+        copyButton.classList.remove('is-copied');
+        resetTimers.delete(copyButton);
+      }, 1600);
+      resetTimers.set(copyButton, timer);
+    })
+  );
+</script>

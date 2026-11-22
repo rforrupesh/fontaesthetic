@@ -1,0 +1,60 @@
+---
+// Shared body of the Symbols page, used by /symbols/ and /{lang}/symbols/.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from './PageHero.astro';
+import SymbolsTool from './SymbolsTool.astro';
+import Breadcrumb from './Breadcrumb.astro';
+import BreadcrumbSchema from './schema/BreadcrumbSchema.astro';
+import CollectionPageSchema from './schema/CollectionPageSchema.astro';
+import OrganizationSchema from './schema/OrganizationSchema.astro';
+import WebSiteSchema from './schema/WebSiteSchema.astro';
+import { getPath, t } from '../i18n';
+import { symbolsText } from '../lib/symbolsText';
+
+interface Props { lang: string; }
+const { lang } = Astro.props;
+const T = symbolsText(lang);
+const strings = t(lang);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const siteRoot = `${siteUrl}/`;
+const pagePath = '/symbols/';
+const pageUrl = siteUrl + getPath(lang, pagePath);
+const logoUrl = `${siteRoot}logo.svg`;
+
+// The symbols page is both a browsable collection and a free browser-based tool.
+// All visible names/descriptions come from the current language's symbolsText.
+const webApplication = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  '@id': `${pageUrl}#webapplication`,
+  name: T.h1,
+  url: pageUrl,
+  description: T.description,
+  inLanguage: lang,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  browserRequirements: 'Requires a modern web browser with JavaScript enabled',
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  provider: { '@id': `${siteRoot}#organization` },
+};
+const crumbs = [
+  { name: strings.nav.home, url: siteUrl + getPath(lang, '/') },
+  { name: T.nav, url: pageUrl },
+];
+---
+
+<BaseLayout lang={lang} title={T.title} description={T.description} path={pagePath}>
+  <OrganizationSchema name={strings.site.name} siteUrl={siteRoot} logoUrl={logoUrl} />
+  <WebSiteSchema name={strings.site.name} siteUrl={siteRoot} lang={lang} description={strings.site.tagline} />
+  <CollectionPageSchema name={T.title} description={T.description} url={pageUrl} lang={lang} siteUrl={siteRoot} />
+  <BreadcrumbSchema items={crumbs} />
+  <script type="application/ld+json" set:html={JSON.stringify(webApplication)} />
+  <div class="wrap pt-4"><Breadcrumb items={crumbs} /></div>
+  <PageHero title={T.h1} subtitle={T.subtitle} />
+  <SymbolsTool lang={lang} />
+
+  <!-- Page-specific article content is supplied by each language route. -->
+  <slot />
+</BaseLayout>

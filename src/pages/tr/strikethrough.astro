@@ -1,0 +1,109 @@
+---
+import StrikethroughPage from '../../components/StrikethroughPage.astro';
+
+const why = [
+  { title: 'Üstü çizili yazıyı kopyala yapıştır seçeneği', body: 'Kopyala yapıştır seçeneği sayesinde üstü çizili yazı oluşturup istediğiniz uygulamada hemen kullanabilirsiniz. Metninizi yazın, sonucu kopyalayıp istediğiniz yere yapıştırın.' },
+  { title: 'Birden fazla çizili yazı stili', body: 'Birden fazla türde çizili yazı oluşturabilirsiniz. Sohbetinize, profilinize veya paylaşımınıza uygun olanı seçin. Tek çizgili yazı, Çift çizgili yazı, Çizili harfler Şık çizili yazı Çeşitli Unicode türleri' },
+  { title: '%100 ücretsiz araç', body: 'Üstü çizili yazı oluşturucu tamamen ücretsizdir. Ödeme yapmadan veya üye olmadan istediğiniz kadar kullanabilirsiniz. Kayıt yok Abonelik yok Ek ücret yok Sınırsız dönüştürme Tamamen ücretsiz' },
+  { title: 'Tüm cihazlarla uyumlu', body: 'Bu aracı tarayıcısı olan tüm cihazlarda kullanabilirsiniz. Cep telefonlarında, tabletlerde ve bilgisayar ekranlarında sorunsuz çalışır. Android telefonlar iPhone ve iPad Windows PC Mac PC Uygulama yüklemeye gerek yok' },
+];
+const extra = [
+  { title: 'Kullanımı kolay', body: 'Araç herkes için kolay olacak şekilde hazırlandı. Net görünen düğmeler ve kullanıcı dostu arayüz, yazınızı zahmetsizce çizili biçime dönüştürmenizi sağlar. Sade arayüz Kopyalama seçeneğine hızlı erişim Kolay anlaşılır yönergeler Yeni başlayanlar için ideal' },
+  { title: 'Canlı önizleme', body: 'Metninizi kopyalamadan önce nasıl göründüğünü görme fırsatınız var. Canlı önizleme özelliği, metninizin dönüşümden sonra nasıl görüneceğini gösterir. Anında önizleme İstediğiniz zaman metni değiştirin Son halini görün Sonuçtan memnun kalınca kopyalayın' },
+  { title: 'Birden fazla dil', body: 'İngilizce, Almanca, Endonezce, İspanyolca veya Portekizce, hangi dilde yazarsanız yazın metninizi dönüştürebilir ve kopyalayabilirsiniz.' },
+];
+const where = [
+  { title: 'Sohbetler ve mesajlar', body: 'Sohbetlerde bir kelimeyi düzeltmek, şaka yapmak veya bir mesajın artık geçerli olmadığını göstermek için üstü çizili yazı kullanın. WhatsApp mesajları Telegram sohbetleri Messenger yanıtları Instagram DM\'leri Snapchat mesajları' },
+  { title: 'Oyun profilleri', body: 'Bazı oyunlar ve oyun platformları kullanıcı adlarında, klan adlarında ve profil metinlerinde çizili karakterlere izin verir. Discord takma adı Free Fire adı BGMI adı PUBG adı Roblox kullanıcı adı' },
+  { title: 'Notlar ve listeler', body: 'Notlarınızda tamamlanan görevleri, eski hatırlatıcıları veya iptal edilen planları işaretlemek için çizili yazı kullanın. Yapılacaklar listeleri Ders notları Alışveriş listeleri Eski hatırlatıcılar İptal edilen planlar' },
+];
+const tools = ['Altı çizili yazı oluşturucu', 'İtalik yazı oluşturucu', 'Ters yazı oluşturucu'];
+const faqs = [
+  { question: 'Üstü çizili yazı kullanmak güvenli mi?', answer: 'Evet. Unicode üstü çizili yazıyı kopyalayıp yapıştırmak genellikle güvenlidir. Çalıştırılabilir kod veya yazılım değil, metin karakterlerinden oluşur. Ancak görünümü uygulamalara ve cihazlara göre değişebilir.' },
+  { question: 'Üzeri çizili harf nasıl yazılır?', answer: 'Harfin ardına U+0336 gibi bir Unicode birleştirici karakter ekleyerek üzeri çizili harf oluşturabilirsiniz. Örneğin a harfi ve ardından birleştirici işaret a̶ olur. Üstü çizili yazı oluşturucu bu işlemi tüm kelimeler ve cümleler için otomatik yapabilir.' },
+  { question: 'Çizili yazım neden çalışmıyor?', answer: 'Bazı uygulamalar Unicode birleştirici karakterleri tutarlı göstermez. Yazı tipi işleme ve Unicode desteğindeki farklar nedeniyle çizgi kaymış, kopuk veya hiç görünmeyebilir. Başka bir uygulama veya farklı bir çizili yazı stili deneyin.' },
+  { question: 'Çizili harfleri mobilde kullanabilir miyim?', answer: 'Evet. Çizili harfleri oluşturucudan kopyalayıp desteklenen mobil uygulamalara yapıştırabilirsiniz. Sonuç; uygulamaya, klavyeye ve yazı tipi işleme desteğine bağlıdır.' },
+];
+---
+
+<StrikethroughPage lang="tr">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Çizili Yazı Kopyala Yapıştır</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Üstü çizili yazı, diğer adıyla çizili yazı, harflerin ve kelimelerin ortasından geçen yatay bir çizgi gösterir. Genellikle düzenlemeleri, düzeltmeleri veya silinen içeriği göstermek için kullanılır. Üstü çizili yazı oluşturucumuz normal metni Unicode üstü çizili yazıya dönüştürür; bunu mesajlara, sosyal medya paylaşımlarına, biyografilere ve diğer platformlara kopyalayıp yapıştırabilirsiniz.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Üstü çizili yazı nedir?</h2>
+      <p class="text-text-muted leading-[1.8]">Üstü çizili, her karakterin ortasına bir çizgi koyan tipografik bir efekttir. Belgelerde genellikle silinen kelimeleri işaretlemek veya özgün içeriği silmeden değişiklikleri göstermek için kullanılır. Uzun Çizgi Bindirme (U+0336) gibi Unicode birleştirici karakterler, mevcut harflere çizgi ekleyerek bu görünümü oluşturabilir.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Neden üstü çizili yazı oluşturucumuzu kullanmalısınız?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Oluşturucumuzla her harf için özel karakterleri elle girmeden üstü çizili yazıyı kolayca oluşturabilirsiniz.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Üstü çizili yazının ek özellikleri</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Oluşturucu, metin dönüştürmeyi kolaylaştıran pratik özellikler sunar:</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Üstü çizili yazı tipi nerede kullanılır?</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Diğer araçlar</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Sık sorulan sorular</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</StrikethroughPage>

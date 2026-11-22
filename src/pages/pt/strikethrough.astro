@@ -1,0 +1,109 @@
+---
+import StrikethroughPage from '../../components/StrikethroughPage.astro';
+
+const why = [
+  { title: 'Opção de copiar e colar texto riscado', body: 'A opção de copiar e colar permite gerar texto riscado e usá-lo na hora no aplicativo que você preferir. Digite seu texto, depois copie o resultado e cole onde quiser.' },
+  { title: 'Vários estilos de texto riscado', body: 'Você pode criar vários tipos de texto riscado. Escolha o que combina com sua conversa, perfil ou publicação. Texto com linha simples, Texto com linha dupla, Letras riscadas Texto riscado estiloso Vários tipos de Unicode' },
+  { title: 'Ferramenta 100% gratuita', body: 'O gerador de texto riscado é totalmente gratuito. Você pode usá-lo quantas vezes quiser, sem pagar nem se cadastrar. Sem cadastro Sem assinatura Sem custos adicionais Conversões ilimitadas Totalmente grátis' },
+  { title: 'Compatível com todos os dispositivos', body: 'Você pode usar esta ferramenta em todos os dispositivos com navegador. Ela funciona perfeitamente em celulares, tablets e telas de computador. Celulares Android iPhone e iPad PC com Windows Mac Não precisa instalar nenhum aplicativo' },
+];
+const extra = [
+  { title: 'Fácil de usar', body: 'A ferramenta foi feita para ser fácil para todo mundo. Botões bem visíveis e uma interface amigável permitem transformar seu texto em formato riscado sem esforço. Interface clara Acesso rápido à opção de copiar Instruções fáceis de seguir Perfeita para iniciantes' },
+  { title: 'Prévia ao vivo', body: 'Você pode ver como seu texto fica antes de copiá-lo. O recurso de prévia ao vivo mostra como seu texto ficará depois da transformação. Prévia imediata Mude seu texto quando quiser Veja a versão final Copie só quando estiver satisfeito com o resultado' },
+  { title: 'Vários idiomas', body: 'Não importa se você escreve em inglês, alemão, indonésio, espanhol ou português, você pode transformar e copiar seu texto.' },
+];
+const where = [
+  { title: 'Chats e mensagens', body: 'Use texto riscado em conversas para corrigir uma palavra, fazer uma piada ou mostrar que uma mensagem não vale mais. Mensagens do WhatsApp Chats do Telegram Respostas no Messenger DMs do Instagram Mensagens do Snapchat' },
+  { title: 'Perfis de jogos', body: 'Alguns jogos e plataformas de games permitem caracteres riscados em nomes de usuário, nomes de clã e textos de perfil. Apelido no Discord Nome no Free Fire Nome no BGMI Nome no PUBG Nome de usuário no Roblox' },
+  { title: 'Notas e listas', body: 'Use texto riscado para marcar tarefas concluídas, lembretes antigos ou planos cancelados nas suas notas. Listas de tarefas Anotações de estudo Listas de compras Lembretes antigos Planos cancelados' },
+];
+const tools = ['Gerador de texto sublinhado', 'Gerador de texto em itálico', 'Gerador de texto de cabeça para baixo'];
+const faqs = [
+  { question: 'O texto riscado é seguro de usar?', answer: 'Sim. O texto riscado em Unicode geralmente é seguro para copiar e colar. Ele é formado por caracteres de texto, e não por código executável ou software. No entanto, a aparência pode variar entre aplicativos e dispositivos.' },
+  { question: 'Como digitar uma letra com um traço no meio?', answer: 'Você pode criar uma letra riscada adicionando um caractere combinante Unicode, como U+0336, depois da letra. Por exemplo, um a seguido da marca combinante vira a̶. Um gerador de texto riscado pode automatizar esse processo para palavras e frases inteiras.' },
+  { question: 'Por que meu texto riscado não funciona?', answer: 'Alguns aplicativos não exibem caracteres combinantes Unicode de forma consistente. A linha pode aparecer desalinhada, desconectada ou não aparecer por causa de diferenças na renderização de fontes e no suporte a Unicode. Tente outro aplicativo ou um estilo de riscado diferente.' },
+  { question: 'Posso usar letras riscadas no celular?', answer: 'Sim. Você pode copiar as letras riscadas do gerador e colá-las em aplicativos de celular compatíveis. O resultado depende do aplicativo, do teclado e do suporte à renderização de fontes.' },
+];
+---
+
+<StrikethroughPage lang="pt">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="text-center mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4">Texto Riscado para Copiar e Colar</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">O texto riscado, também conhecido como texto cortado, mostra uma linha horizontal passando pelas letras e palavras. Ele é muito usado para mostrar edições, correções ou conteúdo excluído. Nosso gerador de texto riscado converte texto normal em texto riscado Unicode que você pode copiar e colar em mensagens, publicações de redes sociais, bios e outras plataformas.</p>
+    </header>
+
+    <!-- What is -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">O que é texto riscado?</h2>
+      <p class="text-text-muted leading-[1.8]">O riscado é um efeito tipográfico que coloca uma linha no meio de cada caractere. Ele é muito usado em documentos para marcar palavras removidas ou mostrar mudanças sem apagar o conteúdo original. Caracteres combinantes Unicode, como a sobreposição de traço longo (U+0336), podem criar essa aparência adicionando uma linha às letras existentes.</p>
+    </section>
+
+    <!-- Why use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Por que usar nosso gerador de texto riscado?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Criar texto riscado fica fácil com nosso gerador, sem precisar digitar manualmente caracteres especiais para cada letra.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {why.map((f) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Extra features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Recursos extras do texto riscado</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">O gerador inclui recursos práticos que facilitam a conversão do texto:</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        {extra.map((f) => (
+          <div class="card p-5 border-t-4 border-t-primary">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Where to use -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Onde usar a fonte riscada?</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {where.map((f) => (
+          <div class="card p-5">
+            <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Outras ferramentas</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((name) => (
+          <li class="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium">{name}</li>
+        ))}
+      </ul>
+    </section>
+  </article>
+
+  <section class="wrap max-w-[900px] mx-auto pb-12">
+    <h2 class="text-2xl font-bold mb-5 text-center">Perguntas frequentes</h2>
+    <div class="max-w-[720px] mx-auto flex flex-col gap-3">
+      {faqs.map((item) => (
+        <details class="card px-5 py-4 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-[.95rem]">
+            {item.question}
+            <span class="shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-[.9rem] text-text-muted leading-[1.7]">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</StrikethroughPage>
