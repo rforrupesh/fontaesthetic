@@ -8,11 +8,11 @@ tags: ["GTA 6 font", "Pricedown", "font styles", "fonts similar to GTA 6", "fanc
 categories: ["Typography"]
 ---
 
-*[Grand Theft Auto VI](https://www.rockstargames.com/VI)* (GTA 6) is out now, released on **November 19, 2026**. Ever since the first trailer, one question keeps coming up: what font is that logo? Short answer: it's Pricedown, with a hand-drawn "VI" on top. Below is the long answer, including who made the font, how to get the look yourself, and which fonts come closest when you can't use the original.
+*[Grand Theft Auto VI](https://www.rockstargames.com/VI)* (GTA 6) is out now, released on **November 19, 2026**. Ever since the first trailer, one question keeps coming up: what font is that logo? Short answer: it's Pricedown, with a hand-drawn "VI" on top. 
 
 ## What Font Is Used in the GTA 6 Logo?
 
-**Pricedown** is the typeface behind the main wordmark. It was designed by Canadian type designer **[Ray Larabie](https://en.wikipedia.org/wiki/Ray_Larabie)** and published by **Typodermic Fonts** in 2000. Larabie has said the style was inspired by early-1970s display lettering, the kind you'd see on game-show titles and old TV graphics. That chunky, slightly goofy, very confident look is exactly why it suits a series built on satire.
+> **Pricedown** is the typeface behind the main wordmark. It was designed by Canadian type designer **[Ray Larabie](https://en.wikipedia.org/wiki/Ray_Larabie)** and published by **Typodermic Fonts** in 2000. Larabie has said the style was inspired by early-1970s display lettering, the kind you'd see on game-show titles and old TV graphics. That chunky, slightly goofy, very confident look is exactly why it suits a series built on satire.
 
 Most people first noticed Pricedown on the box art of *Grand Theft Auto III*, and it has been tied to the franchise ever since. In the GTA VI logo, it sets the stacked "Grand Theft Auto" text: heavy strokes, tight spacing, and squared-off curves.
 
@@ -83,7 +83,7 @@ You can do this in Canva, Photoshop, Photopea, or any editor that supports text 
 5. Add a soft shadow or glow in a contrasting color, and place the text on a dark or sunset background. For the Roman numeral, draw your own shape with the pen tool or use a bold numeral from a similar font.
 6. Export the finished design as a PNG with a transparent background, or as a JPG if you don't need transparency.
 
-A Unicode font generator can create alternative text styles for usernames and social media profiles, but it does not reproduce the actual Pricedown typeface.
+A [Free font](https://aestheticfonts.in/blog/free-fonts/) can create alternative text styles for usernames and social media profiles, but it does not reproduce the actual Pricedown typeface.
 
 ## Where Can You Use GTA-Inspired Typography?
 
