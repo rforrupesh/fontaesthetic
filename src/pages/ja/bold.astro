@@ -1,0 +1,198 @@
+---
+import BoldPage from '../../components/BoldPage.astro';
+
+const samples = [
+  {
+    "label": "文字（小文字）-",
+    "text": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"
+  },
+  {
+    "label": "文字（大文字）-",
+    "text": "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+  },
+  {
+    "label": "数字 -",
+    "text": "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  }
+];
+const steps = [
+  "ジェネレーターにテキストを入力または貼り付けます。",
+  "テキストが利用可能なUnicodeスタイルに変換されます。好みのバージョンを選びます。",
+  "「コピー」をクリックします。",
+  "アプリ、ウェブサイト、プロフィール、メッセージ欄など、この機能に対応している場所に太字テキストを貼り付けます。"
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  {
+    "title": "Instagram",
+    "body": "Instagramでは、プロフィールの自己紹介、キャプション、コメントなどのテキスト欄でさまざまなUnicode文字を試せます。名前、短い説明、選んだフレーズを他のテキストと区別するのに役立ちます。"
+  },
+  {
+    "title": "LinkedIn",
+    "body": "LinkedInの投稿では、見出し、プロフィールの説明、コメント、注目テキストなどにさまざまな書体を使えます。特にプレーンテキストの場面では、キーワードやフレーズを太字で目立たせると便利です。"
+  },
+  {
+    "title": "Facebook",
+    "body": "Facebookでは、投稿、プロフィールの説明、コメント、グループなどで代替文字を使えます。通常のフォント書式が使えない場所で役立ちます。"
+  },
+  {
+    "title": "WhatsApp",
+    "body": "WhatsAppのメッセージ、ステータス、プロフィールなど、この形式のテキストが使える場所で代替文字を使えます。WhatsApp標準の太字や斜体の書式の代わりになります。"
+  },
+  {
+    "title": "Discord",
+    "body": "Discordではメッセージ内でMarkdown記法が使えますが、いくつかのUnicode文字を使えば、ユーザー名やプロフィールの説明、その他のテキストも変更できます。文字の対応状況はデバイスによって異なる場合があります。"
+  },
+  {
+    "title": "TikTok",
+    "body": "TikTokでは、プロフィールの説明などのテキスト欄で代替フォントを使えます。Unicode文字は短いフレーズや名前を装飾するのに便利です。"
+  },
+  {
+    "title": "YouTube",
+    "body": "Unicodeテキストは、YouTubeのチャンネル説明、動画の説明、コミュニティ投稿にも表示できます。特定の言葉を目立たせたり、小さなテキストのまとまりを作ったりするのに役立ちます。"
+  }
+];
+const features = [
+  {
+    "label": "自動変換：",
+    "body": "通常のテキストを、書式設定なしで同等のUnicode文字に変換します。"
+  },
+  {
+    "label": "",
+    "body": "セリフ体、サンセリフ体、イタリック体、装飾フォントなど、さまざまな表示オプションを用意しています。"
+  },
+  {
+    "label": "コピー＆ペースト：",
+    "body": "テキストを簡単にコピー＆ペーストできます。"
+  },
+  {
+    "label": "ブラウザで動作：",
+    "body": "ブラウザ上で動くので、ソフトのインストールは不要です。"
+  },
+  {
+    "label": "登録不要：",
+    "body": "アカウント登録なしでテキストを作成してコピーできます。"
+  },
+  {
+    "label": "",
+    "body": "入力したテキストは、さまざまなプレビュー中も表示されたままになります"
+  }
+];
+const tools = [
+  {
+    "name": "フォントジェネレーター",
+    "url": "https://aestheticfonts.in/ja/"
+  },
+  {
+    "name": "イタリック体テキストジェネレーター",
+    "url": "https://aestheticfonts.in/ja/italic/"
+  },
+  {
+    "name": "下線テキストジェネレーター",
+    "url": "https://aestheticfonts.in/ja/underline/"
+  },
+  {
+    "name": "取り消し線テキストジェネレーター",
+    "url": "https://aestheticfonts.in/ja/strikethrough/"
+  }
+];
+---
+
+<BoldPage lang="ja">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">太字アルファベットのコピー＆ペースト</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">太字（ボールド体、ボールドフォント）とは、線が太く表示される文字のことです。従来のタイポグラフィでは、特定の単語を強調するために文中で太字が使われます。タイトル、ラベル、要点など、強調が必要なあらゆる部分に使えます。</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">この<strong class="font-semibold text-text">太字テキスト</strong>ジェネレーターがワープロソフトの太字と違うのは、通常のテキストを別のUnicode文字に変換して太字を作る点です。Unicodeの各文字は固有のコードポイントに対応しています。コードはU+で始まり、16進数の値を含みます。数学用の太字の大文字AはU+1D400、太字の小文字aはU+1D41Aに対応します。これらの文字は、ウェブサイト、SNS、メッセージアプリのテキストボックスにコピー＆ペーストできます。</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>以下は、Unicodeを使った一般的な太字の1バージョンでの、各文字と数字の例です。</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">テキストを太字に変換する方法</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Unicodeテキストジェネレーターで変換できます。貼り付け先でフォントの書式設定が使えない場合に必要になることがあります。</p>
+      <p class="text-text-muted leading-[1.8] mb-5">コピーできる太字テキストを作るには：</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">コピー＆ペーストできるさまざまなフォントスタイル</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Unicodeには、さまざまな文字体系の文字や数学記号が多数含まれています。これらを使って、いくつもの書体を作れます。</p>
+      <p class="font-semibold mb-3"><strong>例：</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">これらの文字はそれぞれ少しずつ見た目が異なります。セリフ体には小さな飾り線があり、サンセリフ体はシンプルな線でできています。スクリプト体とフラクトゥール体は、伝統的な書体の装飾文字に似ています。モノスペース体は、すべての文字が同じ幅です。</p>
+      <p class="text-text-muted leading-[1.8]">これらの文字はUnicodeの代用文字であり、表示するデバイスのフォントやUnicode対応状況によって見え方が変わります。</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">これらのフォントはどこで使えますか？</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">太字フォントは、テキスト入力を受け付けるアプリならどこでも使えます。ただし、プラットフォーム、OS、文字の対応状況によって異なります。</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">太字テキストジェネレーターの特徴</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">テキストをもっと目立たせる</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">太字は、視覚的な階層を作り、重要な部分を強調するためによく使われます。Unicodeのテキストスタイルは、従来のフォント設定が使えない場合に同じ効果を出すための代替手段です。</p>
+      <p class="text-text-muted leading-[1.8] mb-4">ただし、これらの記号は標準の太字書式の代わりにはなりません。一部のUnicode数学記号はスクリーンリーダーで異なる読み上げ方をされることがあり、すべての記号が特定のデバイスやアプリで正しく表示されるとは限りません。長い文章や、アクセシビリティに特に配慮が必要な文章では、標準のテキスト書式を使うことをおすすめします。</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]"><a href="https://aestheticfonts.in/ja/">フォントジェネレーター</a>でさまざまな文字スタイルを試して、必要な記号をコピーしてください。</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">その他のツール</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>

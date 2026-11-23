@@ -1,0 +1,198 @@
+---
+import BoldPage from '../../components/BoldPage.astro';
+
+const samples = [
+  {
+    "label": "Lettere (minuscole) -",
+    "text": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"
+  },
+  {
+    "label": "Lettere (maiuscole) -",
+    "text": "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+  },
+  {
+    "label": "Numeri -",
+    "text": "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  }
+];
+const steps = [
+  "Scrivi o incolla il testo nel generatore.",
+  "Il testo verrà trasformato in testo Unicode con stile. Scegli la versione che preferisci.",
+  "Clicca su “Copia”.",
+  "Incolla il testo in grassetto in qualsiasi area che supporti questa funzione, come un’applicazione, un sito web, un profilo o una casella di messaggio."
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  {
+    "title": "Instagram",
+    "body": "Gli utenti di Instagram possono provare diverse lettere Unicode nella bio, nelle didascalie, nei commenti e negli altri campi di testo. Aiuta a distinguere nomi, brevi descrizioni e frasi selezionate dal resto del testo."
+  },
+  {
+    "title": "LinkedIn",
+    "body": "Usa diversi stili di testo quando scrivi post su LinkedIn: titoli, descrizione del profilo, commenti e contenuti in evidenza. Evidenziare parole o frasi chiave in grassetto può essere utile, soprattutto con le opzioni di testo semplice."
+  },
+  {
+    "title": "Facebook",
+    "body": "Le aree principali in cui puoi usare caratteri alternativi sono post, descrizioni del profilo, commenti, gruppi e altre di Facebook. Questi caratteri sono utili dove manca la normale formattazione del font."
+  },
+  {
+    "title": "WhatsApp",
+    "body": "I caratteri di testo alternativi possono essere usati nei messaggi, negli stati, nei profili e in altre aree di WhatsApp in cui questo formato di testo è disponibile. Sono un’alternativa alla formattazione predefinita di WhatsApp, come grassetto e corsivo."
+  },
+  {
+    "title": "Discord",
+    "body": "Discord supporta la sintassi Markdown nei messaggi, ma vari caratteri Unicode permettono anche di modificare il nome utente, la descrizione del profilo e altri testi. La disponibilità dei caratteri può variare in base al dispositivo."
+  },
+  {
+    "title": "TikTok",
+    "body": "Gli utenti di TikTok possono usare font alternativi nelle descrizioni del profilo o in altri testi disponibili su TikTok. I caratteri Unicode sono utili per dare stile a frasi brevi o nomi."
+  },
+  {
+    "title": "YouTube",
+    "body": "Il testo Unicode si trova anche nelle descrizioni dei canali YouTube, nelle descrizioni dei video e nei post della community. Può servire a evidenziare certe parole o a creare piccole sezioni di testo."
+  }
+];
+const features = [
+  {
+    "label": "Conversione automatica:",
+    "body": "Trasforma il testo normale negli equivalenti caratteri Unicode senza alcuna formattazione."
+  },
+  {
+    "label": "",
+    "body": "Il programma offre varie opzioni per visualizzare il testo, come serif, sans-serif, corsivo e font fantasia."
+  },
+  {
+    "label": "Copia e incolla:",
+    "body": "Gli utenti possono copiare e incollare il testo facilmente."
+  },
+  {
+    "label": "Nel browser:",
+    "body": "Funziona nel browser, senza bisogno di installare alcun software."
+  },
+  {
+    "label": "Nessuna registrazione:",
+    "body": "Il testo può essere creato e copiato senza doversi iscrivere."
+  },
+  {
+    "label": "",
+    "body": "Il testo digitato resterà visibile durante l’anteprima di vari"
+  }
+];
+const tools = [
+  {
+    "name": "Generatore di font",
+    "url": "https://aestheticfonts.in/it/"
+  },
+  {
+    "name": "Generatore di testo in corsivo",
+    "url": "https://aestheticfonts.in/it/italic/"
+  },
+  {
+    "name": "Generatore di testo sottolineato",
+    "url": "https://aestheticfonts.in/it/underline/"
+  },
+  {
+    "name": "Generatore di testo barrato",
+    "url": "https://aestheticfonts.in/it/strikethrough/"
+  }
+];
+---
+
+<BoldPage lang="it">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Copia e incolla alfabeti in grassetto</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Il testo in grassetto (carattere grassetto o font grassetto) è un testo visualizzato con un tratto più spesso. Nella tipografia tradizionale il grassetto serve a dare enfasi a parole specifiche. Può essere usato in titoli, etichette, punti chiave o in qualsiasi parte di testo che richieda enfasi.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Ciò che distingue questo generatore di <strong class="font-semibold text-text">testo in grassetto</strong> dal grassetto dei programmi di videoscrittura è che crea il grassetto convertendo il testo normale in caratteri Unicode diversi. Ogni carattere Unicode corrisponde a un punto di codice univoco. I codici iniziano con U+ e contengono un valore esadecimale. La lettera maiuscola A in grassetto matematico corrisponde a U+1D400. La lettera minuscola a in grassetto corrisponde a U+1D41A. Questi caratteri possono essere copiati e incollati nelle caselle di testo di siti web, social media e app di messaggistica.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>Di seguito un esempio di ogni lettera e numero in una versione comune del testo in grassetto con Unicode.</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Come convertire il testo in grassetto</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Si può fare con un generatore di testo Unicode. Può essere necessario quando l’opzione di stile del font non è disponibile nel punto in cui incolli il testo.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">Per ottenere testo in grassetto copiabile:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Diversi stili di font da copiare e incollare</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Unicode contiene molti caratteri di diversi sistemi di scrittura e simboli matematici. Possono essere usati per creare vari font con stili diversi.</p>
+      <p class="font-semibold mb-3"><strong>Esempi:</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">Ognuno di questi caratteri ha un aspetto leggermente diverso. I caratteri con grazie hanno piccoli tratti finali, mentre quelli senza grazie hanno linee semplici. I caratteri script e Fraktur ricordano le lettere stilizzate dei font tradizionali. I caratteri monospazio hanno tutti la stessa larghezza.</p>
+      <p class="text-text-muted leading-[1.8]">Questi caratteri sono sostituzioni Unicode e appariranno in modo diverso a seconda dei font e del supporto Unicode del dispositivo su cui vengono visualizzati.</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Dove puoi usare questi font?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">I font in grassetto possono essere usati in qualsiasi app che accetti l’inserimento di testo, in base a piattaforma, sistema operativo e disponibilità dei caratteri.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">Funzioni del nostro generatore di testo in grassetto</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Rendi il tuo testo più notevole</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Lo stile grassetto è spesso usato per creare una gerarchia visiva e mettere in risalto le parti importanti. Gli stili di testo Unicode rappresentano un metodo alternativo per ottenere questo effetto quando non si possono applicare le impostazioni di font tradizionali.</p>
+      <p class="text-text-muted leading-[1.8] mb-4">Tuttavia, questi simboli non sostituiscono la normale formattazione in grassetto. Alcuni simboli matematici Unicode possono essere interpretati in modo diverso dai lettori di schermo e non tutti i simboli potrebbero essere visualizzati correttamente su determinati dispositivi o in determinate applicazioni. Per testi lunghi e testi che richiedono particolare attenzione all’accessibilità, è preferibile usare la formattazione standard del testo.</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]">Esplora vari stili di lettere con il <a href="https://aestheticfonts.in/it/">Generatore di font</a> e copia i simboli che ti servono.</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Altri strumenti</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>

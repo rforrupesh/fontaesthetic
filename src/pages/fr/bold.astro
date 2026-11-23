@@ -1,0 +1,198 @@
+---
+import BoldPage from '../../components/BoldPage.astro';
+
+const samples = [
+  {
+    "label": "Lettres (minuscules) -",
+    "text": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"
+  },
+  {
+    "label": "Lettres (majuscules) -",
+    "text": "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+  },
+  {
+    "label": "Chiffres -",
+    "text": "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  }
+];
+const steps = [
+  "Saisissez ou collez du texte dans le générateur.",
+  "Le texte sera transformé en texte Unicode stylisé. Choisissez la version que vous préférez.",
+  "Cliquez sur « Copier ».",
+  "Collez le texte en gras dans tout endroit qui prend en charge cette fonction, comme une application, un site web, un profil ou une zone de message."
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  {
+    "title": "Instagram",
+    "body": "Les utilisateurs d’Instagram peuvent essayer différentes lettres Unicode dans leur bio, leurs légendes, leurs commentaires et les autres champs de texte. Cela aide à distinguer les noms, les courtes descriptions et certaines phrases du reste du texte."
+  },
+  {
+    "title": "LinkedIn",
+    "body": "Utilisez différents styles de texte pour rédiger vos publications LinkedIn : titres, description de profil, commentaires et contenu mis en avant. Mettre en valeur des mots ou des phrases clés en gras peut être utile, surtout avec les options de texte brut."
+  },
+  {
+    "title": "Facebook",
+    "body": "Les principales zones où utiliser des caractères alternatifs sont les publications, les descriptions de profil, les commentaires et les groupes Facebook. Ces caractères peuvent servir là où la mise en forme classique de la police est absente."
+  },
+  {
+    "title": "WhatsApp",
+    "body": "Les caractères alternatifs peuvent être utilisés dans les messages, les statuts et les profils WhatsApp, ainsi que dans les autres zones où ce format de texte est disponible. C’est une alternative à la mise en forme par défaut de WhatsApp, comme le gras et l’italique."
+  },
+  {
+    "title": "Discord",
+    "body": "Discord prend en charge la syntaxe Markdown dans les messages, mais plusieurs caractères Unicode permettent aussi de modifier votre pseudo, la description de votre profil et d’autres textes. La disponibilité des caractères peut varier selon l’appareil."
+  },
+  {
+    "title": "TikTok",
+    "body": "Les utilisateurs de TikTok peuvent employer des polices alternatives dans leur description de profil ou d’autres textes disponibles sur TikTok. Les caractères Unicode sont utiles pour styliser de courtes phrases ou des noms."
+  },
+  {
+    "title": "YouTube",
+    "body": "Le texte Unicode peut aussi apparaître dans les descriptions de chaîne YouTube, les descriptions de vidéos et les publications de la communauté. Il peut aider à mettre en valeur certains mots ou à créer de petites sections de texte."
+  }
+];
+const features = [
+  {
+    "label": "Conversion automatique :",
+    "body": "Transforme le texte normal en caractères Unicode équivalents sans aucune mise en forme."
+  },
+  {
+    "label": "",
+    "body": "Le programme propose plusieurs options d’affichage du texte, comme les polices serif, sans serif, italique et fantaisie."
+  },
+  {
+    "label": "Copier-coller :",
+    "body": "Les utilisateurs peuvent facilement copier et coller le texte."
+  },
+  {
+    "label": "Dans le navigateur :",
+    "body": "Il fonctionne dans le navigateur, sans installation de logiciel."
+  },
+  {
+    "label": "Sans inscription :",
+    "body": "Le texte peut être créé et copié sans créer de compte."
+  },
+  {
+    "label": "",
+    "body": "Le texte saisi reste visible pendant l’aperçu de différents"
+  }
+];
+const tools = [
+  {
+    "name": "Générateur de Polices Stylées",
+    "url": "https://aestheticfonts.in/fr/"
+  },
+  {
+    "name": "Générateur de texte italique",
+    "url": "https://aestheticfonts.in/fr/italic/"
+  },
+  {
+    "name": "Générateur de texte souligné",
+    "url": "https://aestheticfonts.in/fr/underline/"
+  },
+  {
+    "name": "Générateur de texte barré",
+    "url": "https://aestheticfonts.in/fr/strikethrough/"
+  }
+];
+---
+
+<BoldPage lang="fr">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Copier-coller des lettres en gras</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Le texte en gras (caractères gras ou police grasse) est un texte affiché avec un trait épaissi. En typographie traditionnelle, le gras sert à mettre l’accent sur certains mots. On peut l’utiliser dans les titres, les étiquettes, les points clés ou tout passage qui demande de l’emphase.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Ce qui distingue ce générateur de <strong class="font-semibold text-text">texte en gras</strong> du gras des logiciels de traitement de texte, c’est qu’il crée le gras en convertissant le texte standard en différents caractères Unicode. Chaque caractère Unicode correspond à un point de code unique. Les codes commencent par U+ et contiennent une valeur hexadécimale. La lettre majuscule A en gras mathématique correspond à U+1D400. La lettre minuscule a en gras correspond à U+1D41A. Ces caractères peuvent être copiés et collés dans des zones de texte de sites web, de réseaux sociaux et d’applications de messagerie.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>Voici un exemple de chaque lettre et chiffre dans une version courante du texte en gras utilisant Unicode.</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Comment convertir du texte en gras</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Cela peut se faire avec un générateur de texte Unicode. C’est parfois nécessaire lorsque l’option de mise en forme de la police n’est pas disponible à l’endroit où vous collez le texte.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">Pour produire du texte gras copiable :</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Différents styles de police à copier-coller</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Unicode contient de nombreux caractères issus de différents systèmes d’écriture et de symboles mathématiques. Ils permettent de créer plusieurs polices stylisées.</p>
+      <p class="font-semibold mb-3"><strong>Exemples :</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">Chacun de ces caractères a un aspect légèrement différent. Les caractères avec empattements ont de petits traits de finition, et les caractères sans empattement ont des lignes simples. Les caractères script et Fraktur ressemblent à des lettres stylisées des polices traditionnelles. Les caractères à chasse fixe ont tous la même largeur.</p>
+      <p class="text-text-muted leading-[1.8]">Ces caractères sont des substitutions Unicode et s’afficheront différemment selon les polices et la prise en charge d’Unicode de l’appareil sur lequel ils sont affichés.</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Où utiliser ces polices ?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Les polices grasses peuvent être utilisées dans toute application capable d’accepter une saisie de texte, selon la plateforme, le système d’exploitation et la disponibilité des caractères.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">Fonctionnalités de notre générateur de texte en gras</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Rendez votre texte plus remarquable</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Le style gras est souvent utilisé pour créer une hiérarchie visuelle et mettre en valeur les parties importantes. Les styles de texte Unicode offrent une autre façon d’obtenir cet effet lorsque les paramètres de police traditionnels ne peuvent pas être appliqués.</p>
+      <p class="text-text-muted leading-[1.8] mb-4">Cependant, ces symboles ne remplacent pas la mise en forme standard en gras. Certains symboles mathématiques Unicode peuvent être interprétés différemment par les lecteurs d’écran, et tous les symboles ne s’affichent pas forcément correctement sur certains appareils ou dans certaines applications. Pour les textes longs et ceux qui exigent une attention particulière à l’accessibilité, il est préférable d’utiliser la mise en forme standard du texte.</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]">Explorez différents styles de lettres avec le <a href="https://aestheticfonts.in/fr/">Générateur de Polices Stylées</a> et copiez les symboles dont vous avez besoin.</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Autres outils</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>

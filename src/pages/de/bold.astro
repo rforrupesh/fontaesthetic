@@ -1,0 +1,198 @@
+---
+import BoldPage from '../../components/BoldPage.astro';
+
+const samples = [
+  {
+    "label": "Buchstaben (Kleinbuchstaben) -",
+    "text": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"
+  },
+  {
+    "label": "Buchstaben (Großbuchstaben) -",
+    "text": "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+  },
+  {
+    "label": "Zahlen -",
+    "text": "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  }
+];
+const steps = [
+  "Gib Text in den Generator ein oder füge ihn dort ein.",
+  "Der Text wird in verfügbare Unicode-Stile umgewandelt. Wähle die gewünschte Version aus.",
+  "Klicke auf „Kopieren“.",
+  "Füge den fetten Text überall ein, wo diese Funktion unterstützt wird, z. B. in einer Anwendung, auf einer Website, in einem Profil oder in einem Nachrichtenfeld."
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  {
+    "title": "Instagram",
+    "body": "Instagram-Nutzer können verschiedene Unicode-Buchstaben in ihrer Bio, in Bildunterschriften, Kommentaren und anderen Textfeldern ausprobieren. So lassen sich Namen, kurze Beschreibungen und ausgewählte Wendungen vom übrigen Text abheben."
+  },
+  {
+    "title": "LinkedIn",
+    "body": "Nutze beim Schreiben von LinkedIn-Beiträgen verschiedene Textstile, etwa für Überschriften, die Profilbeschreibung, Kommentare und hervorgehobenen Text. Schlüsselwörter oder -sätze fett hervorzuheben kann hilfreich sein, besonders bei reinen Textoptionen."
+  },
+  {
+    "title": "Facebook",
+    "body": "Alternative Textzeichen kannst du vor allem in Facebook-Beiträgen, Profilbeschreibungen, Kommentaren, Gruppen und anderen Bereichen nutzen. Sie sind nützlich, wo die normale Schriftformatierung fehlt."
+  },
+  {
+    "title": "WhatsApp",
+    "body": "Alternative Textzeichen lassen sich in WhatsApp-Nachrichten, Status, Profilen und anderen Bereichen verwenden, in denen dieses Textformat verfügbar ist. Sie sind ein Ersatz für die Standardformatierung von WhatsApp wie Fett und Kursiv."
+  },
+  {
+    "title": "Discord",
+    "body": "Discord unterstützt Markdown-Syntax in Nachrichten, aber mit mehreren Unicode-Zeichen kannst du auch deinen Benutzernamen, die Profilbeschreibung und andere Texte verändern. Die Verfügbarkeit der Zeichen kann je nach Gerät unterschiedlich sein."
+  },
+  {
+    "title": "TikTok",
+    "body": "TikTok-Nutzer können alternative Schriften in ihren Profilbeschreibungen oder anderen Textfeldern auf TikTok verwenden. Unicode-Zeichen helfen dabei, kurze Wendungen oder Namen zu gestalten."
+  },
+  {
+    "title": "YouTube",
+    "body": "Unicode-Text findest du auch in YouTube-Kanalbeschreibungen, Videobeschreibungen und Community-Beiträgen. Er kann helfen, bestimmte Wörter hervorzuheben oder kleine Textabschnitte zu gestalten."
+  }
+];
+const features = [
+  {
+    "label": "Automatisch umgewandelt:",
+    "body": "Wandelt normalen Text ohne jede Formatierung in entsprechende Unicode-Zeichen um."
+  },
+  {
+    "label": "",
+    "body": "Das Programm bietet dir verschiedene Darstellungsoptionen für den Text, etwa Serif, Sans-Serif, Kursiv und ausgefallene Schriften."
+  },
+  {
+    "label": "Kopieren und Einfügen:",
+    "body": "Der Text lässt sich einfach kopieren und einfügen."
+  },
+  {
+    "label": "Browserbasiert:",
+    "body": "Es läuft im Browser, eine Softwareinstallation ist nicht nötig."
+  },
+  {
+    "label": "Keine Registrierung:",
+    "body": "Text kann ohne Anmeldung erstellt und kopiert werden."
+  },
+  {
+    "label": "",
+    "body": "Der eingegebene Text bleibt in der Vorschau verschiedener sichtbar"
+  }
+];
+const tools = [
+  {
+    "name": "Schriftgenerator",
+    "url": "https://aestheticfonts.in/de/"
+  },
+  {
+    "name": "Kursiver Text Generator",
+    "url": "https://aestheticfonts.in/de/italic/"
+  },
+  {
+    "name": "Unterstrichener Text Generator",
+    "url": "https://aestheticfonts.in/de/underline/"
+  },
+  {
+    "name": "Durchgestrichener Text Generator",
+    "url": "https://aestheticfonts.in/de/strikethrough/"
+  }
+];
+---
+
+<BoldPage lang="de">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Fette Buchstaben kopieren und einfügen</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Fetter Text (Fettdruck oder fette Schrift) ist Text, der mit verstärkter Strichstärke dargestellt wird. In der klassischen Typografie dient Fettdruck dazu, bestimmte Wörter hervorzuheben. Er kann in Titeln, Beschriftungen, Kernpunkten oder jedem Textabschnitt verwendet werden, der Betonung braucht.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Dieser Generator für <strong class="font-semibold text-text">fetten Text</strong> unterscheidet sich vom Fettdruck in Textverarbeitungsprogrammen dadurch, dass er fetten Text erzeugt, indem er normalen Text in andere Unicode-Zeichen umwandelt. Jedes Unicode-Zeichen entspricht einem eindeutigen Codepunkt. Die Codes beginnen mit U+ und enthalten einen Hexadezimalwert. Der mathematische fette Großbuchstabe A entspricht U+1D400. Das fette Kleinbuchstaben-a entspricht U+1D41A. Diese Zeichen lassen sich in Textfelder von Websites, sozialen Netzwerken und Messenger-Apps kopieren und einfügen.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>Unten siehst du ein Beispiel für jeden Buchstaben und jede Zahl in einer gängigen Variante von fettem Text mit Unicode.</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">So wandelst du Text in Fettdruck um</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Das geht mit einem Unicode-Textgenerator. Das kann nötig sein, wenn die Schriftformatierung dort, wo du den Text einfügst, nicht verfügbar ist.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">So erzeugst du kopierbaren fetten Text:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Verschiedene Schriftstile zum Kopieren und Einfügen</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Unicode enthält viele Zeichen aus verschiedenen Schriftsystemen sowie mathematische Symbole. Damit lassen sich mehrere unterschiedliche Schriftstile erzeugen.</p>
+      <p class="font-semibold mb-3"><strong>Beispiele:</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">Jedes dieser Zeichen sieht etwas anders aus. Serifenschriften haben kleine Abschlussstriche, serifenlose Schriften haben schlichte Linien. Script- und Fraktur-Zeichen ähneln den stilisierten Buchstaben traditioneller Schriften. Monospace-Zeichen haben alle die gleiche Breite.</p>
+      <p class="text-text-muted leading-[1.8]">Diese Zeichen sind Unicode-Ersetzungen und werden je nach verfügbaren Schriften und Unicode-Unterstützung des Geräts unterschiedlich angezeigt.</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Wo kannst du diese Schriften verwenden?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Fette Schriften lassen sich in jeder App verwenden, die Texteingaben akzeptiert. Das hängt von Plattform, Betriebssystem und Zeichenverfügbarkeit ab.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">Funktionen unseres Generators für fetten Text</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Mach deinen Text auffälliger</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Fettdruck wird häufig eingesetzt, um eine visuelle Hierarchie zu schaffen und wichtige Teile hervorzuheben. Die Unicode-Textstile sind eine alternative Methode für diesen Effekt, wenn herkömmliche Schrifteinstellungen nicht angewendet werden können.</p>
+      <p class="text-text-muted leading-[1.8] mb-4">Dennoch ersetzen diese Symbole die normale Fettformatierung nicht. Manche mathematischen Unicode-Symbole werden von Screenreadern anders wahrgenommen, und nicht alle Symbole werden auf bestimmten Geräten oder in bestimmten Anwendungen korrekt angezeigt. Für längere Texte und Texte, bei denen Barrierefreiheit besonders wichtig ist, sollte die normale Textformatierung bevorzugt werden.</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]">Entdecke verschiedene Buchstabenstile mit dem <a href="https://aestheticfonts.in/de/">Schriftgenerator</a> und kopiere die gewünschten Symbole.</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Weitere Tools</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>

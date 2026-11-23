@@ -1,0 +1,138 @@
+---
+import BoldPage from '../components/BoldPage.astro';
+
+const samples = [
+  { label: 'Letters (lower case) -', text: '𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳' },
+  { label: 'Letters (upper case) -', text: '𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙' },
+  { label: 'Numbers -', text: '𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗' },
+];
+const steps = [
+  'Enter or paste in text into the generator.',
+  'The text will be transformed into available Unicode styled text. Select a preferred version of the text.',
+  'Click ‘Copy’.',
+  'Paste the bold text into any areas that support this feature, such as an application, website, profile or message box.',
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  { title: 'Instagram', body: 'Users of Instagram can try out various Unicode letters within their bio description, captions, comments, and other fields containing text. It helps differentiate names, short descriptions, and selected phrases from other text.' },
+  { title: 'LinkedIn', body: 'Employ different text styles while writing posts on LinkedIn, including headlines, description of your profile, comments, and featured text. Highlighting key words or phrases through bold text may be useful, especially when using plain text options.' },
+  { title: 'Facebook', body: 'The main areas where you can utilize alternative text characters are Facebook posts, profile descriptions, comments, groups, and others. Alternative characters can be useful in places where regular font formatting is lacking.' },
+  { title: 'WhatsApp', body: 'Alternative text characters can be used in WhatsApp messages, statuses, profiles, and other areas where this text format is available. This is a substitute for WhatsApp\'s default formatting, like bold and italic.' },
+  { title: 'Discord', body: 'Discord offers support for Markdown syntax within messages, but there are several Unicode characters that will allow users to modify their username, profile description, and other texts as well. Availability of characters may differ based on the device.' },
+  { title: 'TikTok', body: 'Users of TikTok can use alternative fonts in their profile descriptions or other types of text available on TikTok. Unicode characters can be helpful for styling short phrases or names.' },
+  { title: 'YouTube', body: 'Unicode text can also be seen within YouTube channel descriptions, videos\' descriptions, and community posts. Unicode text may be helpful in highlighting certain words or creating small text sections.' },
+];
+const features = [
+  { label: 'Automatically converted:', body: 'Changes normal text into Unicode character equivalents without any formatting.' },
+  { label: '', body: 'The program offers you various options for displaying the text such as serif, sans-serif, italic and fancy fonts.' },
+  { label: 'Copy and Paste:', body: 'The users can easily copy and paste the text.' },
+  { label: 'Browser Based:', body: 'It works inside the browser, there is no need for any software installation.' },
+  { label: 'No Registration:', body: 'Text can be created and copied without the need for signing up.' },
+  { label: '', body: 'Text typed will remain visible during preview of various' },
+];
+const tools = [
+  { name: 'Font Generator', url: 'https://aestheticfonts.in/' },
+  { name: 'Italic Text Generator', url: 'https://aestheticfonts.in/italic/' },
+  { name: 'Underline Generator', url: 'https://aestheticfonts.in/underline/' },
+  { name: 'Strikethrough Generator', url: 'https://aestheticfonts.in/strikethrough/' },
+];
+---
+
+<BoldPage lang="en">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Copy and Paste Bold Alphabets</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Bold text (bold face or bold font) is text that is displayed with increased thickening. In traditional typography, bold text is used within text to put an emphasis on specific words. This may be used within titles, labels, key points or any section of text which needs emphasis.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">What makes this <strong class="font-semibold text-text">Bold Text</strong> Generator different from the bold text in word processing software is that it creates bold text by converting standard text to different Unicode characters. Each Unicode character corresponds to a unique code point. The codes begin with U+, and contain a hex value. The bold text capital letter A in mathematics corresponds to U+1D400. The bold text lowercase a corresponds to U+1D41A. These characters can be copied and pasted into text boxes in websites, social media and messaging apps.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>Below is an example of each letter and number within one common version of bold text using Unicode.</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">How to Convert Text to Bold</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">This can be done using a Unicode text generator. This may be required if the font styling option is not available within the area you are pasting to.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">To produce copyable bold text:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Different Font Styles You Can Copy and Paste</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Within Unicode there are many characters from different writing systems and mathematics symbols. These can be used to create several different styled fonts.</p>
+      <p class="font-semibold mb-3"><strong>Examples include:</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">Each of these characters appears slightly different. The serif characters have small finishing strokes, and sans serif characters have simple lines. The script and Fraktur characters appear similar to stylised letters in traditional fonts. Monospace characters have characters of equal width.</p>
+      <p class="text-text-muted leading-[1.8]">These characters are Unicode substitutions and will appear differently depending on what fonts and Unicode support is available on the device it is being displayed on.</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Where Can You Use These Fonts?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">bold fonts can be used within any app that is capable of accepting text input. This is subject to platform, operating system, and character availability.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">Features of our Bold Text Generator</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Make Your Text More Notable</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">The bold font style is frequently employed for creating visual hierarchy and highlighting significant parts. The Unicode text styles represent an alternative method for giving such effect in cases when traditional font settings cannot be applied.</p>
+      <p class="text-text-muted leading-[1.8] mb-4">Nevertheless, these symbols do not substitute standard bold text styling. Some Unicode mathematical symbols can be perceived by screen readers in a different manner and all symbols might not be displayed properly on particular devices or in particular applications. For extensive texts and texts that need special attention to accessibility issues, the standard text formatting should be preferred.</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]">Explore various styles of letters using <a href="https://aestheticfonts.in/">Font Generator</a> and copy the required symbols.</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Other Tools</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>

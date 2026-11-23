@@ -1,0 +1,198 @@
+---
+import BoldPage from '../../components/BoldPage.astro';
+
+const samples = [
+  {
+    "label": "Litery (małe) -",
+    "text": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"
+  },
+  {
+    "label": "Litery (wielkie) -",
+    "text": "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+  },
+  {
+    "label": "Cyfry -",
+    "text": "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  }
+];
+const steps = [
+  "Wpisz lub wklej tekst do generatora.",
+  "Tekst zostanie przekształcony w dostępne style tekstu Unicode. Wybierz preferowaną wersję.",
+  "Kliknij „Kopiuj”.",
+  "Wklej pogrubiony tekst w dowolnym miejscu, które obsługuje tę funkcję, np. w aplikacji, na stronie, w profilu lub w polu wiadomości."
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  {
+    "title": "Instagram",
+    "body": "Użytkownicy Instagrama mogą wypróbować różne litery Unicode w opisie bio, podpisach, komentarzach i innych polach tekstowych. Pomaga to odróżnić nazwy, krótkie opisy i wybrane frazy od reszty tekstu."
+  },
+  {
+    "title": "LinkedIn",
+    "body": "Używaj różnych stylów tekstu, pisząc posty na LinkedIn — w nagłówkach, opisie profilu, komentarzach i wyróżnionym tekście. Wyróżnianie słów kluczowych lub fraz pogrubieniem może być przydatne, zwłaszcza przy opcjach zwykłego tekstu."
+  },
+  {
+    "title": "Facebook",
+    "body": "Główne miejsca, w których można używać alternatywnych znaków tekstowych, to posty, opisy profilu, komentarze i grupy na Facebooku, a także inne. Alternatywne znaki są przydatne tam, gdzie brakuje zwykłego formatowania czcionki."
+  },
+  {
+    "title": "WhatsApp",
+    "body": "Alternatywne znaki tekstowe można stosować w wiadomościach, statusach, profilach i innych miejscach WhatsAppa, gdzie ten format tekstu jest dostępny. To zamiennik domyślnego formatowania WhatsAppa, takiego jak pogrubienie i kursywa."
+  },
+  {
+    "title": "Discord",
+    "body": "Discord obsługuje składnię Markdown w wiadomościach, ale kilka znaków Unicode pozwala też zmienić nazwę użytkownika, opis profilu i inne teksty. Dostępność znaków może się różnić w zależności od urządzenia."
+  },
+  {
+    "title": "TikTok",
+    "body": "Użytkownicy TikToka mogą używać alternatywnych czcionek w opisach profilu lub innych tekstach dostępnych w TikToku. Znaki Unicode pomagają stylizować krótkie frazy lub nazwy."
+  },
+  {
+    "title": "YouTube",
+    "body": "Tekst Unicode można też zobaczyć w opisach kanałów YouTube, opisach filmów i postach społeczności. Może pomóc wyróżnić określone słowa lub stworzyć małe sekcje tekstu."
+  }
+];
+const features = [
+  {
+    "label": "Automatyczna konwersja:",
+    "body": "Zamienia zwykły tekst na odpowiedniki w znakach Unicode bez żadnego formatowania."
+  },
+  {
+    "label": "",
+    "body": "Program oferuje różne opcje wyświetlania tekstu, takie jak szeryfowe, bezszeryfowe, kursywa i ozdobne czcionki."
+  },
+  {
+    "label": "Kopiuj i wklej:",
+    "body": "Użytkownicy mogą łatwo kopiować i wklejać tekst."
+  },
+  {
+    "label": "W przeglądarce:",
+    "body": "Działa w przeglądarce, nie trzeba instalować żadnego oprogramowania."
+  },
+  {
+    "label": "Bez rejestracji:",
+    "body": "Tekst można tworzyć i kopiować bez zakładania konta."
+  },
+  {
+    "label": "",
+    "body": "Wpisany tekst pozostanie widoczny podczas podglądu różnych"
+  }
+];
+const tools = [
+  {
+    "name": "Generator czcionek",
+    "url": "https://aestheticfonts.in/pl/"
+  },
+  {
+    "name": "Generator tekstu kursywą",
+    "url": "https://aestheticfonts.in/pl/italic/"
+  },
+  {
+    "name": "Generator podkreślonego tekstu",
+    "url": "https://aestheticfonts.in/pl/underline/"
+  },
+  {
+    "name": "Generator przekreślonego tekstu",
+    "url": "https://aestheticfonts.in/pl/strikethrough/"
+  }
+];
+---
+
+<BoldPage lang="pl">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Kopiuj i wklej pogrubiony alfabet</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Pogrubiony tekst (pogrubiona czcionka) to tekst wyświetlany z grubszą kreską. W tradycyjnej typografii pogrubienie służy do wyróżnienia konkretnych słów w tekście. Można go używać w tytułach, etykietach, kluczowych punktach lub w każdej części tekstu, która wymaga wyróżnienia.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Ten generator <strong class="font-semibold text-text">pogrubionego tekstu</strong> różni się od pogrubienia w edytorach tekstu tym, że tworzy pogrubiony tekst, zamieniając standardowy tekst na inne znaki Unicode. Każdy znak Unicode odpowiada unikalnemu punktowi kodowemu. Kody zaczynają się od U+ i zawierają wartość szesnastkową. Pogrubiona wielka litera A w matematyce odpowiada U+1D400. Pogrubiona mała litera a odpowiada U+1D41A. Te znaki można kopiować i wklejać do pól tekstowych na stronach internetowych, w mediach społecznościowych i komunikatorach.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>Poniżej przykład każdej litery i cyfry w jednej popularnej wersji pogrubionego tekstu w Unicode.</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Jak zamienić tekst na pogrubiony</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Można to zrobić za pomocą generatora tekstu Unicode. Może to być potrzebne, gdy w miejscu wklejania nie ma opcji stylu czcionki.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">Aby uzyskać pogrubiony tekst do skopiowania:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Różne style czcionek do skopiowania i wklejenia</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Unicode zawiera wiele znaków z różnych systemów pisma oraz symbole matematyczne. Można z nich tworzyć kilka różnych stylów czcionek.</p>
+      <p class="font-semibold mb-3"><strong>Przykłady:</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">Każdy z tych znaków wygląda nieco inaczej. Znaki szeryfowe mają małe zakończenia, a bezszeryfowe — proste linie. Znaki script i Fraktur przypominają stylizowane litery z tradycyjnych krojów. Znaki monospace mają jednakową szerokość.</p>
+      <p class="text-text-muted leading-[1.8]">Te znaki to zamienniki Unicode i będą wyglądać inaczej w zależności od czcionek i obsługi Unicode na urządzeniu, na którym są wyświetlane.</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Gdzie można używać tych czcionek?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Pogrubione czcionki można stosować w każdej aplikacji, która przyjmuje tekst. Zależy to od platformy, systemu operacyjnego i dostępności znaków.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">Funkcje naszego generatora pogrubionego tekstu</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Spraw, by Twój tekst bardziej się wyróżniał</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Pogrubiony styl czcionki jest często używany do tworzenia hierarchii wizualnej i wyróżniania ważnych fragmentów. Style tekstu Unicode to alternatywna metoda uzyskania takiego efektu, gdy nie można zastosować tradycyjnych ustawień czcionki.</p>
+      <p class="text-text-muted leading-[1.8] mb-4">Mimo to te symbole nie zastępują standardowego pogrubienia. Niektóre matematyczne symbole Unicode mogą być odczytywane inaczej przez czytniki ekranu, a nie wszystkie symbole muszą wyświetlać się poprawnie na niektórych urządzeniach lub w niektórych aplikacjach. W przypadku długich tekstów i tekstów wymagających szczególnej dbałości o dostępność lepiej stosować standardowe formatowanie tekstu.</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]">Poznaj różne style liter w narzędziu <a href="https://aestheticfonts.in/pl/">Generator czcionek</a> i skopiuj potrzebne symbole.</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Inne narzędzia</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>

@@ -1,0 +1,198 @@
+---
+import BoldPage from '../../components/BoldPage.astro';
+
+const samples = [
+  {
+    "label": "Letras (minúsculas) -",
+    "text": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"
+  },
+  {
+    "label": "Letras (mayúsculas) -",
+    "text": "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+  },
+  {
+    "label": "Números -",
+    "text": "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  }
+];
+const steps = [
+  "Escribe o pega texto en el generador.",
+  "El texto se transformará en texto Unicode con estilo. Elige la versión que prefieras.",
+  "Haz clic en «Copiar».",
+  "Pega el texto en negrita en cualquier lugar que admita esta función, como una aplicación, un sitio web, un perfil o un cuadro de mensaje."
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  {
+    "title": "Instagram",
+    "body": "Los usuarios de Instagram pueden probar distintas letras Unicode en su biografía, pies de foto, comentarios y otros campos de texto. Ayuda a distinguir nombres, descripciones breves y frases seleccionadas del resto del texto."
+  },
+  {
+    "title": "LinkedIn",
+    "body": "Usa distintos estilos de texto al escribir publicaciones en LinkedIn: titulares, descripción del perfil, comentarios y texto destacado. Resaltar palabras o frases clave en negrita puede ser útil, sobre todo con las opciones de texto plano."
+  },
+  {
+    "title": "Facebook",
+    "body": "Las principales zonas donde puedes usar caracteres de texto alternativos son las publicaciones, las descripciones de perfil, los comentarios y los grupos de Facebook, entre otras. Estos caracteres son útiles donde falta el formato de fuente habitual."
+  },
+  {
+    "title": "WhatsApp",
+    "body": "Los caracteres de texto alternativos se pueden usar en mensajes, estados, perfiles y otras zonas de WhatsApp donde este formato de texto esté disponible. Es una alternativa al formato predeterminado de WhatsApp, como negrita y cursiva."
+  },
+  {
+    "title": "Discord",
+    "body": "Discord admite la sintaxis Markdown en los mensajes, pero varios caracteres Unicode también permiten modificar el nombre de usuario, la descripción del perfil y otros textos. La disponibilidad de los caracteres puede variar según el dispositivo."
+  },
+  {
+    "title": "TikTok",
+    "body": "Los usuarios de TikTok pueden usar fuentes alternativas en la descripción del perfil u otros textos disponibles en TikTok. Los caracteres Unicode sirven para dar estilo a frases cortas o nombres."
+  },
+  {
+    "title": "YouTube",
+    "body": "El texto Unicode también puede verse en las descripciones de canales de YouTube, las descripciones de videos y las publicaciones de la comunidad. Puede ayudar a resaltar ciertas palabras o a crear pequeñas secciones de texto."
+  }
+];
+const features = [
+  {
+    "label": "Conversión automática:",
+    "body": "Convierte el texto normal en los caracteres Unicode equivalentes sin ningún formato."
+  },
+  {
+    "label": "",
+    "body": "El programa te ofrece varias opciones para mostrar el texto, como serif, sans-serif, cursiva y fuentes decorativas."
+  },
+  {
+    "label": "Copiar y pegar:",
+    "body": "Los usuarios pueden copiar y pegar el texto fácilmente."
+  },
+  {
+    "label": "En el navegador:",
+    "body": "Funciona dentro del navegador, sin necesidad de instalar ningún software."
+  },
+  {
+    "label": "Sin registro:",
+    "body": "El texto se puede crear y copiar sin necesidad de registrarse."
+  },
+  {
+    "label": "",
+    "body": "El texto escrito seguirá visible durante la vista previa de varios"
+  }
+];
+const tools = [
+  {
+    "name": "Generador de fuentes",
+    "url": "https://aestheticfonts.in/es/"
+  },
+  {
+    "name": "Generador de texto en cursiva",
+    "url": "https://aestheticfonts.in/es/italic/"
+  },
+  {
+    "name": "Generador de texto subrayado",
+    "url": "https://aestheticfonts.in/es/underline/"
+  },
+  {
+    "name": "Generador de texto tachado",
+    "url": "https://aestheticfonts.in/es/strikethrough/"
+  }
+];
+---
+
+<BoldPage lang="es">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Copiar y pegar alfabetos en negrita</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">El texto en negrita (letra negrita o fuente en negrita) es texto que se muestra con un trazo más grueso. En la tipografía tradicional, la negrita se usa dentro del texto para dar énfasis a palabras concretas. Puede usarse en títulos, etiquetas, puntos clave o cualquier parte del texto que necesite énfasis.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Lo que diferencia a este generador de <strong class="font-semibold text-text">texto en negrita</strong> de la negrita de los procesadores de texto es que crea la negrita convirtiendo el texto normal en distintos caracteres Unicode. Cada carácter Unicode corresponde a un punto de código único. Los códigos empiezan por U+ y contienen un valor hexadecimal. La letra A mayúscula en negrita matemática corresponde a U+1D400. La letra a minúscula en negrita corresponde a U+1D41A. Estos caracteres se pueden copiar y pegar en cuadros de texto de sitios web, redes sociales y aplicaciones de mensajería.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>A continuación, un ejemplo de cada letra y número en una versión habitual de texto en negrita con Unicode.</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Cómo convertir texto a negrita</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Se puede hacer con un generador de texto Unicode. Puede ser necesario cuando la opción de estilo de fuente no está disponible en el lugar donde vas a pegar el texto.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">Para obtener texto en negrita que se pueda copiar:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Diferentes estilos de fuente para copiar y pegar</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Unicode incluye muchos caracteres de distintos sistemas de escritura y símbolos matemáticos. Con ellos se pueden crear varios estilos de fuente.</p>
+      <p class="font-semibold mb-3"><strong>Algunos ejemplos:</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">Cada uno de estos caracteres se ve un poco distinto. Los caracteres con serifa tienen pequeños remates, y los de sans serif tienen líneas simples. Los caracteres script y Fraktur se parecen a las letras estilizadas de las fuentes tradicionales. Los caracteres monoespaciados tienen todos el mismo ancho.</p>
+      <p class="text-text-muted leading-[1.8]">Estos caracteres son sustituciones Unicode y se verán distintos según las fuentes y la compatibilidad con Unicode del dispositivo donde se muestren.</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">¿Dónde puedes usar estas fuentes?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Las fuentes en negrita se pueden usar en cualquier app que acepte texto, según la plataforma, el sistema operativo y la disponibilidad de los caracteres.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">Funciones de nuestro generador de texto en negrita</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Haz que tu texto destaque más</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">El estilo de fuente en negrita se emplea con frecuencia para crear jerarquía visual y resaltar las partes importantes. Los estilos de texto Unicode son un método alternativo para lograr ese efecto cuando no se pueden aplicar los ajustes de fuente tradicionales.</p>
+      <p class="text-text-muted leading-[1.8] mb-4">Sin embargo, estos símbolos no sustituyen el formato de negrita estándar. Algunos símbolos matemáticos Unicode pueden ser interpretados de otra manera por los lectores de pantalla, y puede que no todos los símbolos se muestren bien en determinados dispositivos o aplicaciones. Para textos extensos y textos que requieren especial atención a la accesibilidad, es preferible usar el formato de texto estándar.</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]">Explora distintos estilos de letras con el <a href="https://aestheticfonts.in/es/">Generador de fuentes</a> y copia los símbolos que necesites.</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Otras herramientas</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>

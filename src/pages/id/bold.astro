@@ -1,0 +1,198 @@
+---
+import BoldPage from '../../components/BoldPage.astro';
+
+const samples = [
+  {
+    "label": "Huruf (huruf kecil) -",
+    "text": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"
+  },
+  {
+    "label": "Huruf (huruf kapital) -",
+    "text": "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+  },
+  {
+    "label": "Angka -",
+    "text": "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  }
+];
+const steps = [
+  "Ketik atau tempel teks ke dalam generator.",
+  "Teks akan diubah menjadi teks Unicode bergaya. Pilih versi teks yang kamu suka.",
+  "Klik ‘Salin’.",
+  "Tempel teks tebal ke area mana pun yang mendukung fitur ini, seperti aplikasi, situs web, profil, atau kotak pesan."
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  {
+    "title": "Instagram",
+    "body": "Pengguna Instagram bisa mencoba berbagai huruf Unicode di deskripsi bio, keterangan, komentar, dan kolom teks lainnya. Ini membantu membedakan nama, deskripsi singkat, dan frasa pilihan dari teks lain."
+  },
+  {
+    "title": "LinkedIn",
+    "body": "Gunakan berbagai gaya teks saat menulis postingan LinkedIn, termasuk judul, deskripsi profil, komentar, dan teks unggulan. Menyoroti kata atau frasa kunci dengan teks tebal bisa berguna, terutama saat memakai opsi teks biasa."
+  },
+  {
+    "title": "Facebook",
+    "body": "Area utama untuk memakai karakter teks alternatif adalah postingan, deskripsi profil, komentar, grup, dan lainnya di Facebook. Karakter alternatif berguna di tempat yang tidak punya format font biasa."
+  },
+  {
+    "title": "WhatsApp",
+    "body": "Karakter teks alternatif bisa dipakai di pesan, status, profil, dan area WhatsApp lain yang mendukung format teks ini. Ini pengganti format bawaan WhatsApp seperti tebal dan miring."
+  },
+  {
+    "title": "Discord",
+    "body": "Discord mendukung sintaks Markdown di dalam pesan, tetapi ada beberapa karakter Unicode yang memungkinkan pengguna mengubah nama pengguna, deskripsi profil, dan teks lainnya. Ketersediaan karakter bisa berbeda tergantung perangkat."
+  },
+  {
+    "title": "TikTok",
+    "body": "Pengguna TikTok bisa memakai font alternatif di deskripsi profil atau jenis teks lain yang tersedia di TikTok. Karakter Unicode berguna untuk memberi gaya pada frasa pendek atau nama."
+  },
+  {
+    "title": "YouTube",
+    "body": "Teks Unicode juga bisa terlihat di deskripsi channel YouTube, deskripsi video, dan postingan komunitas. Teks Unicode bisa membantu menyoroti kata tertentu atau membuat bagian teks kecil."
+  }
+];
+const features = [
+  {
+    "label": "Dikonversi otomatis:",
+    "body": "Mengubah teks biasa menjadi padanan karakter Unicode tanpa format apa pun."
+  },
+  {
+    "label": "",
+    "body": "Program ini menawarkan berbagai pilihan tampilan teks seperti serif, sans-serif, miring, dan font dekoratif."
+  },
+  {
+    "label": "Salin dan Tempel:",
+    "body": "Pengguna dapat dengan mudah menyalin dan menempel teks."
+  },
+  {
+    "label": "Berbasis Browser:",
+    "body": "Berjalan di dalam browser, tidak perlu menginstal perangkat lunak."
+  },
+  {
+    "label": "Tanpa Pendaftaran:",
+    "body": "Teks dapat dibuat dan disalin tanpa perlu mendaftar."
+  },
+  {
+    "label": "",
+    "body": "Teks yang diketik akan tetap terlihat saat pratinjau berbagai"
+  }
+];
+const tools = [
+  {
+    "name": "Generator Font",
+    "url": "https://aestheticfonts.in/id/"
+  },
+  {
+    "name": "Generator Teks Miring",
+    "url": "https://aestheticfonts.in/id/italic/"
+  },
+  {
+    "name": "Generator Teks Garis Bawah",
+    "url": "https://aestheticfonts.in/id/underline/"
+  },
+  {
+    "name": "Generator Teks Coret",
+    "url": "https://aestheticfonts.in/id/strikethrough/"
+  }
+];
+---
+
+<BoldPage lang="id">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Salin dan Tempel Alfabet Tebal</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Teks tebal (bold face atau font bold) adalah teks yang ditampilkan dengan ketebalan yang lebih besar. Dalam tipografi tradisional, teks tebal digunakan di dalam teks untuk memberi penekanan pada kata tertentu. Teks ini bisa dipakai pada judul, label, poin penting, atau bagian teks mana pun yang perlu ditekankan.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Yang membedakan generator <strong class="font-semibold text-text">teks tebal</strong> ini dari teks tebal di perangkat lunak pengolah kata adalah cara kerjanya: ia membuat teks tebal dengan mengubah teks standar menjadi karakter Unicode yang berbeda. Setiap karakter Unicode sesuai dengan satu titik kode unik. Kode diawali dengan U+ dan berisi nilai heksadesimal. Huruf kapital A tebal dalam matematika sesuai dengan U+1D400. Huruf kecil a tebal sesuai dengan U+1D41A. Karakter ini bisa disalin dan ditempel ke kotak teks di situs web, media sosial, dan aplikasi pesan.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>Berikut contoh setiap huruf dan angka dalam salah satu versi umum teks tebal menggunakan Unicode.</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Cara Mengubah Teks Menjadi Tebal</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Ini bisa dilakukan dengan generator teks Unicode. Cara ini mungkin diperlukan jika opsi gaya font tidak tersedia di tempat kamu menempelkan teks.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">Untuk membuat teks tebal yang bisa disalin:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Berbagai Gaya Font yang Bisa Disalin dan Ditempel</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Unicode berisi banyak karakter dari berbagai sistem penulisan dan simbol matematika. Karakter ini bisa dipakai untuk membuat beberapa gaya font.</p>
+      <p class="font-semibold mb-3"><strong>Contohnya:</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">Setiap karakter ini terlihat sedikit berbeda. Karakter serif memiliki goresan kecil di ujungnya, dan karakter sans serif memiliki garis sederhana. Karakter script dan Fraktur mirip dengan huruf bergaya pada font tradisional. Karakter monospace memiliki lebar yang sama.</p>
+      <p class="text-text-muted leading-[1.8]">Karakter ini adalah pengganti Unicode dan akan tampil berbeda tergantung font dan dukungan Unicode pada perangkat yang menampilkannya.</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Di Mana Font Ini Bisa Digunakan?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Font tebal bisa dipakai di aplikasi mana pun yang menerima input teks, tergantung platform, sistem operasi, dan ketersediaan karakter.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">Fitur Generator Teks Tebal Kami</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Buat Teksmu Lebih Menonjol</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Gaya font tebal sering dipakai untuk membuat hierarki visual dan menyoroti bagian penting. Gaya teks Unicode adalah metode alternatif untuk memberi efek tersebut ketika pengaturan font tradisional tidak bisa diterapkan.</p>
+      <p class="text-text-muted leading-[1.8] mb-4">Meski begitu, simbol-simbol ini tidak menggantikan format teks tebal standar. Beberapa simbol matematika Unicode dapat dibaca secara berbeda oleh pembaca layar, dan tidak semua simbol mungkin tampil dengan benar di perangkat atau aplikasi tertentu. Untuk teks panjang dan teks yang memerlukan perhatian khusus pada aksesibilitas, sebaiknya gunakan format teks standar.</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]">Jelajahi berbagai gaya huruf dengan <a href="https://aestheticfonts.in/id/">Generator Font</a> dan salin simbol yang kamu perlukan.</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Alat Lainnya</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>

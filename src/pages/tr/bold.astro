@@ -1,0 +1,198 @@
+---
+import BoldPage from '../../components/BoldPage.astro';
+
+const samples = [
+  {
+    "label": "Harfler (küçük harf) -",
+    "text": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"
+  },
+  {
+    "label": "Harfler (büyük harf) -",
+    "text": "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+  },
+  {
+    "label": "Rakamlar -",
+    "text": "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  }
+];
+const steps = [
+  "Oluşturucuya metin girin veya yapıştırın.",
+  "Metin, kullanılabilir Unicode stillerine dönüştürülecektir. Tercih ettiğiniz sürümü seçin.",
+  "‘Kopyala’ düğmesine tıklayın.",
+  "Kalın yazıyı bu özelliği destekleyen herhangi bir yere (uygulama, web sitesi, profil veya mesaj kutusu gibi) yapıştırın."
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  {
+    "title": "Instagram",
+    "body": "Instagram kullanıcıları biyografi açıklamalarında, alt yazılarda, yorumlarda ve metin içeren diğer alanlarda çeşitli Unicode harflerini deneyebilir. İsimleri, kısa açıklamaları ve seçili ifadeleri diğer metinlerden ayırmaya yardımcı olur."
+  },
+  {
+    "title": "LinkedIn",
+    "body": "LinkedIn gönderileri yazarken başlıklar, profil açıklaması, yorumlar ve öne çıkan metin dahil farklı yazı stilleri kullanın. Anahtar kelimeleri veya ifadeleri kalın yazıyla vurgulamak, özellikle düz metin seçeneklerinde faydalı olabilir."
+  },
+  {
+    "title": "Facebook",
+    "body": "Alternatif metin karakterlerini kullanabileceğiniz başlıca alanlar Facebook gönderileri, profil açıklamaları, yorumlar, gruplar ve diğerleridir. Alternatif karakterler, normal yazı tipi biçimlendirmesinin olmadığı yerlerde işe yarar."
+  },
+  {
+    "title": "WhatsApp",
+    "body": "Alternatif metin karakterleri WhatsApp mesajlarında, durumlarında, profillerinde ve bu metin biçiminin kullanılabildiği diğer alanlarda kullanılabilir. Bu, WhatsApp’ın kalın ve italik gibi varsayılan biçimlendirmesine bir alternatiftir."
+  },
+  {
+    "title": "Discord",
+    "body": "Discord mesajlarda Markdown sözdizimini destekler, ancak birçok Unicode karakteri kullanıcı adınızı, profil açıklamanızı ve diğer metinleri değiştirmenize de olanak tanır. Karakterlerin kullanılabilirliği cihaza göre değişebilir."
+  },
+  {
+    "title": "TikTok",
+    "body": "TikTok kullanıcıları profil açıklamalarında veya TikTok’ta bulunan diğer metin alanlarında alternatif yazı tipleri kullanabilir. Unicode karakterleri kısa ifadeleri veya isimleri biçimlendirmek için yararlıdır."
+  },
+  {
+    "title": "YouTube",
+    "body": "Unicode metin, YouTube kanal açıklamalarında, video açıklamalarında ve topluluk gönderilerinde de görülebilir. Belirli kelimeleri vurgulamak veya küçük metin bölümleri oluşturmak için yararlı olabilir."
+  }
+];
+const features = [
+  {
+    "label": "Otomatik dönüştürme:",
+    "body": "Normal metni hiçbir biçimlendirme olmadan Unicode karakter karşılıklarına dönüştürür."
+  },
+  {
+    "label": "",
+    "body": "Program, metni serif, sans-serif, italik ve süslü yazı tipleri gibi çeşitli seçeneklerle gösterir."
+  },
+  {
+    "label": "Kopyala ve Yapıştır:",
+    "body": "Kullanıcılar metni kolayca kopyalayıp yapıştırabilir."
+  },
+  {
+    "label": "Tarayıcı Tabanlı:",
+    "body": "Tarayıcının içinde çalışır, yazılım yüklemeye gerek yoktur."
+  },
+  {
+    "label": "Kayıt Gerekmez:",
+    "body": "Metin, üye olmadan oluşturulabilir ve kopyalanabilir."
+  },
+  {
+    "label": "",
+    "body": "Yazılan metin çeşitli önizlemeleri sırasında görünür kalır"
+  }
+];
+const tools = [
+  {
+    "name": "Şekilli Nick - Şekilli yazı ve isim oluşturucu",
+    "url": "https://aestheticfonts.in/tr/"
+  },
+  {
+    "name": "İtalik Yazı Oluşturucu",
+    "url": "https://aestheticfonts.in/tr/italic/"
+  },
+  {
+    "name": "Altı Çizili Yazı Oluşturucu",
+    "url": "https://aestheticfonts.in/tr/underline/"
+  },
+  {
+    "name": "Üstü Çizili Yazı Oluşturucu",
+    "url": "https://aestheticfonts.in/tr/strikethrough/"
+  }
+];
+---
+
+<BoldPage lang="tr">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Kalın Alfabeyi Kopyala ve Yapıştır</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Kalın yazı (kalın yazı tipi), daha kalın çizgilerle görüntülenen metindir. Geleneksel tipografide kalın yazı, belirli kelimeleri vurgulamak için metin içinde kullanılır. Başlıklarda, etiketlerde, ana noktalarda veya vurgu gereken herhangi bir metin bölümünde kullanılabilir.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Bu <strong class="font-semibold text-text">Kalın Yazı</strong> Oluşturucu’yu kelime işlem yazılımlarındaki kalın yazıdan ayıran şey, standart metni farklı Unicode karakterlerine dönüştürerek kalın yazı oluşturmasıdır. Her Unicode karakteri benzersiz bir kod noktasına karşılık gelir. Kodlar U+ ile başlar ve onaltılık bir değer içerir. Matematikteki kalın büyük A harfi U+1D400’e karşılık gelir. Kalın küçük a harfi U+1D41A’ya karşılık gelir. Bu karakterler web sitelerindeki, sosyal medyadaki ve mesajlaşma uygulamalarındaki metin kutularına kopyalanıp yapıştırılabilir.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>Aşağıda, Unicode kullanan yaygın bir kalın yazı sürümünde her harf ve rakamın örneği yer alıyor.</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Metin Kalın Yazıya Nasıl Dönüştürülür</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Bu işlem bir Unicode metin oluşturucuyla yapılabilir. Yapıştıracağınız alanda yazı tipi biçimlendirme seçeneği yoksa bu gerekli olabilir.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">Kopyalanabilir kalın yazı oluşturmak için:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Kopyalayıp Yapıştırabileceğiniz Farklı Yazı Tipi Stilleri</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Unicode, farklı yazı sistemlerinden ve matematik sembollerinden birçok karakter içerir. Bunlarla farklı stillerde yazı tipleri oluşturulabilir.</p>
+      <p class="font-semibold mb-3"><strong>Örnekler:</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">Bu karakterlerin her biri biraz farklı görünür. Serifli karakterlerde küçük bitiş çizgileri, serifsiz karakterlerde ise sade çizgiler vardır. Script ve Fraktur karakterleri geleneksel yazı tiplerindeki süslü harflere benzer. Monospace karakterlerin hepsi eşit genişliktedir.</p>
+      <p class="text-text-muted leading-[1.8]">Bu karakterler Unicode ikamesidir ve görüntülendikleri cihazdaki yazı tiplerine ve Unicode desteğine göre farklı görünebilir.</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Bu Yazı Tiplerini Nerede Kullanabilirsiniz?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Kalın yazı tipleri, metin girişi kabul eden her uygulamada kullanılabilir. Bu, platforma, işletim sistemine ve karakter desteğine bağlıdır.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">Kalın Yazı Oluşturucumuzun Özellikleri</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Metninizi Daha Dikkat Çekici Yapın</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Kalın yazı stili, görsel hiyerarşi oluşturmak ve önemli bölümleri vurgulamak için sıkça kullanılır. Unicode yazı stilleri, geleneksel yazı tipi ayarlarının uygulanamadığı durumlarda bu etkiyi vermek için alternatif bir yöntemdir.</p>
+      <p class="text-text-muted leading-[1.8] mb-4">Yine de bu semboller standart kalın yazı biçimlendirmesinin yerini tutmaz. Bazı Unicode matematik sembolleri ekran okuyucular tarafından farklı algılanabilir ve tüm semboller belirli cihazlarda veya uygulamalarda düzgün görüntülenmeyebilir. Uzun metinlerde ve erişilebilirliğe özel dikkat gereken metinlerde standart metin biçimlendirmesi tercih edilmelidir.</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]"><a href="https://aestheticfonts.in/tr/">Şekilli Nick - Şekilli yazı ve isim oluşturucu</a> ile çeşitli harf stillerini keşfedin ve istediğiniz sembolleri kopyalayın.</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Diğer Araçlar</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>

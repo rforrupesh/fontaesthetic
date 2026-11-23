@@ -1,0 +1,198 @@
+---
+import BoldPage from '../../components/BoldPage.astro';
+
+const samples = [
+  {
+    "label": "الحروف (صغيرة) -",
+    "text": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"
+  },
+  {
+    "label": "الحروف (كبيرة) -",
+    "text": "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+  },
+  {
+    "label": "الأرقام -",
+    "text": "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  }
+];
+const steps = [
+  "أدخل نصًا في المولّد أو الصقه فيه.",
+  "سيُحوَّل النص إلى نص يونيكود منسّق. اختر النسخة التي تفضلها.",
+  "انقر على «نسخ».",
+  "الصق النص الغامق في أي مكان يدعم هذه الميزة، مثل تطبيق أو موقع أو ملف شخصي أو مربع رسالة."
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  {
+    "title": "Instagram",
+    "body": "يمكن لمستخدمي إنستغرام تجربة حروف يونيكود مختلفة في وصف السيرة الذاتية والتعليقات التوضيحية والتعليقات وحقول النص الأخرى. وهذا يساعد على تمييز الأسماء والأوصاف القصيرة والعبارات المختارة عن بقية النص."
+  },
+  {
+    "title": "LinkedIn",
+    "body": "استخدم أنماط نصوص مختلفة عند كتابة منشورات لينكدإن، بما في ذلك العناوين ووصف الملف الشخصي والتعليقات والنص المميز. وقد يفيد إبراز الكلمات أو العبارات الرئيسية بالخط الغامق، خاصة عند استخدام خيارات النص العادي."
+  },
+  {
+    "title": "Facebook",
+    "body": "أهم الأماكن التي يمكنك استخدام رموز النص البديلة فيها هي منشورات فيسبوك وأوصاف الملفات الشخصية والتعليقات والمجموعات وغيرها. وتفيد الرموز البديلة في الأماكن التي يغيب فيها تنسيق الخط المعتاد."
+  },
+  {
+    "title": "WhatsApp",
+    "body": "يمكن استخدام رموز النص البديلة في رسائل واتساب وحالاته وملفاته الشخصية والمناطق الأخرى التي يتوفر فيها هذا التنسيق. وهي بديل عن تنسيق واتساب الافتراضي مثل الغامق والمائل."
+  },
+  {
+    "title": "Discord",
+    "body": "يدعم ديسكورد صيغة Markdown داخل الرسائل، لكن هناك رموز يونيكود عدة تتيح للمستخدمين تعديل اسم المستخدم ووصف الملف الشخصي ونصوص أخرى أيضًا. وقد يختلف توفر الرموز حسب الجهاز."
+  },
+  {
+    "title": "TikTok",
+    "body": "يمكن لمستخدمي تيك توك استخدام خطوط بديلة في أوصاف الملفات الشخصية أو أنواع النصوص الأخرى المتاحة في تيك توك. وتفيد رموز يونيكود في تنسيق العبارات القصيرة أو الأسماء."
+  },
+  {
+    "title": "YouTube",
+    "body": "يمكن أيضًا رؤية نص يونيكود في أوصاف قنوات يوتيوب وأوصاف الفيديوهات ومنشورات المجتمع. وقد يفيد في إبراز كلمات معينة أو إنشاء أقسام نصية صغيرة."
+  }
+];
+const features = [
+  {
+    "label": "تحويل تلقائي:",
+    "body": "يحوّل النص العادي إلى ما يقابله من رموز يونيكود دون أي تنسيق."
+  },
+  {
+    "label": "",
+    "body": "يوفر لك البرنامج خيارات متعددة لعرض النص مثل الخطوط ذات الزوائد وبلا زوائد والمائلة والمزخرفة."
+  },
+  {
+    "label": "نسخ ولصق:",
+    "body": "يمكن للمستخدمين نسخ النص ولصقه بسهولة."
+  },
+  {
+    "label": "يعمل في المتصفح:",
+    "body": "يعمل داخل المتصفح دون الحاجة إلى تثبيت أي برنامج."
+  },
+  {
+    "label": "دون تسجيل:",
+    "body": "يمكن إنشاء النص ونسخه دون الحاجة إلى التسجيل."
+  },
+  {
+    "label": "",
+    "body": "سيظل النص المكتوب ظاهرًا أثناء معاينة مختلف"
+  }
+];
+const tools = [
+  {
+    "name": "زخرفة انجليزي",
+    "url": "https://aestheticfonts.in/ar/"
+  },
+  {
+    "name": "مولّد النص المائل",
+    "url": "https://aestheticfonts.in/ar/italic/"
+  },
+  {
+    "name": "مولّد النص المسطّر",
+    "url": "https://aestheticfonts.in/ar/underline/"
+  },
+  {
+    "name": "مولّد النص المشطوب",
+    "url": "https://aestheticfonts.in/ar/strikethrough/"
+  }
+];
+---
+
+<BoldPage lang="ar">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">نسخ ولصق الأبجدية الغامقة</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">النص الغامق (الخط الغامق) هو نص يُعرض بسماكة أكبر. في الطباعة التقليدية يُستخدم الخط الغامق داخل النص للتأكيد على كلمات معينة. ويمكن استخدامه في العناوين والتسميات والنقاط الرئيسية أو أي جزء من النص يحتاج إلى تأكيد.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">ما يميز مولّد <strong class="font-semibold text-text">النص الغامق</strong> هذا عن الخط الغامق في برامج معالجة النصوص هو أنه ينشئ النص الغامق بتحويل النص العادي إلى رموز يونيكود مختلفة. كل رمز يونيكود يقابل نقطة ترميز فريدة. تبدأ الرموز بـ U+ وتحتوي على قيمة سداسية عشرية. الحرف الكبير A الغامق في الرياضيات يقابل U+1D400. والحرف الصغير a الغامق يقابل U+1D41A. يمكن نسخ هذه الرموز ولصقها في مربعات النص في المواقع ووسائل التواصل الاجتماعي وتطبيقات المراسلة.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>فيما يلي مثال لكل حرف ورقم في إحدى النسخ الشائعة من النص الغامق باستخدام يونيكود.</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">كيف تحوّل النص إلى غامق</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">يمكن فعل ذلك باستخدام مولّد نصوص يونيكود. قد يكون ذلك ضروريًا إذا لم يتوفر خيار تنسيق الخط في المكان الذي تلصق فيه النص.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">لإنشاء نص غامق قابل للنسخ:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">أنماط خطوط مختلفة يمكنك نسخها ولصقها</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">يحتوي يونيكود على كثير من الرموز من أنظمة كتابة مختلفة ورموز رياضية. ويمكن استخدامها لإنشاء عدة أنماط من الخطوط.</p>
+      <p class="font-semibold mb-3"><strong>من الأمثلة:</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">يبدو كل نوع من هذه الرموز مختلفًا قليلًا. فالرموز ذات الزوائد (serif) لها خطوط ختامية صغيرة، والرموز بلا زوائد (sans serif) لها خطوط بسيطة. أما رموز الخط اليدوي (script) والفراكتور فتشبه الحروف المزخرفة في الخطوط التقليدية. ورموز الخط أحادي المسافة (monospace) لها عرض متساوٍ.</p>
+      <p class="text-text-muted leading-[1.8]">هذه الرموز بدائل يونيكود وستظهر بشكل مختلف حسب الخطوط ودعم يونيكود المتوفر على الجهاز الذي تُعرض عليه.</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">أين يمكنك استخدام هذه الخطوط؟</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">يمكن استخدام الخطوط الغامقة في أي تطبيق يقبل إدخال النص، وذلك بحسب المنصة ونظام التشغيل وتوفر الرموز.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">ميزات مولّد النص الغامق لدينا</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">اجعل نصك أكثر بروزًا</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">يُستخدم نمط الخط الغامق كثيرًا لإنشاء تسلسل بصري وإبراز الأجزاء المهمة. وتمثل أنماط نص يونيكود طريقة بديلة لإعطاء هذا التأثير عندما لا يمكن تطبيق إعدادات الخط التقليدية.</p>
+      <p class="text-text-muted leading-[1.8] mb-4">ومع ذلك، فإن هذه الرموز لا تحل محل تنسيق الخط الغامق القياسي. فقد تقرأ قارئات الشاشة بعض رموز يونيكود الرياضية بطريقة مختلفة، وقد لا تظهر جميع الرموز بشكل صحيح على أجهزة أو في تطبيقات معينة. وللنصوص الطويلة والنصوص التي تتطلب عناية خاصة بإمكانية الوصول، يُفضّل استخدام تنسيق النص القياسي.</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]">استكشف أنماط الحروف المختلفة باستخدام <a href="https://aestheticfonts.in/ar/">زخرفة انجليزي</a> وانسخ الرموز التي تحتاجها.</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">أدوات أخرى</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>

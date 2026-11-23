@@ -1,0 +1,198 @@
+---
+import BoldPage from '../../components/BoldPage.astro';
+
+const samples = [
+  {
+    "label": "ตัวอักษร (ตัวพิมพ์เล็ก) -",
+    "text": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"
+  },
+  {
+    "label": "ตัวอักษร (ตัวพิมพ์ใหญ่) -",
+    "text": "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+  },
+  {
+    "label": "ตัวเลข -",
+    "text": "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  }
+];
+const steps = [
+  "พิมพ์หรือวางข้อความลงในตัวสร้าง",
+  "ข้อความจะถูกแปลงเป็นข้อความ Unicode สไตล์ต่างๆ เลือกเวอร์ชันที่ต้องการ",
+  "คลิก ‘คัดลอก’",
+  "วางข้อความตัวหนาลงในที่ใดก็ได้ที่รองรับฟีเจอร์นี้ เช่น แอป เว็บไซต์ โปรไฟล์ หรือกล่องข้อความ"
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  {
+    "title": "Instagram",
+    "body": "ผู้ใช้ Instagram ลองใช้ตัวอักษร Unicode ต่างๆ ในคำอธิบายไบโอ คำบรรยาย คอมเมนต์ และช่องข้อความอื่นๆ ได้ ช่วยแยกชื่อ คำอธิบายสั้นๆ และวลีที่เลือกออกจากข้อความอื่น"
+  },
+  {
+    "title": "LinkedIn",
+    "body": "ใช้สไตล์ข้อความต่างๆ เมื่อเขียนโพสต์บน LinkedIn ทั้งหัวข้อ คำอธิบายโปรไฟล์ คอมเมนต์ และข้อความเด่น การเน้นคำหรือวลีสำคัญด้วยตัวหนาอาจมีประโยชน์ โดยเฉพาะเมื่อใช้ตัวเลือกข้อความธรรมดา"
+  },
+  {
+    "title": "Facebook",
+    "body": "พื้นที่หลักที่ใช้อักขระข้อความทางเลือกได้คือโพสต์ Facebook คำอธิบายโปรไฟล์ คอมเมนต์ กลุ่ม และอื่นๆ อักขระทางเลือกมีประโยชน์ในที่ที่ไม่มีการจัดรูปแบบฟอนต์ปกติ"
+  },
+  {
+    "title": "WhatsApp",
+    "body": "ใช้อักขระข้อความทางเลือกได้ในข้อความ สถานะ โปรไฟล์ของ WhatsApp และพื้นที่อื่นที่รองรับรูปแบบข้อความนี้ เป็นทางเลือกแทนการจัดรูปแบบเริ่มต้นของ WhatsApp เช่น ตัวหนาและตัวเอียง"
+  },
+  {
+    "title": "Discord",
+    "body": "Discord รองรับไวยากรณ์ Markdown ในข้อความ แต่ยังมีอักขระ Unicode หลายตัวที่ช่วยให้ผู้ใช้ปรับแต่งชื่อผู้ใช้ คำอธิบายโปรไฟล์ และข้อความอื่นๆ ได้ด้วย อักขระที่ใช้ได้อาจต่างกันไปตามอุปกรณ์"
+  },
+  {
+    "title": "TikTok",
+    "body": "ผู้ใช้ TikTok ใช้ฟอนต์ทางเลือกในคำอธิบายโปรไฟล์หรือข้อความประเภทอื่นบน TikTok ได้ อักขระ Unicode ช่วยตกแต่งวลีสั้นๆ หรือชื่อ"
+  },
+  {
+    "title": "YouTube",
+    "body": "ข้อความ Unicode ยังเห็นได้ในคำอธิบายช่อง YouTube คำอธิบายวิดีโอ และโพสต์ชุมชน ช่วยเน้นคำบางคำหรือสร้างส่วนข้อความเล็กๆ"
+  }
+];
+const features = [
+  {
+    "label": "แปลงอัตโนมัติ:",
+    "body": "เปลี่ยนข้อความปกติเป็นอักขระ Unicode ที่เทียบเท่าโดยไม่มีการจัดรูปแบบใดๆ"
+  },
+  {
+    "label": "",
+    "body": "โปรแกรมมีตัวเลือกการแสดงข้อความหลายแบบ เช่น แบบมีเชิง ไม่มีเชิง ตัวเอียง และฟอนต์ตกแต่ง"
+  },
+  {
+    "label": "คัดลอกและวาง:",
+    "body": "ผู้ใช้คัดลอกและวางข้อความได้ง่าย"
+  },
+  {
+    "label": "ทำงานบนเบราว์เซอร์:",
+    "body": "ทำงานในเบราว์เซอร์ ไม่ต้องติดตั้งซอฟต์แวร์"
+  },
+  {
+    "label": "ไม่ต้องลงทะเบียน:",
+    "body": "สร้างและคัดลอกข้อความได้โดยไม่ต้องสมัครสมาชิก"
+  },
+  {
+    "label": "",
+    "body": "ข้อความที่พิมพ์จะยังมองเห็นได้ระหว่างการดูตัวอย่างของหลาย"
+  }
+];
+const tools = [
+  {
+    "name": "ตัวอักษรพิเศษ",
+    "url": "https://aestheticfonts.in/th/"
+  },
+  {
+    "name": "ตัวสร้างข้อความตัวเอียง",
+    "url": "https://aestheticfonts.in/th/italic/"
+  },
+  {
+    "name": "ตัวสร้างข้อความขีดเส้นใต้",
+    "url": "https://aestheticfonts.in/th/underline/"
+  },
+  {
+    "name": "ตัวสร้างข้อความขีดฆ่า",
+    "url": "https://aestheticfonts.in/th/strikethrough/"
+  }
+];
+---
+
+<BoldPage lang="th">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">คัดลอกและวางตัวอักษรตัวหนา</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">ข้อความตัวหนา (ตัวอักษรหนาหรือฟอนต์ตัวหนา) คือข้อความที่แสดงด้วยเส้นที่หนาขึ้น ในการพิมพ์แบบดั้งเดิม ตัวหนาใช้เน้นคำเฉพาะในข้อความ ใช้ได้กับหัวข้อ ป้ายกำกับ ประเด็นสำคัญ หรือส่วนใดของข้อความที่ต้องการเน้น</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">สิ่งที่ทำให้ตัวสร้าง<strong class="font-semibold text-text">ข้อความตัวหนา</strong>นี้ต่างจากตัวหนาในโปรแกรมประมวลผลคำ คือมันสร้างตัวหนาโดยแปลงข้อความมาตรฐานเป็นอักขระ Unicode อื่น อักขระ Unicode แต่ละตัวตรงกับรหัสเฉพาะหนึ่งตำแหน่ง รหัสเริ่มด้วย U+ และมีค่าเลขฐานสิบหก ตัวพิมพ์ใหญ่ A ตัวหนาทางคณิตศาสตร์ตรงกับ U+1D400 ส่วนตัวพิมพ์เล็ก a ตัวหนาตรงกับ U+1D41A อักขระเหล่านี้คัดลอกและวางลงในกล่องข้อความบนเว็บไซต์ โซเชียลมีเดีย และแอปส่งข้อความได้</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>ด้านล่างคือตัวอย่างของตัวอักษรและตัวเลขแต่ละตัวในข้อความตัวหนาแบบหนึ่งที่พบบ่อยโดยใช้ Unicode</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">วิธีแปลงข้อความเป็นตัวหนา</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">ทำได้โดยใช้ตัวสร้างข้อความ Unicode ซึ่งอาจจำเป็นเมื่อไม่มีตัวเลือกการจัดรูปแบบฟอนต์ในที่ที่คุณจะวางข้อความ</p>
+      <p class="text-text-muted leading-[1.8] mb-5">หากต้องการสร้างข้อความตัวหนาที่คัดลอกได้:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">สไตล์ฟอนต์ต่างๆ ที่คัดลอกและวางได้</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Unicode มีอักขระจากระบบการเขียนต่างๆ และสัญลักษณ์ทางคณิตศาสตร์มากมาย สามารถนำมาสร้างฟอนต์ได้หลายสไตล์</p>
+      <p class="font-semibold mb-3"><strong>ตัวอย่างได้แก่:</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">อักขระแต่ละแบบเหล่านี้ดูต่างกันเล็กน้อย อักขระแบบมีเชิง (serif) มีเส้นปลายเล็กๆ ส่วนแบบไม่มีเชิง (sans serif) เป็นเส้นเรียบง่าย อักขระสคริปต์และเฟรกทูร์ดูคล้ายตัวอักษรตกแต่งในฟอนต์ดั้งเดิม อักขระโมโนสเปซมีความกว้างเท่ากันทุกตัว</p>
+      <p class="text-text-muted leading-[1.8]">อักขระเหล่านี้เป็นตัวแทนของ Unicode และจะแสดงต่างกันไปตามฟอนต์และการรองรับ Unicode ของอุปกรณ์ที่แสดงผล</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">ใช้ฟอนต์เหล่านี้ได้ที่ไหน?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">ใช้ฟอนต์ตัวหนาได้ในทุกแอปที่รับข้อความที่พิมพ์เข้าไป ทั้งนี้ขึ้นอยู่กับแพลตฟอร์ม ระบบปฏิบัติการ และอักขระที่รองรับ</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">ฟีเจอร์ของตัวสร้างข้อความตัวหนาของเรา</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">ทำให้ข้อความของคุณโดดเด่นยิ่งขึ้น</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">สไตล์ฟอนต์ตัวหนามักใช้สร้างลำดับชั้นทางสายตาและเน้นส่วนสำคัญ สไตล์ข้อความ Unicode เป็นอีกวิธีหนึ่งในการสร้างเอฟเฟกต์นี้เมื่อใช้การตั้งค่าฟอนต์แบบดั้งเดิมไม่ได้</p>
+      <p class="text-text-muted leading-[1.8] mb-4">อย่างไรก็ตาม สัญลักษณ์เหล่านี้ไม่อาจใช้แทนการจัดรูปแบบตัวหนามาตรฐานได้ สัญลักษณ์ทางคณิตศาสตร์ Unicode บางตัวอาจถูกโปรแกรมอ่านหน้าจออ่านต่างออกไป และสัญลักษณ์ทั้งหมดอาจแสดงไม่ถูกต้องบนอุปกรณ์หรือแอปบางตัว สำหรับข้อความยาวและข้อความที่ต้องใส่ใจเรื่องการเข้าถึงเป็นพิเศษ ควรเลือกใช้การจัดรูปแบบข้อความมาตรฐาน</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]">สำรวจสไตล์ตัวอักษรต่างๆ ด้วย <a href="https://aestheticfonts.in/th/">ตัวอักษรพิเศษ</a> แล้วคัดลอกสัญลักษณ์ที่ต้องการ</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">เครื่องมืออื่นๆ</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>

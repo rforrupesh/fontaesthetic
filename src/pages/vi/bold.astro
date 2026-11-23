@@ -1,0 +1,198 @@
+---
+import BoldPage from '../../components/BoldPage.astro';
+
+const samples = [
+  {
+    "label": "Chữ cái (chữ thường) -",
+    "text": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"
+  },
+  {
+    "label": "Chữ cái (chữ hoa) -",
+    "text": "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+  },
+  {
+    "label": "Chữ số -",
+    "text": "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  }
+];
+const steps = [
+  "Nhập hoặc dán văn bản vào công cụ.",
+  "Văn bản sẽ được chuyển thành văn bản Unicode có kiểu. Chọn phiên bản bạn thích.",
+  "Nhấp vào ‘Sao chép’.",
+  "Dán chữ in đậm vào bất kỳ nơi nào hỗ trợ tính năng này, chẳng hạn như ứng dụng, trang web, hồ sơ hoặc ô tin nhắn."
+];
+const fonts = [
+  { label: 'Bold Sans Serif:', text: '𝗕𝗼𝗹𝗱 𝗧𝗲𝘅𝘁' },
+  { label: 'Bold Serif:', text: '𝐁𝐨𝐥𝐝 𝐓𝐞𝐱𝐭' },
+  { label: 'Bold Italic:', text: '𝑩𝒐𝒍𝒅 𝑻𝒆𝒙𝒕' },
+  { label: 'Bold Script:', text: '𝓑𝓸𝓵𝓭 𝓣𝓮𝔁𝓽' },
+  { label: 'Bold Fraktur:', text: '𝕭𝖔𝖑𝖉 𝕿𝖊𝖝𝖙' },
+  { label: 'Bold Monospace:', text: '𝙱𝚘𝚕𝚍 𝚃𝚎𝚡𝚝' },
+];
+const platforms = [
+  {
+    "title": "Instagram",
+    "body": "Người dùng Instagram có thể thử nhiều chữ cái Unicode trong phần tiểu sử, chú thích, bình luận và các trường văn bản khác. Điều này giúp phân biệt tên, mô tả ngắn và các cụm từ được chọn với phần văn bản còn lại."
+  },
+  {
+    "title": "LinkedIn",
+    "body": "Hãy dùng các kiểu chữ khác nhau khi viết bài trên LinkedIn, gồm tiêu đề, mô tả hồ sơ, bình luận và nội dung nổi bật. Làm nổi bật từ hoặc cụm từ khóa bằng chữ in đậm có thể hữu ích, đặc biệt khi dùng các tùy chọn văn bản thuần."
+  },
+  {
+    "title": "Facebook",
+    "body": "Các khu vực chính nơi bạn có thể dùng ký tự văn bản thay thế là bài đăng, mô tả hồ sơ, bình luận, nhóm và các phần khác trên Facebook. Ký tự thay thế hữu ích ở những nơi thiếu định dạng phông chữ thông thường."
+  },
+  {
+    "title": "WhatsApp",
+    "body": "Ký tự văn bản thay thế có thể dùng trong tin nhắn, trạng thái, hồ sơ WhatsApp và các khu vực khác có hỗ trợ định dạng văn bản này. Đây là cách thay thế cho định dạng mặc định của WhatsApp như in đậm và in nghiêng."
+  },
+  {
+    "title": "Discord",
+    "body": "Discord hỗ trợ cú pháp Markdown trong tin nhắn, nhưng một số ký tự Unicode cũng cho phép người dùng thay đổi tên người dùng, mô tả hồ sơ và các văn bản khác. Khả năng hiển thị ký tự có thể khác nhau tùy thiết bị."
+  },
+  {
+    "title": "TikTok",
+    "body": "Người dùng TikTok có thể dùng phông chữ thay thế trong mô tả hồ sơ hoặc các loại văn bản khác có trên TikTok. Ký tự Unicode hữu ích để tạo kiểu cho cụm từ ngắn hoặc tên."
+  },
+  {
+    "title": "YouTube",
+    "body": "Văn bản Unicode cũng xuất hiện trong mô tả kênh YouTube, mô tả video và bài đăng cộng đồng. Nó có thể giúp làm nổi bật một số từ hoặc tạo các phần văn bản nhỏ."
+  }
+];
+const features = [
+  {
+    "label": "Tự động chuyển đổi:",
+    "body": "Biến văn bản thông thường thành các ký tự Unicode tương đương mà không cần định dạng."
+  },
+  {
+    "label": "",
+    "body": "Chương trình cung cấp nhiều tùy chọn hiển thị văn bản như có chân, không chân, in nghiêng và các phông chữ cách điệu."
+  },
+  {
+    "label": "Sao chép và dán:",
+    "body": "Người dùng có thể dễ dàng sao chép và dán văn bản."
+  },
+  {
+    "label": "Chạy trên trình duyệt:",
+    "body": "Hoạt động ngay trong trình duyệt, không cần cài đặt phần mềm."
+  },
+  {
+    "label": "Không cần đăng ký:",
+    "body": "Có thể tạo và sao chép văn bản mà không cần đăng ký."
+  },
+  {
+    "label": "",
+    "body": "Văn bản đã nhập sẽ vẫn hiển thị khi xem trước nhiều"
+  }
+];
+const tools = [
+  {
+    "name": "Tạo Tên Kí Tự Đặc Biệt",
+    "url": "https://aestheticfonts.in/vi/"
+  },
+  {
+    "name": "Tạo chữ in nghiêng",
+    "url": "https://aestheticfonts.in/vi/italic/"
+  },
+  {
+    "name": "Tạo chữ gạch chân",
+    "url": "https://aestheticfonts.in/vi/underline/"
+  },
+  {
+    "name": "Tạo chữ gạch ngang",
+    "url": "https://aestheticfonts.in/vi/strikethrough/"
+  }
+];
+---
+
+<BoldPage lang="vi">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Sao chép và dán bảng chữ cái in đậm</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Chữ in đậm (chữ đậm hoặc phông chữ đậm) là chữ được hiển thị với nét dày hơn. Trong kiểu chữ truyền thống, chữ đậm được dùng trong văn bản để nhấn mạnh những từ cụ thể. Nó có thể dùng trong tiêu đề, nhãn, các ý chính hoặc bất kỳ phần văn bản nào cần nhấn mạnh.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4">Điểm khiến công cụ tạo <strong class="font-semibold text-text">chữ in đậm</strong> này khác với chữ đậm trong phần mềm soạn thảo là nó tạo chữ đậm bằng cách chuyển văn bản thông thường sang các ký tự Unicode khác. Mỗi ký tự Unicode tương ứng với một điểm mã duy nhất. Các mã bắt đầu bằng U+ và chứa một giá trị thập lục phân. Chữ A viết hoa in đậm trong toán học tương ứng với U+1D400. Chữ a thường in đậm tương ứng với U+1D41A. Các ký tự này có thể được sao chép và dán vào ô nhập văn bản trên trang web, mạng xã hội và ứng dụng nhắn tin.</p>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8] mb-4"><em>Dưới đây là ví dụ về từng chữ cái và chữ số trong một phiên bản phổ biến của chữ in đậm dùng Unicode.</em></p>
+      <div class="card p-5 flex flex-col gap-3">
+        {samples.map((s) => (
+          <p class="text-sm leading-[1.7] break-words"><span class="text-text-muted">{s.label}</span> <span class="text-[1.05rem]">{s.text}</span></p>
+        ))}
+      </div>
+    </header>
+
+    <!-- How to -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Cách chuyển văn bản sang chữ in đậm</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Việc này có thể thực hiện bằng công cụ tạo văn bản Unicode. Cách này có thể cần thiết khi tùy chọn định dạng phông chữ không có sẵn ở nơi bạn dán văn bản.</p>
+      <p class="text-text-muted leading-[1.8] mb-5">Để tạo chữ in đậm có thể sao chép:</p>
+      <ol class="list-none p-0 m-0 flex flex-col gap-3">
+        {steps.map((s, i) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7] flex gap-3"><span class="font-semibold text-primary">{i + 1}.</span> <span class="text-text-muted">{s}</span></li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Font styles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Các kiểu phông chữ khác nhau bạn có thể sao chép và dán</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Unicode có nhiều ký tự từ các hệ chữ viết khác nhau và các ký hiệu toán học. Chúng có thể dùng để tạo nhiều kiểu phông chữ khác nhau.</p>
+      <p class="font-semibold mb-3"><strong>Ví dụ gồm:</strong></p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3 mb-6">
+        {fonts.map((f) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]"><span class="text-text-muted">{f.label}</span> <span class="text-[1.05rem]">{f.text}</span></li>
+        ))}
+      </ul>
+      <p class="text-text-muted leading-[1.8] mb-4">Mỗi loại ký tự này trông hơi khác nhau. Ký tự có chân (serif) có các nét kết thúc nhỏ, còn ký tự không chân (sans serif) có các đường nét đơn giản. Ký tự script và Fraktur trông giống chữ cách điệu trong các phông chữ truyền thống. Ký tự monospace có độ rộng bằng nhau.</p>
+      <p class="text-text-muted leading-[1.8]">Các ký tự này là ký tự thay thế Unicode và sẽ hiển thị khác nhau tùy theo phông chữ và khả năng hỗ trợ Unicode trên thiết bị hiển thị.</p>
+    </section>
+
+    <!-- Where -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Bạn có thể dùng các phông chữ này ở đâu?</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Phông chữ in đậm có thể dùng trong bất kỳ ứng dụng nào nhận nhập văn bản. Điều này phụ thuộc vào nền tảng, hệ điều hành và việc có hỗ trợ ký tự hay không.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {platforms.map((p) => (
+          <div class="card p-5 transition-colors duration-150 hover:border-primary">
+            <h3 class="text-lg font-semibold mb-2">{p.title}</h3>
+            <p class="text-sm text-text-muted leading-[1.7]">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-5">Tính năng của công cụ tạo chữ in đậm</h2>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        {features.map((w) => (
+          <li class="card px-5 py-3.5 text-sm leading-[1.7]">{w.label && <strong class="font-semibold">{w.label}</strong>} <span class="text-text-muted">{w.body}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Notable -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Làm văn bản của bạn nổi bật hơn</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Kiểu chữ in đậm thường được dùng để tạo thứ bậc thị giác và làm nổi bật các phần quan trọng. Các kiểu văn bản Unicode là một cách khác để tạo hiệu ứng này khi không thể áp dụng cài đặt phông chữ truyền thống.</p>
+      <p class="text-text-muted leading-[1.8] mb-4">Tuy nhiên, các ký hiệu này không thay thế định dạng chữ đậm tiêu chuẩn. Một số ký hiệu toán học Unicode có thể được trình đọc màn hình nhận biết theo cách khác, và không phải ký hiệu nào cũng hiển thị đúng trên một số thiết bị hoặc ứng dụng. Với văn bản dài và văn bản cần đặc biệt chú ý đến khả năng truy cập, nên ưu tiên định dạng văn bản tiêu chuẩn.</p>
+      <blockquote class="border-l-4 border-primary pl-4 text-text-muted leading-[1.8]">Khám phá nhiều kiểu chữ khác nhau với <a href="https://aestheticfonts.in/vi/">Tạo Tên Kí Tự Đặc Biệt</a> và sao chép các ký hiệu bạn cần.</blockquote>
+    </section>
+
+    <!-- Other tools -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Công cụ khác</h2>
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0">
+        {tools.map((tool) => (
+          <li>
+            <a
+              href={tool.url}
+              class="inline-block rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            >
+              {tool.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BoldPage>
