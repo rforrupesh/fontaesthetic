@@ -12,7 +12,7 @@ categories: ["Social Media", "Guides"]
 
 Want to make your Discord messages look more interesting and easier to read? You can use Discord Markdown to format your text without installing any extra tools.
 
-> Discord supports simple formatting options such as **bold**, *italic*, underline, strikethrough, spoilers, code blocks, and more. You only need to add a few special characters before and after your text.
+> Discord supports simple formatting options such as **bold**, *[italic](https://aestheticfonts.in/italic/)*, underline, [strikethrough Text](https://aestheticfonts.in/strikethrough/), spoilers, code blocks, and more. You only need to add a few special characters before and after your text.
 
 In this guide, you will learn how to use Discord Markdown, format messages, and create stylish text using a free text formatter.
 
@@ -242,7 +242,7 @@ Here is a quick reference table of useful Discord Markdown commands.
 |---|---|---|
 | Bold | `**text**` | Makes text bold |
 | Italic | `*text*` | Makes text italic |
-| Underline | `__text__` | Underlines text |
+| Underline | `__text__` | [Underlines text](https://aestheticfonts.in/underline/) |
 | Strikethrough | `~~text~~` | Adds a line through text |
 | Bold Italic | `***text***` | Combines bold and italic |
 | Header 1 | `# text` | Creates a large heading |
