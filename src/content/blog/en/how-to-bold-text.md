@@ -14,7 +14,7 @@ Have you ever seen bold words in an Instagram bio, Facebook post, or Reddit comm
 
 > Bold text makes important words stand out and gives your social media content a clean and attractive look. But not every platform has a built-in option to make text bold.
 
-There are two easy ways to do it: use the formatting options available on your social media app or copy and paste stylish Unicode bold text. A free online text formatter or bold text generator makes this process simple. You can create fancy bold text, copy and paste fonts, and try beautiful text styles without installing anything.
+There are two easy ways to do it: use the formatting options available on your social media app or copy and paste stylish Unicode bold text. A free online text formatter or [bold text](https://aestheticfonts.in/bold/) makes this process simple. You can create fancy bold text, copy and paste fonts, and try beautiful text styles without installing anything.
 
 ## How to Make Bold Text on Social Media
 
