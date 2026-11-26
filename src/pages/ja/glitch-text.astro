@@ -1,0 +1,52 @@
+---
+// Article for the Glitch Text page (ja). The tool above it comes from GlitchPage.
+import GlitchPage from '../../components/GlitchPage.astro';
+---
+
+<GlitchPage lang="ja">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">コピペできるグリッチテキスト</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">グリッチテキストは、Facebook、YouTube、TumblrなどのブログやSNSのコメントで使えます。画像ではなくUnicode文字を使うため、コピー＆ペーストしてもグリッチの記号はテキストの一部として残ります。たとえば ļ̵͝i̴͋ͅk̵̡̚e̵̝̎ ̷̡́ẗ̸̠h̵͚̊i̸͈̐s̴̬̚ は、結合文字で作った歪んだテキストです。ただし、一部のサイトは特定のUnicode文字しか受け付けないため、グリッチの記号が消えることがあります。メールアドレスやドメイン名には通常、標準の文字が必要です。</p>
+    </header>
+
+    <!-- How to type -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">不気味なグリッチテキストの作り方は？</h2>
+      <p class="text-text-muted leading-[1.8]">不気味なグリッチテキストは、通常の文字に「結合文字」と呼ばれる特殊なUnicode文字を追加して作ります。これらの文字は既存の文字に視覚的な記号を付け、元の文字を変えずに歪んだ見た目を作ります。通常は発音を示したり文字を区別したりするダイアクリティカルマークも、いくつも重ねると不気味なテキストになります。グリッチテキストジェネレーターがこの作業を自動化するため、Unicode記号を手で入力しなくてもZalgoテキストを作れます。</p>
+    </section>
+
+    <!-- Zalgo -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Zalgoとは？</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Zalgoは、2004年にDave Kellyが漫画のコマを加工したことから始まったインターネットミームです。加工された漫画では、キャラクターが闇の力に飲み込まれていきます。Zalgoは「He Who Waits Behind the Wall」（壁の向こうで待つ者）と呼ばれる架空の存在や、Nezperdian Hivemindと結び付けられています。</p>
+      <p class="text-text-muted leading-[1.8]">Zalgoテキストは、複数の結合文字で通常の文字を歪めます。記号が文字の上下や中央を貫くように伸び、独特の不気味な見た目になります。</p>
+    </section>
+
+    <!-- How it works -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">グリッチテキストの仕組み</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">グリッチテキストはUnicodeの結合文字を利用しています。結合文字は、独立した文字として表示される代わりに、直前の基底文字に付く文字コードです。1文字の後ろに複数の結合文字を続けられるため、記号が積み重なったり重なり合ったりします。</p>
+      <p class="text-text-muted leading-[1.8]">Unicodeの「結合分音記号」ブロックには、U+0300からU+036Fまでの文字が含まれます。グリッチテキストジェネレーターは、これらや他の結合文字を使ってさまざまな歪みを作ります。</p>
+    </section>
+
+    <!-- Types -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">グリッチテキストの種類</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">結合文字で作れる一般的な視覚効果は次の3つです。</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">上：</strong> <span class="text-text-muted">文字の上に記号が付き、テキストが上に伸びます。</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">貫通：</strong> <span class="text-text-muted">記号が文字を横切り、傷ついたような、壊れたような見た目になります。</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">下：</strong> <span class="text-text-muted">文字の下に記号が付き、テキストが下に伸びます。</span></li>
+      </ul>
+      <p class="text-text-muted leading-[1.8] mt-6">これらの効果を組み合わせると、強く歪んだZalgoテキストになります。</p>
+    </section>
+
+    <!-- Safe -->
+    <section class="mb-4">
+      <h2 class="text-2xl font-bold mb-3">グリッチテキストは安全？</h2>
+      <p class="text-text-muted leading-[1.8]">グリッチテキストはUnicode文字を使っており、一般に無害です。ただし、結合文字が多すぎると読みにくくなり、隣の行と重なったり、スクリーンリーダーの妨げになったりします。サポートされていない文字を削除したり、正しく表示しなかったりするサイトやアプリもあります。</p>
+    </section>
+  </article>
+</GlitchPage>

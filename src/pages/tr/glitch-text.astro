@@ -1,0 +1,52 @@
+---
+// Article for the Glitch Text page (tr). The tool above it comes from GlitchPage.
+import GlitchPage from '../../components/GlitchPage.astro';
+---
+
+<GlitchPage lang="tr">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Kopyala Yapıştır Glitch Yazı</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Glitch yazı, Facebook, YouTube ve Tumblr gibi blog ve sosyal medya yorumlarında kullanılabilir. Resim yerine Unicode karakterleri kullandığı için kopyalayıp yapıştırdığında glitch işaretleri metnin parçası olarak kalır. Örneğin ļ̵͝i̴͋ͅk̵̡̚e̵̝̎ ̷̡́ẗ̸̠h̵͚̊i̸͈̐s̴̬̚ birleştirici karakterlerle oluşturulmuş bozuk bir yazıdır. Ancak bazı siteler yalnızca belirli Unicode karakterlerini kabul eder ve glitch işaretleri kaybolabilir. E-posta adresleri ve alan adları genellikle standart karakter gerektirir.</p>
+    </header>
+
+    <!-- How to type -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Tuhaf Glitch Yazı Nasıl Yazılır?</h2>
+      <p class="text-text-muted leading-[1.8]">Tuhaf glitch yazı, sıradan harflere birleştirici karakter adı verilen özel Unicode karakterleri eklenerek oluşturulur. Bu karakterler mevcut harflere görsel işaretler ekler ve asıl harfleri değiştirmeden bozuk bir görünüm yaratır. Normalde telaffuzu belirten ya da yazılı dillerde harfleri ayıran aksan işaretleri, birçoğu birleştirildiğinde ürkütücü bir yazı da oluşturabilir. Glitch yazı oluşturucu bu işlemi otomatikleştirir; böylece Unicode sembollerini elle eklemeden Zalgo yazı üretebilirsin.</p>
+    </section>
+
+    <!-- Zalgo -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Zalgo Nedir?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Zalgo, 2004'te Dave Kelly'nin çizgi roman şeritleri üzerindeki düzenlemeleriyle başlayan bir internet meme'idir. Bu düzenlemelerde karakterler karanlık bir güç tarafından ele geçiriliyordu. Zalgo, «He Who Waits Behind the Wall» (Duvarın Arkasında Bekleyen) adlı kurgusal varlık ve Nezperdian Hivemind ile ilişkilendirilir.</p>
+      <p class="text-text-muted leading-[1.8]">Zalgo yazı, sıradan harfleri bozmak için çok sayıda birleştirici karakter kullanır. İşaretler yazının üstüne, altına ve içinden geçecek şekilde uzanabilir; bu da kendine özgü ürkütücü görünümü oluşturur.</p>
+    </section>
+
+    <!-- How it works -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Glitch Yazı Nasıl Çalışır?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Glitch yazı, Unicode birleştirici karakterleriyle çalışır. Birleştirici karakter, bağımsız bir harf olarak görünmek yerine kendinden önceki temel karaktere eklenen bir Unicode kod noktasıdır. Tek bir harfi birden fazla birleştirici karakter izleyebilir ve işaretleri üst üste biner.</p>
+      <p class="text-text-muted leading-[1.8]">Unicode Birleştirici Aksan İşaretleri bloğu U+0300 ile U+036F arasındaki karakterleri içerir. Glitch yazı oluşturucular farklı bozulmalar üretmek için bu ve diğer birleştirici karakterleri kullanır.</p>
+    </section>
+
+    <!-- Types -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Glitch Yazı Türleri</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Birleştirici karakterler üç yaygın görsel efekt oluşturabilir:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Üstte:</strong> <span class="text-text-muted">İşaretler harflerin üstünde görünür ve yazıyı yukarı doğru uzatır.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">İçinden:</strong> <span class="text-text-muted">İşaretler harfleri keser ve çizilmiş ya da bozulmuş bir görünüm verir.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Altta:</strong> <span class="text-text-muted">İşaretler harflerin altında görünür ve yazıyı aşağı doğru uzatır.</span></li>
+      </ul>
+      <p class="text-text-muted leading-[1.8] mt-6">Bu efektler birleştirilerek çok bozuk Zalgo yazı elde edilebilir.</p>
+    </section>
+
+    <!-- Safe -->
+    <section class="mb-4">
+      <h2 class="text-2xl font-bold mb-3">Glitch Yazı Kullanmak Güvenli mi?</h2>
+      <p class="text-text-muted leading-[1.8]">Glitch yazı Unicode karakterleri kullanır ve genellikle zararsızdır. Ancak fazla sayıda birleştirici karakter metni okumayı zorlaştırabilir, yakındaki satırlarla çakışabilir ve ekran okuyucuları bozabilir. Bazı siteler ve uygulamalar desteklenmeyen karakterleri kaldırabilir ya da yanlış gösterebilir.</p>
+    </section>
+  </article>
+</GlitchPage>

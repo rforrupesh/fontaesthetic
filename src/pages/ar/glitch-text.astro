@@ -1,0 +1,52 @@
+---
+// Article for the Glitch Text page (ar). The tool above it comes from GlitchPage.
+import GlitchPage from '../../components/GlitchPage.astro';
+---
+
+<GlitchPage lang="ar">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">نص غليتش للنسخ واللصق</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">يمكن استخدام نص الغليتش في التعليقات على المدونات ومنصات التواصل الاجتماعي مثل فيسبوك ويوتيوب وتمبلر. يستخدم رموز Unicode بدلًا من الصور، لذا تبقى علامات الغليتش جزءًا من النص عند نسخه ولصقه. على سبيل المثال، ļ̵͝i̴͋ͅk̵̡̚e̵̝̎ ̷̡́ẗ̸̠h̵͚̊i̸͈̐s̴̬̚ نص مشوّه أُنشئ باستخدام أحرف مركّبة. ومع ذلك، تقبل بعض المواقع رموز Unicode معيّنة فقط، مما قد يؤدي إلى اختفاء علامات الغليتش. وتتطلب عناوين البريد الإلكتروني وأسماء النطاقات عادةً أحرفًا قياسية.</p>
+    </header>
+
+    <!-- How to type -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">كيف تكتب نص غليتش غريب؟</h2>
+      <p class="text-text-muted leading-[1.8]">يُنشأ نص الغليتش الغريب بإضافة رموز Unicode خاصة تُسمى الأحرف المركّبة إلى الأحرف العادية. تُلحق هذه الرموز علامات مرئية بالأحرف الموجودة، فتمنح النص مظهرًا مشوّهًا دون تغيير الأحرف الأصلية. كما يمكن للعلامات التشكيلية، التي تُستخدم عادةً لبيان النطق أو التمييز بين الحروف في اللغات المكتوبة، أن تنتج نصًا مخيفًا عند دمج عدة علامات معًا. يؤتمت مولّد نص الغليتش هذه العملية، فتتمكن من إنشاء نص Zalgo دون إدراج رموز Unicode يدويًا.</p>
+    </section>
+
+    <!-- Zalgo -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">ما هو Zalgo؟</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Zalgo ميم إنترنت بدأ عام 2004 مع تعديلات ديف كيلي على الشرائط الهزلية. أظهرت هذه التعديلات شخصيات تستولي عليها قوة مظلمة. يرتبط Zalgo بالكيان الخيالي المعروف باسم «He Who Waits Behind the Wall» (من ينتظر خلف الجدار) وNezperdian Hivemind.</p>
+      <p class="text-text-muted leading-[1.8]">يستخدم نص Zalgo أحرفًا مركّبة متعددة لتشويه الأحرف العادية. يمكن أن تمتد العلامات فوق النص وتحته وعبره، مما يمنحه مظهره المخيف المميّز.</p>
+    </section>
+
+    <!-- How it works -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">كيف يعمل نص الغليتش؟</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">يعمل نص الغليتش عبر الأحرف المركّبة في Unicode. الحرف المركّب هو نقطة رمزية في Unicode تلتصق بالحرف الأساسي السابق لها بدلًا من أن تظهر حرفًا مستقلًا. ويمكن أن تتبع عدة أحرف مركّبة حرفًا واحدًا، فتتراكم علاماتها أو تتداخل.</p>
+      <p class="text-text-muted leading-[1.8]">تحتوي كتلة Unicode الخاصة بالعلامات التشكيلية المركّبة على الأحرف من U+0300 إلى U+036F. تستخدم مولّدات نص الغليتش هذه الأحرف وغيرها من الأحرف المركّبة لإنتاج تشويهات مختلفة للنص.</p>
+    </section>
+
+    <!-- Types -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">أنواع نص الغليتش</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">يمكن للأحرف المركّبة أن تنشئ ثلاثة تأثيرات بصرية شائعة:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">فوق:</strong> <span class="text-text-muted">تظهر العلامات فوق الأحرف وتمدّ النص إلى الأعلى.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">عبر:</strong> <span class="text-text-muted">تقطع العلامات الأحرف فتمنحها مظهرًا مخدوشًا أو تالفًا.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">تحت:</strong> <span class="text-text-muted">تظهر العلامات أسفل الأحرف وتمدّ النص إلى الأسفل.</span></li>
+      </ul>
+      <p class="text-text-muted leading-[1.8] mt-6">يمكن دمج هذه التأثيرات لإنتاج نص Zalgo شديد التشويه.</p>
+    </section>
+
+    <!-- Safe -->
+    <section class="mb-4">
+      <h2 class="text-2xl font-bold mb-3">هل استخدام نص الغليتش آمن؟</h2>
+      <p class="text-text-muted leading-[1.8]">يستخدم نص الغليتش رموز Unicode وهو عمومًا غير ضار. ومع ذلك، قد يجعل الإفراط في الأحرف المركّبة النص صعب القراءة، ويتداخل مع الأسطر المجاورة، ويعيق قارئات الشاشة. وقد تزيل بعض المواقع والتطبيقات الأحرف غير المدعومة أو تعرضها بشكل غير صحيح.</p>
+    </section>
+  </article>
+</GlitchPage>

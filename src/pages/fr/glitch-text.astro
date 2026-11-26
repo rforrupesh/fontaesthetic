@@ -1,0 +1,52 @@
+---
+// Article for the Glitch Text page (fr). The tool above it comes from GlitchPage.
+import GlitchPage from '../../components/GlitchPage.astro';
+---
+
+<GlitchPage lang="fr">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Texte glitch à copier-coller</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Le texte glitch peut être utilisé dans les commentaires de blogs et de réseaux sociaux comme Facebook, YouTube et Tumblr. Il utilise des caractères Unicode et non des images : les marques glitch font donc partie du texte lorsqu'il est copié-collé. Par exemple, ļ̵͝i̴͋ͅk̵̡̚e̵̝̎ ̷̡́ẗ̸̠h̵͚̊i̸͈̐s̴̬̚ est un texte déformé créé avec des caractères combinants. Toutefois, certains sites n'acceptent que certains caractères Unicode, ce qui peut faire disparaître les marques glitch. Les adresses e-mail et les noms de domaine exigent généralement des caractères standard.</p>
+    </header>
+
+    <!-- How to type -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Comment écrire un texte glitch bizarre ?</h2>
+      <p class="text-text-muted leading-[1.8]">Le texte glitch bizarre est créé en ajoutant à des lettres ordinaires des caractères Unicode spéciaux appelés caractères combinants. Ces caractères attachent des marques visuelles aux lettres existantes et créent un aspect déformé sans modifier les lettres d'origine. Les diacritiques, qui indiquent normalement la prononciation ou distinguent des lettres dans les langues écrites, peuvent aussi produire un texte inquiétant lorsqu'on en combine plusieurs. Un générateur de texte glitch automatise ce processus et permet de produire du texte Zalgo sans insérer les symboles Unicode à la main.</p>
+    </section>
+
+    <!-- Zalgo -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Qu'est-ce que Zalgo ?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Zalgo est un mème d'Internet né en 2004 des retouches de bandes dessinées par Dave Kelly. Ces retouches montraient des personnages envahis par une force obscure. Zalgo est associé à l'entité fictive appelée « He Who Waits Behind the Wall » (Celui qui attend derrière le mur) et à la Nezperdian Hivemind.</p>
+      <p class="text-text-muted leading-[1.8]">Le texte Zalgo utilise de nombreux caractères combinants pour déformer les lettres ordinaires. Les marques peuvent s'étendre au-dessus, au-dessous et à travers le texte, ce qui lui donne son aspect inquiétant caractéristique.</p>
+    </section>
+
+    <!-- How it works -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Comment fonctionne le texte glitch ?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Le texte glitch repose sur les caractères combinants Unicode. Un caractère combinant est un point de code Unicode qui s'attache au caractère de base qui le précède au lieu d'apparaître comme une lettre indépendante. Plusieurs caractères combinants peuvent suivre une même lettre, et leurs marques s'empilent ou se chevauchent.</p>
+      <p class="text-text-muted leading-[1.8]">Le bloc Unicode des signes diacritiques combinants contient les caractères de U+0300 à U+036F. Les générateurs de texte glitch utilisent ceux-ci et d'autres caractères combinants pour produire différentes déformations.</p>
+    </section>
+
+    <!-- Types -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Types de texte glitch</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Les caractères combinants peuvent créer trois effets visuels courants :</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Au-dessus :</strong> <span class="text-text-muted">les marques apparaissent au-dessus des lettres et étirent le texte vers le haut.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">À travers :</strong> <span class="text-text-muted">les marques traversent les lettres et donnent un aspect rayé ou corrompu.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">En dessous :</strong> <span class="text-text-muted">les marques apparaissent sous les lettres et étirent le texte vers le bas.</span></li>
+      </ul>
+      <p class="text-text-muted leading-[1.8] mt-6">Ces effets peuvent être combinés pour produire un texte Zalgo très déformé.</p>
+    </section>
+
+    <!-- Safe -->
+    <section class="mb-4">
+      <h2 class="text-2xl font-bold mb-3">Le texte glitch est-il sûr ?</h2>
+      <p class="text-text-muted leading-[1.8]">Le texte glitch utilise des caractères Unicode et est généralement inoffensif. Cependant, un excès de caractères combinants peut rendre le texte difficile à lire, chevaucher les lignes voisines et gêner les lecteurs d'écran. Certains sites et applications peuvent aussi supprimer les caractères non pris en charge ou les afficher incorrectement.</p>
+    </section>
+  </article>
+</GlitchPage>

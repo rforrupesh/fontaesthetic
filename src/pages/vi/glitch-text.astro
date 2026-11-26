@@ -1,0 +1,52 @@
+---
+// Article for the Glitch Text page (vi). The tool above it comes from GlitchPage.
+import GlitchPage from '../../components/GlitchPage.astro';
+---
+
+<GlitchPage lang="vi">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Chữ glitch sao chép và dán</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Chữ glitch có thể dùng trong bình luận trên blog và mạng xã hội như Facebook, YouTube và Tumblr. Nó dùng ký tự Unicode thay vì hình ảnh, nên các dấu glitch vẫn là một phần của văn bản khi sao chép và dán. Ví dụ, ļ̵͝i̴͋ͅk̵̡̚e̵̝̎ ̷̡́ẗ̸̠h̵͚̊i̸͈̐s̴̬̚ là chữ bị biến dạng được tạo bằng các ký tự kết hợp. Tuy nhiên, một số trang web chỉ chấp nhận một số ký tự Unicode nhất định nên các dấu glitch có thể biến mất. Địa chỉ email và tên miền thường yêu cầu ký tự chuẩn.</p>
+    </header>
+
+    <!-- How to type -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Cách gõ chữ glitch kỳ lạ?</h2>
+      <p class="text-text-muted leading-[1.8]">Chữ glitch kỳ lạ được tạo bằng cách thêm các ký tự Unicode đặc biệt gọi là ký tự kết hợp vào chữ cái thông thường. Những ký tự này gắn các dấu hiệu hình ảnh vào chữ cái hiện có, tạo vẻ ngoài biến dạng mà không thay đổi chữ cái gốc. Dấu phụ, vốn thường chỉ cách phát âm hoặc phân biệt chữ cái trong các ngôn ngữ viết, cũng có thể tạo ra chữ rùng rợn khi kết hợp nhiều dấu. Trình tạo chữ glitch tự động hóa quá trình này, giúp bạn tạo chữ Zalgo mà không cần chèn thủ công các ký hiệu Unicode.</p>
+    </section>
+
+    <!-- Zalgo -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Zalgo là gì?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Zalgo là một meme internet bắt đầu từ năm 2004 với những bản chỉnh sửa truyện tranh của Dave Kelly. Các bản chỉnh sửa này cho thấy nhân vật bị một thế lực đen tối chiếm lấy. Zalgo gắn liền với thực thể hư cấu có tên «He Who Waits Behind the Wall» (Kẻ chờ đợi sau bức tường) và Nezperdian Hivemind.</p>
+      <p class="text-text-muted leading-[1.8]">Chữ Zalgo dùng nhiều ký tự kết hợp để làm biến dạng chữ cái thông thường. Các dấu có thể kéo dài phía trên, phía dưới và xuyên qua chữ, tạo nên vẻ rùng rợn đặc trưng.</p>
+    </section>
+
+    <!-- How it works -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Chữ glitch hoạt động như thế nào?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Chữ glitch hoạt động nhờ các ký tự kết hợp Unicode. Ký tự kết hợp là một điểm mã Unicode gắn vào ký tự gốc đứng trước nó thay vì xuất hiện như một chữ cái độc lập. Nhiều ký tự kết hợp có thể theo sau một chữ cái, khiến các dấu xếp chồng hoặc đè lên nhau.</p>
+      <p class="text-text-muted leading-[1.8]">Khối Unicode Combining Diacritical Marks chứa các ký tự từ U+0300 đến U+036F. Các trình tạo chữ glitch dùng những ký tự này và các ký tự kết hợp khác để tạo ra nhiều kiểu biến dạng.</p>
+    </section>
+
+    <!-- Types -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Các loại chữ glitch</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Ký tự kết hợp có thể tạo ra ba hiệu ứng hình ảnh phổ biến:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Phía trên:</strong> <span class="text-text-muted">các dấu xuất hiện phía trên chữ cái, kéo dài chữ lên trên.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Xuyên qua:</strong> <span class="text-text-muted">các dấu cắt ngang chữ cái, tạo vẻ bị xước hoặc hỏng.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Phía dưới:</strong> <span class="text-text-muted">các dấu xuất hiện bên dưới chữ cái, kéo dài chữ xuống dưới.</span></li>
+      </ul>
+      <p class="text-text-muted leading-[1.8] mt-6">Có thể kết hợp các hiệu ứng này để tạo chữ Zalgo biến dạng nặng.</p>
+    </section>
+
+    <!-- Safe -->
+    <section class="mb-4">
+      <h2 class="text-2xl font-bold mb-3">Dùng chữ glitch có an toàn không?</h2>
+      <p class="text-text-muted leading-[1.8]">Chữ glitch dùng ký tự Unicode và nhìn chung vô hại. Tuy nhiên, quá nhiều ký tự kết hợp có thể khiến văn bản khó đọc, đè lên các dòng lân cận và gây trở ngại cho trình đọc màn hình. Một số trang web và ứng dụng cũng có thể xóa các ký tự không được hỗ trợ hoặc hiển thị sai.</p>
+    </section>
+  </article>
+</GlitchPage>

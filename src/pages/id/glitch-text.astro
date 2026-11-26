@@ -1,0 +1,52 @@
+---
+// Article for the Glitch Text page (id). The tool above it comes from GlitchPage.
+import GlitchPage from '../../components/GlitchPage.astro';
+---
+
+<GlitchPage lang="id">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Teks Glitch Salin dan Tempel</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Teks glitch bisa dipakai di komentar blog dan media sosial seperti Facebook, YouTube, dan Tumblr. Teks ini memakai karakter Unicode, bukan gambar, sehingga tanda glitch tetap menjadi bagian dari teks saat disalin dan ditempel. Misalnya, ļ̵͝i̴͋ͅk̵̡̚e̵̝̎ ̷̡́ẗ̸̠h̵͚̊i̸͈̐s̴̬̚ adalah teks terdistorsi yang dibuat dengan karakter kombinasi. Namun, beberapa situs hanya menerima karakter Unicode tertentu sehingga tanda glitch bisa hilang. Alamat email dan nama domain situs umumnya memerlukan karakter standar.</p>
+    </header>
+
+    <!-- How to type -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Bagaimana Cara Mengetik Teks Glitch yang Aneh?</h2>
+      <p class="text-text-muted leading-[1.8]">Teks glitch aneh dibuat dengan menambahkan karakter Unicode khusus yang disebut karakter kombinasi pada huruf biasa. Karakter ini menempelkan tanda visual pada huruf yang sudah ada sehingga tampilannya terdistorsi tanpa mengubah huruf aslinya. Diakritik, yang biasanya menunjukkan pelafalan atau membedakan huruf dalam bahasa tulis, juga bisa menghasilkan teks seram jika beberapa tanda digabungkan. Generator teks glitch mengotomatiskan proses ini sehingga kamu bisa membuat teks Zalgo tanpa memasukkan simbol Unicode secara manual.</p>
+    </section>
+
+    <!-- Zalgo -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Apa Itu Zalgo?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Zalgo adalah meme internet yang bermula pada 2004 dari suntingan komik strip oleh Dave Kelly. Suntingan itu menampilkan tokoh-tokoh yang dikuasai kekuatan gelap. Zalgo dikaitkan dengan entitas fiktif bernama «He Who Waits Behind the Wall» (Dia yang Menunggu di Balik Tembok) dan Nezperdian Hivemind.</p>
+      <p class="text-text-muted leading-[1.8]">Teks Zalgo memakai banyak karakter kombinasi untuk mendistorsi huruf biasa. Tandanya bisa memanjang ke atas, ke bawah, dan menembus teks sehingga menghasilkan tampilan seram yang khas.</p>
+    </section>
+
+    <!-- How it works -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Bagaimana Teks Glitch Bekerja?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Teks glitch bekerja lewat karakter kombinasi Unicode. Karakter kombinasi adalah titik kode Unicode yang menempel pada karakter dasar di depannya, bukan tampil sebagai huruf tersendiri. Beberapa karakter kombinasi bisa mengikuti satu huruf sehingga tanda-tandanya bertumpuk atau saling menimpa.</p>
+      <p class="text-text-muted leading-[1.8]">Blok Unicode Combining Diacritical Marks berisi karakter dari U+0300 sampai U+036F. Generator teks glitch memakai karakter ini dan karakter kombinasi lainnya untuk menghasilkan berbagai distorsi teks.</p>
+    </section>
+
+    <!-- Types -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Jenis Teks Glitch</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Karakter kombinasi dapat menciptakan tiga efek visual yang umum:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Atas:</strong> <span class="text-text-muted">tanda muncul di atas huruf dan memanjangkan teks ke atas.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Tembus:</strong> <span class="text-text-muted">tanda memotong huruf sehingga tampak tergores atau rusak.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Bawah:</strong> <span class="text-text-muted">tanda muncul di bawah huruf dan memanjangkan teks ke bawah.</span></li>
+      </ul>
+      <p class="text-text-muted leading-[1.8] mt-6">Efek-efek ini bisa digabungkan untuk menghasilkan teks Zalgo yang sangat terdistorsi.</p>
+    </section>
+
+    <!-- Safe -->
+    <section class="mb-4">
+      <h2 class="text-2xl font-bold mb-3">Apakah Teks Glitch Aman Digunakan?</h2>
+      <p class="text-text-muted leading-[1.8]">Teks glitch memakai karakter Unicode dan umumnya tidak berbahaya. Namun, karakter kombinasi yang berlebihan dapat membuat teks sulit dibaca, menimpa baris di dekatnya, dan mengganggu pembaca layar. Beberapa situs dan aplikasi juga dapat menghapus karakter yang tidak didukung atau menampilkannya dengan salah.</p>
+    </section>
+  </article>
+</GlitchPage>

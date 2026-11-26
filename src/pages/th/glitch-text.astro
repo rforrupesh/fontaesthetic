@@ -1,0 +1,52 @@
+---
+// Article for the Glitch Text page (th). The tool above it comes from GlitchPage.
+import GlitchPage from '../../components/GlitchPage.astro';
+---
+
+<GlitchPage lang="th">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">ข้อความกลิตช์คัดลอกและวาง</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">ข้อความกลิตช์ใช้ได้ในคอมเมนต์บนบล็อกและโซเชียลมีเดีย เช่น Facebook, YouTube และ Tumblr โดยใช้อักขระ Unicode แทนรูปภาพ เครื่องหมายกลิตช์จึงยังเป็นส่วนหนึ่งของข้อความเมื่อคัดลอกและวาง ตัวอย่างเช่น ļ̵͝i̴͋ͅk̵̡̚e̵̝̎ ̷̡́ẗ̸̠h̵͚̊i̸͈̐s̴̬̚ เป็นข้อความบิดเบี้ยวที่สร้างจากอักขระประกอบ อย่างไรก็ตาม บางเว็บไซต์รับเฉพาะอักขระ Unicode บางชนิด ทำให้เครื่องหมายกลิตช์อาจหายไป ส่วนอีเมลและชื่อโดเมนมักต้องใช้อักขระมาตรฐาน</p>
+    </header>
+
+    <!-- How to type -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">พิมพ์ข้อความกลิตช์แปลก ๆ ได้อย่างไร?</h2>
+      <p class="text-text-muted leading-[1.8]">ข้อความกลิตช์แปลก ๆ สร้างได้โดยเพิ่มอักขระ Unicode พิเศษที่เรียกว่าอักขระประกอบลงบนตัวอักษรปกติ อักขระเหล่านี้จะเพิ่มเครื่องหมายทางสายตาให้ตัวอักษรเดิม ทำให้ดูบิดเบี้ยวโดยไม่เปลี่ยนตัวอักษรต้นฉบับ เครื่องหมายกำกับเสียง (diacritics) ซึ่งปกติใช้บอกการออกเสียงหรือแยกตัวอักษรในภาษาเขียน ก็สร้างข้อความน่าขนลุกได้เมื่อนำหลายเครื่องหมายมารวมกัน ตัวสร้างข้อความกลิตช์ช่วยทำขั้นตอนนี้โดยอัตโนมัติ คุณจึงสร้างข้อความ Zalgo ได้โดยไม่ต้องใส่สัญลักษณ์ Unicode เอง</p>
+    </section>
+
+    <!-- Zalgo -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Zalgo คืออะไร?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Zalgo เป็นมีมบนอินเทอร์เน็ตที่เริ่มจากการตัดต่อการ์ตูนช่องของ Dave Kelly ในปี 2004 ภาพที่ตัดต่อแสดงตัวละครถูกพลังมืดครอบงำ Zalgo เกี่ยวข้องกับสิ่งมีชีวิตในจินตนาการที่ชื่อ «He Who Waits Behind the Wall» (ผู้ที่รออยู่หลังกำแพง) และ Nezperdian Hivemind</p>
+      <p class="text-text-muted leading-[1.8]">ข้อความ Zalgo ใช้อักขระประกอบจำนวนมากเพื่อบิดเบือนตัวอักษรปกติ เครื่องหมายอาจยื่นขึ้นข้างบน ลงข้างล่าง และตัดผ่านข้อความ ทำให้ดูน่าขนลุกเป็นเอกลักษณ์</p>
+    </section>
+
+    <!-- How it works -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">ข้อความกลิตช์ทำงานอย่างไร?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">ข้อความกลิตช์ทำงานด้วยอักขระประกอบของ Unicode อักขระประกอบคือจุดรหัส Unicode ที่ไปติดกับอักขระพื้นฐานก่อนหน้า แทนที่จะปรากฏเป็นตัวอักษรอิสระ อักขระประกอบหลายตัวสามารถตามหลังตัวอักษรเดียว ทำให้เครื่องหมายซ้อนทับกัน</p>
+      <p class="text-text-muted leading-[1.8]">บล็อก Unicode Combining Diacritical Marks มีอักขระตั้งแต่ U+0300 ถึง U+036F ตัวสร้างข้อความกลิตช์ใช้อักขระเหล่านี้และอักขระประกอบอื่น ๆ เพื่อสร้างการบิดเบือนข้อความที่หลากหลาย</p>
+    </section>
+
+    <!-- Types -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">ประเภทของข้อความกลิตช์</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">อักขระประกอบสร้างเอฟเฟกต์ภาพที่พบบ่อยได้ 3 แบบ:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">ด้านบน:</strong> <span class="text-text-muted">เครื่องหมายปรากฏเหนือตัวอักษร ทำให้ข้อความยืดขึ้นด้านบน</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">ตัดผ่าน:</strong> <span class="text-text-muted">เครื่องหมายตัดผ่านตัวอักษร ทำให้ดูเป็นรอยขีดข่วนหรือเสียหาย</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">ด้านล่าง:</strong> <span class="text-text-muted">เครื่องหมายปรากฏใต้ตัวอักษร ทำให้ข้อความยืดลงด้านล่าง</span></li>
+      </ul>
+      <p class="text-text-muted leading-[1.8] mt-6">เอฟเฟกต์เหล่านี้นำมารวมกันเพื่อสร้างข้อความ Zalgo ที่บิดเบือนมากได้</p>
+    </section>
+
+    <!-- Safe -->
+    <section class="mb-4">
+      <h2 class="text-2xl font-bold mb-3">ข้อความกลิตช์ใช้งานปลอดภัยหรือไม่?</h2>
+      <p class="text-text-muted leading-[1.8]">ข้อความกลิตช์ใช้อักขระ Unicode และโดยทั่วไปไม่เป็นอันตราย อย่างไรก็ตาม อักขระประกอบที่มากเกินไปอาจทำให้อ่านยาก ทับบรรทัดข้างเคียง และรบกวนโปรแกรมอ่านหน้าจอ บางเว็บไซต์และแอปอาจลบอักขระที่ไม่รองรับหรือแสดงผลผิดเพี้ยน</p>
+    </section>
+  </article>
+</GlitchPage>

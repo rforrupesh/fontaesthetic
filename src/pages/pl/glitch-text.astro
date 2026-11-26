@@ -1,0 +1,52 @@
+---
+// Article for the Glitch Text page (pl). The tool above it comes from GlitchPage.
+import GlitchPage from '../../components/GlitchPage.astro';
+---
+
+<GlitchPage lang="pl">
+  <article class="wrap max-w-[900px] mx-auto py-10 text-text">
+    <!-- Intro -->
+    <header class="mb-12">
+      <h2 class="text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold mb-4 text-center">Tekst glitch do kopiowania i wklejania</h2>
+      <p class="text-text-muted text-[1.05rem] leading-[1.8]">Tekstu glitch można używać w komentarzach na blogach i w mediach społecznościowych, takich jak Facebook, YouTube i Tumblr. Wykorzystuje znaki Unicode zamiast obrazów, więc znaki glitch pozostają częścią tekstu po skopiowaniu i wklejeniu. Na przykład ļ̵͝i̴͋ͅk̵̡̚e̵̝̎ ̷̡́ẗ̸̠h̵͚̊i̸͈̐s̴̬̚ to zniekształcony tekst utworzony za pomocą znaków łączących. Niektóre strony akceptują jednak tylko wybrane znaki Unicode, przez co znaki glitch mogą zniknąć. Adresy e-mail i nazwy domen zwykle wymagają standardowych znaków.</p>
+    </header>
+
+    <!-- How to type -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Jak pisać dziwny tekst glitch?</h2>
+      <p class="text-text-muted leading-[1.8]">Dziwny tekst glitch powstaje przez dodanie do zwykłych liter specjalnych znaków Unicode, zwanych znakami łączącymi. Znaki te dołączają do istniejących liter wizualne oznaczenia i tworzą zniekształcony wygląd, nie zmieniając oryginalnych liter. Znaki diakrytyczne, które zwykle wskazują wymowę lub odróżniają litery w językach pisanych, po połączeniu kilku też mogą tworzyć upiorny tekst. Generator tekstu glitch automatyzuje ten proces, dzięki czemu możesz tworzyć tekst Zalgo bez ręcznego wstawiania symboli Unicode.</p>
+    </section>
+
+    <!-- Zalgo -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-3">Czym jest Zalgo?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Zalgo to internetowy mem, który powstał w 2004 roku z przeróbek komiksów autorstwa Dave'a Kelly'ego. Przeróbki te pokazywały postacie opanowane przez mroczną siłę. Zalgo kojarzy się z fikcyjną istotą znaną jako «He Who Waits Behind the Wall» (Ten, który czeka za ścianą) oraz Nezperdian Hivemind.</p>
+      <p class="text-text-muted leading-[1.8]">Tekst Zalgo używa wielu znaków łączących, aby zniekształcić zwykłe litery. Znaki mogą rozciągać się nad tekstem, pod nim i przez niego, tworząc charakterystyczny upiorny wygląd.</p>
+    </section>
+
+    <!-- How it works -->
+    <section class="mb-12 rounded-2xl border border-border bg-surface p-6 md:p-8">
+      <h2 class="text-2xl font-bold mb-3">Jak działa tekst glitch?</h2>
+      <p class="text-text-muted leading-[1.8] mb-4">Tekst glitch działa dzięki znakom łączącym Unicode. Znak łączący to punkt kodowy Unicode, który dołącza się do poprzedzającego znaku podstawowego, zamiast pojawiać się jako samodzielna litera. Po jednej literze może następować wiele znaków łączących, a ich oznaczenia nakładają się lub układają w stos.</p>
+      <p class="text-text-muted leading-[1.8]">Blok Unicode Combining Diacritical Marks zawiera znaki od U+0300 do U+036F. Generatory tekstu glitch używają ich oraz innych znaków łączących do tworzenia różnych zniekształceń.</p>
+    </section>
+
+    <!-- Types -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">Rodzaje tekstu glitch</h2>
+      <p class="text-text-muted leading-[1.8] mb-6">Znaki łączące mogą tworzyć trzy popularne efekty wizualne:</p>
+      <ul class="list-none p-0 m-0 flex flex-col gap-3">
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Nad:</strong> <span class="text-text-muted">znaki pojawiają się nad literami i wydłużają tekst ku górze.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Przez:</strong> <span class="text-text-muted">znaki przecinają litery, nadając wygląd porysowanego lub uszkodzonego tekstu.</span></li>
+        <li class="card px-5 py-3.5 text-sm leading-[1.7]"><strong class="font-semibold">Pod:</strong> <span class="text-text-muted">znaki pojawiają się pod literami i wydłużają tekst ku dołowi.</span></li>
+      </ul>
+      <p class="text-text-muted leading-[1.8] mt-6">Efekty te można łączyć, aby uzyskać mocno zniekształcony tekst Zalgo.</p>
+    </section>
+
+    <!-- Safe -->
+    <section class="mb-4">
+      <h2 class="text-2xl font-bold mb-3">Czy tekst glitch jest bezpieczny?</h2>
+      <p class="text-text-muted leading-[1.8]">Tekst glitch używa znaków Unicode i zazwyczaj jest nieszkodliwy. Zbyt wiele znaków łączących może jednak utrudniać czytanie, nakładać się na sąsiednie wiersze i zakłócać działanie czytników ekranu. Niektóre strony i aplikacje mogą też usuwać nieobsługiwane znaki lub wyświetlać je nieprawidłowo.</p>
+    </section>
+  </article>
+</GlitchPage>
