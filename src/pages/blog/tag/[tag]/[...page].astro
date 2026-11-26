@@ -62,7 +62,7 @@ const title = tag;
   description={pageDescription}
   path={pagePath}
   alternates={page.currentPage > 1 ? { [lang]: pagePath } : undefined}
-  switcherPath={page.currentPage > 1 ? pagePath : undefined}
+  switcherPath={page.currentPage > 1 ? basePath : undefined}
   availableLangs={[lang]}
   noindex={true}
 >
