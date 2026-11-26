@@ -54,7 +54,9 @@ const collectionItems = posts.map((p) => ({
   description={strings.blog.listingDescription}
   path={pagePath}
   alternates={page.currentPage > 1 ? { [lang]: pagePath } : undefined}
-  switcherPath={page.currentPage > 1 ? pagePath : undefined}
+  // Other languages only have page 1 of the blog, so the language switcher on /blog/2/, /blog/3/ ...
+  // must link to their /blog/ (page 1), never to a /<lang>/blog/2/ that doesn't exist (404).
+  switcherPath={page.currentPage > 1 ? '/blog/' : undefined}
 >
   <section class="wrap py-12 pb-6 text-center">
     <h1 class="text-[clamp(1.7rem,4vw,2.2rem)]">{strings.blog.listingTitle}{page.currentPage > 1 && <span class="text-text-muted font-normal"> · {strings.blog.page} {page.currentPage}</span>}</h1>
