@@ -22,7 +22,7 @@ const T: Record<string, GlitchText> = {
   en: {
     nav: 'Glitch Text', title: 'Glitch Text Generator (Copy and Paste Zalgo Text)',
     description: 'Free glitch text generator. Type your text, see 7 glitch styles update live and copy them in one click. Works on Facebook, YouTube, Tumblr and more.',
-    h1: 'Glitch Text Generator (Copy and Paste)', subtitle: 'Type your text, see every glitch style update live and copy it in one tap.',
+    h1: 'Glitch Text Generator', subtitle: 'Type your text, see every glitch style update live and copy it in one tap.',
     label: 'Your text', placeholder: 'Type your text here', sample: 'like this',
     styles: 'Glitch styles', copy: 'Copy', copied: 'Copied!', copyAria: 'Copy {style}',
     note: 'These are Unicode characters, so you can paste them almost anywhere. Some websites remove them, and usernames or email addresses usually need standard characters.',
